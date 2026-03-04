@@ -1,4 +1,6 @@
-import { useState, CSSProperties } from 'react'
+import { useState, useEffect, CSSProperties } from 'react'
+import ClickSpark from './components/ClickSpark'
+import UnifiedSidebar from './components/UnifiedSidebar'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface NavItem { id: string; icon: string; label: string }
@@ -36,90 +38,6 @@ function Orb({ style, color = '#7c3aed', size = '30vw' }: { style?: CSSPropertie
   )
 }
 
-// ─── Nav Items ────────────────────────────────────────────────────────────────
-const NAV_ITEMS: NavItem[] = [
-  { id: 'dashboard', icon: '⬡', label: 'Dashboard' },
-  { id: 'courses',   icon: '◈', label: 'Courses'   },
-  { id: 'lessons',   icon: '▶', label: 'Lessons'   },
-  { id: 'notes',     icon: '✦', label: 'Notes'     },
-  { id: 'settings',  icon: '⚙', label: 'Settings'  },
-]
-
-// ─── Sidebar ──────────────────────────────────────────────────────────────────
-function Sidebar({ onNav }: { onNav: (id: string) => void }) {
-  return (
-    <aside style={{
-      width: '15%', minWidth: '12rem', minHeight: '100vh', flexShrink: 0,
-      background: '#ffffff',
-      borderRight: '1px solid #e5e7eb',
-      display: 'flex', flexDirection: 'column',
-      padding: '2% 1%',
-      position: 'sticky', top: 0, height: '100vh',
-      zIndex: 10,
-    }}>
-      {/* Logo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '3%', marginBottom: '12%', paddingLeft: '5%' }}>
-        <div style={{
-          width: '2.4rem', height: '2.4rem', borderRadius: '0.6rem', flexShrink: 0,
-          background: 'linear-gradient(135deg,#7c3aed,#a855f7)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: "'Orbitron',sans-serif", fontWeight: 900, color: '#fff', fontSize: '1.1rem',
-          boxShadow: '0 0 1.2rem rgba(124,58,237,0.3)',
-        }}>K</div>
-        <div>
-          <div style={{ fontFamily: "'Orbitron',sans-serif", fontSize: '0.9rem', fontWeight: 700, color: '#1f2937', letterSpacing: '0.12em' }}>KYDY</div>
-          <div style={{ fontSize: '0.5rem', color: '#7c3aed', letterSpacing: '0.2em', fontFamily: 'monospace' }}>EDTECH</div>
-        </div>
-      </div>
-
-      {/* Nav */}
-      <nav style={{ flex: 1 }}>
-        <div style={{ fontSize: '0.55rem', color: '#9ca3af', letterSpacing: '0.2em', fontFamily: 'monospace', marginBottom: '4%', paddingLeft: '6%' }}>NAVIGATION</div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1%' }}>
-          {NAV_ITEMS.map(item => {
-            const isActive = item.id === 'notes'
-            return (
-              <button key={item.id} onClick={() => onNav(item.id)} style={{
-                display: 'flex', alignItems: 'center', gap: '8%',
-                padding: '4% 5%', borderRadius: '0.7rem', border: 'none', cursor: 'pointer',
-                fontFamily: "'Orbitron',sans-serif", fontSize: '0.65rem', fontWeight: 600,
-                letterSpacing: '0.06em', textTransform: 'uppercase', textAlign: 'left', width: '100%',
-                background: isActive ? 'linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.05))' : 'transparent',
-                color: isActive ? '#7c3aed' : '#6b7280',
-                borderLeft: isActive ? '0.12rem solid #7c3aed' : '0.12rem solid transparent',
-                boxShadow: isActive ? '0 0 1rem rgba(124,58,237,0.08)' : 'none',
-                transition: 'all 0.2s',
-              }}
-                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = '#f9fafb'; e.currentTarget.style.color = '#374151' }}}
-                onMouseLeave={e => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#6b7280' }}}
-              >
-                <span style={{ fontSize: '1rem', lineHeight: 1, flexShrink: 0 }}>{item.icon}</span>
-                <span style={{ flex: 1 }}>{item.label}</span>
-                {isActive && <span style={{ width: '0.4rem', height: '0.4rem', borderRadius: '50%', background: '#7c3aed', boxShadow: '0 0 0.5rem rgba(124,58,237,0.4)', flexShrink: 0 }} />}
-              </button>
-            )
-          })}
-        </div>
-      </nav>
-
-      {/* Divider */}
-      <div style={{ height: '1px', background: 'linear-gradient(90deg,transparent,#e5e7eb,transparent)', margin: '5% 0' }} />
-
-      {/* User */}
-      <div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '0.8rem', padding: '5%' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8%' }}>
-          <div style={{ width: '2.1rem', height: '2.1rem', borderRadius: '50%', flexShrink: 0, background: 'linear-gradient(135deg,#7c3aed,#ec4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', boxShadow: '0 0 0.6rem rgba(124,58,237,0.3)' }}>👤</div>
-          <div style={{ minWidth: 0, flex: 1 }}>
-            <div style={{ color: '#1f2937', fontSize: '0.7rem', fontWeight: 700, fontFamily: "'Orbitron',sans-serif", overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Ridhan</div>
-            <div style={{ color: '#6b7280', fontSize: '0.6rem', fontFamily: "'Exo 2',sans-serif" }}>Pro Learner</div>
-          </div>
-          <div style={{ width: '0.45rem', height: '0.45rem', borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 0.4rem #22c55e', flexShrink: 0 }} />
-        </div>
-      </div>
-    </aside>
-  )
-}
-
 // ─── Note Data ────────────────────────────────────────────────────────────────
 const INITIAL_NOTES: Note[] = [
   { id: 1, title: 'React Hooks Best Practices', content: 'Always use useEffect cleanup functions to prevent memory leaks. Dependencies array should include all values used inside the effect...', course: 'Web Development', color: '#6366f1', date: 'Today', tags: ['React', 'Hooks', 'Best Practices'], pinned: true },
@@ -130,12 +48,13 @@ const INITIAL_NOTES: Note[] = [
   { id: 6, title: 'Data Preprocessing Steps', content: 'Handle missing values, normalize/standardize features, encode categorical variables, split train/test sets...', course: 'Data Science', color: '#7c3aed', date: 'Feb 24', tags: ['Data', 'Preprocessing'], pinned: false },
 ]
 
-const FILTERS = ['All Notes', 'Pinned', 'Web Development', 'Machine Learning', 'UI/UX Design', 'Data Science']
+const FILTERS = ['All Notes', 'Pinned', 'Web Development', 'Machine Learning', 'UI/UX Design', 'Data Science', 'Visualizer']
 const COURSES = [
   { name: 'Web Development', color: '#6366f1' },
   { name: 'Machine Learning', color: '#7c3aed' },
   { name: 'UI/UX Design', color: '#a855f7' },
   { name: 'Data Science', color: '#7c3aed' },
+  { name: 'Visualizer', color: '#a855f7' },
 ]
 
 // ─── Note Editor Modal ────────────────────────────────────────────────────────
@@ -246,7 +165,7 @@ function NoteEditor({ note, onSave, onClose }: { note: Note | null; onSave: (not
             <LGBtn variant="ghost" onClick={onClose} style={{ flex: 1, padding: '3% 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.1em', color: '#374151' }}>
               CANCEL
             </LGBtn>
-            <LGBtn variant="primary" onClick={handleSave} style={{ flex: 1, padding: '3% 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.1em', color: '#fff' }}>
+            <LGBtn variant="primary" onClick={handleSave} style={{ flex: 1, padding: '3% 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.1em', color: '#1e293b' }}>
               SAVE NOTE
             </LGBtn>
           </div>
@@ -267,7 +186,7 @@ function NoteCard({ note, onClick, selected }: { note: Note; onClick: () => void
       style={{
         background: selected ? '#ffffff' : hov ? '#ffffff' : '#f9fafb',
         border: selected ? `2px solid ${note.color}` : hov ? `1px solid ${note.color}55` : '1px solid #e5e7eb',
-        borderRadius: '1rem', cursor: 'pointer', padding: '5%',
+        borderRadius: '1rem', cursor: 'pointer', overflow: 'hidden',
         transition: 'all 0.3s cubic-bezier(0.34,1.2,0.64,1)',
         transform: hov && !selected ? 'translateY(-0.3rem)' : 'translateY(0)',
         boxShadow: selected
@@ -277,20 +196,24 @@ function NoteCard({ note, onClick, selected }: { note: Note; onClick: () => void
       }}
     >
       {note.pinned && (
-        <div style={{ position: 'absolute', top: '4%', right: '4%', color: '#fbbf24', fontSize: '0.9rem' }}>📌</div>
+        <div style={{ position: 'absolute', top: '0.8rem', right: '0.8rem', color: '#fbbf24', fontSize: '0.9rem' }}>📌</div>
       )}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '3%', marginBottom: '3%' }}>
-        <div style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', background: note.color, boxShadow: `0 0 0.5rem ${note.color}55` }} />
-        <span style={{ color: '#6b7280', fontSize: '0.6rem', fontFamily: "'Exo 2',sans-serif" }}>{note.course}</span>
+      
+      {/* Body */}
+      <div style={{ padding: '0.9rem 1rem 1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+          <div style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', background: note.color, boxShadow: `0 0 0.5rem ${note.color}55` }} />
+          <span style={{ color: '#6b7280', fontSize: '0.65rem', fontFamily: "'Exo 2',sans-serif" }}>{note.course}</span>
+        </div>
+        <h3 style={{ color: '#1f2937', fontSize: '0.85rem', fontWeight: 700, marginBottom: '0.35rem', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.02em' }}>{note.title}</h3>
+        <p style={{ color: '#4b5563', fontSize: '0.7rem', lineHeight: 1.6, fontFamily: "'Exo 2',sans-serif", marginBottom: '0.65rem', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{note.content}</p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '0.5rem' }}>
+          {note.tags.map(tag => (
+            <span key={tag} style={{ background: `${note.color}15`, border: `1px solid ${note.color}33`, borderRadius: '2rem', padding: '0.22rem 0.55rem', color: note.color, fontSize: '0.58rem', fontFamily: "'Exo 2',sans-serif" }}>{tag}</span>
+          ))}
+        </div>
+        <div style={{ color: '#9ca3af', fontSize: '0.65rem', fontFamily: "'Exo 2',sans-serif" }}>{note.date}</div>
       </div>
-      <h3 style={{ color: '#1f2937', fontSize: '0.85rem', fontWeight: 700, marginBottom: '3%', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.02em' }}>{note.title}</h3>
-      <p style={{ color: '#4b5563', fontSize: '0.7rem', lineHeight: 1.6, fontFamily: "'Exo 2',sans-serif", marginBottom: '4%', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>{note.content}</p>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2%', marginBottom: '3%' }}>
-        {note.tags.map(tag => (
-          <span key={tag} style={{ background: `${note.color}15`, border: `1px solid ${note.color}33`, borderRadius: '2rem', padding: '1% 3%', color: note.color, fontSize: '0.55rem', fontFamily: "'Exo 2',sans-serif" }}>{tag}</span>
-        ))}
-      </div>
-      <div style={{ color: '#9ca3af', fontSize: '0.6rem', fontFamily: "'Exo 2',sans-serif" }}>{note.date}</div>
     </div>
   )
 }
@@ -299,17 +222,17 @@ function NoteCard({ note, onClick, selected }: { note: Note; onClick: () => void
 function NoteDetail({ note, onClose, onEdit, onDelete }: { note: Note; onClose: () => void; onEdit: (note: Note) => void; onDelete: (id: number) => void }) {
   return (
     <div style={{
-      width: '35%', minWidth: '20rem', flexShrink: 0,
+      width: '30%', minWidth: '17rem', flexShrink: 0,
       background: '#ffffff',
       border: '1px solid #e5e7eb',
       borderRadius: '1rem', overflow: 'hidden',
       display: 'flex', flexDirection: 'column',
-      position: 'sticky', top: '2%', maxHeight: '96vh',
+      position: 'sticky', top: '1rem', maxHeight: 'calc(100vh - 4rem)',
       boxShadow: '0 0.5rem 2rem rgba(0,0,0,0.08)',
     }}>
       {/* Header */}
-      <div style={{ padding: '5%', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '3%' }}>
+      <div style={{ padding: '1.2rem 1rem 0.8rem', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div style={{ width: '0.6rem', height: '0.6rem', borderRadius: '50%', background: note.color, boxShadow: `0 0 0.6rem ${note.color}55` }} />
           <span style={{ color: '#6b7280', fontSize: '0.7rem', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.06em' }}>{note.course}</span>
         </div>
@@ -320,33 +243,33 @@ function NoteDetail({ note, onClose, onEdit, onDelete }: { note: Note; onClose: 
       </div>
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '5%' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '3%', marginBottom: '4%' }}>
-          <h2 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: '1.1rem', color: '#1f2937', letterSpacing: '-0.02em', lineHeight: 1.3, flex: 1 }}>{note.title}</h2>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '1.1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.5rem', marginBottom: '0.4rem' }}>
+          <h2 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: '0.95rem', color: '#1f2937', letterSpacing: '-0.02em', lineHeight: 1.3, flex: 1 }}>{note.title}</h2>
           {note.pinned && <span style={{ fontSize: '1.2rem', flexShrink: 0 }}>📌</span>}
         </div>
 
-        <div style={{ color: '#9ca3af', fontSize: '0.65rem', fontFamily: "'Exo 2',sans-serif", marginBottom: '5%' }}>{note.date}</div>
+        <div style={{ color: '#9ca3af', fontSize: '0.68rem', fontFamily: "'Exo 2',sans-serif", marginBottom: '0.8rem' }}>{note.date}</div>
 
-        <div style={{ color: '#4b5563', fontSize: '0.8rem', lineHeight: 1.8, fontFamily: "'Exo 2',sans-serif", marginBottom: '6%', whiteSpace: 'pre-wrap' }}>{note.content}</div>
+        <div style={{ color: '#4b5563', fontSize: '0.72rem', lineHeight: 1.7, fontFamily: "'Exo 2',sans-serif", marginBottom: '1rem', whiteSpace: 'pre-wrap' }}>{note.content}</div>
 
         {/* Tags */}
-        <div style={{ marginBottom: '6%' }}>
-          <div style={{ color: '#9ca3af', fontSize: '0.6rem', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.15em', marginBottom: '4%' }}>TAGS</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2%' }}>
+        <div style={{ marginBottom: '0.5rem' }}>
+          <div style={{ color: '#6b7280', fontSize: '0.58rem', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.15em', marginBottom: '0.55rem' }}>TAGS</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
             {note.tags.map(t => (
-              <span key={t} style={{ background: `${note.color}15`, border: `1px solid ${note.color}33`, borderRadius: '2rem', padding: '1.5% 4%', color: note.color, fontSize: '0.65rem', fontFamily: "'Exo 2',sans-serif", marginBottom: '2%' }}>{t}</span>
+              <span key={t} style={{ background: `${note.color}15`, border: `1px solid ${note.color}33`, borderRadius: '2rem', padding: '0.22rem 0.55rem', color: note.color, fontSize: '0.58rem', fontFamily: "'Exo 2',sans-serif" }}>{t}</span>
             ))}
           </div>
         </div>
       </div>
 
       {/* CTA footer */}
-      <div style={{ padding: '4%', borderTop: '1px solid #e5e7eb', flexShrink: 0, display: 'flex', gap: '3%' }}>
-        <LGBtn variant="ghost" onClick={() => onEdit(note)} style={{ flex: 1, padding: '3% 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', color: '#374151' }}>
+      <div style={{ padding: '0.8rem 1rem', borderTop: '1px solid #e5e7eb', flexShrink: 0, display: 'flex', gap: '0.5rem' }}>
+        <LGBtn variant="ghost" onClick={() => onEdit(note)} style={{ flex: 1, padding: '0.65rem 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', color: '#374151' }}>
           EDIT
         </LGBtn>
-        <LGBtn variant="primary" onClick={() => onDelete(note.id)} style={{ flex: 1, padding: '3% 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', color: '#fff' }}>
+        <LGBtn variant="primary" onClick={() => onDelete(note.id)} style={{ flex: 1, padding: '0.65rem 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', color: '#1e293b' }}>
           DELETE
         </LGBtn>
       </div>
@@ -356,13 +279,44 @@ function NoteDetail({ note, onClose, onEdit, onDelete }: { note: Note; onClose: 
 
 // ─── Main Content ─────────────────────────────────────────────────────────────
 function NotesContent() {
-  const [notes, setNotes] = useState<Note[]>(INITIAL_NOTES)
+  // Load notes including visualizer notes from localStorage
+  const loadAllNotes = () => {
+    const visualizerNotes = JSON.parse(localStorage.getItem('visualizerNotes') || '[]')
+    return [...INITIAL_NOTES, ...visualizerNotes]
+  }
+  
+  const [notes, setNotes] = useState<Note[]>(loadAllNotes)
   const [filter, setFilter] = useState('All Notes')
   const [search, setSearch] = useState('')
   const [selected, setSelected] = useState<Note | null>(notes[0])
   const [searchFocused, setSearchFocused] = useState(false)
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [showEditor, setShowEditor] = useState(false)
+
+  // Refresh notes when component mounts or when returning from other pages
+  useEffect(() => {
+    const refreshNotes = () => {
+      setNotes(loadAllNotes())
+    }
+    
+    // Listen for storage changes (when visualizer saves new notes)
+    window.addEventListener('storage', refreshNotes)
+    window.addEventListener('visualizerNoteSaved', refreshNotes)
+    
+    // Also refresh when the component becomes visible again
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        refreshNotes()
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    
+    return () => {
+      window.removeEventListener('storage', refreshNotes)
+      window.removeEventListener('visualizerNoteSaved', refreshNotes)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [])
 
   const filtered = notes.filter(n => {
     const matchFilter =
@@ -405,20 +359,20 @@ function NotesContent() {
   }
 
   return (
-    <main style={{ flex: 1, padding: '2.5% 2%', overflowY: 'auto', position: 'relative', display: 'flex', flexDirection: 'column', gap: '2%', background: '#f3f4f6' }}>
+    <main style={{ flex: 1, padding: '2rem 1.8rem', overflowY: 'auto', position: 'relative', display: 'flex', flexDirection: 'column', gap: '1.2rem', background: '#f3f4f6' }}>
       <Orb style={{ top: '-5%', right: '5%' }} color="#c4b5fd" size="30vw" />
       <Orb style={{ bottom: '5%', left: '10%' }} color="#ddd6fe" size="22vw" />
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 2 }}>
         <div>
-          <div style={{ color: '#7c3aed', fontSize: '0.6rem', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.2em', marginBottom: '2%' }}>KNOWLEDGE BASE</div>
+          <div style={{ color: '#7c3aed', fontSize: '0.58rem', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.2em', marginBottom: '0.3rem' }}>KNOWLEDGE BASE</div>
           <h1 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 'clamp(1.2rem,2vw,1.8rem)', color: '#1f2937', letterSpacing: '-0.04em' }}>MY NOTES</h1>
         </div>
-        <div style={{ display: 'flex', gap: '3%', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
           {/* Search */}
-          <div style={{ position: 'relative', width: '18rem' }}>
-            <span style={{ position: 'absolute', left: '4%', top: '50%', transform: 'translateY(-50%)', fontSize: '0.8rem', color: '#9ca3af' }}>🔍</span>
+          <div style={{ position: 'relative', width: '22rem' }}>
+            <span style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', fontSize: '0.8rem', color: '#9ca3af' }}>🔍</span>
             <input
               value={search}
               onChange={e => setSearch(e.target.value)}
@@ -426,7 +380,7 @@ function NotesContent() {
               onBlur={() => setSearchFocused(false)}
               placeholder="Search notes..."
               style={{
-                width: '100%', padding: '2.5% 4% 2.5% 12%',
+                width: '100%', padding: '0.55rem 0.9rem 0.55rem 2.2rem',
                 borderRadius: '0.7rem', outline: 'none',
                 background: searchFocused ? '#ffffff' : '#ffffff',
                 border: `1px solid ${searchFocused ? '#7c3aed' : '#e5e7eb'}`,
@@ -436,20 +390,25 @@ function NotesContent() {
               }}
             />
           </div>
-          <LGBtn variant="primary" onClick={handleNewNote} style={{ padding: '2.5% 5%', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', color: '#fff' }}>
-            + NEW NOTE
-          </LGBtn>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <LGBtn variant="ghost" onClick={() => setNotes(loadAllNotes())} style={{ padding: '0.55rem 1rem', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.1em', color: '#7c3aed' }}>
+              🔄 REFRESH
+            </LGBtn>
+            <LGBtn variant="primary" onClick={handleNewNote} style={{ padding: '0.55rem 1.2rem', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', color: '#1e293b' }}>
+              + NEW NOTE
+            </LGBtn>
+          </div>
         </div>
       </div>
 
       {/* Filter Pills */}
-      <div style={{ display: 'flex', gap: '1%', flexWrap: 'wrap', position: 'relative', zIndex: 2 }}>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', position: 'relative', zIndex: 2, alignItems: 'center' }}>
         {FILTERS.map(f => (
           <button key={f} onClick={() => setFilter(f)} style={{
-            padding: '1.2% 4%', borderRadius: '2rem', cursor: 'pointer',
+            padding: '0.38rem 0.9rem', borderRadius: '2rem', cursor: 'pointer',
             fontFamily: "'Orbitron',sans-serif", fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.06em',
             background: filter === f ? 'linear-gradient(135deg,#7c3aed,#a855f7)' : '#ffffff',
-            color: filter === f ? '#fff' : '#6b7280',
+            color: filter === f ? '#1e293b' : '#6b7280',
             border: filter === f ? '1px solid #7c3aed' : '1px solid #e5e7eb',
             boxShadow: filter === f ? '0 0.2rem 0.8rem rgba(124,58,237,0.25)' : 'none',
             transition: 'all 0.2s',
@@ -458,15 +417,15 @@ function NotesContent() {
             onMouseLeave={e => { if (filter !== f) { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.borderColor = '#e5e7eb' }}}
           >{f}</button>
         ))}
-        <span style={{ marginLeft: 'auto', color: '#6b7280', fontSize: '0.65rem', fontFamily: "'Exo 2',sans-serif", display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginLeft: 'auto', color: '#6b7280', fontSize: '0.65rem', fontFamily: "'Exo 2',sans-serif" }}>
           {filtered.length} note{filtered.length !== 1 ? 's' : ''}
         </span>
       </div>
 
       {/* Grid + Detail */}
-      <div style={{ display: 'flex', gap: '2%', flex: 1, position: 'relative', zIndex: 2, alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', gap: '1.2rem', flex: 1, position: 'relative', zIndex: 2, alignItems: 'flex-start' }}>
         {/* Notes grid */}
-        <div style={{ flex: 1, display: 'grid', gridTemplateColumns: selected ? 'repeat(2,1fr)' : 'repeat(3,1fr)', gap: '2%', alignContent: 'start' }}>
+        <div style={{ flex: 1, display: 'grid', gridTemplateColumns: selected ? 'repeat(2,1fr)' : 'repeat(3,1fr)', gap: '1rem', alignContent: 'start' }}>
           {filtered.map(note => (
             <NoteCard
               key={note.id}
@@ -515,7 +474,7 @@ export default function NotesPage({ onNav }: { onNav?: (id: string) => void }) {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { background: #f3f4f6; overflow-x: hidden; }
@@ -541,13 +500,15 @@ export default function NotesPage({ onNav }: { onNav?: (id: string) => void }) {
         .lg-enroll:hover { box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 0 2rem rgba(99,102,241,0.46); }
       `}</style>
 
-      <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1f2937', overflow: 'hidden', position: 'relative' }}>
-        <Orb style={{ top: '20%', left: '15%' }} color="#ddd6fe" size="40vw" />
-        <Sidebar onNav={handleNav} />
-        <div style={{ flex: 1, overflowY: 'auto' }}>
-          <NotesContent />
+      <ClickSpark sparkColor="#7c3aed" sparkSize={15} sparkRadius={25} sparkCount={12} duration={600} extraScale={1.5}>
+        <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1f2937', overflow: 'hidden', position: 'relative' }}>
+          <Orb style={{ top: '20%', left: '15%' }} color="#ddd6fe" size="40vw" />
+          <UnifiedSidebar active="notes" onNav={handleNav} variant="light" />
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            <NotesContent />
+          </div>
         </div>
-      </div>
+      </ClickSpark>
     </>
   )
 }

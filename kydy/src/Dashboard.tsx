@@ -1,11 +1,52 @@
-import { useState, CSSProperties } from 'react'
+import { useState, useEffect, CSSProperties } from 'react'
+import ClickSpark from './components/ClickSpark'
+import UnifiedSidebar from './components/UnifiedSidebar'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-interface NavItem { id: string; icon: string; label: string }
 interface StatCardData { icon: string; label: string; value: string; sub: string; color: string }
 interface CourseProgress {
   title: string; icon: string; color: string
   progress: number; lessons: number; lessonsTotal: number; tag: string
+}
+
+// ─── API Functions ────────────────────────────────────────────────────────────
+const API_BASE = 'http://localhost:8000'
+
+async function fetchDashboardStats() {
+  try {
+    const response = await fetch(`${API_BASE}/api/dashboard/stats`)
+    if (!response.ok) throw new Error('Failed to fetch stats')
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching dashboard stats:', error)
+    // Fallback to mock data
+    return {
+      study_time: '24h',
+      study_time_sub: '+3h this week',
+      streak: '12',
+      streak_sub: 'Days in a row',
+      in_progress: '3',
+      in_progress_sub: 'Active courses',
+      completed: '7',
+      completed_sub: 'Courses finished'
+    }
+  }
+}
+
+async function fetchCourseProgress() {
+  try {
+    const response = await fetch(`${API_BASE}/api/dashboard/courses`)
+    if (!response.ok) throw new Error('Failed to fetch courses')
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching course progress:', error)
+    // Fallback to mock data
+    return [
+      { title: 'Web Development',  icon: '⚡', color: '#6366f1', progress: 68, lessons: 17, lessonsTotal: 25, tag: 'In Progress'  },
+      { title: 'Machine Learning', icon: '🤖', color: '#7c3aed', progress: 35, lessons: 8,  lessonsTotal: 23, tag: 'In Progress'  },
+      { title: 'UI/UX Design',     icon: '🎨', color: '#a855f7', progress: 82, lessons: 21, lessonsTotal: 26, tag: 'Almost Done'  },
+    ]
+  }
 }
 
 // ─── Liquid Glass Button ──────────────────────────────────────────────────────
@@ -50,105 +91,6 @@ function ProgressBar({ value, color }: { value: number; color: string }) {
   )
 }
 
-// ─── Nav Items ────────────────────────────────────────────────────────────────
-const NAV_ITEMS: NavItem[] = [
-  { id: 'dashboard', icon: '⬡', label: 'Dashboard' },
-  { id: 'courses',   icon: '◈',  label: 'Courses'   },
-  { id: 'lessons',   icon: '▶',  label: 'Lessons'   },
-  { id: 'notes',     icon: '✦',  label: 'Notes'     },
-  { id: 'settings',  icon: '⚙',  label: 'Settings'  },
-]
-
-// ─── Sidebar ──────────────────────────────────────────────────────────────────
-function Sidebar({ active, onNav }: { active: string; onNav: (id: string) => void }) {
-  return (
-    <aside style={{
-      width: 240, minHeight: '100vh', flexShrink: 0,
-      background: '#ffffff',
-      borderRight: '1px solid #e5e7eb',
-      display: 'flex', flexDirection: 'column',
-      padding: '28px 14px',
-      position: 'sticky', top: 0, height: '100vh',
-      zIndex: 10,
-    }}>
-      {/* Logo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 44, paddingLeft: 8 }}>
-        <div style={{
-          width: 38, height: 38, borderRadius: 10,
-          background: 'linear-gradient(135deg,#7c3aed,#a855f7)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: "'Orbitron',sans-serif", fontWeight: 900, color: '#fff', fontSize: 18,
-          boxShadow: '0 0 20px rgba(124,58,237,0.3)',
-        }}>K</div>
-        <div>
-          <div style={{ fontFamily: "'Orbitron',sans-serif", fontSize: 15, fontWeight: 700, color: '#1f2937', letterSpacing: 2 }}>KYDY</div>
-          <div style={{ fontSize: 8, color: '#7c3aed', letterSpacing: 3, fontFamily: 'monospace' }}>EDTECH</div>
-        </div>
-      </div>
-
-      {/* Nav */}
-      <nav style={{ flex: 1 }}>
-        <div style={{ fontSize: 9, color: '#9ca3af', letterSpacing: 3, fontFamily: 'monospace', marginBottom: 10, paddingLeft: 10 }}>NAVIGATION</div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-          {NAV_ITEMS.map(item => {
-            const isActive = active === item.id
-            return (
-              <button
-                key={item.id}
-                onClick={() => onNav(item.id)}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 11,
-                  padding: '11px 12px', borderRadius: 11, border: 'none', cursor: 'pointer',
-                  fontFamily: "'Orbitron',sans-serif", fontSize: 10, fontWeight: 600,
-                  letterSpacing: 1, textTransform: 'uppercase', textAlign: 'left', width: '100%',
-                  background: isActive
-                    ? 'linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.05))'
-                    : 'transparent',
-                  color: isActive ? '#7c3aed' : '#6b7280',
-                  borderLeft: isActive ? '2px solid #7c3aed' : '2px solid transparent',
-                  boxShadow: isActive ? '0 0 18px rgba(124,58,237,0.08)' : 'none',
-                  transition: 'all 0.2s',
-                }}
-                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = '#f9fafb'; e.currentTarget.style.color = '#374151' }}}
-                onMouseLeave={e => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#6b7280' }}}
-              >
-                <span style={{ fontSize: 16, lineHeight: 1, flexShrink: 0 }}>{item.icon}</span>
-                <span style={{ flex: 1 }}>{item.label}</span>
-                {isActive && (
-                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7c3aed', boxShadow: '0 0 8px rgba(124,58,237,0.4)', flexShrink: 0 }} />
-                )}
-              </button>
-            )
-          })}
-        </div>
-      </nav>
-
-      {/* Divider */}
-      <div style={{ height: 1, background: 'linear-gradient(90deg,transparent,#e5e7eb,transparent)', margin: '16px 0' }} />
-
-      {/* User card */}
-      <div style={{
-        background: '#f9fafb', border: '1px solid #e5e7eb',
-        borderRadius: 13, padding: '13px',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{
-            width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
-            background: 'linear-gradient(135deg,#7c3aed,#ec4899)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15,
-            boxShadow: '0 0 10px rgba(124,58,237,0.3)',
-          }}>👤</div>
-          <div style={{ minWidth: 0, flex: 1 }}>
-            <div style={{ color: '#1f2937', fontSize: 11, fontWeight: 700, fontFamily: "'Orbitron',sans-serif", letterSpacing: 0.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Ridhan</div>
-            <div style={{ color: '#6b7280', fontSize: 10, fontFamily: "'Exo 2',sans-serif" }}>Pro Learner</div>
-          </div>
-          <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 6px #22c55e', flexShrink: 0 }} />
-        </div>
-      </div>
-    </aside>
-  )
-}
-
 // ─── Stat Card ────────────────────────────────────────────────────────────────
 function StatCard({ icon, label, value, sub, color }: StatCardData) {
   return (
@@ -163,28 +105,104 @@ function StatCard({ icon, label, value, sub, color }: StatCardData) {
     >
       <div style={{ position: 'absolute', top: -16, right: -16, width: 70, height: 70, borderRadius: '50%', background: `radial-gradient(circle, ${color}20 0%, transparent 70%)`, pointerEvents: 'none' }} />
       <div style={{ width: 40, height: 40, borderRadius: 11, marginBottom: 14, background: `${color}18`, border: `1px solid ${color}28`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>{icon}</div>
-      <div style={{ fontSize: 28, fontWeight: 900, color: '#1f2937', fontFamily: "'Orbitron',sans-serif", marginBottom: 3 }}>{value}</div>
-      <div style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', fontFamily: "'Orbitron',sans-serif", letterSpacing: 0.5, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontSize: 11, color: '#9ca3af', fontFamily: "'Exo 2',sans-serif" }}>{sub}</div>
+      <div style={{ fontSize: 28, fontWeight: 900, color: '#1f2937', fontFamily: "'Poppins',sans-serif", marginBottom: 3 }}>{value}</div>
+      <div style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', fontFamily: "'Poppins',sans-serif", letterSpacing: 0.5, marginBottom: 4 }}>{label}</div>
+      <div style={{ fontSize: 11, color: '#9ca3af', fontFamily: "'Inter',sans-serif" }}>{sub}</div>
     </div>
   )
 }
 
-// ─── In Progress Courses ──────────────────────────────────────────────────────
-const IN_PROGRESS: CourseProgress[] = [
-  { title: 'Web Development',  icon: '⚡', color: '#6366f1', progress: 68, lessons: 17, lessonsTotal: 25, tag: 'In Progress'  },
-  { title: 'Machine Learning', icon: '🤖', color: '#7c3aed', progress: 35, lessons: 8,  lessonsTotal: 23, tag: 'In Progress'  },
-  { title: 'UI/UX Design',     icon: '🎨', color: '#a855f7', progress: 82, lessons: 21, lessonsTotal: 26, tag: 'Almost Done'  },
-]
-
 // ─── Main Content ─────────────────────────────────────────────────────────────
 function DashboardContent({ onNav }: { onNav: (id: string) => void }) {
-  const stats: StatCardData[] = [
+  const [stats, setStats] = useState<StatCardData[]>([
     { icon: '⏱', label: 'Study Time',  value: '24h', sub: '+3h this week',    color: '#6366f1' },
     { icon: '🔥', label: 'Streak',      value: '12',  sub: 'Days in a row',    color: '#f59e0b' },
     { icon: '📖', label: 'In Progress', value: '3',   sub: 'Active courses',   color: '#7c3aed' },
     { icon: '🏆', label: 'Completed',   value: '7',   sub: 'Courses finished', color: '#22c55e' },
-  ]
+  ])
+  const [courses, setCourses] = useState<CourseProgress[]>([
+    { title: 'Web Development',  icon: '⚡', color: '#6366f1', progress: 68, lessons: 17, lessonsTotal: 25, tag: 'In Progress'  },
+    { title: 'Machine Learning', icon: '🤖', color: '#7c3aed', progress: 35, lessons: 8,  lessonsTotal: 23, tag: 'In Progress'  },
+    { title: 'UI/UX Design',     icon: '🎨', color: '#a855f7', progress: 82, lessons: 21, lessonsTotal: 26, tag: 'Almost Done'  },
+  ])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadDashboardData = async () => {
+      setLoading(true)
+      try {
+        const [statsData, coursesData] = await Promise.all([
+          fetchDashboardStats(),
+          fetchCourseProgress()
+        ])
+
+        // Update stats
+        setStats([
+          { icon: '⏱', label: 'Study Time',  value: statsData.study_time, sub: statsData.study_time_sub, color: '#6366f1' },
+          { icon: '🔥', label: 'Streak',      value: statsData.streak,     sub: statsData.streak_sub,     color: '#f59e0b' },
+          { icon: '📖', label: 'In Progress', value: statsData.in_progress, sub: statsData.in_progress_sub, color: '#7c3aed' },
+          { icon: '🏆', label: 'Completed',   value: statsData.completed,   sub: statsData.completed_sub,   color: '#22c55e' },
+        ])
+
+        // Update courses
+        setCourses(coursesData.map((course: any) => ({
+          title: course.title,
+          icon: course.icon,
+          color: course.color,
+          progress: course.progress,
+          lessons: course.lessons,
+          lessonsTotal: course.lessons_total,
+          tag: course.tag
+        })))
+      } catch (error) {
+        console.error('Error loading dashboard data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadDashboardData()
+  }, [])
+
+  const handleContinueCourse = async (courseTitle: string) => {
+    try {
+      // Update progress when user continues a course
+      const course = courses.find(c => c.title === courseTitle)
+      if (course) {
+        const response = await fetch(`${API_BASE}/api/dashboard/update-progress?course_title=${encodeURIComponent(courseTitle)}&lessons_completed=${course.lessons + 1}`, {
+          method: 'POST'
+        })
+        if (response.ok) {
+          // Reload dashboard data to reflect changes
+          const [statsData, coursesData] = await Promise.all([
+            fetchDashboardStats(),
+            fetchCourseProgress()
+          ])
+          
+          setStats([
+            { icon: '⏱', label: 'Study Time',  value: statsData.study_time, sub: statsData.study_time_sub, color: '#6366f1' },
+            { icon: '🔥', label: 'Streak',      value: statsData.streak,     sub: statsData.streak_sub,     color: '#f59e0b' },
+            { icon: '📖', label: 'In Progress', value: statsData.in_progress, sub: statsData.in_progress_sub, color: '#7c3aed' },
+            { icon: '🏆', label: 'Completed',   value: statsData.completed,   sub: statsData.completed_sub,   color: '#22c55e' },
+          ])
+
+          setCourses(coursesData.map((course: any) => ({
+            title: course.title,
+            icon: course.icon,
+            color: course.color,
+            progress: course.progress,
+            lessons: course.lessons,
+            lessonsTotal: course.lessons_total,
+            tag: course.tag
+          })))
+        }
+      }
+    } catch (error) {
+      console.error('Error updating course progress:', error)
+    }
+    
+    onNav('lessons')
+  }
 
   const activity = [
     { day: 'MON', hrs: 2.5, color: '#6366f1' },
@@ -204,14 +222,14 @@ function DashboardContent({ onNav }: { onNav: (id: string) => void }) {
       {/* ── Header ── */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 36, position: 'relative', zIndex: 2 }}>
         <div>
-          <div style={{ color: '#7c3aed', fontSize: 10, fontFamily: "'Orbitron',sans-serif", letterSpacing: 3, marginBottom: 5 }}>OVERVIEW</div>
-          <h1 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: '1.75rem', color: '#1f2937', letterSpacing: -1 }}>DASHBOARD</h1>
+          <div style={{ color: '#7c3aed', fontSize: 10, fontFamily: "'Poppins',sans-serif", letterSpacing: 3, marginBottom: 5 }}>OVERVIEW</div>
+          <h1 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 900, fontSize: '1.75rem', color: '#1f2937', letterSpacing: -1 }}>DASHBOARD</h1>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ background: `rgba(124,58,237,0.1)`, border: '1px solid rgba(124,58,237,0.22)', borderRadius: 10, padding: '8px 16px', color: '#7c3aed', fontSize: 12, fontFamily: "'Exo 2',sans-serif" }}>
+          <div style={{ background: `rgba(124,58,237,0.1)`, border: '1px solid rgba(124,58,237,0.22)', borderRadius: 10, padding: '8px 16px', color: '#7c3aed', fontSize: 12, fontFamily: "'Inter',sans-serif" }}>
             📅 Feb 27, 2026
           </div>
-          <LGBtn variant="primary" style={{ padding: '9px 20px', borderRadius: 10, fontFamily: "'Orbitron',sans-serif", fontSize: 10, letterSpacing: 1, fontWeight: 700, color: '#fff' }}>
+          <LGBtn variant="primary" style={{ padding: '9px 20px', borderRadius: 10, fontFamily: "'Poppins',sans-serif", fontSize: 10, letterSpacing: 1, fontWeight: 700, color: '#1e293b' }}>
             + ENROLL
           </LGBtn>
         </div>
@@ -226,53 +244,53 @@ function DashboardContent({ onNav }: { onNav: (id: string) => void }) {
       <div style={{ position: 'relative', zIndex: 2, marginBottom: 32 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
           <div>
-            <div style={{ color: '#7c3aed', fontSize: 10, fontFamily: "'Orbitron',sans-serif", letterSpacing: 3, marginBottom: 4 }}>CURRENTLY STUDYING</div>
-            <h2 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 800, fontSize: '1.05rem', color: '#1f2937', letterSpacing: -0.5 }}>MY COURSES</h2>
+            <div style={{ color: '#7c3aed', fontSize: 10, fontFamily: "'Poppins',sans-serif", letterSpacing: 3, marginBottom: 4 }}>CURRENTLY STUDYING</div>
+            <h2 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: '1.05rem', color: '#1f2937', letterSpacing: -0.5 }}>MY COURSES</h2>
           </div>
-          <button
-            onClick={() => onNav('courses')}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#7c3aed', fontSize: 11, fontFamily: "'Orbitron',sans-serif", letterSpacing: 1, transition: 'color 0.2s' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#a855f7'}
-            onMouseLeave={e => e.currentTarget.style.color = '#7c3aed'}
-          >VIEW ALL →</button>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {IN_PROGRESS.map((c, i) => (
-            <div key={i}
-              style={{
-                background: '#ffffff', border: '1px solid #e5e7eb',
-                borderRadius: 16, padding: '18px 22px',
-                display: 'flex', alignItems: 'center', gap: 18,
-                transition: 'all 0.3s', cursor: 'default',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = `${c.color}44`; e.currentTarget.style.transform = 'translateX(4px)'; e.currentTarget.style.boxShadow = `0 8px 28px rgba(0,0,0,0.08), 0 0 14px ${c.color}10` }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.transform = 'translateX(0)'; e.currentTarget.style.boxShadow = 'none' }}
-            >
-              <div style={{ width: 50, height: 50, borderRadius: 13, flexShrink: 0, background: `${c.color}18`, border: `1px solid ${c.color}28`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{c.icon}</div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                  <span style={{ color: '#1f2937', fontSize: 13, fontWeight: 700, fontFamily: "'Orbitron',sans-serif", letterSpacing: 0.3 }}>{c.title}</span>
-                  <span style={{ background: `${c.color}22`, border: `1px solid ${c.color}44`, borderRadius: 20, padding: '2px 10px', color: c.color, fontSize: 9, fontFamily: "'Orbitron',sans-serif", letterSpacing: 1 }}>{c.tag}</span>
-                </div>
-                <ProgressBar value={c.progress} color={c.color} />
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-                  <span style={{ color: '#6b7280', fontSize: 11, fontFamily: "'Exo 2',sans-serif" }}>{c.lessons}/{c.lessonsTotal} lessons</span>
-                  <span style={{ color: c.color, fontSize: 11, fontFamily: "'Orbitron',sans-serif", fontWeight: 700 }}>{c.progress}%</span>
-                </div>
-              </div>
-              <LGBtn variant="enroll" onClick={() => onNav('lessons')} style={{ padding: '8px 16px', borderRadius: 9, flexShrink: 0, fontFamily: "'Orbitron',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: 1, color: '#fff' }}>
-                CONTINUE
-              </LGBtn>
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '2rem', color: '#9ca3af', fontFamily: "'Inter',sans-serif" }}>
+              Loading courses...
             </div>
-          ))}
+          ) : (
+            courses.map((c, i) => (
+              <div key={i}
+                style={{
+                  background: '#ffffff', border: '1px solid #e5e7eb',
+                  borderRadius: 16, padding: '18px 22px',
+                  display: 'flex', alignItems: 'center', gap: 18,
+                  transition: 'all 0.3s', cursor: 'default',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = `${c.color}44`; e.currentTarget.style.transform = 'translateX(4px)'; e.currentTarget.style.boxShadow = `0 8px 28px rgba(0,0,0,0.08), 0 0 14px ${c.color}10` }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.transform = 'translateX(0)'; e.currentTarget.style.boxShadow = 'none' }}
+              >
+                <div style={{ width: 50, height: 50, borderRadius: 13, flexShrink: 0, background: `${c.color}18`, border: `1px solid ${c.color}28`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{c.icon}</div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                    <span style={{ color: '#1f2937', fontSize: 13, fontWeight: 700, fontFamily: "'Poppins',sans-serif", letterSpacing: 0.3 }}>{c.title}</span>
+                    <span style={{ background: `${c.color}22`, border: `1px solid ${c.color}44`, borderRadius: 20, padding: '2px 10px', color: c.color, fontSize: 9, fontFamily: "'Poppins',sans-serif", letterSpacing: 1 }}>{c.tag}</span>
+                  </div>
+                  <ProgressBar value={c.progress} color={c.color} />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
+                    <span style={{ color: '#6b7280', fontSize: 11, fontFamily: "'Inter',sans-serif" }}>{c.lessons}/{c.lessonsTotal} lessons</span>
+                    <span style={{ color: c.color, fontSize: 11, fontFamily: "'Poppins',sans-serif", fontWeight: 700 }}>{c.progress}%</span>
+                  </div>
+                </div>
+                <LGBtn variant="enroll" onClick={() => handleContinueCourse(c.title)} style={{ padding: '8px 16px', borderRadius: 9, flexShrink: 0, fontFamily: "'Poppins',sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: 1, color: '#1e293b' }}>
+                  CONTINUE
+                </LGBtn>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
       {/* ── Weekly Activity ── */}
       <div style={{ position: 'relative', zIndex: 2 }}>
-        <div style={{ color: '#7c3aed', fontSize: 10, fontFamily: "'Orbitron',sans-serif", letterSpacing: 3, marginBottom: 4 }}>THIS WEEK</div>
-        <h2 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 800, fontSize: '1.05rem', color: '#1f2937', letterSpacing: -0.5, marginBottom: 16 }}>ACTIVITY</h2>
+        <div style={{ color: '#7c3aed', fontSize: 10, fontFamily: "'Poppins',sans-serif", letterSpacing: 3, marginBottom: 4 }}>THIS WEEK</div>
+        <h2 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: '1.05rem', color: '#1f2937', letterSpacing: -0.5, marginBottom: 16 }}>ACTIVITY</h2>
         <div style={{ background: '#ffffff', border: '1px solid #e5e7eb', borderRadius: 18, padding: '22px 28px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 10, height: 100 }}>
             {activity.map(({ day, hrs, color }) => (
@@ -294,12 +312,12 @@ export default function Dashboard({ onNavigate }: { onNavigate?: (view: string) 
   const [active, setActive] = useState('dashboard')
 
   const handleNav = (id: string) => {
-    if (id === 'courses' && onNavigate) { 
-      onNavigate('courses')
-      return 
-    }
     if (id === 'lessons' && onNavigate) { 
       onNavigate('lessons')
+      return 
+    }
+    if (id === 'visualizer' && onNavigate) { 
+      onNavigate('visualizer')
       return 
     }
     if (id === 'notes' && onNavigate) { 
@@ -312,7 +330,7 @@ export default function Dashboard({ onNavigate }: { onNavigate?: (view: string) 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { background: #f3f4f6; overflow-x: hidden; }
@@ -338,13 +356,15 @@ export default function Dashboard({ onNavigate }: { onNavigate?: (view: string) 
         .lg-enroll:hover { box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 0 32px rgba(99,102,241,0.46); }
       `}</style>
 
-      <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1f2937', overflow: 'hidden', position: 'relative' }}>
-        <Orb style={{ top: '20%', left: '25%' }} color="#ddd6fe" size={700} />
-        <Sidebar active={active} onNav={handleNav} />
-        <div style={{ flex: 1, overflowY: 'auto' }}>
-          <DashboardContent onNav={handleNav} />
+      <ClickSpark sparkColor="#7c3aed" sparkSize={10} sparkRadius={18} sparkCount={10} duration={450} extraScale={1.1}>
+        <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1f2937', overflow: 'hidden', position: 'relative' }}>
+          <Orb style={{ top: '20%', left: '25%' }} color="#ddd6fe" size={700} />
+          <UnifiedSidebar active={active} onNav={handleNav} variant="light" />
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            <DashboardContent onNav={handleNav} />
+          </div>
         </div>
-      </div>
+      </ClickSpark>
     </>
   )
 }

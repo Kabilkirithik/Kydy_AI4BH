@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef, CSSProperties } from 'react'
 import Dashboard from './Dashboard'
-import CoursePage from './Courses'
 import LessonsPage from './Lessons'
 import NotesPage from './Notes'
+import VisualizerPage from './Visualizer'
+import ClickSpark from './components/ClickSpark'
+
+
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface OrbProps { style?: CSSProperties; color?: string; size?: number }
 interface NavbarProps { activeTab: string; setActiveTab: (tab: string) => void }
-interface HomeProps { setActiveTab: (tab: string) => void }
-interface Course { title: string; students: string; rating: string; icon: string; color: string; tag: string }
 interface Feature { icon: string; title: string; desc: string; color: string }
 interface FloatCard { icon: string; text: string; top?: string; bottom?: string; left?: string; right?: string }
 
@@ -54,7 +55,7 @@ function ParticleCanvas() {
     const pts = Array.from({ length: 90 }, () => ({
       x: Math.random() * canvas.width, y: Math.random() * canvas.height,
       vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
-      r: Math.random() * 1.4 + 0.4, o: Math.random() * 0.45 + 0.1,
+      r: Math.random() * 1.4 + 0.4, o: Math.random() * 0.25 + 0.05,
     }))
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -66,7 +67,7 @@ function ParticleCanvas() {
         if (p.y > canvas.height) p.y = 0
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(130,100,255,${p.o})`
+        ctx.fillStyle = `rgba(196,181,253,${p.o})`
         ctx.fill()
       })
       for (let i = 0; i < pts.length; i++) {
@@ -76,7 +77,7 @@ function ParticleCanvas() {
             ctx.beginPath()
             ctx.moveTo(pts[i].x, pts[i].y)
             ctx.lineTo(pts[j].x, pts[j].y)
-            ctx.strokeStyle = `rgba(130,100,255,${0.07 * (1 - d / 110)})`
+            ctx.strokeStyle = `rgba(196,181,253,${0.05 * (1 - d / 110)})`
             ctx.lineWidth = 0.6
             ctx.stroke()
           }
@@ -96,12 +97,12 @@ function ParticleCanvas() {
 }
 
 // ─── Glow Orb ─────────────────────────────────────────────────────────────────
-function Orb({ style, color = '#7c3aed', size = 400 }: OrbProps) {
+function Orb({ style, color = '#c4b5fd', size = 400 }: OrbProps) {
   return (
     <div style={{
       position: 'absolute', borderRadius: '50%', pointerEvents: 'none',
       width: size, height: size,
-      background: `radial-gradient(circle, ${color}28 0%, transparent 70%)`,
+      background: `radial-gradient(circle, ${color}18 0%, transparent 70%)`,
       filter: 'blur(1px)',
       ...style,
     }} />
@@ -109,21 +110,37 @@ function Orb({ style, color = '#7c3aed', size = 400 }: OrbProps) {
 }
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
-function Navbar({ activeTab, setActiveTab }: NavbarProps) {
+function Navbar({ activeTab, setActiveTab, setIsLoggedIn }: NavbarProps & { setIsLoggedIn: (val: boolean) => void }) {
   const [scrolled, setScrolled] = useState(false)
+  
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30)
-    window.addEventListener('scroll', fn)
-    return () => window.removeEventListener('scroll', fn)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30)
+      
+      // Update active tab based on scroll position
+      const aboutSection = document.getElementById('about-section')
+      if (aboutSection) {
+        const aboutTop = aboutSection.offsetTop - 100
+        if (window.scrollY >= aboutTop) {
+          setActiveTab('about')
+        } else {
+          setActiveTab('home')
+        }
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <nav style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
-      background: scrolled ? 'rgba(4,2,26,0.85)' : 'transparent',
-      backdropFilter: scrolled ? 'blur(24px)' : 'none',
-      borderBottom: scrolled ? '1px solid rgba(124,58,237,0.18)' : 'none',
+      background: scrolled ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.8)',
+      backdropFilter: 'blur(24px)',
+      borderBottom: scrolled ? '1px solid rgba(124,58,237,0.12)' : '1px solid rgba(0,0,0,0.05)',
       transition: 'all 0.4s',
+      boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.05)' : 'none',
     }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem', height: 70, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Logo */}
@@ -133,27 +150,41 @@ function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             background: 'linear-gradient(135deg,#7c3aed,#a855f7)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 20, fontWeight: 900, color: '#fff',
-            boxShadow: '0 0 20px rgba(124,58,237,0.6)',
-            fontFamily: "'Orbitron',sans-serif",
+            boxShadow: '0 0 20px rgba(124,58,237,0.3)',
+            fontFamily: "'Poppins',sans-serif",
           }}>K</div>
           <div>
-            <span style={{ fontFamily: "'Orbitron',sans-serif", fontSize: 18, fontWeight: 700, color: '#fff', letterSpacing: 2 }}>KYDY</span>
+            <span style={{ fontFamily: "'Poppins',sans-serif", fontSize: 18, fontWeight: 700, color: '#1e293b', letterSpacing: 2 }}>KYDY</span>
             <div style={{ fontSize: 8, color: '#7c3aed', letterSpacing: 3, fontFamily: 'monospace', lineHeight: 1 }}>EDTECH PLATFORM</div>
           </div>
         </div>
 
         {/* Tabs */}
         <div style={{ display: 'flex', gap: 4 }}>
-          {(['home', 'courses', 'about'] as const).map(tab => (
+          {(['home', 'about'] as const).map(tab => (
             <LGBtn
               key={tab}
               variant={activeTab === tab ? 'tabActive' : 'tab'}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => {
+                setActiveTab(tab)
+                if (tab === 'about') {
+                  // Scroll to about section
+                  setTimeout(() => {
+                    const aboutSection = document.getElementById('about-section')
+                    if (aboutSection) {
+                      aboutSection.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }, 100)
+                } else if (tab === 'home') {
+                  // Scroll to top
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
               style={{
                 padding: '8px 22px', borderRadius: 8,
-                fontFamily: "'Orbitron',sans-serif", fontWeight: 600, fontSize: 11,
+                fontFamily: "'Poppins',sans-serif", fontWeight: 600, fontSize: 11,
                 letterSpacing: 1.5, textTransform: 'uppercase',
-                color: activeTab === tab ? '#fff' : '#94a3b8',
+                color: activeTab === tab ? '#fff' : '#64748b',
               }}
             >{tab}</LGBtn>
           ))}
@@ -161,15 +192,15 @@ function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 
         {/* CTAs */}
         <div style={{ display: 'flex', gap: 10 }}>
-          <LGBtn variant="ghost" onClick={() => setActiveTab('signin')} style={{
+          <LGBtn variant="ghost" onClick={() => setIsLoggedIn(true)} style={{
             padding: '9px 20px', borderRadius: 8,
-            fontFamily: "'Orbitron',sans-serif", fontSize: 10, letterSpacing: 1, fontWeight: 600,
-            color: '#c4b5fd',
-          }}>SIGN IN</LGBtn>
-          <LGBtn variant="primary" style={{
+            fontFamily: "'Poppins',sans-serif", fontSize: 10, letterSpacing: 1, fontWeight: 600,
+            color: '#7c3aed',
+          }}>EXPLORE KYDY</LGBtn>
+          <LGBtn variant="primary" onClick={() => setIsLoggedIn(true)} style={{
             padding: '9px 20px', borderRadius: 8,
-            fontFamily: "'Orbitron',sans-serif", fontSize: 10, letterSpacing: 1, fontWeight: 700,
-            color: '#fff',
+            fontFamily: "'Poppins',sans-serif", fontSize: 10, letterSpacing: 1, fontWeight: 700,
+            color: '#1e293b',
           }}>START FREE</LGBtn>
         </div>
       </div>
@@ -178,7 +209,7 @@ function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 }
 
 // ─── Home ─────────────────────────────────────────────────────────────────────
-function Home({ setActiveTab }: HomeProps) {
+function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
   const count = { s: 0, c: 0, i: 0 }
 
   const floatCards: FloatCard[] = [
@@ -195,11 +226,11 @@ function Home({ setActiveTab }: HomeProps) {
   ]
 
   return (
-    <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: 70 }}>
+    <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: 70, background: '#f3f4f6' }}>
       <ParticleCanvas />
-      <Orb style={{ top: '-10%', left: '-5%' }} color="#7c3aed" size={600} />
-      <Orb style={{ bottom: '5%', right: '-5%' }} color="#a855f7" size={500} />
-      <Orb style={{ top: '40%', left: '40%' }} color="#6366f1" size={350} />
+      <Orb style={{ top: '-10%', left: '-5%' }} color="#c4b5fd" size={600} />
+      <Orb style={{ bottom: '5%', right: '-5%' }} color="#ddd6fe" size={500} />
+      <Orb style={{ top: '40%', left: '40%' }} color="#e9d5ff" size={350} />
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '4rem 2rem', position: 'relative', zIndex: 2, width: '100%' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 60, alignItems: 'center' }}>
@@ -208,16 +239,16 @@ function Home({ setActiveTab }: HomeProps) {
           <div style={{ animation: 'slideUp 0.9s ease forwards' }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.35)',
+              background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.2)',
               borderRadius: 30, padding: '6px 18px', marginBottom: 28,
             }}>
               <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#7c3aed', boxShadow: '0 0 10px #7c3aed', display: 'inline-block', animation: 'blink 2s infinite' }} />
-              <span style={{ color: '#a78bfa', fontSize: 11, fontFamily: "'Orbitron',sans-serif", letterSpacing: 2 }}>NEXT-GEN LEARNING PLATFORM</span>
+              <span style={{ color: '#7c3aed', fontSize: 11, fontFamily: "'Poppins',sans-serif", letterSpacing: 2, fontWeight: 600 }}>NEXT-GEN LEARNING PLATFORM</span>
             </div>
 
             <h1 style={{
-              fontFamily: "'Orbitron',sans-serif", fontWeight: 900, lineHeight: 1.05,
-              fontSize: 'clamp(2.4rem,4vw,3.8rem)', color: '#fff', marginBottom: 28, letterSpacing: '-1px',
+              fontFamily: "'Poppins',sans-serif", fontWeight: 900, lineHeight: 1.05,
+              fontSize: 'clamp(2.4rem,4vw,3.8rem)', color: '#1e293b', marginBottom: 28, letterSpacing: '-1px',
             }}>
               UNLOCK YOUR<br />
               <span style={{ background: 'linear-gradient(90deg,#7c3aed,#a855f7,#ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
@@ -229,19 +260,19 @@ function Home({ setActiveTab }: HomeProps) {
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               <LGBtn
                 variant="primary"
-                onClick={() => setActiveTab('courses')}
+                onClick={() => setIsLoggedIn(true)}
                 style={{
                   padding: '14px 34px', borderRadius: 10,
-                  fontFamily: "'Orbitron',sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: 1,
-                  color: '#fff',
+                  fontFamily: "'Poppins',sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: 1,
+                  color: '#1e293b',
                 }}
-              >EXPLORE COURSES →</LGBtn>
+              >EXPLORE KYDY →</LGBtn>
               <LGBtn
                 variant="ghost"
                 style={{
                   padding: '14px 34px', borderRadius: 10,
-                  fontFamily: "'Orbitron',sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: 1,
-                  color: '#c4b5fd',
+                  fontFamily: "'Poppins',sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: 1,
+                  color: '#7c3aed',
                 }}
               >▶ WATCH DEMO</LGBtn>
             </div>
@@ -249,8 +280,8 @@ function Home({ setActiveTab }: HomeProps) {
             <div style={{ display: 'flex', gap: 36, marginTop: 44 }}>
               {[{ v: `${count.s}K+`, l: 'Learners' }, { v: `${count.c}+`, l: 'Courses' }, { v: `${count.i}+`, l: 'Instructors' }].map(s => (
                 <div key={s.l}>
-                  <div style={{ fontSize: 26, fontWeight: 900, color: '#fff', fontFamily: "'Orbitron',sans-serif" }}>{s.v}</div>
-                  <div style={{ fontSize: 11, color: '#64748b', fontFamily: "'Exo 2',sans-serif", letterSpacing: 1 }}>{s.l}</div>
+                  <div style={{ fontSize: 26, fontWeight: 900, color: '#1e293b', fontFamily: "'Poppins',sans-serif" }}>{s.v}</div>
+                  <div style={{ fontSize: 11, color: '#64748b', fontFamily: "'Inter',sans-serif", letterSpacing: 1 }}>{s.l}</div>
                 </div>
               ))}
             </div>
@@ -291,14 +322,14 @@ function Home({ setActiveTab }: HomeProps) {
               <div key={i} style={{
                 position: 'absolute',
                 top: c.top, bottom: c.bottom, left: c.left, right: c.right,
-                background: 'rgba(8,5,28,0.7)', border: '1px solid rgba(124,58,237,0.35)',
+                background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(124,58,237,0.2)',
                 borderRadius: 12, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 8,
                 backdropFilter: 'blur(20px)', whiteSpace: 'nowrap',
-                boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.1)',
                 animation: `floatCard 4s ease-in-out ${i * 0.6}s infinite`,
               }}>
                 <span style={{ fontSize: 18 }}>{c.icon}</span>
-                <span style={{ color: '#e2e8f0', fontSize: 11, fontFamily: "'Orbitron',sans-serif", fontWeight: 600, letterSpacing: 0.5 }}>{c.text}</span>
+                <span style={{ color: '#1e293b', fontSize: 11, fontFamily: "'Poppins',sans-serif", fontWeight: 600, letterSpacing: 0.5 }}>{c.text}</span>
               </div>
             ))}
           </div>
@@ -309,19 +340,19 @@ function Home({ setActiveTab }: HomeProps) {
           {features.map((f, i) => (
             <div key={i}
               style={{
-                background: 'rgba(8,5,28,0.7)', border: '1px solid rgba(124,58,237,0.12)',
+                background: '#ffffff', border: '1px solid rgba(124,58,237,0.12)',
                 borderRadius: 18, padding: '28px', transition: 'all 0.3s', cursor: 'default',
-                backdropFilter: 'blur(20px)',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.borderColor = `${f.color}55`
                 e.currentTarget.style.transform = 'translateY(-5px)'
-                e.currentTarget.style.boxShadow = `0 20px 50px rgba(0,0,0,0.4), 0 0 30px ${f.color}15`
+                e.currentTarget.style.boxShadow = `0 20px 50px rgba(0,0,0,0.1), 0 0 30px ${f.color}15`
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.borderColor = 'rgba(124,58,237,0.12)'
                 e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = 'none'
+                e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'
               }}
             >
               <div style={{
@@ -329,86 +360,8 @@ function Home({ setActiveTab }: HomeProps) {
                 background: `${f.color}18`, border: `1px solid ${f.color}30`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24,
               }}>{f.icon}</div>
-              <h3 style={{ color: '#f1f5f9', fontSize: 13, fontWeight: 700, marginBottom: 8, fontFamily: "'Orbitron',sans-serif", letterSpacing: 0.5 }}>{f.title}</h3>
-              <p style={{ color: '#64748b', fontSize: 14, lineHeight: 1.65, fontFamily: "'Exo 2',sans-serif" }}>{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ─── Courses ──────────────────────────────────────────────────────────────────
-const COURSES: Course[] = [
-  { title: 'Web Development', students: '12,450', rating: '4.8', icon: '⚡', color: '#6366f1', tag: 'Bestseller' },
-  { title: 'Data Science', students: '8,320', rating: '4.9', icon: '🔬', color: '#7c3aed', tag: 'Top Rated' },
-  { title: 'UI/UX Design', students: '6,780', rating: '4.7', icon: '🎨', color: '#a855f7', tag: 'Popular' },
-  { title: 'Mobile Development', students: '5,640', rating: '4.6', icon: '📱', color: '#6366f1', tag: 'New' },
-  { title: 'Machine Learning', students: '9,230', rating: '4.8', icon: '🤖', color: '#7c3aed', tag: 'Hot' },
-  { title: 'Digital Marketing', students: '7,890', rating: '4.5', icon: '📊', color: '#a855f7', tag: 'Trending' },
-]
-
-function Courses() {
-  const [hov, setHov] = useState<number | null>(null)
-  return (
-    <section style={{ minHeight: '100vh', padding: '110px 2rem 80px', position: 'relative', overflow: 'hidden' }}>
-      <Orb style={{ top: '-10%', right: '0' }} color="#7c3aed" size={500} />
-      <Orb style={{ bottom: '0', left: '-5%' }} color="#a855f7" size={400} />
-      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 2 }}>
-        <div style={{ textAlign: 'center', marginBottom: 60 }}>
-          <div style={{
-            display: 'inline-block', background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.25)',
-            borderRadius: 30, padding: '5px 18px', marginBottom: 18,
-          }}>
-            <span style={{ color: '#a78bfa', fontSize: 10, fontFamily: "'Orbitron',sans-serif", letterSpacing: 3 }}>EXPLORE KNOWLEDGE</span>
-          </div>
-          <h2 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 'clamp(2rem,4vw,3rem)', color: '#fff', letterSpacing: -1, marginBottom: 14 }}>
-            POPULAR{' '}
-            <span style={{ background: 'linear-gradient(90deg,#7c3aed,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>COURSES</span>
-          </h2>
-          <p style={{ color: '#64748b', fontSize: 16, fontFamily: "'Exo 2',sans-serif" }}>Hand-picked by experts, loved by thousands of learners globally</p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(340px,1fr))', gap: 24 }}>
-          {COURSES.map((c, i) => (
-            <div key={i}
-              onMouseEnter={() => setHov(i)}
-              onMouseLeave={() => setHov(null)}
-              style={{
-                background: hov === i ? 'rgba(15,10,35,0.97)' : 'rgba(8,5,22,0.85)',
-                border: hov === i ? `1px solid ${c.color}55` : '1px solid rgba(255,255,255,0.05)',
-                borderRadius: 20, overflow: 'hidden', cursor: 'pointer',
-                transition: 'all 0.35s cubic-bezier(0.34,1.4,0.64,1)',
-                transform: hov === i ? 'translateY(-10px)' : 'translateY(0)',
-                boxShadow: hov === i ? `0 24px 60px rgba(0,0,0,0.5), 0 0 40px ${c.color}18` : '0 4px 24px rgba(0,0,0,0.25)',
-              }}>
-              <div style={{ height: 130, position: 'relative', background: `linear-gradient(135deg,${c.color}22,${c.color}08)`, overflow: 'hidden' }}>
-                <div style={{
-                  position: 'absolute', inset: 0, opacity: 0.5,
-                  backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)',
-                  backgroundSize: '22px 22px',
-                }} />
-                <div style={{
-                  position: 'absolute', top: 14, right: 14, background: `${c.color}22`, border: `1px solid ${c.color}44`,
-                  borderRadius: 20, padding: '3px 12px', color: c.color, fontSize: 10, fontFamily: "'Orbitron',sans-serif", letterSpacing: 1,
-                }}>{c.tag}</div>
-                <div style={{ position: 'absolute', bottom: 14, left: 18, fontSize: 40 }}>{c.icon}</div>
-              </div>
-              <div style={{ padding: '20px 22px 24px' }}>
-                <h3 style={{ color: '#f1f5f9', fontSize: 16, fontWeight: 700, marginBottom: 10, fontFamily: "'Orbitron',sans-serif", letterSpacing: 0.3 }}>{c.title}</h3>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 18 }}>
-                  <span style={{ color: '#64748b', fontSize: 13, fontFamily: "'Exo 2',sans-serif" }}>👥 {c.students} enrolled</span>
-                  <span style={{ color: '#fbbf24', fontSize: 13 }}>★ {c.rating}</span>
-                </div>
-                <LGBtn
-                  variant="enroll"
-                  style={{
-                    width: '100%', padding: '11px 0', borderRadius: 10,
-                    fontFamily: "'Orbitron',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: 1,
-                    color: '#fff',
-                  }}
-                >{hov === i ? 'ENROLL NOW →' : 'VIEW COURSE'}</LGBtn>
-              </div>
+              <h3 style={{ color: '#1e293b', fontSize: 13, fontWeight: 700, marginBottom: 8, fontFamily: "'Poppins',sans-serif", letterSpacing: 0.5 }}>{f.title}</h3>
+              <p style={{ color: '#64748b', fontSize: 14, lineHeight: 1.65, fontFamily: "'Inter',sans-serif" }}>{f.desc}</p>
             </div>
           ))}
         </div>
@@ -429,49 +382,49 @@ function About() {
     { v: '100+', l: 'Instructors' }, { v: '98%', l: 'Satisfaction' },
   ]
   return (
-    <section style={{ minHeight: '100vh', padding: '110px 2rem 80px', position: 'relative', overflow: 'hidden' }}>
-      <Orb style={{ top: '10%', left: '-5%' }} color="#a855f7" size={500} />
-      <Orb style={{ bottom: '5%', right: '-5%' }} color="#7c3aed" size={400} />
+    <section id="about-section" style={{ minHeight: '100vh', padding: '110px 2rem 80px', position: 'relative', overflow: 'hidden', background: '#f3f4f6' }}>
+      <Orb style={{ top: '10%', left: '-5%' }} color="#ddd6fe" size={500} />
+      <Orb style={{ bottom: '5%', right: '-5%' }} color="#c4b5fd" size={400} />
       <div style={{ maxWidth: 960, margin: '0 auto', position: 'relative', zIndex: 2 }}>
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
           <div style={{
-            display: 'inline-block', background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.25)',
+            display: 'inline-block', background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.2)',
             borderRadius: 30, padding: '5px 18px', marginBottom: 18,
           }}>
-            <span style={{ color: '#c4b5fd', fontSize: 10, fontFamily: "'Orbitron',sans-serif", letterSpacing: 3 }}>OUR STORY</span>
+            <span style={{ color: '#a855f7', fontSize: 10, fontFamily: "'Poppins',sans-serif", letterSpacing: 3, fontWeight: 600 }}>OUR STORY</span>
           </div>
-          <h2 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 'clamp(2rem,4vw,3rem)', color: '#fff', letterSpacing: -1 }}>
+          <h2 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 900, fontSize: 'clamp(2rem,4vw,3rem)', color: '#1e293b', letterSpacing: -1 }}>
             ABOUT{' '}
             <span style={{ background: 'linear-gradient(90deg,#a855f7,#ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>KYDY</span>
           </h2>
         </div>
 
         <div style={{
-          background: 'rgba(8,5,22,0.85)', border: '1px solid rgba(124,58,237,0.18)',
+          background: '#ffffff', border: '1px solid rgba(124,58,237,0.12)',
           borderRadius: 24, padding: '48px 52px', backdropFilter: 'blur(24px)',
-          boxShadow: '0 40px 80px rgba(0,0,0,0.4)', marginBottom: 24,
+          boxShadow: '0 10px 40px rgba(0,0,0,0.08)', marginBottom: 24,
         }}>
-          <p style={{ color: '#94a3b8', lineHeight: 1.8, fontSize: 16, marginBottom: 18, fontFamily: "'Exo 2',sans-serif" }}>
+          <p style={{ color: '#64748b', lineHeight: 1.8, fontSize: 16, marginBottom: 18, fontFamily: "'Inter',sans-serif" }}>
             Kydy is a modern educational technology platform designed to make learning accessible, engaging, and effective for everyone. We believe that knowledge has the power to transform lives.
           </p>
-          <p style={{ color: '#94a3b8', lineHeight: 1.8, fontSize: 16, marginBottom: 44, fontFamily: "'Exo 2',sans-serif" }}>
+          <p style={{ color: '#64748b', lineHeight: 1.8, fontSize: 16, marginBottom: 44, fontFamily: "'Inter',sans-serif" }}>
             Our mission is to empower learners worldwide with high-quality educational content, interactive learning experiences, and industry-recognized certifications that open doors to limitless opportunities.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 20 }}>
             {stats.map((s, i) => (
               <div key={i}
                 style={{
-                  background: 'rgba(124,58,237,0.07)', border: '1px solid rgba(124,58,237,0.18)',
+                  background: 'rgba(124,58,237,0.05)', border: '1px solid rgba(124,58,237,0.12)',
                   borderRadius: 16, padding: '22px 16px', textAlign: 'center', transition: 'all 0.3s',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(124,58,237,0.15)'; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.45)' }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(124,58,237,0.07)'; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.18)' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(124,58,237,0.1)'; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.3)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(124,58,237,0.05)'; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.12)' }}
               >
                 <div style={{
-                  fontSize: 30, fontWeight: 900, fontFamily: "'Orbitron',sans-serif",
+                  fontSize: 30, fontWeight: 900, fontFamily: "'Poppins',sans-serif",
                   background: 'linear-gradient(135deg,#7c3aed,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 6,
                 }}>{s.v}</div>
-                <div style={{ color: '#64748b', fontSize: 11, fontFamily: "'Exo 2',sans-serif", letterSpacing: 1 }}>{s.l}</div>
+                <div style={{ color: '#64748b', fontSize: 11, fontFamily: "'Inter',sans-serif", letterSpacing: 1 }}>{s.l}</div>
               </div>
             ))}
           </div>
@@ -481,15 +434,16 @@ function About() {
           {features.map((f, i) => (
             <div key={i}
               style={{
-                background: 'rgba(8,5,22,0.85)', border: '1px solid rgba(255,255,255,0.05)',
+                background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)',
                 borderRadius: 20, padding: '28px 24px', transition: 'all 0.3s', cursor: 'default',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = `${f.color}44`; e.currentTarget.style.transform = 'translateY(-5px)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'; e.currentTarget.style.transform = 'translateY(0)' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = `${f.color}44`; e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)' }}
             >
               <div style={{ width: 52, height: 52, borderRadius: 14, background: `${f.color}18`, border: `1px solid ${f.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 16 }}>{f.icon}</div>
-              <h3 style={{ color: '#f1f5f9', fontSize: 13, fontWeight: 700, marginBottom: 8, fontFamily: "'Orbitron',sans-serif", letterSpacing: 0.5 }}>{f.title}</h3>
-              <p style={{ color: '#64748b', fontSize: 14, lineHeight: 1.65, fontFamily: "'Exo 2',sans-serif" }}>{f.desc}</p>
+              <h3 style={{ color: '#1e293b', fontSize: 13, fontWeight: 700, marginBottom: 8, fontFamily: "'Poppins',sans-serif", letterSpacing: 0.5 }}>{f.title}</h3>
+              <p style={{ color: '#64748b', fontSize: 14, lineHeight: 1.65, fontFamily: "'Inter',sans-serif" }}>{f.desc}</p>
             </div>
           ))}
         </div>
@@ -498,208 +452,24 @@ function About() {
   )
 }
 
-// ─── Sign In Page ─────────────────────────────────────────────────────────────
-interface SignInProps { setActiveTab: (tab: string) => void; setIsLoggedIn: (val: boolean) => void }
-function SignIn({ setActiveTab, setIsLoggedIn }: SignInProps) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [showPass, setShowPass] = useState(false)
-  const [focused, setFocused] = useState<string | null>(null)
 
-  const inputStyle = (field: string): CSSProperties => ({
-    width: '100%', padding: '14px 18px', borderRadius: 12, outline: 'none',
-    background: focused === field ? 'rgba(124,58,237,0.1)' : 'rgba(255,255,255,0.04)',
-    border: `1px solid ${focused === field ? 'rgba(168,85,247,0.6)' : 'rgba(255,255,255,0.1)'}`,
-    color: '#f1f5f9', fontSize: 14, fontFamily: "'Exo 2',sans-serif",
-    backdropFilter: 'blur(10px)',
-    boxShadow: focused === field
-      ? '0 0 0 3px rgba(124,58,237,0.15), inset 0 1px 0 rgba(255,255,255,0.08)'
-      : 'inset 0 1px 0 rgba(255,255,255,0.05)',
-    transition: 'all 0.25s',
-  })
-
-  return (
-    <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', paddingTop: 70 }}>
-      <ParticleCanvas />
-      <Orb style={{ top: '-15%', left: '-10%' }} color="#7c3aed" size={700} />
-      <Orb style={{ bottom: '-10%', right: '-10%' }} color="#a855f7" size={600} />
-      <Orb style={{ top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} color="#6366f1" size={400} />
-
-      <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: 480, margin: '0 auto', padding: '2rem' }}>
-
-        {/* Logo mark */}
-        <div style={{ textAlign: 'center', marginBottom: 36 }}>
-          <div style={{
-            width: 56, height: 56, borderRadius: 16, margin: '0 auto 16px',
-            background: 'linear-gradient(135deg,#7c3aed,#a855f7)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 26, fontWeight: 900, color: '#fff',
-            boxShadow: '0 0 40px rgba(124,58,237,0.6), 0 0 80px rgba(124,58,237,0.2)',
-            fontFamily: "'Orbitron',sans-serif",
-          }}>K</div>
-          <div style={{ color: '#a78bfa', fontSize: 10, letterSpacing: 4, fontFamily: "'Orbitron',sans-serif", marginBottom: 6 }}>WELCOME BACK</div>
-          <h1 style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: '1.9rem', color: '#fff', letterSpacing: -1 }}>
-            SIGN IN TO{' '}
-            <span style={{ background: 'linear-gradient(90deg,#7c3aed,#a855f7,#ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              KYDY
-            </span>
-          </h1>
-        </div>
-
-        {/* Glass card */}
-        <div style={{
-          position: 'relative', borderRadius: 24, overflow: 'hidden',
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.1)',
-          backdropFilter: 'blur(24px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-          boxShadow: '0 0 0 1px rgba(255,255,255,0.06) inset, 0 1px 0 rgba(255,255,255,0.12) inset, 0 40px 80px rgba(0,0,0,0.5), 0 0 60px rgba(124,58,237,0.1)',
-          padding: '40px 40px 36px',
-        }}>
-          {/* Inner glass shimmer top */}
-          <div style={{
-            position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-            pointerEvents: 'none',
-          }} />
-
-          {/* Social sign in */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 28 }}>
-            {[
-              { icon: '🔵', label: 'Google' },
-              { icon: '⬛', label: 'GitHub' },
-            ].map(s => (
-              <LGBtn key={s.label} variant="ghost" style={{
-                width: '100%', padding: '11px 0', borderRadius: 10,
-                fontFamily: "'Exo 2',sans-serif", fontSize: 13, fontWeight: 600,
-                color: '#cbd5e1', gap: 8,
-              }}>
-                <span style={{ fontSize: 16 }}>{s.icon}</span> {s.label}
-              </LGBtn>
-            ))}
-          </div>
-
-          {/* Divider */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
-            <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1))' }} />
-            <span style={{ color: '#475569', fontSize: 11, fontFamily: 'monospace', letterSpacing: 2 }}>OR</span>
-            <div style={{ flex: 1, height: 1, background: 'linear-gradient(90deg, rgba(255,255,255,0.1), transparent)' }} />
-          </div>
-
-          {/* Email */}
-          <div style={{ marginBottom: 18 }}>
-            <label style={{ display: 'block', color: '#94a3b8', fontSize: 11, fontFamily: "'Orbitron',sans-serif", letterSpacing: 1.5, marginBottom: 8 }}>
-              EMAIL ADDRESS
-            </label>
-            <div style={{ position: 'relative' }}>
-              <span style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', fontSize: 16, opacity: 0.5 }}>✉</span>
-              <input
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                onFocus={() => setFocused('email')}
-                onBlur={() => setFocused(null)}
-                placeholder="you@example.com"
-                style={{ ...inputStyle('email'), paddingLeft: 46 }}
-              />
-            </div>
-          </div>
-
-          {/* Password */}
-          <div style={{ marginBottom: 10 }}>
-            <label style={{ display: 'block', color: '#94a3b8', fontSize: 11, fontFamily: "'Orbitron',sans-serif", letterSpacing: 1.5, marginBottom: 8 }}>
-              PASSWORD
-            </label>
-            <div style={{ position: 'relative' }}>
-              <span style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', fontSize: 16, opacity: 0.5 }}>🔒</span>
-              <input
-                type={showPass ? 'text' : 'password'}
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                onFocus={() => setFocused('password')}
-                onBlur={() => setFocused(null)}
-                placeholder="••••••••"
-                style={{ ...inputStyle('password'), paddingLeft: 46, paddingRight: 46 }}
-              />
-              <button
-                onClick={() => setShowPass(!showPass)}
-                style={{
-                  position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)',
-                  background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, opacity: 0.5,
-                  color: '#fff', padding: 2,
-                }}
-              >{showPass ? '🙈' : '👁'}</button>
-            </div>
-          </div>
-
-          {/* Forgot */}
-          <div style={{ textAlign: 'right', marginBottom: 28 }}>
-            <button style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              color: '#7c3aed', fontSize: 12, fontFamily: "'Exo 2',sans-serif",
-              fontWeight: 600, letterSpacing: 0.5,
-              transition: 'color 0.2s',
-            }}
-              onMouseEnter={e => e.currentTarget.style.color = '#a855f7'}
-              onMouseLeave={e => e.currentTarget.style.color = '#7c3aed'}
-            >Forgot password?</button>
-          </div>
-
-          {/* Sign in button */}
-          <LGBtn variant="primary" onClick={() => {
-            // Check if email and password are entered
-            if (email.trim() && password.trim()) {
-              setIsLoggedIn(true)
-            }
-          }} style={{
-            width: '100%', padding: '15px 0', borderRadius: 12,
-            fontFamily: "'Orbitron',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: 2,
-            color: '#fff', marginBottom: 24,
-          }}>SIGN IN →</LGBtn>
-
-          {/* Sign up link */}
-          <p style={{ textAlign: 'center', color: '#475569', fontSize: 13, fontFamily: "'Exo 2',sans-serif" }}>
-            Don't have an account?{' '}
-            <button
-              onClick={() => setActiveTab('home')}
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                color: '#a78bfa', fontWeight: 700, fontFamily: "'Exo 2',sans-serif", fontSize: 13,
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = '#c4b5fd'}
-              onMouseLeave={e => e.currentTarget.style.color = '#a78bfa'}
-            >Start for free →</button>
-          </p>
-        </div>
-
-        {/* Trust badges */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 28 }}>
-          {['🔐 Secure Login', '⚡ Instant Access', '🎓 50K+ Learners'].map(b => (
-            <span key={b} style={{ color: '#334155', fontSize: 11, fontFamily: "'Exo 2',sans-serif" }}>{b}</span>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // ─── App Root ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home')
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-  const [dashboardView, setDashboardView] = useState<string>('dashboard')
+  const [dashboardView, setDashboardView] = useState<string>('lessons')
 
-  // If logged in, show Dashboard or Courses based on dashboardView
+  // If logged in, show Dashboard or other views based on dashboardView
   if (isLoggedIn) {
-    if (dashboardView === 'courses') {
-      return <CoursePage onNav={(id: string) => setDashboardView(id)} />
-    }
     if (dashboardView === 'lessons') {
       return <LessonsPage onNav={(id: string) => setDashboardView(id)} />
     }
     if (dashboardView === 'notes') {
       return <NotesPage onNav={(id: string) => setDashboardView(id)} />
+    }
+    if (dashboardView === 'visualizer') {
+      return <VisualizerPage onNav={(id: string) => setDashboardView(id)} />
     }
     return <Dashboard onNavigate={(view: string) => setDashboardView(view)} />
   }
@@ -707,19 +477,19 @@ export default function App() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { background: #04021a; overflow-x: hidden; }
+        body { background: #f3f4f6; overflow-x: hidden; font-family: 'Inter', sans-serif; }
         ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #04021a; }
+        ::-webkit-scrollbar-track { background: #f3f4f6; }
         ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 3px; }
         @keyframes slideUp { from { opacity:0; transform:translateY(35px) } to { opacity:1; transform:translateY(0) } }
         @keyframes spinSlow { from { transform:rotate(0deg) } to { transform:rotate(360deg) } }
         @keyframes floatCard { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-10px) } }
         @keyframes corePulse {
-          0%,100% { box-shadow:0 0 60px rgba(124,58,237,0.4),inset 0 0 40px rgba(124,58,237,0.2) }
-          50% { box-shadow:0 0 100px rgba(124,58,237,0.7),inset 0 0 60px rgba(124,58,237,0.35) }
+          0%,100% { box-shadow:0 0 60px rgba(124,58,237,0.3),inset 0 0 40px rgba(124,58,237,0.15) }
+          50% { box-shadow:0 0 100px rgba(124,58,237,0.5),inset 0 0 60px rgba(124,58,237,0.25) }
         }
         @keyframes blink { 0%,100% { opacity:1; box-shadow:0 0 10px #7c3aed } 50% { opacity:0.4; box-shadow:0 0 20px #7c3aed } }
         @keyframes shineSlide { 0% { left:-75% } 100% { left:130% } }
@@ -873,20 +643,20 @@ export default function App() {
             0 0 40px rgba(99,102,241,0.5);
         }
       `}</style>
-      <div style={{ background: '#04021a', minHeight: '100vh', color: '#fff' }}>
-        <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
-        {activeTab === 'home' && <Home setActiveTab={setActiveTab} />}
-        {activeTab === 'courses' && <Courses />}
-        {activeTab === 'about' && <About />}
-        {activeTab === 'signin' && <SignIn setActiveTab={setActiveTab} setIsLoggedIn={setIsLoggedIn} />}
-        {activeTab !== 'signin' && (
-          <footer style={{ borderTop: '1px solid rgba(124,58,237,0.1)', padding: '28px 2rem', textAlign: 'center' }}>
-            <span style={{ color: '#334155', fontSize: 13, fontFamily: "'Exo 2',sans-serif" }}>
-              © 2025 <span style={{ color: '#7c3aed', fontWeight: 700, fontFamily: "'Orbitron',sans-serif" }}>KYDY</span> — Empowering learners worldwide
+      <ClickSpark sparkColor="#7c3aed" sparkSize={15} sparkRadius={25} sparkCount={12} duration={600} extraScale={1.5}>
+        <div style={{ background: '#f3f4f6', minHeight: '100vh', color: '#1e293b' }}>
+          <Navbar activeTab={activeTab} setActiveTab={setActiveTab} setIsLoggedIn={setIsLoggedIn} />
+          <div>
+            <Home setIsLoggedIn={setIsLoggedIn} />
+            <About />
+          </div>
+          <footer style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: '28px 2rem', textAlign: 'center', background: '#ffffff' }}>
+            <span style={{ color: '#64748b', fontSize: 13, fontFamily: "'Inter',sans-serif" }}>
+              © 2025 <span style={{ color: '#7c3aed', fontWeight: 700, fontFamily: "'Poppins',sans-serif" }}>KYDY</span> — Empowering learners worldwide
             </span>
           </footer>
-        )}
-      </div>
+        </div>
+      </ClickSpark>
     </>
   )
 }
