@@ -264,222 +264,288 @@ function AIVisualizer({ speaking }: { speaking: boolean }) {
         </div>
       </div>
 
-      {/* SVG neural net - 75% of screen area */}
+      {/* SVG neural net - 75% of screen area aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/}
       <div style={{ width: '100%', height: '75%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-<svg id="ai-visualizer-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" style={{ width: '100%', height: '100%', maxWidth: '100%', maxHeight: '100%' }}>
-    <defs>
-        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill="#00FFFF" />
-        </marker>
-    </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect x="0" y="0" width="800" height="600" fill="#F8F8F8"/>
 
-    <g id="background-layer">
-        <rect width="800" height="600" fill="#0f172a" />
-        
-        <circle cx="400" cy="300" r="250" fill="#00FFFF" opacity="0.05" />
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
+    </marker>
+  </defs>
+
+  
+  <g id="scene1" opacity="0">
+    <rect x="250" y="380" width="300" height="10" fill="#4A4A4A"/>
+    <rect x="300" y="300" width="200" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+    <path id="appliedForce1" d="M200 340 H300" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)" opacity="0"/>
+    <text x="170" y="330" font-family="Arial, sans-serif" font-size="20" fill="#66BB6A" opacity="0">Applied Force</text>
+    <path id="frictionForce1" d="M500 340 H600" stroke="#EF5350" stroke-width="5" marker-end="url(#arrowhead)" opacity="0"/>
+    <text x="610" y="330" font-family="Arial, sans-serif" font-size="20" fill="#EF5350" opacity="0">Friction Force</text>
+  </g>
+
+  
+  <g id="scene2_setup" opacity="0">
+    <rect x="200" y="290" width="400" height="10" fill="#4A4A4A"/>
+    <rect x="250" y="200" width="300" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+    <path d="M250 280 C260 270, 270 290, 280 280 C290 270, 300 290, 310 280 C320 270, 330 290, 340 280 C350 270, 360 290, 370 280 C380 270, 390 290, 400 280 C410 270, 420 290, 430 280 C440 270, 450 290, 460 280 C470 270, 480 290, 490 280 C500 270, 510 290, 520 280 C530 270, 540 290, 550 280" fill="none" stroke="#42A5F5" stroke-width="2" id="block_roughness_path" opacity="0"/>
+    <path d="M200 290 C210 300, 220 280, 230 290 C240 300, 250 280, 260 290 C270 300, 280 280, 290 290 C300 300, 310 280, 320 290 C330 300, 340 280, 350 290 C360 300, 370 280, 380 290 C390 300, 400 280, 410 290 C420 300, 430 280, 440 290 C450 300, 460 280, 470 290 C480 300, 490 280, 500 290 C510 300, 520 280, 530 290 C540 300, 550 280, 560 290 C570 300, 580 280, 590 290 C600 300" fill="none" stroke="#66BB6A" stroke-width="2" id="ground_roughness_path" opacity="0"/>
+  </g>
+
+  
+  <g id="scene3_interlock" opacity="0">
+    <rect x="200" y="290" width="400" height="10" fill="#4A4A4A"/>
+    <rect x="250" y="200" width="300" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+    <g id="interlocking_surfaces">
+      <path d="M250 280 C260 270, 270 290, 280 280 C290 270, 300 290, 310 280 C320 270, 330 290, 340 280 C350 270, 360 290, 370 280 C380 270, 390 290, 400 280 C410 270, 420 290, 430 280 C440 270, 450 290, 460 280 C470 270, 480 290, 490 280 C500 270, 510 290, 520 280 C530 270, 540 290, 550 280" fill="none" stroke="#42A5F5" stroke-width="4" id="block_roughness_interlock"/>
+      <path d="M200 290 C210 300, 220 280, 230 290 C240 300, 250 280, 260 290 C270 300, 280 280, 290 290 C300 300, 310 280, 320 290 C330 300, 340 280, 350 290 C360 300, 370 280, 380 290 C390 300, 400 280, 410 290 C420 300, 430 280, 440 290 C450 300, 460 280, 470 290 C480 300, 490 280, 500 290 C510 300, 520 280, 530 290 C540 300, 550 280, 560 290 C570 300, 580 280, 590 290 C600 300" fill="none" stroke="#66BB6A" stroke-width="4" id="ground_roughness_interlock"/>
+    </g>
+    <path id="appliedForce3" d="M150 285 H200" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)" opacity="0"/>
+    <path id="frictionForce3" d="M600 285 H650" stroke="#EF5350" stroke-width="5" marker-end="url(#arrowhead)" opacity="0"/>
+  </g>
+
+
+  <g id="scene4_roughness" opacity="0">
+    <text x="400" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#4A4A4A" opacity="0">Surface Roughness</text>
+
+    
+    <g>
+      <rect x="100" y="380" width="250" height="10" fill="#4A4A4A"/>
+      <rect x="150" y="300" width="150" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+      <path d="M100 380 C110 370, 120 390, 130 380 C140 370, 150 390, 160 380 C170 370, 180 390, 190 380 C200 370, 210 390, 220 380 C230 370, 240 390, 250 380 C260 370, 270 390, 280 380 C290 370, 300 390, 310 380 C320 370, 330 390, 340 380" fill="none" stroke="#EF5350" stroke-width="2"/>
+      <path d="M150 380 C160 370, 170 390, 180 380 C190 370, 200 390, 210 380 C220 370, 230 390, 240 380 C250 370, 260 390, 270 380 C280 370, 290 390, 300 380" fill="none" stroke="#66BB6A" stroke-width="2"/>
+      <path d="M100 340 H150" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <path d="M300 340 H350" stroke="#EF5350" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <text x="225" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#4A4A4A">Rough Surface (More Friction)</text>
     </g>
 
-    <g id="title-layer">
-        <text x="400" y="90" font-family="Arial, sans-serif" font-size="40" fill="#00FFFF" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="0s" fill="freeze" id="titleStart" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-            Operating System (OS) Management
-        </text>
+
+    <g>
+      <rect x="450" y="380" width="250" height="10" fill="#4A4A4A"/>
+      <rect x="500" y="300" width="150" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+      <path d="M450 380 L700 380" fill="none" stroke="#EF5350" stroke-width="2"/>
+      <path d="M500 380 L650 380" fill="none" stroke="#66BB6A" stroke-width="2"/>
+      <path d="M450 340 H500" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <path d="M650 340 H700" stroke="#EF5350" stroke-width="3" marker-end="url(#arrowhead)"/>
+      <text x="575" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#4A4A4A">Smooth Surface (Less Friction)</text>
+    </g>
+  </g>
+
+  
+  <g id="scene5_weight" opacity="0">
+    <text x="400" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#4A4A4A" opacity="0">Normal Force / Weight</text>
+
+    
+    <g>
+      <rect x="100" y="380" width="250" height="10" fill="#4A4A4A"/>
+      <rect x="150" y="300" width="150" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+      <path d="M100 340 H150" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <path d="M300 340 H350" stroke="#EF5350" stroke-width="3" marker-end="url(#arrowhead)"/>
+      <text x="225" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#4A4A4A">Less Weight (Less Friction)</text>
     </g>
 
-    <g id="diagram-layer">
-        
-        <rect id="osBox" x="300" y="250" width="200" height="80" rx="10" ry="10" fill="#1e293b" stroke="#00FFFF" stroke-width="2" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="titleStart.end + 2s" fill="freeze" id="osBoxAppear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-        </rect>
-        <text id="osText" x="400" y="298" font-family="Arial, sans-serif" font-size="28" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="titleStart.end + 2s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-            Operating System
-        </text>
 
-        <rect id="hardwareBox" x="150" y="450" width="150" height="60" rx="8" ry="8" fill="#1e293b" stroke="#00FFFF" stroke-width="1" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="osBoxAppear.end + 2s" fill="freeze" id="hardwareBoxAppear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-        </rect>
-        <text id="hardwareText" x="225" y="488" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="osBoxAppear.end + 2s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-            Hardware
-        </text>
+    <g>
+      <rect x="450" y="380" width="250" height="10" fill="#4A4A4A"/>
+      <rect x="500" y="300" width="150" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+      <rect x="525" y="250" width="100" height="50" fill="#42A5F5" rx="5" ry="5" opacity="0" id="top_block"/>
+      <path d="M450 340 H500" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <path d="M650 340 H700" stroke="#EF5350" stroke-width="3" marker-end="url(#arrowhead)"/>
+      <text x="575" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#4A4A4A">More Weight (More Friction)</text>
+    </g>
+  </g>
 
-        <rect id="appsBox" x="500" y="150" width="150" height="60" rx="8" ry="8" fill="#1e293b" stroke="#00FFFF" stroke-width="1" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="hardwareBoxAppear.end + 1.5s" fill="freeze" id="appsBoxAppear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-        </rect>
-        <text id="appsText" x="575" y="188" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="hardwareBoxAppear.end + 1.5s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-            Applications
-        </text>
+  
+  <g id="scene6_types" opacity="0">
+    <text x="400" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#4A4A4A" opacity="0">Static vs. Kinetic Friction</text>
 
-        <line id="arrow1" x1="350" y1="330" x2="250" y2="450" stroke="#00FFFF" stroke-width="2" marker-end="url(#arrowhead)" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="appsBoxAppear.end + 1.5s" fill="freeze" id="arrow1Appear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-        </line>
-        <line id="arrow2" x1="250" y1="450" x2="350" y2="330" stroke="#00FFFF" stroke-width="2" marker-end="url(#arrowhead)" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="arrow1Appear.end + 0.5s" fill="freeze" id="arrow2Appear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 2s" fill="freeze" />
-        </line>
+    <rect x="250" y="380" width="300" height="10" fill="#4A4A4A"/>
+    <rect id="friction_block_main" x="300" y="300" width="200" height="80" fill="#4A4A4A" rx="5" ry="5"/>
 
-        
-        <text id="functionsTitle" x="400" y="150" font-family="Arial, sans-serif" font-size="30" fill="#00FFFF" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="osIntroText2.end + 2.5s" fill="freeze" id="functionsTitleAppear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-            Key OS Functions
-        </text>
+    <path id="push_arrow_static" d="M200 340 H300" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)" opacity="0"/>
+    <text id="static_text" x="400" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="25" fill="#EF5350" opacity="0">Static Friction (No Movement)</text>
 
-        <rect id="memBox" x="100" y="250" width="180" height="100" rx="10" ry="10" fill="#1e293b" stroke="#00FFFF" stroke-width="1" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="functionsTitleAppear.end + 2s" fill="freeze" id="memBoxAppear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-        </rect>
-        <text id="memText1" x="190" y="290" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="functionsTitleAppear.end + 2s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-            Memory
-        </text>
-        <text id="memText2" x="190" y="315" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="functionsTitleAppear.end + 2s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-            Management
-        </text>
+    <path id="push_arrow_kinetic" d="M200 340 H300" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)" opacity="0"/>
+    <text id="kinetic_text" x="400" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="25" fill="#42A5F5" opacity="0">Kinetic Friction (Moving)</text>
+  </g>
 
-        <rect id="procBox" x="310" y="250" width="180" height="100" rx="10" ry="10" fill="#1e293b" stroke="#00FFFF" stroke-width="1" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="memBoxAppear.end + 0.5s" fill="freeze" id="procBoxAppear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-        </rect>
-        <text id="procText1" x="400" y="290" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="memBoxAppear.end + 0.5s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-            Process
-        </text>
-        <text id="procText2" x="400" y="315" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="memBoxAppear.end + 0.5s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-            Management
-        </text>
+   
+  <g id="scene7_benefits" opacity="0">
+    <text x="400" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#4A4A4A" opacity="0">Benefits of Friction</text>
 
-        <rect id="fileBox" x="520" y="250" width="180" height="100" rx="10" ry="10" fill="#1e293b" stroke="#00FFFF" stroke-width="1" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="procBoxAppear.end + 0.5s" fill="freeze" id="fileBoxAppear" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-        </rect>
-        <text id="fileText1" x="610" y="290" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="procBoxAppear.end + 0.5s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-            File
-        </text>
-        <text id="fileText2" x="610" y="315" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="procBoxAppear.end + 0.5s" fill="freeze" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="summaryText3.end + 0.5s" fill="freeze" />
-            Management
-        </text>
 
-        
-        <circle id="summaryCircle" cx="400" cy="300" r="100" fill="#1e293b" stroke="#00FFFF" stroke-width="2" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="fileMgrText2.end + 2.5s" fill="freeze" id="summaryCircleAppear" />
-        </circle>
-        <text id="summaryOSText" x="400" y="305" font-family="Arial, sans-serif" font-size="28" fill="#e2e8f0" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="fileMgrText2.end + 2.5s" fill="freeze" />
-            OS
-        </text>
-        <text id="summarySmoothText" x="400" y="250" font-family="Arial, sans-serif" font-size="20" fill="#00FFFF" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="summaryCircleAppear.end + 1.5s" fill="freeze" />
-            Smooth
-        </text>
-        <text id="summaryEfficientText" x="400" y="350" font-family="Arial, sans-serif" font-size="20" fill="#00FFFF" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="summaryCircleAppear.end + 2s" fill="freeze" />
-            Efficient
-        </text>
+    <g transform="translate(100, 200)">
+      <circle cx="50" cy="50" r="30" fill="#4A4A4A"/>
+      <rect x="25" y="80" width="50" height="80" fill="#4A4A4A"/>
+      <rect x="30" y="160" width="20" height="50" fill="#4A4A4A" transform="rotate(-15 40 160)"/>
+      <rect x="50" y="160" width="20" height="50" fill="#4A4A4A" transform="rotate(15 60 160)"/>
+      <rect x="20" y="205" width="40" height="10" fill="#4A4A4A" rx="3" ry="3" transform="rotate(-15 40 205)"/>
+      <rect x="40" y="205" width="40" height="10" fill="#4A4A4A" rx="3" ry="3" transform="rotate(15 60 205)"/>
+      <rect x="0" y="215" width="150" height="10" fill="#4A4A4A"/>
+      <path d="M70 210 H100" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <text x="75" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4A">Walking</text>
     </g>
 
-    <g id="highlight-layer">
-        <rect id="highlightMem" x="95" y="245" width="190" height="110" rx="12" ry="12" stroke="#FFD700" stroke-width="3" fill="none" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="memBoxAppear.end + 0.5s" fill="freeze" id="highlightMemOn" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="memMgrText2.end + 0.5s" fill="freeze" id="highlightMemOff" />
-        </rect>
 
-        <rect id="highlightProc" x="305" y="245" width="190" height="110" rx="12" ry="12" stroke="#FFD700" stroke-width="3" fill="none" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="highlightMemOff.end + 0.5s" fill="freeze" id="highlightProcOn" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="procMgrText2.end + 0.5s" fill="freeze" id="highlightProcOff" />
-        </rect>
-
-        <rect id="highlightFile" x="515" y="245" width="190" height="110" rx="12" ry="12" stroke="#FFD700" stroke-width="3" fill="none" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="highlightProcOff.end + 0.5s" fill="freeze" id="highlightFileOn" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="fileMgrText2.end + 0.5s" fill="freeze" id="highlightFileOff" />
-        </rect>
+    <g transform="translate(325, 200)">
+      <circle cx="50" cy="50" r="40" fill="#4A4A4A" stroke="#42A5F5" stroke-width="5"/>
+      <rect x="40" y="20" width="20" height="30" fill="#EF5350" rx="3" ry="3"/>
+      <path d="M50 100 V120" stroke="#EF5350" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <text x="50" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4A">Braking</text>
     </g>
 
-    <g id="text-layer">
-        
-        <text id="osIntroTextLine1" x="400" y="500" font-family="Arial, sans-serif" font-size="24" fill="#cbd5e1" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="arrow2Appear.end + 0.5s" fill="freeze" id="osIntroText1" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 0.5s" fill="freeze" />
-            OS na enna? Computer oda brain madhiri!
-        </text>
-        <text id="osIntroTextLine2" x="400" y="530" font-family="Arial, sans-serif" font-size="20" fill="#94a3b8" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="osIntroText1.end + 2s" fill="freeze" id="osIntroText2" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="osIntroText2.end + 0.5s" fill="freeze" />
-            Idhu hardware-kum software-kum naduvula oru bridge.
-        </text>
-
-        
-        <text id="memMgrTextLine1" x="400" y="450" font-family="Arial, sans-serif" font-size="24" fill="#cbd5e1" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="highlightMemOn.end + 0.5s" fill="freeze" id="memMgrText1" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="memMgrText2.end + 0.5s" fill="freeze" />
-            Memory Management: RAM-ah correct-a use pannum.
-        </text>
-        <text id="memMgrTextLine2" x="400" y="480" font-family="Arial, sans-serif" font-size="20" fill="#94a3b8" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="memMgrText1.end + 2s" fill="freeze" id="memMgrText2" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="memMgrText2.end + 0.5s" fill="freeze" />
-            Apps-ku evlo memory venumo, adha allocate pannum.
-        </text>
-
-        
-        <text id="procMgrTextLine1" x="400" y="450" font-family="Arial, sans-serif" font-size="24" fill="#cbd5e1" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="highlightProcOn.end + 0.5s" fill="freeze" id="procMgrText1" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="procMgrText2.end + 0.5s" fill="freeze" />
-            Process Management: Programs-ah run pannum.
-        </text>
-        <text id="procMgrTextLine2" x="400" y="480" font-family="Arial, sans-serif" font-size="20" fill="#94a3b8" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="procMgrText1.end + 2s" fill="freeze" id="procMgrText2" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="procMgrText2.end + 0.5s" fill="freeze" />
-            CPU-va use panna, programs-ku chance kudukkum.
-        </text>
-
-        
-        <text id="fileMgrTextLine1" x="400" y="450" font-family="Arial, sans-serif" font-size="24" fill="#cbd5e1" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="highlightFileOn.end + 0.5s" fill="freeze" id="fileMgrText1" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="fileMgrText2.end + 0.5s" fill="freeze" />
-            File Management: Files-ah store, organize pannum.
-        </text>
-        <text id="fileMgrTextLine2" x="400" y="480" font-family="Arial, sans-serif" font-size="20" fill="#94a3b8" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="fileMgrText1.end + 2s" fill="freeze" id="fileMgrText2" />
-            <animate attributeName="opacity" from="1" to="0" dur="0.5s" begin="fileMgrText2.end + 0.5s" fill="freeze" />
-            Data-va safe-ah vechikarthu idhan velai.
-        </text>
-
-        
-        <text id="summaryTextLine1" x="400" y="450" font-family="Arial, sans-serif" font-size="28" fill="#00FFFF" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="summaryCircleAppear.end + 0.8s" fill="freeze" id="summaryText1" />
-            Why OS is Important?
-        </text>
-        <text id="summaryTextLine2" x="400" y="500" font-family="Arial, sans-serif" font-size="24" fill="#cbd5e1" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="summaryText1.end + 2s" fill="freeze" id="summaryText2" />
-            Namma computer smooth-ah, efficient-ah work panna OS dhaan mukkiyam.
-        </text>
-        <text id="summaryTextLine3" x="400" y="530" font-family="Arial, sans-serif" font-size="20" fill="#94a3b8" text-anchor="middle" opacity="0">
-            <animate attributeName="opacity" from="0" to="1" dur="1s" begin="summaryText2.end + 2s" fill="freeze" id="summaryText3" />
-            Adhu illana, namma computer oru empty box madhiri dhaan.
-        </text>
+    
+    <g transform="translate(550, 200)">
+      <rect x="40" y="40" width="70" height="100" fill="#4A4A4A" rx="5" ry="5"/>
+      <path d="M30 70 C10 70, 10 120, 30 120" stroke="#42A5F5" stroke-width="5" fill="none"/>
+      <text x="75" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4A">Holding Objects</text>
     </g>
+  </g>
+
+  
+  <g id="scene8_drawbacks" opacity="0">
+    <text x="400" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#4A4A4A" opacity="0">Drawbacks of Friction</text>
+
+    
+    <g transform="translate(150, 200)">
+      <circle cx="50" cy="50" r="40" fill="#4A4A4A"/>
+      <circle cx="150" cy="50" r="40" fill="#4A4A4A"/>
+      <path d="M90 50 H110" stroke="#EF5350" stroke-width="3"/>
+      <path d="M95 40 L105 60" stroke="#EF5350" stroke-width="3"/>
+      <path d="M95 60 L105 40" stroke="#EF5350" stroke-width="3"/>
+      <text x="100" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4A">Wear &amp; Tear / Heat</text>
+    </g>
+
+    
+    <g transform="translate(450, 200)">
+      <rect x="0" y="100" width="150" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+      <rect x="150" y="100" width="150" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+      <path d="M-50 140 H0" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <path d="M150 140 H200" stroke="#EF5350" stroke-width="5" marker-end="url(#arrowhead)"/>
+      <path d="M140 100 C145 90, 155 90, 160 100" fill="none" stroke="#EF5350" stroke-width="2"/>
+      <path d="M140 180 C145 190, 155 190, 160 180" fill="none" stroke="#EF5350" stroke-width="2"/>
+      <text x="150" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4A">Energy Loss</text>
+    </g>
+  </g>
+
+  
+  <g id="scene9_reduce" opacity="0">
+    <text x="400" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#4A4A4A" opacity="0">Reducing Friction</text>
+
+
+    <g transform="translate(100, 200)">
+      <circle cx="50" cy="50" r="40" fill="#4A4A4A"/>
+      <circle cx="150" cy="50" r="40" fill="#4A4A4A"/>
+      <path d="M90 50 H110" stroke="#42A5F5" stroke-width="3"/>
+      <circle cx="100" cy="50" r="10" fill="#42A5F5" opacity="0.5"/>
+      <text x="100" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4A">Lubricants</text>
+    </g>
+
+
+    <g transform="translate(325, 200)">
+      <rect x="25" y="0" width="100" height="50" fill="#4A4A4A" rx="5" ry="5"/>
+      <circle cx="50" cy="80" r="25" fill="#4A4A4A"/>
+      <circle cx="100" cy="80" r="25" fill="#4A4A4A"/>
+      <rect x="0" y="110" width="150" height="10" fill="#4A4A4A"/>
+      <text x="75" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4A">Wheels</text>
+    </g>
+
+    
+    <g transform="translate(550, 200)">
+      <rect x="0" y="100" width="150" height="10" fill="#4A4A4A"/>
+      <rect x="25" y="50" width="100" height="50" fill="#4A4A4A" rx="5" ry="5"/>
+      <path d="M0 100 L150 100" fill="none" stroke="#42A5F5" stroke-width="2"/>
+      <path d="M25 100 L125 100" fill="none" stroke="#42A5F5" stroke-width="2"/>
+      <text x="75" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4A">Smooth Surfaces</text>
+    </g>
+  </g>
+
+  
+  <g id="scene10_conclusion" opacity="0">
+    <rect x="250" y="380" width="300" height="10" fill="#4A4A4A"/>
+    <rect x="300" y="300" width="200" height="80" fill="#4A4A4A" rx="5" ry="5"/>
+    <path d="M200 340 H300" stroke="#66BB6A" stroke-width="5" marker-end="url(#arrowhead)"/>
+    <path d="M500 340 H600" stroke="#EF5350" stroke-width="5" marker-end="url(#arrowhead)"/>
+    <text x="400" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" fill="#4A4A4A">Friction: An Essential Force!</text>
+  </g>
+
+
+  
+  <animate attributeName="opacity" href="#scene1" from="0" to="1" dur="1s" begin="0s" fill="freeze"/>
+  <animate attributeName="opacity" href="#appliedForce1" from="0" to="1" dur="0.8s" begin="1.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene1 text:nth-of-type(1)" from="0" to="1" dur="0.8s" begin="1.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#frictionForce1" from="0" to="1" dur="0.8s" begin="2.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene1 text:nth-of-type(2)" from="0" to="1" dur="0.8s" begin="2.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene1" from="1" to="0" dur="1s" begin="5s" fill="freeze"/>
+
+  
+  <animate attributeName="opacity" href="#scene2_setup" from="0" to="1" dur="1s" begin="6s" fill="freeze"/>
+  <animate attributeName="opacity" href="#block_roughness_path" from="0" to="1" dur="1s" begin="7s" fill="freeze"/>
+  <animate attributeName="opacity" href="#ground_roughness_path" from="0" to="1" dur="1s" begin="7.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene2_setup" from="1" to="0" dur="1s" begin="10.5s" fill="freeze"/>
+
+  <animate attributeName="opacity" href="#scene3_interlock" from="0" to="1" dur="1s" begin="11.5s" fill="freeze"/>
+  <animateTransform attributeName="transform" type="translate" href="#block_roughness_interlock" from="0 0" to="-10 0" dur="1s" begin="13s" fill="freeze"/>
+  <animateTransform attributeName="transform" type="translate" href="#block_roughness_interlock" from="-10 0" to="0 0" dur="0.5s" begin="14s" fill="freeze"/>
+  <animate attributeName="opacity" href="#appliedForce3" from="0" to="1" dur="0.8s" begin="13s" fill="freeze"/>
+  <animate attributeName="opacity" href="#frictionForce3" from="0" to="1" dur="0.8s" begin="13.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene3_interlock" from="1" to="0" dur="1s" begin="15.5s" fill="freeze"/>
+
+  
+  <animate attributeName="opacity" href="#scene4_roughness" from="0" to="1" dur="1s" begin="16.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene4_roughness > text" from="0" to="1" dur="0.8s" begin="17s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene4_roughness > g:nth-of-type(1) path" from="0" to="1" dur="0.8s" begin="18s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene4_roughness > g:nth-of-type(2) path" from="0" to="1" dur="0.8s" begin="18.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene4_roughness" from="1" to="0" dur="1s" begin="22s" fill="freeze"/>
+
+  
+  <animate attributeName="opacity" href="#scene5_weight" from="0" to="1" dur="1s" begin="23s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene5_weight > text" from="0" to="1" dur="0.8s" begin="23.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#top_block" from="0" to="1" dur="1s" begin="25s" fill="freeze"/>
+  <animate attributeName="stroke-width" href="#scene5_weight > g:nth-of-type(2) path:nth-of-type(4)" from="3" to="5" dur="1s" begin="25.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene5_weight" from="1" to="0" dur="1s" begin="27.5s" fill="freeze"/>
+
+  
+  <animate attributeName="opacity" href="#scene6_types" from="0" to="1" dur="1s" begin="28.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene6_types > text" from="0" to="1" dur="0.8s" begin="29s" fill="freeze"/>
+  <animate attributeName="opacity" href="#push_arrow_static" from="0" to="1" dur="0.8s" begin="30s" fill="freeze"/>
+  <animate attributeName="opacity" href="#static_text" from="0" to="1" dur="0.8s" begin="30.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#push_arrow_static, #static_text" from="1" to="0" dur="0.5s" begin="32s" fill="freeze"/>
+  <animate attributeName="opacity" href="#push_arrow_kinetic" from="0" to="1" dur="0.8s" begin="32.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#kinetic_text" from="0" to="1" dur="0.8s" begin="33s" fill="freeze"/>
+  <animateTransform attributeName="transform" type="translate" href="#friction_block_main" from="0 0" to="50 0" dur="1.5s" begin="33.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene6_types" from="1" to="0" dur="1s" begin="36s" fill="freeze"/>
+
+
+  <animate attributeName="opacity" href="#scene7_benefits" from="0" to="1" dur="1s" begin="37s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene7_benefits > text" from="0" to="1" dur="0.8s" begin="37.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene7_benefits > g:nth-of-type(1)" from="0" to="1" dur="0.8s" begin="38.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene7_benefits > g:nth-of-type(2)" from="0" to="1" dur="0.8s" begin="39.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene7_benefits > g:nth-of-type(3)" from="0" to="1" dur="0.8s" begin="40.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene7_benefits" from="1" to="0" dur="1s" begin="42.5s" fill="freeze"/>
+
+
+  <animate attributeName="opacity" href="#scene8_drawbacks" from="0" to="1" dur="1s" begin="43.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene8_drawbacks > text" from="0" to="1" dur="0.8s" begin="44s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene8_drawbacks > g:nth-of-type(1)" from="0" to="1" dur="0.8s" begin="45s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene8_drawbacks > g:nth-of-type(2)" from="0" to="1" dur="0.8s" begin="46s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene8_drawbacks" from="1" to="0" dur="1s" begin="48s" fill="freeze"/>
+
+
+  <animate attributeName="opacity" href="#scene9_reduce" from="0" to="1" dur="1s" begin="49s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene9_reduce > text" from="0" to="1" dur="0.8s" begin="49.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene9_reduce > g:nth-of-type(1)" from="0" to="1" dur="0.8s" begin="50.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene9_reduce > g:nth-of-type(2)" from="0" to="1" dur="0.8s" begin="51.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene9_reduce > g:nth-of-type(3)" from="0" to="1" dur="0.8s" begin="52.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene9_reduce" from="1" to="0" dur="1s" begin="54.5s" fill="freeze"/>
+
+  
+  <animate attributeName="opacity" href="#scene10_conclusion" from="0" to="1" dur="1s" begin="55.5s" fill="freeze"/>
+  <animate attributeName="opacity" href="#scene10_conclusion > text" from="0" to="1" dur="1s" begin="56.5s" fill="freeze"/>
+
 </svg>
-{/* svg generation ends */}
+{/* svg generation ends //////////////////////////////////////////////////////*/}
       </div>
 
       {/* Waveform bars when speaking - positioned at bottom */}
@@ -575,7 +641,7 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { background: #fff; overflow-x: hidden; }
@@ -599,9 +665,9 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
         duration={600}
         extraScale={1.5}
       >
-        <div style={{ display: 'flex', height: '100vh', background: '#fff', color: '#1e1b4b', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1e1b4b', overflow: 'hidden' }}>
           {/* Unified sidebar */}
-          <UnifiedSidebar active="visualizer" onNav={id => onNav && onNav(id)} variant="dark" />
+          <UnifiedSidebar active="visualizer" onNav={id => onNav && onNav(id)} variant="light" />
 
           {/* Main visualizer content */}
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>

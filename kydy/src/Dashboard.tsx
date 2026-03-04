@@ -225,14 +225,6 @@ function DashboardContent({ onNav }: { onNav: (id: string) => void }) {
           <div style={{ color: '#7c3aed', fontSize: 10, fontFamily: "'Poppins',sans-serif", letterSpacing: 3, marginBottom: 5 }}>OVERVIEW</div>
           <h1 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 900, fontSize: '1.75rem', color: '#1f2937', letterSpacing: -1 }}>DASHBOARD</h1>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ background: `rgba(124,58,237,0.1)`, border: '1px solid rgba(124,58,237,0.22)', borderRadius: 10, padding: '8px 16px', color: '#7c3aed', fontSize: 12, fontFamily: "'Inter',sans-serif" }}>
-            📅 Feb 27, 2026
-          </div>
-          <LGBtn variant="primary" style={{ padding: '9px 20px', borderRadius: 10, fontFamily: "'Poppins',sans-serif", fontSize: 10, letterSpacing: 1, fontWeight: 700, color: '#1e293b' }}>
-            + ENROLL
-          </LGBtn>
-        </div>
       </div>
 
       {/* ── Stats ── */}
@@ -330,7 +322,7 @@ export default function Dashboard({ onNavigate }: { onNavigate?: (view: string) 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { background: #f3f4f6; overflow-x: hidden; }

@@ -4,7 +4,6 @@ import UnifiedSidebar from './components/UnifiedSidebar'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Message { id: number; role: 'user' | 'ai'; text: string; time: string }
-interface Session { id: number; title: string; date: string; preview: string; active: boolean }
 
 // ─── API Functions ────────────────────────────────────────────────────────────
 const API_BASE = 'http://localhost:8000'
@@ -33,100 +32,6 @@ async function sendChatMessage(message: string, sessionId?: string) {
     }
   }
 }
-
-// ─── Chat History Panel ───────────────────────────────────────────────────────
-const SESSIONS: Session[] = [
-  { id: 1, title: 'React Hooks Explained', date: 'Today', preview: 'Can you explain useEffect in depth?', active: true },
-  { id: 2, title: 'CSS Grid vs Flexbox', date: 'Today', preview: 'When should I use Grid over Flexbox?', active: false },
-  { id: 3, title: 'JavaScript Closures', date: 'Yesterday', preview: 'What exactly is a closure?', active: false },
-  { id: 4, title: 'Node.js Event Loop', date: 'Yesterday', preview: 'How does the event loop work?', active: false },
-  { id: 5, title: 'TypeScript Generics', date: 'Feb 25', preview: 'Help me understand generics', active: false },
-  { id: 6, title: 'REST vs GraphQL', date: 'Feb 24', preview: 'Pros and cons of each?', active: false },
-  { id: 7, title: 'Database Indexing', date: 'Feb 22', preview: 'Why are indexes so important?', active: false },
-]
-
-function HistoryPanel({ activeId, onSelect }: { activeId: number; onSelect: (id: number) => void }) {
-  const grouped = [
-    { label: 'Today', items: SESSIONS.filter(s => s.date === 'Today') },
-    { label: 'Yesterday', items: SESSIONS.filter(s => s.date === 'Yesterday') },
-    { label: 'Earlier', items: SESSIONS.filter(s => !['Today', 'Yesterday'].includes(s.date)) },
-  ].filter(g => g.items.length > 0)
-
-  return (
-    <div style={{
-      width: '16rem', flexShrink: 0, height: '100vh',
-      background: '#f8f7ff',
-      borderRight: '1px solid #e8e4f8',
-      display: 'flex', flexDirection: 'column',
-      overflow: 'hidden',
-    }}>
-      {/* Header */}
-      <div style={{ padding: '1.2rem 1rem 0.8rem', borderBottom: '1px solid #eeeaf8' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-          <span style={{ fontSize: '0.7rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: '#6d28d9', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Chat History</span>
-          <button style={{
-            width: '1.8rem', height: '1.8rem', borderRadius: '0.45rem', border: 'none', cursor: 'pointer',
-            background: '#ede9fe', color: '#7c3aed', fontSize: '1rem',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            transition: 'all 0.2s',
-          }}
-            onMouseEnter={e => e.currentTarget.style.background = '#ddd6fe'}
-            onMouseLeave={e => e.currentTarget.style.background = '#ede9fe'}
-            title="New chat"
-          >+</button>
-        </div>
-        {/* Search */}
-        <div style={{ position: 'relative' }}>
-          <span style={{ position: 'absolute', left: '0.55rem', top: '50%', transform: 'translateY(-50%)', fontSize: '0.75rem', color: '#a78bfa' }}>🔍</span>
-          <input placeholder="Search sessions..." style={{
-            width: '100%', padding: '0.42rem 0.6rem 0.42rem 1.8rem',
-            borderRadius: '0.5rem', border: '1px solid #e0d9f7',
-            background: '#fff', fontSize: '0.7rem', fontFamily: "'DM Sans',sans-serif",
-            color: '#374151', outline: 'none',
-          }} />
-        </div>
-      </div>
-
-      {/* Session list */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '0.5rem 0.6rem' }}>
-        {grouped.map(group => (
-          <div key={group.label} style={{ marginBottom: '0.5rem' }}>
-            <div style={{ fontSize: '0.58rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: '#9ca3af', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.4rem 0.4rem 0.25rem' }}>{group.label}</div>
-            {group.items.map(session => (
-              <button key={session.id} onClick={() => onSelect(session.id)} style={{
-                width: '100%', textAlign: 'left', padding: '0.6rem 0.65rem',
-                borderRadius: '0.55rem', border: 'none', cursor: 'pointer',
-                background: activeId === session.id ? '#ede9fe' : 'transparent',
-                borderLeft: activeId === session.id ? '2px solid #7c3aed' : '2px solid transparent',
-                transition: 'all 0.15s', marginBottom: '0.1rem',
-              }}
-                onMouseEnter={e => { if (activeId !== session.id) e.currentTarget.style.background = '#f3f0ff' }}
-                onMouseLeave={e => { if (activeId !== session.id) e.currentTarget.style.background = 'transparent' }}
-              >
-                <div style={{ fontSize: '0.72rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 600, color: activeId === session.id ? '#6d28d9' : '#374151', marginBottom: '0.18rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{session.title}</div>
-                <div style={{ fontSize: '0.62rem', fontFamily: "'DM Sans',sans-serif", color: '#9ca3af', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{session.preview}</div>
-              </button>
-            ))}
-          </div>
-        ))}
-      </div>
-
-      {/* Course context badge */}
-      <div style={{ padding: '0.7rem 0.8rem', borderTop: '1px solid #eeeaf8', background: '#f3f0ff' }}>
-        <div style={{ fontSize: '0.58rem', color: '#a78bfa', fontFamily: "'DM Sans',sans-serif", fontWeight: 600, letterSpacing: '0.08em', marginBottom: '0.25rem' }}>CURRENT COURSE</div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <span style={{ fontSize: '1.1rem' }}>⚡</span>
-          <div>
-            <div style={{ fontSize: '0.7rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: '#374151' }}>Web Development</div>
-            <div style={{ fontSize: '0.6rem', fontFamily: "'DM Sans',sans-serif", color: '#9ca3af' }}>Lesson 17 of 25</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-
 
 // ─── Chat Panel ───────────────────────────────────────────────────────────────
 const INITIAL_MESSAGES: Message[] = [
@@ -350,10 +255,10 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
       extraScale={1.5}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
-        body { background: #fff; overflow-x: hidden; }
+        body { background: #f3f4f6; overflow-x: hidden; }
         ::-webkit-scrollbar { width: 0.25rem; }
         ::-webkit-scrollbar-track { background: #f8f7ff; }
         ::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 0.2rem; }
@@ -367,50 +272,21 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
         @keyframes pulse-dot { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,0.4)} 50%{opacity:0.5;box-shadow:0 0 0 0.3rem rgba(34,197,94,0)} }
       `}</style>
 
-      <div style={{ display: 'flex', height: '100vh', background: '#fff', color: '#1e1b4b', overflow: 'hidden' }}>
-        {/* Unified sidebar */}
-        <UnifiedSidebar active="lessons" onNav={id => onNav && onNav(id)} variant="dark" />
+      <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1e1b4b', overflow: 'hidden' }}>
+        {/* Unified sidebar with chat history */}
+        <UnifiedSidebar 
+          active="lessons" 
+          onNav={id => onNav && onNav(id)} 
+          variant="light"
+          showChatHistory={true}
+          onChatHistorySelect={setActiveSession}
+          activeChatSession={activeSession}
+        />
 
-        {/* Light chat history */}
-        <HistoryPanel activeId={activeSession} onSelect={setActiveSession} />
-
-
-
-        {/* Right: Chat output */}
+        {/* Main chat area */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          {/* Visualizer button */}
-          <div style={{ padding: '0.9rem 1.2rem', borderBottom: '1px solid #f0ebff', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-              <div style={{
-                width: '2.2rem', height: '2.2rem', borderRadius: '50%',
-                background: 'linear-gradient(135deg,#8b5cf6,#a855f7)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '1rem', boxShadow: '0 0 0.8rem rgba(124,58,237,0.35)',
-              }}>🤖</div>
-              <div>
-                <div style={{ fontSize: '0.82rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: '#1e1b4b' }}>KYDY AI Tutor</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                  <span style={{ width: '0.45rem', height: '0.45rem', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
-                  <span style={{ fontSize: '0.62rem', fontFamily: "'DM Sans',sans-serif", color: '#6b7280' }}>Online · Specialized in React</span>
-                </div>
-              </div>
-            </div>
-            <button 
-              onClick={() => onNav && onNav('visualizer')}
-              style={{ 
-                padding: '0.5rem 1rem', borderRadius: '0.6rem', border: '1px solid #ddd6fe',
-                background: '#f5f3ff', color: '#7c3aed',
-                fontSize: '0.7rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 600,
-                cursor: 'pointer', transition: 'all 0.2s', display: 'flex', alignItems: 'center', gap: '0.4rem'
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#ede9fe'; e.currentTarget.style.borderColor = '#a78bfa' }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#f5f3ff'; e.currentTarget.style.borderColor = '#ddd6fe' }}
-            >
-              🎨 Open Visualizer
-            </button>
-          </div>
           <ChatPanel onSpeak={() => {}} />
-        </div>
+        </div>  
       </div>
     </ClickSpark>
   )

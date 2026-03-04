@@ -3,7 +3,6 @@ import ClickSpark from './components/ClickSpark'
 import UnifiedSidebar from './components/UnifiedSidebar'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-interface NavItem { id: string; icon: string; label: string }
 interface Note {
   id: number; title: string; content: string; course: string
   color: string; date: string; tags: string[]; pinned: boolean
@@ -390,10 +389,7 @@ function NotesContent() {
               }}
             />
           </div>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <LGBtn variant="ghost" onClick={() => setNotes(loadAllNotes())} style={{ padding: '0.55rem 1rem', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.1em', color: '#7c3aed' }}>
-              🔄 REFRESH
-            </LGBtn>
+          <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
             <LGBtn variant="primary" onClick={handleNewNote} style={{ padding: '0.55rem 1.2rem', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', color: '#1e293b' }}>
               + NEW NOTE
             </LGBtn>
@@ -474,7 +470,7 @@ export default function NotesPage({ onNav }: { onNav?: (id: string) => void }) {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { background: #f3f4f6; overflow-x: hidden; }
