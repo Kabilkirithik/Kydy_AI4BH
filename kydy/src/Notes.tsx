@@ -48,32 +48,23 @@ const INITIAL_NOTES: Note[] = [
 ]
 
 const FILTERS = ['All Notes', 'Pinned', 'Web Development', 'Machine Learning', 'UI/UX Design', 'Data Science', 'Visualizer']
-const COURSES = [
-  { name: 'Web Development', color: '#6366f1' },
-  { name: 'Machine Learning', color: '#7c3aed' },
-  { name: 'UI/UX Design', color: '#a855f7' },
-  { name: 'Data Science', color: '#7c3aed' },
-  { name: 'Visualizer', color: '#a855f7' },
-]
 
 // ─── Note Editor Modal ────────────────────────────────────────────────────────
 function NoteEditor({ note, onSave, onClose }: { note: Note | null; onSave: (note: Note) => void; onClose: () => void }) {
   const [title, setTitle] = useState(note?.title || '')
   const [content, setContent] = useState(note?.content || '')
-  const [course, setCourse] = useState(note?.course || 'Web Development')
   const [tags, setTags] = useState(note?.tags.join(', ') || '')
   const [pinned, setPinned] = useState(note?.pinned || false)
 
   const handleSave = () => {
     if (!title.trim() || !content.trim()) return
     
-    const courseData = COURSES.find(c => c.name === course) || COURSES[0]
     const newNote: Note = {
       id: note?.id || Date.now(),
       title: title.trim(),
       content: content.trim(),
-      course,
-      color: courseData.color,
+      course: 'Web Development',
+      color: '#6366f1',
       date: 'Today',
       tags: tags.split(',').map(t => t.trim()).filter(t => t),
       pinned,
@@ -112,22 +103,7 @@ function NoteEditor({ note, onSave, onClose }: { note: Note | null; onSave: (not
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3%' }}>
-            <div>
-              <label style={{ display: 'block', color: '#6b7280', fontSize: '0.7rem', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.1em', marginBottom: '2%' }}>COURSE</label>
-              <select value={course} onChange={e => setCourse(e.target.value)} style={{
-                width: '100%', padding: '3%', borderRadius: '0.7rem', outline: 'none',
-                background: '#f9fafb', border: '1px solid #e5e7eb',
-                color: '#1f2937', fontSize: '0.8rem', fontFamily: "'Exo 2',sans-serif", cursor: 'pointer',
-                transition: 'all 0.2s',
-              }}
-                onFocus={e => { e.currentTarget.style.borderColor = '#7c3aed'; e.currentTarget.style.background = '#ffffff' }}
-                onBlur={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.background = '#f9fafb' }}
-              >
-                {COURSES.map(c => <option key={c.name} value={c.name}>{c.name}</option>)}
-              </select>
-            </div>
-
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3%' }}>
             <div>
               <label style={{ display: 'block', color: '#6b7280', fontSize: '0.7rem', fontFamily: "'Orbitron',sans-serif", letterSpacing: '0.1em', marginBottom: '2%' }}>TAGS (comma separated)</label>
               <input value={tags} onChange={e => setTags(e.target.value)} placeholder="React, Hooks, Best Practices" style={{
