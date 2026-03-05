@@ -131,7 +131,7 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
             <div style={{ fontSize: '0.82rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: '#1e1b4b' }}>KYDY AI Tutor</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
               <span style={{ width: '0.45rem', height: '0.45rem', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
-              <span style={{ fontSize: '0.62rem', fontFamily: "'DM Sans',sans-serif", color: '#6b7280' }}>Online · Specialized in React</span>
+              <span style={{ fontSize: '0.62rem', fontFamily: "'DM Sans',sans-serif", color: '#6b7280' }}>Online</span>
             </div>
           </div>
         </div>
