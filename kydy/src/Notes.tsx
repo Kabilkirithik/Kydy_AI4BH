@@ -218,7 +218,7 @@ function NoteCard({ note, onClick, selected }: { note: Note; onClick: () => void
 }
 
 // ─── Note Detail Panel ────────────────────────────────────────────────────────
-function NoteDetail({ note, onClose, onEdit, onDelete }: { note: Note; onClose: () => void; onEdit: (note: Note) => void; onDelete: (id: number) => void }) {
+function NoteDetail({ note, onClose, onEdit, onDelete, onPin }: { note: Note; onClose: () => void; onEdit: (note: Note) => void; onDelete: (id: number) => void; onPin: (id: number) => void }) {
   return (
     <div style={{
       width: '30%', minWidth: '17rem', flexShrink: 0,
@@ -265,6 +265,9 @@ function NoteDetail({ note, onClose, onEdit, onDelete }: { note: Note; onClose: 
 
       {/* CTA footer */}
       <div style={{ padding: '0.8rem 1rem', borderTop: '1px solid #e5e7eb', flexShrink: 0, display: 'flex', gap: '0.5rem' }}>
+        <LGBtn variant="ghost" onClick={() => onPin(note.id)} style={{ flex: 1, padding: '0.65rem 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', color: '#374151' }}>
+          {note.pinned ? 'UNPIN' : 'PIN'}
+        </LGBtn>
         <LGBtn variant="ghost" onClick={() => onEdit(note)} style={{ flex: 1, padding: '0.65rem 0', borderRadius: '0.7rem', fontFamily: "'Orbitron',sans-serif", fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', color: '#374151' }}>
           EDIT
         </LGBtn>
@@ -278,41 +281,63 @@ function NoteDetail({ note, onClose, onEdit, onDelete }: { note: Note; onClose: 
 
 // ─── Main Content ─────────────────────────────────────────────────────────────
 function NotesContent() {
-  // Load notes including visualizer notes from localStorage
-  const loadAllNotes = () => {
-    const visualizerNotes = JSON.parse(localStorage.getItem('visualizerNotes') || '[]')
-    return [...INITIAL_NOTES, ...visualizerNotes]
-  }
-  
-  const [notes, setNotes] = useState<Note[]>(loadAllNotes)
+  const [notes, setNotes] = useState<Note[]>([])
   const [filter, setFilter] = useState('All Notes')
   const [search, setSearch] = useState('')
-  const [selected, setSelected] = useState<Note | null>(notes[0])
+  const [selected, setSelected] = useState<Note | null>(null)
   const [searchFocused, setSearchFocused] = useState(false)
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [showEditor, setShowEditor] = useState(false)
+  const [loading, setLoading] = useState(true)
 
-  // Refresh notes when component mounts or when returning from other pages
+  // Load notes from API
+  const loadNotes = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('http://localhost:8000/api/notes')
+      if (response.ok) {
+        const apiNotes = await response.json()
+        setNotes(apiNotes)
+        if (apiNotes.length > 0 && !selected) {
+          setSelected(apiNotes[0])
+        }
+      } else {
+        console.error('Failed to load notes')
+        // Fallback to initial notes if API fails
+        setNotes(INITIAL_NOTES)
+        setSelected(INITIAL_NOTES[0])
+      }
+    } catch (error) {
+      console.error('Error loading notes:', error)
+      // Fallback to initial notes if API fails
+      setNotes(INITIAL_NOTES)
+      setSelected(INITIAL_NOTES[0])
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Load notes on component mount
   useEffect(() => {
-    const refreshNotes = () => {
-      setNotes(loadAllNotes())
+    loadNotes()
+    
+    // Listen for visualizer note saved events
+    const handleVisualizerNoteSaved = () => {
+      loadNotes()
     }
     
-    // Listen for storage changes (when visualizer saves new notes)
-    window.addEventListener('storage', refreshNotes)
-    window.addEventListener('visualizerNoteSaved', refreshNotes)
+    window.addEventListener('visualizerNoteSaved', handleVisualizerNoteSaved)
     
     // Also refresh when the component becomes visible again
     const handleVisibilityChange = () => {
       if (!document.hidden) {
-        refreshNotes()
+        loadNotes()
       }
     }
     document.addEventListener('visibilitychange', handleVisibilityChange)
     
     return () => {
-      window.removeEventListener('storage', refreshNotes)
-      window.removeEventListener('visualizerNoteSaved', refreshNotes)
+      window.removeEventListener('visualizerNoteSaved', handleVisualizerNoteSaved)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
   }, [])
@@ -326,18 +351,58 @@ function NotesContent() {
     return matchFilter && matchSearch
   })
 
-  const handleSaveNote = (note: Note) => {
-    if (editingNote) {
-      // Update existing note
-      setNotes(notes.map(n => n.id === note.id ? note : n))
-      if (selected?.id === note.id) setSelected(note)
-    } else {
-      // Add new note
-      setNotes([note, ...notes])
-      setSelected(note)
+  const handleSaveNote = async (note: Note) => {
+    try {
+      if (editingNote) {
+        // Update existing note
+        const response = await fetch(`http://localhost:8000/api/notes/${note.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: note.title,
+            content: note.content,
+            course: note.course,
+            color: note.color,
+            tags: note.tags,
+            pinned: note.pinned
+          }),
+        })
+        
+        if (response.ok) {
+          const updatedNote = await response.json()
+          setNotes(notes.map(n => n.id === note.id ? updatedNote : n))
+          if (selected?.id === note.id) setSelected(updatedNote)
+        }
+      } else {
+        // Create new note
+        const response = await fetch('http://localhost:8000/api/notes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: note.title,
+            content: note.content,
+            course: note.course,
+            color: note.color,
+            tags: note.tags
+          }),
+        })
+        
+        if (response.ok) {
+          const newNote = await response.json()
+          setNotes([newNote, ...notes])
+          setSelected(newNote)
+        }
+      }
+      setShowEditor(false)
+      setEditingNote(null)
+    } catch (error) {
+      console.error('Error saving note:', error)
+      alert('Failed to save note. Please try again.')
     }
-    setShowEditor(false)
-    setEditingNote(null)
   }
 
   const handleEditNote = (note: Note) => {
@@ -345,16 +410,58 @@ function NotesContent() {
     setShowEditor(true)
   }
 
-  const handleDeleteNote = (id: number) => {
+  const handleDeleteNote = async (id: number) => {
     if (confirm('Are you sure you want to delete this note?')) {
-      setNotes(notes.filter(n => n.id !== id))
-      if (selected?.id === id) setSelected(null)
+      try {
+        const response = await fetch(`http://localhost:8000/api/notes/${id}`, {
+          method: 'DELETE',
+        })
+        
+        if (response.ok) {
+          setNotes(notes.filter(n => n.id !== id))
+          if (selected?.id === id) setSelected(null)
+        }
+      } catch (error) {
+        console.error('Error deleting note:', error)
+        alert('Failed to delete note. Please try again.')
+      }
+    }
+  }
+
+  const handlePinNote = async (id: number) => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/notes/${id}/pin`, {
+        method: 'POST',
+      })
+      
+      if (response.ok) {
+        const result = await response.json()
+        // Update the note in the local state
+        setNotes(notes.map(n => n.id === id ? { ...n, pinned: result.pinned } : n))
+        if (selected?.id === id) {
+          setSelected({ ...selected, pinned: result.pinned })
+        }
+      }
+    } catch (error) {
+      console.error('Error toggling pin status:', error)
+      alert('Failed to update pin status. Please try again.')
     }
   }
 
   const handleNewNote = () => {
     setEditingNote(null)
     setShowEditor(true)
+  }
+
+  if (loading) {
+    return (
+      <main style={{ flex: 1, padding: '2rem 1.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f3f4f6' }}>
+        <div style={{ textAlign: 'center', color: '#6b7280' }}>
+          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>📝</div>
+          <div style={{ fontFamily: "'Orbitron',sans-serif", fontSize: '0.75rem', letterSpacing: '0.1em' }}>LOADING NOTES...</div>
+        </div>
+      </main>
+    )
   }
 
   return (
@@ -445,6 +552,7 @@ function NotesContent() {
             onClose={() => setSelected(null)} 
             onEdit={handleEditNote}
             onDelete={handleDeleteNote}
+            onPin={handlePinNote}
           />
         )}
       </div>

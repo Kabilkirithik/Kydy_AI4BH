@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 48px; fill: cyan; }
+      .label { font-family: Arial, sans-serif; font-size: 24px; fill: white; }
+      .explanation { font-family: Arial, sans-serif; font-size: 20px; fill: white; }
+      .formula { font-family: Arial, sans-serif; font-size: 32px; fill: cyan; }
+    </style>
+  </defs>
+  
+  <!-- Background Layer -->
+  <g id="background-layer">
+    <rect width="800" height="600" fill="#0f172a"/>
+  </g>
+  
+  <!-- Title Layer -->
+  <g id="title-layer">
+    <text x="400" y="80" text-anchor="middle" class="title" opacity="0">
+      <tspan>Ohm's Law</tspan>
+      <animate attributeName="opacity" values="0;1;1" dur="2s" begin="0s" fill="freeze"/>
+    </text>
+  </g>
+  
+  <!-- Diagram Layer -->
+  <g id="diagram-layer">
+    <!-- Circuit Diagram -->
+    <line x1="150" y1="300" x2="650" y2="300" stroke="white" stroke-width="3"/>
+    
+    <!-- Battery -->
+    <rect x="100" y="270" width="40" height="60" fill="white" stroke="white" stroke-width="2"/>
+    <line x1="100" y1="270" x2="100" y2="330" stroke="white" stroke-width="2"/>
+    <line x1="140" y1="270" x2="140" y2="330" stroke="white" stroke-width="2"/>
+    <line x1="100" y1="290" x2="140" y2="290" stroke="white" stroke-width="2"/>
+    <line x1="100" y1="310" x2="140" y2="310" stroke="white" stroke-width="2"/>
+    
+    <!-- Resistor -->
+    <rect x="300" y="280" width="100" height="40" fill="white" stroke="white" stroke-width="2"/>
+    <line x1="300" y1="280" x2="300" y2="320" stroke="white" stroke-width="2"/>
+    <line x1="400" y1="280" x2="400" y2="320" stroke="white" stroke-width="2"/>
+    <line x1="300" y1="280" x2="400" y2="280" stroke="white" stroke-width="2"/>
+    <line x1="300" y1="320" x2="400" y2="320" stroke="white" stroke-width="2"/>
+    
+    <!-- Ammeter -->
+    <circle cx="225" cy="300" r="20" fill="white" stroke="white" stroke-width="2"/>
+    <text x="225" y="305" text-anchor="middle" class="label" fill="black">A</text>
+    
+    <!-- Voltmeter -->
+    <circle cx="525" cy="300" r="20" fill="white" stroke="white" stroke-width="2"/>
+    <text x="525" y="305" text-anchor="middle" class="label" fill="black">V</text>
+    
+    <!-- Current Arrow -->
+    <line x1="150" y1="280" x2="225" y2="280" stroke="cyan" stroke-width="2" marker-end="url(#arrowhead)">
+      <animate attributeName="opacity" values="0;1;1" dur="2s" begin="2s" fill="freeze"/>
+    </line>
+    
+    <!-- Voltage Arrow -->
+    <line x1="525" y1="320" x2="525" y2="350" stroke="cyan" stroke-width="2" marker-end="url(#arrowhead)">
+      <animate attributeName="opacity" values="0;1;1" dur="2s" begin="3s" fill="freeze"/>
+    </line>
+    
+    <!-- Arrowhead Definition -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+              refX="0" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="cyan"/>
+      </marker>
+    </defs>
+    
+    <!-- Formula Display -->
+    <text x="400" y="450" text-anchor="middle" class="formula" opacity="0">
+      V = I × R
+      <animate attributeName="opacity" values="0;1;1" dur="2s" begin="4s" fill="freeze"/>
+    </text>
+  </g>
+  
+  <!-- Highlight Layer -->
+  <g id="highlight-layer">
+    <!-- Highlight for Voltage -->
+    <rect x="480" y="270" width="90" height="60" fill="cyan" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0.3" dur="2s" begin="4s" fill="freeze"/>
+    </rect>
+    
+    <!-- Highlight for Current -->
+    <rect x="180" y="270" width="90" height="60" fill="cyan" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0.3" dur="2s" begin="5s" fill="freeze"/>
+    </rect>
+    
+    <!-- Highlight for Resistance -->
+    <rect x="300" y="270" width="100" height="60" fill="cyan" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0.3" dur="2s" begin="6s" fill="freeze"/>
+    </rect>
+  </g>
+  
+  <!-- Text Layer -->
+  <g id="text-layer">
+    <!-- Explanation Text -->
+    <text x="400" y="500" text-anchor="middle" class="explanation" opacity="0">
+      Voltage (V) = Current (I) × Resistance (R)
+      <animate attributeName="opacity" values="0;1;1" dur="2s" begin="7s" fill="freeze"/>
+    </text>
+    
+    <text x="400" y="530" text-anchor="middle" class="explanation" opacity="0">
+      This relationship shows how voltage, current, and resistance are interrelated in a circuit.
+      <animate attributeName="opacity" values="0;1;1" dur="2s" begin="8s" fill="freeze"/>
+    </text>
+  </g>
+</svg>

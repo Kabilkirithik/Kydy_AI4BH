@@ -582,7 +582,7 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
   const [speaking, setSpeaking] = useState(false)
   const [notes, setNotes] = useState<VisualizerNote[]>([])
 
-  const handleSaveNote = (noteData: Omit<VisualizerNote, 'id' | 'timestamp'>) => {
+  const handleSaveNote = async (noteData: Omit<VisualizerNote, 'id' | 'timestamp'>) => {
     const newNote: VisualizerNote = {
       id: Date.now(),
       ...noteData,
@@ -591,23 +591,61 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
     
     setNotes(prev => [...prev, newNote])
     
-    // Save to localStorage to persist across sessions and make available to Notes page
-    const existingNotes = JSON.parse(localStorage.getItem('visualizerNotes') || '[]')
-    const updatedNotes = [...existingNotes, {
-      id: newNote.id,
-      title: newNote.title,
-      content: newNote.content,
-      course: 'Visualizer',
-      color: '#a855f7',
-      date: 'Today',
-      tags: ['Visualizer', 'AI'],
-      pinned: false,
-      timestamp: newNote.timestamp
-    }]
-    localStorage.setItem('visualizerNotes', JSON.stringify(updatedNotes))
-    
-    // Trigger a custom event to notify other components
-    window.dispatchEvent(new CustomEvent('visualizerNoteSaved'))
+    try {
+      // Save to backend API
+      const response = await fetch('http://localhost:8000/api/notes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: newNote.title,
+          content: newNote.content,
+          course: 'Visualizer',
+          color: '#a855f7',
+          tags: ['Visualizer', 'AI']
+        }),
+      })
+      
+      if (response.ok) {
+        // Trigger a custom event to notify Notes page to refresh
+        window.dispatchEvent(new CustomEvent('visualizerNoteSaved'))
+      } else {
+        console.error('Failed to save note to API')
+        // Fallback to localStorage for backward compatibility
+        const existingNotes = JSON.parse(localStorage.getItem('visualizerNotes') || '[]')
+        const updatedNotes = [...existingNotes, {
+          id: newNote.id,
+          title: newNote.title,
+          content: newNote.content,
+          course: 'Visualizer',
+          color: '#a855f7',
+          date: 'Today',
+          tags: ['Visualizer', 'AI'],
+          pinned: false,
+          timestamp: newNote.timestamp
+        }]
+        localStorage.setItem('visualizerNotes', JSON.stringify(updatedNotes))
+        window.dispatchEvent(new CustomEvent('visualizerNoteSaved'))
+      }
+    } catch (error) {
+      console.error('Error saving note to API:', error)
+      // Fallback to localStorage
+      const existingNotes = JSON.parse(localStorage.getItem('visualizerNotes') || '[]')
+      const updatedNotes = [...existingNotes, {
+        id: newNote.id,
+        title: newNote.title,
+        content: newNote.content,
+        course: 'Visualizer',
+        color: '#a855f7',
+        date: 'Today',
+        tags: ['Visualizer', 'AI'],
+        pinned: false,
+        timestamp: newNote.timestamp
+      }]
+      localStorage.setItem('visualizerNotes', JSON.stringify(updatedNotes))
+      window.dispatchEvent(new CustomEvent('visualizerNoteSaved'))
+    }
   }
 
   const handleSaveSVG = async () => {
