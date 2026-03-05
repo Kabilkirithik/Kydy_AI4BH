@@ -1,6 +1,6 @@
 import { useState, useEffect, CSSProperties } from 'react'
 import ClickSpark from './components/ClickSpark'
-import UnifiedSidebar from './components/UnifiedSidebar'
+import UnifiedSidebar from '@/components/UnifiedSidebar'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Note {

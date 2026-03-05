@@ -2,10 +2,8 @@ import { useState, useEffect, useRef, CSSProperties } from 'react'
 import Dashboard from './Dashboard'
 import LessonsPage from './Lessons'
 import NotesPage from './Notes'
-import VisualizerPage from './Visualizer'
+import VisualizerPage from '@/Visualizer'
 import ClickSpark from './components/ClickSpark'
-
-
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface OrbProps { style?: CSSProperties; color?: string; size?: number }
@@ -109,15 +107,361 @@ function Orb({ style, color = '#c4b5fd', size = 400 }: OrbProps) {
   )
 }
 
+// ─── About Animation ──────────────────────────────────────────────────────────
+function AboutAnimation() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+    if (!ctx) return
+
+    const SIZE = 480
+    canvas.width = SIZE * 2
+    canvas.height = SIZE * 2
+    canvas.style.width = SIZE + 'px'
+    canvas.style.height = SIZE + 'px'
+    ctx.scale(2, 2)
+
+    const cx = SIZE / 2
+    const cy = SIZE / 2
+
+    const COLORS = {
+      violet:  '#7c3aed',
+      purple:  '#a855f7',
+      indigo:  '#6366f1',
+      fuchsia: '#d946ef',
+    }
+
+    const ORBIT_SPEED = 0.13 // single shared speed — no overlap ever
+
+    const satellites = [
+      { emoji: '🤖', label: 'AI',        angle: -90,  orbit: 160, r: 30, color: COLORS.indigo  },
+      { emoji: '📊', label: 'Analytics', angle: -18,  orbit: 160, r: 26, color: COLORS.violet  },
+      { emoji: '⚛️', label: 'Physics',   angle:  54,  orbit: 160, r: 28, color: COLORS.purple  },
+      { emoji: '🧬', label: 'Biology',   angle: 126,  orbit: 160, r: 26, color: COLORS.fuchsia },
+      { emoji: '🔢', label: 'Math',      angle: 198,  orbit: 160, r: 29, color: COLORS.indigo  },
+    ]
+
+    const trails: { x: number; y: number }[][] = satellites.map(() => [])
+    const TRAIL_LEN = 38
+
+    const ambients = Array.from({ length: 55 }, () => ({
+      x: Math.random() * SIZE,
+      y: Math.random() * SIZE,
+      r: Math.random() * 1.2 + 0.3,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      o: Math.random() * 0.18 + 0.04,
+      hue: 260 + Math.random() * 60,
+    }))
+
+    const sparks = satellites.map((_, i) => ({
+      t: i / satellites.length,
+      speed: 0.004 + Math.random() * 0.003,
+    }))
+
+    const rings = [
+      { r: 200, dash: [2, 12] as number[], speed: 0.2,   alpha: 0.12 },
+      { r: 168, dash: [6, 9]  as number[], speed: -0.15, alpha: 0.09 },
+      { r: 120, dash: [3, 14] as number[], speed: 0.1,   alpha: 0.07 },
+      { r: 72,  dash: [1, 8]  as number[], speed: -0.25, alpha: 0.1  },
+    ]
+
+    function hexRgb(hex: string): [number, number, number] {
+      const n = parseInt(hex.replace('#', ''), 16)
+      return [(n >> 16) & 255, (n >> 8) & 255, n & 255]
+    }
+    function rgbaStr(hex: string, a: number) {
+      const [r, g, b] = hexRgb(hex)
+      return `rgba(${r},${g},${b},${a})`
+    }
+    function getSatPos(s: typeof satellites[0], tick: number) {
+      const rad = ((s.angle + tick * ORBIT_SPEED) * Math.PI) / 180
+      return { x: cx + Math.cos(rad) * s.orbit, y: cy + Math.sin(rad) * s.orbit }
+    }
+
+    let tick = 0
+    let rafId: number
+
+    function draw() {
+      ctx.clearRect(0, 0, SIZE, SIZE)
+      // canvas stays fully transparent — section's #f3f4f6 bg shows through seamlessly
+
+      // ambient particles
+      ambients.forEach(p => {
+        p.x += p.vx; p.y += p.vy
+        if (p.x < 0) p.x = SIZE
+        if (p.x > SIZE) p.x = 0
+        if (p.y < 0) p.y = SIZE
+        if (p.y > SIZE) p.y = 0
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.fillStyle = `hsla(${p.hue},80%,75%,${p.o})`
+        ctx.fill()
+      })
+
+      // rotating dashed rings + dot accents
+      rings.forEach(ring => {
+        ctx.save()
+        ctx.translate(cx, cy)
+        ctx.rotate((tick * ring.speed * Math.PI) / 180)
+        ctx.beginPath()
+        ctx.arc(0, 0, ring.r, 0, Math.PI * 2)
+        ctx.setLineDash(ring.dash)
+        ctx.strokeStyle = `rgba(124,58,237,${ring.alpha})`
+        ctx.lineWidth = 1
+        ctx.stroke()
+        ctx.setLineDash([])
+        for (let a = 0; a < 360; a += 60) {
+          const rad = (a * Math.PI) / 180
+          ctx.beginPath()
+          ctx.arc(Math.cos(rad) * ring.r, Math.sin(rad) * ring.r, 2, 0, Math.PI * 2)
+          ctx.fillStyle = `rgba(196,181,253,${ring.alpha * 1.6})`
+          ctx.fill()
+        }
+        ctx.restore()
+      })
+
+      // cross-satellite web
+      for (let i = 0; i < satellites.length; i++) {
+        for (let j = i + 1; j < satellites.length; j++) {
+          const a = getSatPos(satellites[i], tick)
+          const b = getSatPos(satellites[j], tick)
+          const dist = Math.hypot(a.x - b.x, a.y - b.y)
+          if (dist < 195) {
+            ctx.beginPath()
+            ctx.moveTo(a.x, a.y)
+            ctx.lineTo(b.x, b.y)
+            ctx.strokeStyle = `rgba(196,181,253,${0.1 * (1 - dist / 195)})`
+            ctx.lineWidth = 0.7
+            ctx.stroke()
+          }
+        }
+      }
+
+      // center → satellite beams + trails
+      satellites.forEach((s, si) => {
+        const pos = getSatPos(s, tick)
+
+        const grad = ctx.createLinearGradient(cx, cy, pos.x, pos.y)
+        grad.addColorStop(0,   rgbaStr(s.color, 0.7))
+        grad.addColorStop(0.6, rgbaStr(s.color, 0.2))
+        grad.addColorStop(1,   rgbaStr(s.color, 0.0))
+        ctx.beginPath()
+        ctx.moveTo(cx, cy)
+        ctx.lineTo(pos.x, pos.y)
+        ctx.strokeStyle = grad
+        ctx.lineWidth = 1.4
+        ctx.stroke()
+
+        trails[si].push({ x: pos.x, y: pos.y })
+        if (trails[si].length > TRAIL_LEN) trails[si].shift()
+        for (let t = 1; t < trails[si].length; t++) {
+          const prog = t / trails[si].length
+          ctx.beginPath()
+          ctx.moveTo(trails[si][t - 1].x, trails[si][t - 1].y)
+          ctx.lineTo(trails[si][t].x, trails[si][t].y)
+          ctx.strokeStyle = rgbaStr(s.color, prog * 0.35)
+          ctx.lineWidth = prog * 2.5
+          ctx.stroke()
+        }
+      })
+
+      // data sparks
+      sparks.forEach((spark, si) => {
+        spark.t += spark.speed
+        if (spark.t > 1) spark.t = 0
+        const s = satellites[si]
+        const pos = getSatPos(s, tick)
+        const px = cx + (pos.x - cx) * spark.t
+        const py = cy + (pos.y - cy) * spark.t
+        const sg = ctx.createRadialGradient(px, py, 0, px, py, 7)
+        sg.addColorStop(0, rgbaStr(s.color, 0.7))
+        sg.addColorStop(1, rgbaStr(s.color, 0))
+        ctx.beginPath()
+        ctx.arc(px, py, 7, 0, Math.PI * 2)
+        ctx.fillStyle = sg
+        ctx.fill()
+        ctx.beginPath()
+        ctx.arc(px, py, 2.8, 0, Math.PI * 2)
+        ctx.fillStyle = rgbaStr(s.color, 0.95)
+        ctx.fill()
+      })
+
+      // satellite nodes
+      satellites.forEach((s, si) => {
+        const pos = getSatPos(s, tick)
+        const pulse = 1 + Math.sin(tick * 0.035 + si * 1.3) * 0.08
+
+        const halo = ctx.createRadialGradient(pos.x, pos.y, s.r * 0.5, pos.x, pos.y, s.r * 2.8)
+        halo.addColorStop(0, rgbaStr(s.color, 0.22 * pulse))
+        halo.addColorStop(1, rgbaStr(s.color, 0))
+        ctx.beginPath()
+        ctx.arc(pos.x, pos.y, s.r * 2.8, 0, Math.PI * 2)
+        ctx.fillStyle = halo
+        ctx.fill()
+
+        const body = ctx.createRadialGradient(
+          pos.x - s.r * 0.35, pos.y - s.r * 0.35, 0,
+          pos.x, pos.y, s.r
+        )
+        body.addColorStop(0,    rgbaStr(s.color, 0.92))
+        body.addColorStop(0.55, rgbaStr(s.color, 0.62))
+        body.addColorStop(1,    rgbaStr(s.color, 0.35))
+        ctx.beginPath()
+        ctx.arc(pos.x, pos.y, s.r * pulse, 0, Math.PI * 2)
+        ctx.fillStyle = body
+        ctx.fill()
+
+        ctx.save()
+        ctx.beginPath()
+        ctx.arc(pos.x, pos.y, s.r * pulse, Math.PI * 1.1, Math.PI * 1.75)
+        ctx.strokeStyle = 'rgba(255,255,255,0.55)'
+        ctx.lineWidth = 2.5
+        ctx.lineCap = 'round'
+        ctx.stroke()
+        ctx.restore()
+
+        ctx.beginPath()
+        ctx.arc(pos.x, pos.y, s.r * pulse, 0, Math.PI * 2)
+        ctx.strokeStyle = 'rgba(255,255,255,0.22)'
+        ctx.lineWidth = 1
+        ctx.stroke()
+
+        ctx.font = `${s.r * 0.88}px serif`
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.shadowColor = s.color
+        ctx.shadowBlur = 12
+        ctx.fillText(s.emoji, pos.x, pos.y + 1.5)
+        ctx.shadowBlur = 0
+
+        ctx.font = `600 9px "Poppins",sans-serif`
+        const lw = ctx.measureText(s.label).width + 16
+        const lx = pos.x - lw / 2
+        const ly = pos.y + s.r * pulse + 6
+        ctx.beginPath()
+        ;(ctx as any).roundRect(lx, ly, lw, 16, 8)
+        ctx.fillStyle = rgbaStr(s.color, 0.18)
+        ctx.fill()
+        ctx.strokeStyle = rgbaStr(s.color, 0.35)
+        ctx.lineWidth = 0.8
+        ctx.stroke()
+        ctx.fillStyle = rgbaStr(s.color, 0.95)
+        ctx.fillText(s.label, pos.x, ly + 8)
+      })
+
+      // central core
+      const coreR = 46
+      const corePulse = Math.sin(tick * 0.022) * 5
+
+      const aurora = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR + corePulse + 55)
+      aurora.addColorStop(0,    'rgba(124,58,237,0.55)')
+      aurora.addColorStop(0.35, 'rgba(168,85,247,0.28)')
+      aurora.addColorStop(0.65, 'rgba(217,70,239,0.12)')
+      aurora.addColorStop(1,    'rgba(124,58,237,0)')
+      ctx.beginPath()
+      ctx.arc(cx, cy, coreR + corePulse + 55, 0, Math.PI * 2)
+      ctx.fillStyle = aurora
+      ctx.fill()
+
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(cx, cy, coreR + corePulse + 22, 0, Math.PI * 2)
+      ctx.strokeStyle = 'rgba(196,181,253,0.18)'
+      ctx.lineWidth = 8
+      ctx.stroke()
+      ctx.restore()
+
+      const coreBody = ctx.createRadialGradient(cx - 14, cy - 14, 0, cx, cy, coreR + corePulse)
+      coreBody.addColorStop(0,    'rgba(196,181,253,0.95)')
+      coreBody.addColorStop(0.3,  'rgba(168,85,247,0.82)')
+      coreBody.addColorStop(0.65, 'rgba(124,58,237,0.65)')
+      coreBody.addColorStop(1,    'rgba(99,102,241,0.45)')
+      ctx.beginPath()
+      ctx.arc(cx, cy, coreR + corePulse, 0, Math.PI * 2)
+      ctx.fillStyle = coreBody
+      ctx.fill()
+
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(cx, cy, coreR + corePulse, 0, Math.PI * 2)
+      ctx.clip()
+      const sheen = ctx.createLinearGradient(cx - coreR, cy - coreR, cx + coreR * 0.4, cy + coreR * 0.4)
+      sheen.addColorStop(0,   'rgba(255,255,255,0.28)')
+      sheen.addColorStop(0.5, 'rgba(255,255,255,0.06)')
+      sheen.addColorStop(1,   'rgba(0,0,0,0)')
+      ctx.fillStyle = sheen
+      ctx.fillRect(cx - coreR - 5, cy - coreR - 5, (coreR + 5) * 2, (coreR + 5) * 2)
+      ctx.restore()
+
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(cx, cy, coreR + corePulse, Math.PI * 1.05, Math.PI * 1.8)
+      ctx.strokeStyle = 'rgba(255,255,255,0.65)'
+      ctx.lineWidth = 3
+      ctx.lineCap = 'round'
+      ctx.stroke()
+      ctx.restore()
+
+      ctx.beginPath()
+      ctx.arc(cx, cy, coreR + corePulse, 0, Math.PI * 2)
+      ctx.strokeStyle = 'rgba(255,255,255,0.25)'
+      ctx.lineWidth = 1.5
+      ctx.stroke()
+
+      ctx.font = `${coreR * 0.85}px serif`
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.shadowColor = '#7c3aed'
+      ctx.shadowBlur = 20
+      ctx.fillText('🧠', cx, cy + 2)
+      ctx.shadowBlur = 0
+
+      tick++
+      rafId = requestAnimationFrame(draw)
+    }
+
+    rafId = requestAnimationFrame(draw)
+    return () => cancelAnimationFrame(rafId)
+  }, [])
+
+  return (
+    <div style={{
+      position: 'relative',
+      width: 480,
+      height: 480,
+      flexShrink: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: '#f3f4f6',
+    }}>
+      <div style={{
+        position: 'absolute',
+        inset: '10%',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 72%)',
+        filter: 'blur(2px)',
+        pointerEvents: 'none',
+      }} />
+      <canvas
+        ref={canvasRef}
+        style={{ width: 480, height: 480, display: 'block', position: 'relative', zIndex: 1, background: 'transparent' }}
+      />
+    </div>
+  )
+}
+
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 function Navbar({ activeTab, setActiveTab, setIsLoggedIn }: NavbarProps & { setIsLoggedIn: (val: boolean) => void }) {
   const [scrolled, setScrolled] = useState(false)
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30)
-      
-      // Update active tab based on scroll position
       const aboutSection = document.getElementById('about-section')
       if (aboutSection) {
         const aboutTop = aboutSection.offsetTop - 100
@@ -128,7 +472,6 @@ function Navbar({ activeTab, setActiveTab, setIsLoggedIn }: NavbarProps & { setI
         }
       }
     }
-    
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -168,15 +511,11 @@ function Navbar({ activeTab, setActiveTab, setIsLoggedIn }: NavbarProps & { setI
               onClick={() => {
                 setActiveTab(tab)
                 if (tab === 'about') {
-                  // Scroll to about section
                   setTimeout(() => {
                     const aboutSection = document.getElementById('about-section')
-                    if (aboutSection) {
-                      aboutSection.scrollIntoView({ behavior: 'smooth' })
-                    }
+                    if (aboutSection) aboutSection.scrollIntoView({ behavior: 'smooth' })
                   }, 100)
                 } else if (tab === 'home') {
-                  // Scroll to top
                   window.scrollTo({ top: 0, behavior: 'smooth' })
                 }
               }}
@@ -215,8 +554,8 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
   const floatCards: FloatCard[] = [
     { icon: '⚡', text: 'Live Sessions', top: '8%', left: '2%' },
     { icon: '🤖', text: 'AI Powered', top: '8%', right: '2%' },
-    { icon: '🏆', text: 'Certified', bottom: '12%', left: '0%' },
-    { icon: '👥', text: 'Community', bottom: '12%', right: '0%' },
+    { icon: '🏆', text: 'Interactive', bottom: '12%', left: '0%' },
+    { icon: '👥', text: 'Adaptive Learning', bottom: '12%', right: '0%' },
   ]
 
   const features: Feature[] = [
@@ -240,11 +579,7 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.2)',
-              borderRadius: 30, padding: '6px 18px', marginBottom: 28,
-            }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#7c3aed', boxShadow: '0 0 10px #7c3aed', display: 'inline-block', animation: 'blink 2s infinite' }} />
-              <span style={{ color: '#7c3aed', fontSize: 11, fontFamily: "'Poppins',sans-serif", letterSpacing: 2, fontWeight: 600 }}>NEXT-GEN LEARNING PLATFORM</span>
-            </div>
+            }} />
 
             <h1 style={{
               fontFamily: "'Poppins',sans-serif", fontWeight: 900, lineHeight: 1.05,
@@ -278,7 +613,7 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
             </div>
 
             <div style={{ display: 'flex', gap: 36, marginTop: 44 }}>
-              {[{ v: `${count.s}K+`, l: 'Learners' }, { v: `${count.c}+`, l: 'Courses' }, { v: `${count.i}+`, l: 'Instructors' }].map(s => (
+              {[{ v: `${count.s}K+`, l: 'Learners' }, { v: `${count.c}+`, l: 'Concepts Simplified' }, { v: `${count.i}+`, l: 'Doubts Resolved' }].map(s => (
                 <div key={s.l}>
                   <div style={{ fontSize: 26, fontWeight: 900, color: '#1e293b', fontFamily: "'Poppins',sans-serif" }}>{s.v}</div>
                   <div style={{ fontSize: 11, color: '#64748b', fontFamily: "'Inter',sans-serif", letterSpacing: 1 }}>{s.l}</div>
@@ -373,19 +708,19 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
 // ─── About ────────────────────────────────────────────────────────────────────
 function About() {
   const features: Feature[] = [
-    { icon: '📚', title: 'Quality Content', desc: 'Thousands of courses from world-class instructors', color: '#6366f1' },
-    { icon: '🎯', title: 'Learn at Your Pace', desc: 'Flexible schedules that fit your lifestyle', color: '#7c3aed' },
-    { icon: '🏆', title: 'Get Certified', desc: 'Earn recognized certificates upon completion', color: '#a855f7' },
+    { icon: '🤖', title: 'AI-Powered Tutoring', desc: 'Get instant help from our intelligent AI tutor that adapts to your learning style', color: '#6366f1' },
+    { icon: '📊', title: 'Track Your Progress', desc: 'Monitor your learning journey with detailed analytics and insights', color: '#7c3aed' },
+    { icon: '🎮', title: 'Interactive Learning', desc: 'Engage with dynamic visualizations and hands-on exercises for better understanding', color: '#a855f7' },
   ]
-  const stats = [
-    { v: '50K+', l: 'Active Learners' }, { v: '500+', l: 'Courses' },
-    { v: '100+', l: 'Instructors' }, { v: '98%', l: 'Satisfaction' },
-  ]
+
   return (
     <section id="about-section" style={{ minHeight: '100vh', padding: '110px 2rem 80px', position: 'relative', overflow: 'hidden', background: '#f3f4f6' }}>
       <Orb style={{ top: '10%', left: '-5%' }} color="#ddd6fe" size={500} />
       <Orb style={{ bottom: '5%', right: '-5%' }} color="#c4b5fd" size={400} />
-      <div style={{ maxWidth: 960, margin: '0 auto', position: 'relative', zIndex: 2 }}>
+
+      <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 2 }}>
+
+        {/* Heading */}
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
           <div style={{
             display: 'inline-block', background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.2)',
@@ -399,37 +734,44 @@ function About() {
           </h2>
         </div>
 
+        {/* Main 2-col: text left, animation right */}
         <div style={{
-          background: '#ffffff', border: '1px solid rgba(124,58,237,0.12)',
-          borderRadius: 24, padding: '48px 52px', backdropFilter: 'blur(24px)',
-          boxShadow: '0 10px 40px rgba(0,0,0,0.08)', marginBottom: 24,
+          display: 'grid',
+          gridTemplateColumns: '1fr auto',
+          gap: 48,
+          alignItems: 'center',
+          marginBottom: 32,
         }}>
-          <p style={{ color: '#64748b', lineHeight: 1.8, fontSize: 16, marginBottom: 18, fontFamily: "'Inter',sans-serif" }}>
-            Kydy is a modern educational technology platform designed to make learning accessible, engaging, and effective for everyone. We believe that knowledge has the power to transform lives.
-          </p>
-          <p style={{ color: '#64748b', lineHeight: 1.8, fontSize: 16, marginBottom: 44, fontFamily: "'Inter',sans-serif" }}>
-            Our mission is to empower learners worldwide with high-quality educational content, interactive learning experiences, and industry-recognized certifications that open doors to limitless opportunities.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 20 }}>
-            {stats.map((s, i) => (
-              <div key={i}
-                style={{
-                  background: 'rgba(124,58,237,0.05)', border: '1px solid rgba(124,58,237,0.12)',
-                  borderRadius: 16, padding: '22px 16px', textAlign: 'center', transition: 'all 0.3s',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(124,58,237,0.1)'; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.3)' }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(124,58,237,0.05)'; e.currentTarget.style.borderColor = 'rgba(124,58,237,0.12)' }}
-              >
-                <div style={{
-                  fontSize: 30, fontWeight: 900, fontFamily: "'Poppins',sans-serif",
-                  background: 'linear-gradient(135deg,#7c3aed,#a855f7)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 6,
-                }}>{s.v}</div>
-                <div style={{ color: '#64748b', fontSize: 11, fontFamily: "'Inter',sans-serif", letterSpacing: 1 }}>{s.l}</div>
-              </div>
-            ))}
+          {/* Text card */}
+          <div style={{
+            background: '#ffffff', border: '1px solid rgba(124,58,237,0.12)',
+            borderRadius: 24, padding: '48px 52px', backdropFilter: 'blur(24px)',
+            boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
+          }}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20,
+              background: 'rgba(124,58,237,0.07)', border: '1px solid rgba(124,58,237,0.15)',
+              borderRadius: 20, padding: '4px 14px',
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7c3aed', display: 'inline-block', animation: 'blink 2s ease-in-out infinite' }} />
+              <span style={{ color: '#7c3aed', fontSize: 9, fontFamily: "'Poppins',sans-serif", letterSpacing: 2, fontWeight: 700 }}>ABOUT THE PLATFORM</span>
+            </div>
+
+            <p style={{ color: '#64748b', lineHeight: 1.8, fontSize: 16, marginBottom: 18, fontFamily: "'Inter',sans-serif" }}>
+              Kydy is a modern educational technology platform designed to make learning accessible, engaging, and effective for everyone. We believe that knowledge has the power to transform lives.
+            </p>
+            <p style={{ color: '#64748b', lineHeight: 1.8, fontSize: 16, fontFamily: "'Inter',sans-serif" }}>
+              Our mission is to empower learners worldwide with high-quality educational content, interactive learning experiences, and the tools to reach their full potential.
+            </p>
+
+
           </div>
+
+          {/* Animation */}
+          <AboutAnimation />
         </div>
 
+        {/* Feature cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
           {features.map((f, i) => (
             <div key={i}
@@ -438,8 +780,16 @@ function About() {
                 borderRadius: 20, padding: '28px 24px', transition: 'all 0.3s', cursor: 'default',
                 boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
               }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = `${f.color}44`; e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.08)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)' }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = `${f.color}44`
+                e.currentTarget.style.transform = 'translateY(-5px)'
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(0,0,0,0.08)'
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'
+              }}
             >
               <div style={{ width: 52, height: 52, borderRadius: 14, background: `${f.color}18`, border: `1px solid ${f.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 16 }}>{f.icon}</div>
               <h3 style={{ color: '#1e293b', fontSize: 13, fontWeight: 700, marginBottom: 8, fontFamily: "'Poppins',sans-serif", letterSpacing: 0.5 }}>{f.title}</h3>
@@ -452,25 +802,16 @@ function About() {
   )
 }
 
-
-
 // ─── App Root ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home')
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   const [dashboardView, setDashboardView] = useState<string>('lessons')
 
-  // If logged in, show Dashboard or other views based on dashboardView
   if (isLoggedIn) {
-    if (dashboardView === 'lessons') {
-      return <LessonsPage onNav={(id: string) => setDashboardView(id)} />
-    }
-    if (dashboardView === 'notes') {
-      return <NotesPage onNav={(id: string) => setDashboardView(id)} />
-    }
-    if (dashboardView === 'visualizer') {
-      return <VisualizerPage onNav={(id: string) => setDashboardView(id)} />
-    }
+    if (dashboardView === 'lessons') return <LessonsPage onNav={(id: string) => setDashboardView(id)} />
+    if (dashboardView === 'notes')   return <NotesPage onNav={(id: string) => setDashboardView(id)} />
+    if (dashboardView === 'visualizer') return <VisualizerPage onNav={(id: string) => setDashboardView(id)} />
     return <Dashboard onNavigate={(view: string) => setDashboardView(view)} />
   }
 
@@ -484,163 +825,78 @@ export default function App() {
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #f3f4f6; }
         ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 3px; }
-        @keyframes slideUp { from { opacity:0; transform:translateY(35px) } to { opacity:1; transform:translateY(0) } }
-        @keyframes spinSlow { from { transform:rotate(0deg) } to { transform:rotate(360deg) } }
+
+        @keyframes slideUp   { from { opacity:0; transform:translateY(35px) } to { opacity:1; transform:translateY(0) } }
+        @keyframes spinSlow  { from { transform:rotate(0deg) } to { transform:rotate(360deg) } }
         @keyframes floatCard { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-10px) } }
         @keyframes corePulse {
           0%,100% { box-shadow:0 0 60px rgba(124,58,237,0.3),inset 0 0 40px rgba(124,58,237,0.15) }
-          50% { box-shadow:0 0 100px rgba(124,58,237,0.5),inset 0 0 60px rgba(124,58,237,0.25) }
+          50%      { box-shadow:0 0 100px rgba(124,58,237,0.5),inset 0 0 60px rgba(124,58,237,0.25) }
         }
         @keyframes blink { 0%,100% { opacity:1; box-shadow:0 0 10px #7c3aed } 50% { opacity:0.4; box-shadow:0 0 20px #7c3aed } }
         @keyframes shineSlide { 0% { left:-75% } 100% { left:130% } }
 
         /* ── Liquid Glass Core ── */
         .lg-btn {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          border: none;
-          outline: none;
-          overflow: hidden;
-          isolation: isolate;
+          position: relative; display: inline-flex; align-items: center; justify-content: center;
+          cursor: pointer; border: none; outline: none; overflow: hidden; isolation: isolate;
           transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
         }
-        /* Frosted glass blur layer */
         .lg-btn::before {
-          content: '';
-          position: absolute;
-          inset: 0;
+          content: ''; position: absolute; inset: 0;
           backdrop-filter: blur(16px) saturate(200%) brightness(1.25) contrast(1.05);
           -webkit-backdrop-filter: blur(16px) saturate(200%) brightness(1.25) contrast(1.05);
-          z-index: 0;
-          border-radius: inherit;
+          z-index: 0; border-radius: inherit;
         }
-        /* Glass highlight gradient — top-left bright, bottom-right dim */
         .lg-btn::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background:
-            linear-gradient(135deg,
-              rgba(255,255,255,0.26) 0%,
-              rgba(255,255,255,0.06) 35%,
-              rgba(0,0,0,0.0) 55%,
-              rgba(255,255,255,0.09) 100%
-            );
-          z-index: 1;
-          pointer-events: none;
-          border-radius: inherit;
+          content: ''; position: absolute; inset: 0;
+          background: linear-gradient(135deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.06) 35%, rgba(0,0,0,0.0) 55%, rgba(255,255,255,0.09) 100%);
+          z-index: 1; pointer-events: none; border-radius: inherit;
         }
-        /* Top edge specular highlight */
-        .lg-btn .lg-inner {
-          position: relative;
-          z-index: 3;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        }
-        /* Sweep shine */
+        .lg-btn .lg-inner { position: relative; z-index: 3; display: flex; align-items: center; gap: 6px; }
         .lg-btn .lg-shine {
-          position: absolute;
-          top: -60%;
-          left: -80%;
-          width: 45%;
-          height: 220%;
-          background: linear-gradient(105deg,
-            transparent 15%,
-            rgba(255,255,255,0.32) 50%,
-            transparent 85%
-          );
-          transform: skewX(-18deg);
-          z-index: 4;
-          pointer-events: none;
-          transition: left 0s;
+          position: absolute; top: -60%; left: -80%; width: 45%; height: 220%;
+          background: linear-gradient(105deg, transparent 15%, rgba(255,255,255,0.32) 50%, transparent 85%);
+          transform: skewX(-18deg); z-index: 4; pointer-events: none; transition: left 0s;
         }
-        .lg-btn:hover .lg-shine {
-          animation: shineSlide 0.6s ease forwards;
-        }
-        .lg-btn:hover { transform: translateY(-2px) scale(1.01); }
+        .lg-btn:hover .lg-shine { animation: shineSlide 0.6s ease forwards; }
+        .lg-btn:hover  { transform: translateY(-2px) scale(1.01); }
         .lg-btn:active { transform: translateY(0) scale(0.98); }
 
-        /* ── Primary: purple liquid glass ── */
         .lg-primary {
-          background: linear-gradient(145deg,
-            rgba(124,58,237,0.55) 0%,
-            rgba(168,85,247,0.38) 50%,
-            rgba(99,102,241,0.45) 100%
-          );
+          background: linear-gradient(145deg, rgba(124,58,237,0.55) 0%, rgba(168,85,247,0.38) 50%, rgba(99,102,241,0.45) 100%);
           border: 1px solid rgba(196,149,255,0.45) !important;
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,0.06) inset,
-            0 1px 0 rgba(255,255,255,0.2) inset,
-            0 -1px 0 rgba(0,0,0,0.3) inset,
-            0 0 35px rgba(124,58,237,0.4),
-            0 6px 24px rgba(0,0,0,0.45);
+          box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset, 0 1px 0 rgba(255,255,255,0.2) inset, 0 -1px 0 rgba(0,0,0,0.3) inset, 0 0 35px rgba(124,58,237,0.4), 0 6px 24px rgba(0,0,0,0.45);
         }
         .lg-primary:hover {
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,0.08) inset,
-            0 1px 0 rgba(255,255,255,0.25) inset,
-            0 -1px 0 rgba(0,0,0,0.3) inset,
-            0 0 55px rgba(124,58,237,0.65),
-            0 10px 35px rgba(0,0,0,0.5);
+          box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 1px 0 rgba(255,255,255,0.25) inset, 0 -1px 0 rgba(0,0,0,0.3) inset, 0 0 55px rgba(124,58,237,0.65), 0 10px 35px rgba(0,0,0,0.5);
         }
-
-        /* ── Ghost: neutral frosted glass ── */
         .lg-ghost {
           background: rgba(255,255,255,0.06);
           border: 1px solid rgba(255,255,255,0.18) !important;
-          box-shadow:
-            0 1px 0 rgba(255,255,255,0.15) inset,
-            0 -1px 0 rgba(0,0,0,0.2) inset,
-            0 4px 20px rgba(0,0,0,0.35);
+          box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 4px 20px rgba(0,0,0,0.35);
         }
         .lg-ghost:hover {
-          background: rgba(255,255,255,0.1);
-          border-color: rgba(255,255,255,0.3) !important;
-          box-shadow:
-            0 1px 0 rgba(255,255,255,0.22) inset,
-            0 -1px 0 rgba(0,0,0,0.2) inset,
-            0 6px 28px rgba(0,0,0,0.42);
+          background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3) !important;
+          box-shadow: 0 1px 0 rgba(255,255,255,0.22) inset, 0 -1px 0 rgba(0,0,0,0.2) inset, 0 6px 28px rgba(0,0,0,0.42);
         }
-
-        /* ── Nav tab active ── */
         .lg-tab-active {
           background: linear-gradient(145deg, rgba(124,58,237,0.52), rgba(168,85,247,0.4));
           border: 1px solid rgba(196,149,255,0.4) !important;
-          box-shadow:
-            0 1px 0 rgba(255,255,255,0.18) inset,
-            0 -1px 0 rgba(0,0,0,0.25) inset,
-            0 0 20px rgba(124,58,237,0.45);
+          box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset, 0 -1px 0 rgba(0,0,0,0.25) inset, 0 0 20px rgba(124,58,237,0.45);
         }
-
-        /* ── Nav tab inactive ── */
-        .lg-tab {
-          background: rgba(255,255,255,0.03);
-          border: 1px solid transparent !important;
-        }
+        .lg-tab { background: rgba(255,255,255,0.03); border: 1px solid transparent !important; }
         .lg-tab:hover {
-          background: rgba(255,255,255,0.07);
-          border-color: rgba(255,255,255,0.1) !important;
+          background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1) !important;
           box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset;
         }
-
-        /* ── Enroll card button ── */
         .lg-enroll {
           background: linear-gradient(145deg, rgba(99,102,241,0.45), rgba(168,85,247,0.32));
           border: 1px solid rgba(168,85,247,0.42) !important;
-          box-shadow:
-            0 1px 0 rgba(255,255,255,0.15) inset,
-            0 -1px 0 rgba(0,0,0,0.22) inset,
-            0 0 22px rgba(99,102,241,0.25);
+          box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 -1px 0 rgba(0,0,0,0.22) inset, 0 0 22px rgba(99,102,241,0.25);
         }
         .lg-enroll:hover {
-          box-shadow:
-            0 1px 0 rgba(255,255,255,0.22) inset,
-            0 -1px 0 rgba(0,0,0,0.22) inset,
-            0 0 40px rgba(99,102,241,0.5);
+          box-shadow: 0 1px 0 rgba(255,255,255,0.22) inset, 0 -1px 0 rgba(0,0,0,0.22) inset, 0 0 40px rgba(99,102,241,0.5);
         }
       `}</style>
       <ClickSpark sparkColor="#7c3aed" sparkSize={15} sparkRadius={25} sparkCount={12} duration={600} extraScale={1.5}>
@@ -650,11 +906,6 @@ export default function App() {
             <Home setIsLoggedIn={setIsLoggedIn} />
             <About />
           </div>
-          <footer style={{ borderTop: '1px solid rgba(0,0,0,0.08)', padding: '28px 2rem', textAlign: 'center', background: '#ffffff' }}>
-            <span style={{ color: '#64748b', fontSize: 13, fontFamily: "'Inter',sans-serif" }}>
-              © 2025 <span style={{ color: '#7c3aed', fontWeight: 700, fontFamily: "'Poppins',sans-serif" }}>KYDY</span> — Empowering learners worldwide
-            </span>
-          </footer>
         </div>
       </ClickSpark>
     </>

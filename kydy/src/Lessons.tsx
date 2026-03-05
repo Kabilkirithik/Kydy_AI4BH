@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import ClickSpark from './components/ClickSpark'
-import UnifiedSidebar from './components/UnifiedSidebar'
+import UnifiedSidebar from '@/components/UnifiedSidebar'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Message { id: number; role: 'user' | 'ai'; text: string; time: string }
@@ -276,7 +276,7 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
         {/* Unified sidebar with chat history */}
         <UnifiedSidebar 
           active="lessons" 
-          onNav={id => onNav && onNav(id)} 
+          onNav={(id: string) => onNav && onNav(id)} 
           variant="light"
           showChatHistory={true}
           onChatHistorySelect={setActiveSession}
