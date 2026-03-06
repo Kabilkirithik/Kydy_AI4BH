@@ -25,7 +25,6 @@ async function sendChatMessage(message: string, sessionId?: string) {
     return await response.json()
   } catch (error) {
     console.error('Error sending chat message:', error)
-    // Fallback response
     return {
       response: "I'm sorry, I'm having trouble connecting to the server right now. Please try again later.",
       session_id: sessionId || `session_${Date.now()}`
@@ -82,7 +81,6 @@ function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: 
     try {
       const response = await sendChatMessage(input, sessionId)
       
-      // Update session ID if this is the first message
       if (!sessionId) {
         setSessionId(response.session_id)
       }
@@ -98,14 +96,13 @@ function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: 
         setMessages(prev => [...prev, aiMessage])
         setTyping(false)
         onSpeak(false)
-      }, 1500) // Simulate some processing time
+      }, 1500)
       
     } catch (error) {
       console.error('Error in chat:', error)
       setTyping(false)
       onSpeak(false)
       
-      // Add error message
       const errorMessage = {
         id: Date.now() + 1,
         role: 'ai' as const,
@@ -175,7 +172,6 @@ function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: 
       <div style={{ flex: 1, overflowY: 'auto', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {messages.map(msg => (
           <div key={msg.id} style={{ display: 'flex', flexDirection: msg.role === 'user' ? 'row-reverse' : 'row', gap: '0.6rem', alignItems: 'flex-start' }}>
-            {/* Avatar */}
             {msg.role === 'ai' ? (
               <div style={{ width: '1.9rem', height: '1.9rem', borderRadius: '50%', background: 'linear-gradient(135deg,#8b5cf6,#a855f7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', flexShrink: 0, boxShadow: '0 0 0.5rem rgba(124,58,237,0.25)' }}>🤖</div>
             ) : (
@@ -214,7 +210,7 @@ function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: 
 
       {/* Suggested questions */}
       <div style={{ padding: '0.5rem 1.2rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap', borderTop: '1px solid #f5f3ff' }}>
-        {['What is useCallback?', 'Explain cleanup functions', 'Show me an example'].map(q => (
+        {['What is photosynthesis?', 'Advantages of photosynthesis', 'Show me an example'].map(q => (
           <button key={q} onClick={() => setInput(q)} style={{
             padding: '0.3rem 0.7rem', borderRadius: '2rem', border: '1px solid #ddd6fe',
             background: '#faf9ff', color: '#7c3aed', fontSize: '0.62rem',
@@ -242,11 +238,12 @@ function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: 
             onFocus={() => setInputFocused(true)}
             onBlur={() => setInputFocused(false)}
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() }}}
-            placeholder="Ask anything about React Hooks..."
+            placeholder="Ask anything..."
             rows={1}
             style={{
               flex: 1, background: 'none', border: 'none', outline: 'none', resize: 'none',
-              fontSize: '0.78rem', fontFamily: "'DM Sans',sans-serif", color: '#1e1b4b',
+              fontSize: '0.95rem', /* ← increased from 0.78rem */
+              fontFamily: "'DM Sans',sans-serif", color: '#1e1b4b',
               lineHeight: 1.5, maxHeight: '6rem', overflowY: 'auto',
             }}
           />
@@ -299,7 +296,6 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
       `}</style>
 
       <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1e1b4b', overflow: 'hidden' }}>
-        {/* Unified sidebar with chat history */}
         <UnifiedSidebar 
           active="lessons" 
           onNav={(id: string) => onNav && onNav(id)} 
@@ -309,7 +305,6 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
           activeChatSession={activeSession}
         />
 
-        {/* Main chat area */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <ChatPanel onSpeak={() => {}} onNav={onNav} />
         </div>  

@@ -134,7 +134,7 @@ function AboutAnimation() {
       fuchsia: '#d946ef',
     }
 
-    const ORBIT_SPEED = 0.13 // single shared speed — no overlap ever
+    const ORBIT_SPEED = 0.13
 
     const satellites = [
       { emoji: '🤖', label: 'AI',        angle: -90,  orbit: 160, r: 30, color: COLORS.indigo  },
@@ -187,9 +187,7 @@ function AboutAnimation() {
 
     function draw() {
       ctx.clearRect(0, 0, SIZE, SIZE)
-      // canvas stays fully transparent — section's #f3f4f6 bg shows through seamlessly
 
-      // ambient particles
       ambients.forEach(p => {
         p.x += p.vx; p.y += p.vy
         if (p.x < 0) p.x = SIZE
@@ -202,7 +200,6 @@ function AboutAnimation() {
         ctx.fill()
       })
 
-      // rotating dashed rings + dot accents
       rings.forEach(ring => {
         ctx.save()
         ctx.translate(cx, cy)
@@ -224,7 +221,6 @@ function AboutAnimation() {
         ctx.restore()
       })
 
-      // cross-satellite web
       for (let i = 0; i < satellites.length; i++) {
         for (let j = i + 1; j < satellites.length; j++) {
           const a = getSatPos(satellites[i], tick)
@@ -241,7 +237,6 @@ function AboutAnimation() {
         }
       }
 
-      // center → satellite beams + trails
       satellites.forEach((s, si) => {
         const pos = getSatPos(s, tick)
 
@@ -269,7 +264,6 @@ function AboutAnimation() {
         }
       })
 
-      // data sparks
       sparks.forEach((spark, si) => {
         spark.t += spark.speed
         if (spark.t > 1) spark.t = 0
@@ -290,7 +284,6 @@ function AboutAnimation() {
         ctx.fill()
       })
 
-      // satellite nodes
       satellites.forEach((s, si) => {
         const pos = getSatPos(s, tick)
         const pulse = 1 + Math.sin(tick * 0.035 + si * 1.3) * 0.08
@@ -353,7 +346,6 @@ function AboutAnimation() {
         ctx.fillText(s.label, pos.x, ly + 8)
       })
 
-      // central core
       const coreR = 46
       const corePulse = Math.sin(tick * 0.022) * 5
 
@@ -430,22 +422,13 @@ function AboutAnimation() {
 
   return (
     <div style={{
-      position: 'relative',
-      width: 480,
-      height: 480,
-      flexShrink: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      background: '#f3f4f6',
+      position: 'relative', width: 480, height: 480, flexShrink: 0,
+      display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f3f4f6',
     }}>
       <div style={{
-        position: 'absolute',
-        inset: '10%',
-        borderRadius: '50%',
+        position: 'absolute', inset: '10%', borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 72%)',
-        filter: 'blur(2px)',
-        pointerEvents: 'none',
+        filter: 'blur(2px)', pointerEvents: 'none',
       }} />
       <canvas
         ref={canvasRef}
@@ -465,11 +448,8 @@ function Navbar({ activeTab, setActiveTab, setIsLoggedIn }: NavbarProps & { setI
       const aboutSection = document.getElementById('about-section')
       if (aboutSection) {
         const aboutTop = aboutSection.offsetTop - 100
-        if (window.scrollY >= aboutTop) {
-          setActiveTab('about')
-        } else {
-          setActiveTab('home')
-        }
+        if (window.scrollY >= aboutTop) setActiveTab('about')
+        else setActiveTab('home')
       }
     }
     window.addEventListener('scroll', handleScroll)
@@ -507,15 +487,14 @@ function Navbar({ activeTab, setActiveTab, setIsLoggedIn }: NavbarProps & { setI
           {(['home', 'about'] as const).map(tab => (
             <LGBtn
               key={tab}
-              variant={activeTab === tab ? 'tabActive' : 'tab'}
+              variant={activeTab === tab ? 'primary' : 'tab'}
               onClick={() => {
                 setActiveTab(tab)
                 if (tab === 'about') {
                   setTimeout(() => {
-                    const aboutSection = document.getElementById('about-section')
-                    if (aboutSection) aboutSection.scrollIntoView({ behavior: 'smooth' })
+                    document.getElementById('about-section')?.scrollIntoView({ behavior: 'smooth' })
                   }, 100)
-                } else if (tab === 'home') {
+                } else {
                   window.scrollTo({ top: 0, behavior: 'smooth' })
                 }
               }}
@@ -523,18 +502,18 @@ function Navbar({ activeTab, setActiveTab, setIsLoggedIn }: NavbarProps & { setI
                 padding: '8px 22px', borderRadius: 8,
                 fontFamily: "'Poppins',sans-serif", fontWeight: 600, fontSize: 11,
                 letterSpacing: 1.5, textTransform: 'uppercase',
-                color: activeTab === tab ? '#fff' : '#64748b',
+                color: activeTab === tab ? '#1e293b' : '#64748b',
               }}
             >{tab}</LGBtn>
           ))}
         </div>
 
-        {/* CTAs */}
+        {/* CTAs — primary purple to match hero EXPLORE KYDY button */}
         <div style={{ display: 'flex', gap: 10 }}>
-          <LGBtn variant="ghost" onClick={() => setIsLoggedIn(true)} style={{
+          <LGBtn variant="primary" onClick={() => setIsLoggedIn(true)} style={{
             padding: '9px 20px', borderRadius: 8,
             fontFamily: "'Poppins',sans-serif", fontSize: 10, letterSpacing: 1, fontWeight: 600,
-            color: '#7c3aed',
+            color: '#1e293b',
           }}>EXPLORE KYDY</LGBtn>
           <LGBtn variant="primary" onClick={() => setIsLoggedIn(true)} style={{
             padding: '9px 20px', borderRadius: 8,
@@ -576,11 +555,6 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
 
           {/* Left */}
           <div style={{ animation: 'slideUp 0.9s ease forwards' }}>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.2)',
-            }} />
-
             <h1 style={{
               fontFamily: "'Poppins',sans-serif", fontWeight: 900, lineHeight: 1.05,
               fontSize: 'clamp(2.4rem,4vw,3.8rem)', color: '#1e293b', marginBottom: 28, letterSpacing: '-1px',
@@ -592,6 +566,7 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
               WITH KYDY
             </h1>
 
+            {/* ── Hero buttons ── */}
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               <LGBtn
                 variant="primary"
@@ -604,10 +579,14 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
               >EXPLORE KYDY →</LGBtn>
               <LGBtn
                 variant="ghost"
+                onClick={() => setIsLoggedIn(true)}
                 style={{
                   padding: '14px 34px', borderRadius: 10,
                   fontFamily: "'Poppins',sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: 1,
-                  color: '#7c3aed',
+                  color: '#1e293b',
+                  background: 'rgba(255,255,255,0.85)',
+                  border: '1px solid rgba(124,58,237,0.18)',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
                 }}
               >▶ WATCH DEMO</LGBtn>
             </div>
@@ -639,11 +618,7 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
                 }} />
               ))}
             </div>
-            <div style={{
-              position: 'absolute', width: 300, height: 300, borderRadius: '50%',
-              border: '1px solid rgba(168,85,247,0.25)',
-              animation: 'spinSlow 20s linear infinite reverse',
-            }} />
+            <div style={{ position: 'absolute', width: 300, height: 300, borderRadius: '50%', border: '1px solid rgba(168,85,247,0.25)', animation: 'spinSlow 20s linear infinite reverse' }} />
             <div style={{
               position: 'absolute', width: 180, height: 180, borderRadius: '50%',
               background: 'radial-gradient(circle at 35% 35%, rgba(124,58,237,0.5), rgba(168,85,247,0.3), rgba(99,102,241,0.1))',
@@ -719,8 +694,6 @@ function About() {
       <Orb style={{ bottom: '5%', right: '-5%' }} color="#c4b5fd" size={400} />
 
       <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 2 }}>
-
-        {/* Heading */}
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
           <div style={{
             display: 'inline-block', background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.2)',
@@ -734,15 +707,7 @@ function About() {
           </h2>
         </div>
 
-        {/* Main 2-col: text left, animation right */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr auto',
-          gap: 48,
-          alignItems: 'center',
-          marginBottom: 32,
-        }}>
-          {/* Text card */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 48, alignItems: 'center', marginBottom: 32 }}>
           <div style={{
             background: '#ffffff', border: '1px solid rgba(124,58,237,0.12)',
             borderRadius: 24, padding: '48px 52px', backdropFilter: 'blur(24px)',
@@ -763,15 +728,10 @@ function About() {
             <p style={{ color: '#64748b', lineHeight: 1.8, fontSize: 16, fontFamily: "'Inter',sans-serif" }}>
               Our mission is to empower learners worldwide with high-quality educational content, interactive learning experiences, and the tools to reach their full potential.
             </p>
-
-
           </div>
-
-          {/* Animation */}
           <AboutAnimation />
         </div>
 
-        {/* Feature cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
           {features.map((f, i) => (
             <div key={i}
@@ -809,8 +769,8 @@ export default function App() {
   const [dashboardView, setDashboardView] = useState<string>('lessons')
 
   if (isLoggedIn) {
-    if (dashboardView === 'lessons') return <LessonsPage onNav={(id: string) => setDashboardView(id)} />
-    if (dashboardView === 'notes')   return <NotesPage onNav={(id: string) => setDashboardView(id)} />
+    if (dashboardView === 'lessons')    return <LessonsPage   onNav={(id: string) => setDashboardView(id)} />
+    if (dashboardView === 'notes')      return <NotesPage      onNav={(id: string) => setDashboardView(id)} />
     if (dashboardView === 'visualizer') return <VisualizerPage onNav={(id: string) => setDashboardView(id)} />
     return <Dashboard onNavigate={(view: string) => setDashboardView(view)} />
   }
@@ -836,7 +796,6 @@ export default function App() {
         @keyframes blink { 0%,100% { opacity:1; box-shadow:0 0 10px #7c3aed } 50% { opacity:0.4; box-shadow:0 0 20px #7c3aed } }
         @keyframes shineSlide { 0% { left:-75% } 100% { left:130% } }
 
-        /* ── Liquid Glass Core ── */
         .lg-btn {
           position: relative; display: inline-flex; align-items: center; justify-content: center;
           cursor: pointer; border: none; outline: none; overflow: hidden; isolation: isolate;
