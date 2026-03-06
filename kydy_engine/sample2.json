@@ -1,0 +1,2493 @@
+{
+  "components": {
+    "topic": "Photosynthesis — 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂",
+    "elements": [
+      "s-circle-out",
+      "s-square-out",
+      "s-triangle-out",
+      "s-sphere-3d",
+      "s-mountain",
+      "s-spring",
+      "s-math-sqrt",
+      "arrow-right",
+      "arrow-up",
+      "arrow-down",
+      "bolt",
+      "atom",
+      "s-person-run",
+      "s-bicycle"
+    ]
+  },
+  "scenes": {
+    "s01_intro": {
+      "title": "What Is Photosynthesis?",
+      "scene": {
+        "background": "#0d1117",
+        "viewBox": "0 0 520 300"
+      },
+      "elements": [
+        {
+          "id": "formula",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 90,
+            "font-size": "18",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "6CO₂ + 6H₂O + Light"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 40,
+              "begin": "0.3s",
+              "dur": "0.7s"
+            },
+            {
+              "type": "pulse",
+              "scale": 1.03,
+              "cx": "260",
+              "cy": "90",
+              "begin": "1.2s",
+              "dur": "2.0s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "arrow_eq",
+          "type": "arrow-right",
+          "props": {
+            "x": 210,
+            "y": "108",
+            "width": 100,
+            "height": 16
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.0s",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "formula2",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 130,
+            "font-size": "18",
+            "fill": "#58a6ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "C₆H₁₂O₆ + 6O₂"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 30,
+              "begin": "1.0s",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "sub",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 158,
+            "font-size": "11",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Plants convert sunlight into food and oxygen"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.6s",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "lbl_co2",
+          "type": "text",
+          "props": {
+            "x": 80,
+            "y": 200,
+            "font-size": "24",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "CO₂"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 25,
+              "begin": "1.8s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "sub_co2",
+          "type": "text",
+          "props": {
+            "x": 80,
+            "y": 218,
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "carbon dioxide"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.1s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "lbl_h2o",
+          "type": "text",
+          "props": {
+            "x": 190,
+            "y": 200,
+            "font-size": "24",
+            "fill": "#58a6ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "H₂O"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 25,
+              "begin": "2.0s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "sub_h2o",
+          "type": "text",
+          "props": {
+            "x": 190,
+            "y": 218,
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "water"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.3s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "lbl_light",
+          "type": "text",
+          "props": {
+            "x": 300,
+            "y": 200,
+            "font-size": "24",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "☀"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 25,
+              "begin": "2.2s",
+              "dur": "0.4s"
+            },
+            {
+              "type": "pulse",
+              "scale": 1.15,
+              "cx": "300",
+              "cy": "200",
+              "begin": "2.8s",
+              "dur": "1.2s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "sub_light",
+          "type": "text",
+          "props": {
+            "x": 300,
+            "y": 218,
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "sunlight"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.5s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "lbl_glucose",
+          "type": "text",
+          "props": {
+            "x": 410,
+            "y": 200,
+            "font-size": "18",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "glucose"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 25,
+              "begin": "2.4s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "sub_glucose",
+          "type": "text",
+          "props": {
+            "x": 410,
+            "y": 218,
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "+ oxygen"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.7s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "tip",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 270,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Happens inside chloroplasts — the green organelles in plant cells"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "3.0s",
+              "dur": "0.6s"
+            }
+          ]
+        }
+      ]
+    },
+    "s02_inputs": {
+      "title": "The Three Ingredients",
+      "scene": {
+        "background": "#0d1117",
+        "viewBox": "0 0 520 300"
+      },
+      "elements": [
+        {
+          "id": "heading",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 36,
+            "font-size": "12",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Photosynthesis needs 3 inputs"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.8,
+              "begin": "0.2s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "sun_icon",
+          "type": "text",
+          "props": {
+            "x": 90,
+            "y": 120,
+            "font-size": "52",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "☀"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 40,
+              "begin": "0.5s",
+              "dur": "0.5s"
+            },
+            {
+              "type": "pulse",
+              "scale": 1.1,
+              "cx": "90",
+              "cy": "120",
+              "begin": "1.2s",
+              "dur": "1.4s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "sun_lbl",
+          "type": "text",
+          "props": {
+            "x": 90,
+            "y": 148,
+            "font-size": "13",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "Sunlight"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "0.9s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "sun_sub",
+          "type": "text",
+          "props": {
+            "x": 90,
+            "y": 164,
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "absorbed by chlorophyll"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.1s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "water_icon",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 120,
+            "font-size": "52",
+            "fill": "#58a6ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "💧"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 40,
+              "begin": "1.0s",
+              "dur": "0.5s"
+            },
+            {
+              "type": "bounce",
+              "dy": -8,
+              "begin": "1.8s",
+              "dur": "0.5s",
+              "repeat": "3"
+            }
+          ]
+        },
+        {
+          "id": "water_lbl",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 148,
+            "font-size": "13",
+            "fill": "#58a6ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "Water (H₂O)"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.4s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "water_sub",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 164,
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "drawn up from roots"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.6s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "co2_icon",
+          "type": "text",
+          "props": {
+            "x": 430,
+            "y": 120,
+            "font-size": "44",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "CO₂"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 40,
+              "begin": "1.5s",
+              "dur": "0.5s"
+            },
+            {
+              "type": "flow",
+              "dx": 0,
+              "dy": -12,
+              "begin": "2.2s",
+              "dur": "1.0s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "co2_lbl",
+          "type": "text",
+          "props": {
+            "x": 430,
+            "y": 148,
+            "font-size": "13",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "Carbon Dioxide"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.9s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "co2_sub",
+          "type": "text",
+          "props": {
+            "x": 430,
+            "y": 164,
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "enters through stomata"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.1s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "arr1",
+          "type": "arrow-right",
+          "props": {
+            "x": 148,
+            "y": 116,
+            "width": 52,
+            "height": 14
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.6,
+              "begin": "2.2s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "arr2",
+          "type": "arrow-right",
+          "props": {
+            "x": 320,
+            "y": 116,
+            "width": 52,
+            "height": 14
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.6,
+              "begin": "2.3s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "leaf_dest",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 220,
+            "font-size": "28",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "🌿  LEAF"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 20,
+              "begin": "2.4s",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "leaf_sub",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 244,
+            "font-size": "10",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "all three ingredients meet inside the chloroplast"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.8s",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "note",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 278,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Without any one of these three, photosynthesis stops"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "3.2s",
+              "dur": "0.6s"
+            }
+          ]
+        }
+      ]
+    },
+    "s03_light_reactions": {
+      "title": "Stage 1 — Light-Dependent Reactions",
+      "scene": {
+        "background": "#0d1117",
+        "viewBox": "0 0 520 300"
+      },
+      "elements": [
+        {
+          "id": "stage_lbl",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 34,
+            "font-size": "11",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "Stage 1 — Light Reactions  (in thylakoid membrane)"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "0.2s",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "thylakoid_bg",
+          "type": "rect",
+          "props": {
+            "x": "30",
+            "y": "50",
+            "width": "460",
+            "height": "130",
+            "fill": "#0d2a0d",
+            "rx": "8"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 30,
+              "begin": "0.4s",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "thylakoid_lbl",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 66,
+            "font-size": "9",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "THYLAKOID MEMBRANE"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.7,
+              "begin": "0.8s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "sun_beam",
+          "type": "bolt",
+          "props": {
+            "x": 50,
+            "y": 72,
+            "width": 28,
+            "height": 42
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 30,
+              "begin": "0.7s",
+              "dur": "0.4s"
+            },
+            {
+              "type": "blink",
+              "begin": "1.2s",
+              "dur": "0.5s",
+              "repeat": "4"
+            }
+          ]
+        },
+        {
+          "id": "sun_lbl",
+          "type": "text",
+          "props": {
+            "x": 64,
+            "y": 125,
+            "font-size": "9",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "light energy"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.1s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "water_split",
+          "type": "text",
+          "props": {
+            "x": 160,
+            "y": 100,
+            "font-size": "12",
+            "fill": "#58a6ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "H₂O"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "right",
+              "dist": 30,
+              "begin": "1.2s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "split_lbl",
+          "type": "text",
+          "props": {
+            "x": 160,
+            "y": 116,
+            "font-size": "8",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "water split"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.5s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "arr_split",
+          "type": "arrow-right",
+          "props": {
+            "x": 185,
+            "y": 97,
+            "width": 40,
+            "height": 12
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.6s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "atp_nadph",
+          "type": "text",
+          "props": {
+            "x": 270,
+            "y": 97,
+            "font-size": "13",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "ATP + NADPH"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "left",
+              "dist": 40,
+              "begin": "1.8s",
+              "dur": "0.4s"
+            },
+            {
+              "type": "pulse",
+              "scale": 1.06,
+              "cx": "270",
+              "cy": "97",
+              "begin": "2.4s",
+              "dur": "1.0s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "atp_sub",
+          "type": "text",
+          "props": {
+            "x": 270,
+            "y": 113,
+            "font-size": "8",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "energy carriers produced"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.1s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "o2_out",
+          "type": "text",
+          "props": {
+            "x": 420,
+            "y": 88,
+            "font-size": "22",
+            "fill": "#d2a8ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "O₂"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 30,
+              "begin": "2.2s",
+              "dur": "0.4s"
+            },
+            {
+              "type": "flow",
+              "dx": 0,
+              "dy": -30,
+              "begin": "2.8s",
+              "dur": "1.2s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "o2_lbl",
+          "type": "text",
+          "props": {
+            "x": 420,
+            "y": 138,
+            "font-size": "9",
+            "fill": "#d2a8ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "oxygen released"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.5s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "arr_o2",
+          "type": "arrow-up",
+          "props": {
+            "x": 412,
+            "y": 100,
+            "width": 16,
+            "height": 32
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.7,
+              "begin": "2.6s",
+              "dur": "0.3s"
+            },
+            {
+              "type": "flow",
+              "dx": 0,
+              "dy": -20,
+              "begin": "3.0s",
+              "dur": "0.8s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "to_stage2",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 210,
+            "font-size": "11",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "ATP + NADPH  →  power Stage 2"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 20,
+              "begin": "2.8s",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "arr_stage2",
+          "type": "arrow-down",
+          "props": {
+            "x": 252,
+            "y": 218,
+            "width": 16,
+            "height": 28
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "3.2s",
+              "dur": "0.4s"
+            },
+            {
+              "type": "flow",
+              "dx": 0,
+              "dy": 14,
+              "begin": "3.5s",
+              "dur": "0.6s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "summary",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 272,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Light splits water → releases O₂ and stores energy as ATP/NADPH"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "3.5s",
+              "dur": "0.6s"
+            }
+          ]
+        }
+      ]
+    },
+    "s04_calvin_cycle": {
+      "title": "Stage 2 — Calvin Cycle (Dark Reactions)",
+      "scene": {
+        "background": "#0d1117",
+        "viewBox": "0 0 520 300"
+      },
+      "elements": [
+        {
+          "id": "stage_lbl",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 34,
+            "font-size": "11",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "Stage 2 — Calvin Cycle  (in stroma)"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "0.2s",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "cycle_ring",
+          "type": "circle",
+          "props": {
+            "cx": "200",
+            "cy": "160",
+            "r": "90",
+            "fill": "none",
+            "stroke": "#3fb950",
+            "stroke-width": "2",
+            "stroke-dasharray": "6 4"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.6,
+              "begin": "0.5s",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "cycle_label",
+          "type": "text",
+          "props": {
+            "x": 200,
+            "y": 155,
+            "font-size": "11",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "CALVIN"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "0.9s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "cycle_label2",
+          "type": "text",
+          "props": {
+            "x": 200,
+            "y": 170,
+            "font-size": "11",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "CYCLE"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.0s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "co2_in",
+          "type": "text",
+          "props": {
+            "x": 200,
+            "y": 58,
+            "font-size": "14",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "CO₂  in"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 20,
+              "begin": "1.1s",
+              "dur": "0.4s"
+            },
+            {
+              "type": "flow",
+              "dx": 0,
+              "dy": 10,
+              "begin": "1.8s",
+              "dur": "0.8s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "atp_in",
+          "type": "text",
+          "props": {
+            "x": 118,
+            "y": 190,
+            "font-size": "11",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "ATP"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "right",
+              "dist": 25,
+              "begin": "1.4s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "nadph_in",
+          "type": "text",
+          "props": {
+            "x": 114,
+            "y": 206,
+            "font-size": "9",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "NADPH"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.6s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "arr_atp_in",
+          "type": "arrow-right",
+          "props": {
+            "x": 133,
+            "y": 196,
+            "width": 22,
+            "height": 10
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.8,
+              "begin": "1.7s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "g3p_out",
+          "type": "text",
+          "props": {
+            "x": 280,
+            "y": 248,
+            "font-size": "12",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "G3P  (sugar)"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 18,
+              "begin": "2.0s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "arr_g3p",
+          "type": "arrow-down",
+          "props": {
+            "x": 196,
+            "y": 222,
+            "width": 12,
+            "height": 22
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.8,
+              "begin": "2.2s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "glucose_final",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 140,
+            "font-size": "13",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "Glucose"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "left",
+              "dist": 50,
+              "begin": "2.4s",
+              "dur": "0.5s"
+            },
+            {
+              "type": "pulse",
+              "scale": 1.08,
+              "cx": "400",
+              "cy": "140",
+              "begin": "3.0s",
+              "dur": "1.2s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "glucose_formula",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 158,
+            "font-size": "10",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "C₆H₁₂O₆"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.8s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "arr_glucose",
+          "type": "arrow-right",
+          "props": {
+            "x": 320,
+            "y": 242,
+            "width": 80,
+            "height": 12
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.7,
+              "begin": "2.6s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "glucose_use",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 180,
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "plant's food"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "3.0s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "summary",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 278,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "CO₂ + ATP/NADPH  →  glucose (C₆H₁₂O₆)  — no light needed"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "3.4s",
+              "dur": "0.6s"
+            }
+          ]
+        }
+      ]
+    },
+    "s05_factors": {
+      "title": "Factors That Affect Photosynthesis Rate",
+      "scene": {
+        "background": "#0d1117",
+        "viewBox": "0 0 520 300"
+      },
+      "elements": [
+        {
+          "id": "heading",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 36,
+            "font-size": "11",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Limiting factors — any one can slow or stop photosynthesis"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.8,
+              "begin": "0.2s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "ground",
+          "type": "line",
+          "props": {
+            "x1": "30",
+            "y1": "230",
+            "x2": "490",
+            "y2": "230",
+            "stroke": "#30363d",
+            "stroke-width": "2"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "right",
+              "dist": 460,
+              "begin": "0.3s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "light_bar_bg",
+          "type": "rect",
+          "props": {
+            "x": "60",
+            "y": "80",
+            "width": "20",
+            "height": "150",
+            "fill": "#21262d",
+            "rx": "3"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "0.6s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "light_bar",
+          "type": "rect",
+          "props": {
+            "x": "60",
+            "y": "140",
+            "width": "20",
+            "height": "90",
+            "fill": "#f7c948",
+            "rx": "3"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 90,
+              "begin": "0.8s",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "light_lbl",
+          "type": "text",
+          "props": {
+            "x": 70,
+            "y": 246,
+            "font-size": "9",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Light"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.2s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "light_val",
+          "type": "text",
+          "props": {
+            "x": 70,
+            "y": 134,
+            "font-size": "9",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "60%"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.4s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "co2_bar_bg",
+          "type": "rect",
+          "props": {
+            "x": "160",
+            "y": "80",
+            "width": "20",
+            "height": "150",
+            "fill": "#21262d",
+            "rx": "3"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "0.9s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "co2_bar",
+          "type": "rect",
+          "props": {
+            "x": "160",
+            "y": "100",
+            "width": "20",
+            "height": "130",
+            "fill": "#ffa657",
+            "rx": "3"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 130,
+              "begin": "1.1s",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "co2_lbl",
+          "type": "text",
+          "props": {
+            "x": 170,
+            "y": 246,
+            "font-size": "9",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "CO₂"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.5s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "co2_val",
+          "type": "text",
+          "props": {
+            "x": 170,
+            "y": 94,
+            "font-size": "9",
+            "fill": "#ffa657",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "87%"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.6s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "temp_bar_bg",
+          "type": "rect",
+          "props": {
+            "x": "260",
+            "y": "80",
+            "width": "20",
+            "height": "150",
+            "fill": "#21262d",
+            "rx": "3"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.2s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "temp_bar",
+          "type": "rect",
+          "props": {
+            "x": "260",
+            "y": "162",
+            "width": "20",
+            "height": "68",
+            "fill": "#f85149",
+            "rx": "3"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 68,
+              "begin": "1.4s",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "temp_lbl",
+          "type": "text",
+          "props": {
+            "x": 270,
+            "y": 246,
+            "font-size": "9",
+            "fill": "#f85149",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Temp"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.8s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "temp_val",
+          "type": "text",
+          "props": {
+            "x": 270,
+            "y": 156,
+            "font-size": "9",
+            "fill": "#f85149",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "45%"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.9s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "water_bar_bg",
+          "type": "rect",
+          "props": {
+            "x": "360",
+            "y": "80",
+            "width": "20",
+            "height": "150",
+            "fill": "#21262d",
+            "rx": "3"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.5s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "water_bar",
+          "type": "rect",
+          "props": {
+            "x": "360",
+            "y": "120",
+            "width": "20",
+            "height": "110",
+            "fill": "#58a6ff",
+            "rx": "3"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 110,
+              "begin": "1.7s",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "water_lbl",
+          "type": "text",
+          "props": {
+            "x": 370,
+            "y": 246,
+            "font-size": "9",
+            "fill": "#58a6ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Water"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.1s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "water_val",
+          "type": "text",
+          "props": {
+            "x": 370,
+            "y": 114,
+            "font-size": "9",
+            "fill": "#58a6ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "73%"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.2s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "note",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 270,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Optimal temp: 25–30°C  |  High CO₂ boosts rate most"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.5s",
+              "dur": "0.6s"
+            }
+          ]
+        }
+      ]
+    },
+    "s06_chloroplast": {
+      "title": "Inside the Chloroplast",
+      "scene": {
+        "background": "#0d1117",
+        "viewBox": "0 0 520 300"
+      },
+      "elements": [
+        {
+          "id": "heading",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 30,
+            "font-size": "11",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Chloroplast — where photosynthesis happens"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.8,
+              "begin": "0.2s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "outer_membrane",
+          "type": "rect",
+          "props": {
+            "x": "40",
+            "y": "44",
+            "width": "440",
+            "height": "196",
+            "fill": "none",
+            "stroke": "#3fb950",
+            "stroke-width": "3",
+            "rx": "60"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 30,
+              "begin": "0.4s",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "stroma_bg",
+          "type": "rect",
+          "props": {
+            "x": "46",
+            "y": "50",
+            "width": "428",
+            "height": "184",
+            "fill": "#0a2010",
+            "rx": "56"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "0.6s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "stroma_lbl",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": "210",
+            "font-size": "9",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "STROMA"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.6,
+              "begin": "1.0s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "thylakoid1",
+          "type": "rect",
+          "props": {
+            "x": "100",
+            "y": "90",
+            "width": "160",
+            "height": "28",
+            "fill": "#1a4d1a",
+            "rx": "14",
+            "stroke": "#3fb950",
+            "stroke-width": "1.5"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 20,
+              "begin": "0.8s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "thylakoid2",
+          "type": "rect",
+          "props": {
+            "x": "100",
+            "y": "126",
+            "width": "160",
+            "height": "28",
+            "fill": "#1a4d1a",
+            "rx": "14",
+            "stroke": "#3fb950",
+            "stroke-width": "1.5"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 20,
+              "begin": "0.9s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "thylakoid3",
+          "type": "rect",
+          "props": {
+            "x": "100",
+            "y": "162",
+            "width": "160",
+            "height": "28",
+            "fill": "#1a4d1a",
+            "rx": "14",
+            "stroke": "#3fb950",
+            "stroke-width": "1.5"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "down",
+              "dist": 20,
+              "begin": "1.0s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "granum_lbl",
+          "type": "text",
+          "props": {
+            "x": 180,
+            "y": "206",
+            "font-size": "9",
+            "fill": "#58a6ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "granum (stacked thylakoids)"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.8,
+              "begin": "1.3s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "light_arrow",
+          "type": "bolt",
+          "props": {
+            "x": 50,
+            "y": 96,
+            "width": 24,
+            "height": 36
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.4s",
+              "dur": "0.4s"
+            },
+            {
+              "type": "blink",
+              "begin": "1.9s",
+              "dur": "0.4s",
+              "repeat": "3"
+            }
+          ]
+        },
+        {
+          "id": "light_lbl",
+          "type": "text",
+          "props": {
+            "x": 62,
+            "y": 144,
+            "font-size": "8",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "light"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.7s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "stage1_note",
+          "type": "text",
+          "props": {
+            "x": 180,
+            "y": "110",
+            "font-size": "8",
+            "fill": "#f7c948",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Stage 1 here"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.9,
+              "begin": "1.5s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "calvin_box",
+          "type": "rect",
+          "props": {
+            "x": "295",
+            "y": "82",
+            "width": "160",
+            "height": "110",
+            "fill": "#0d2a0d",
+            "rx": "8",
+            "stroke": "#3fb950",
+            "stroke-width": "1.5",
+            "stroke-dasharray": "5 3"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "1.8s",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "calvin_lbl",
+          "type": "text",
+          "props": {
+            "x": 375,
+            "y": "120",
+            "font-size": "10",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "Calvin Cycle"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.1s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "calvin_sub",
+          "type": "text",
+          "props": {
+            "x": 375,
+            "y": "140",
+            "font-size": "9",
+            "fill": "#6e7681",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Stage 2 here"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.8,
+              "begin": "2.2s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "glucose_out",
+          "type": "text",
+          "props": {
+            "x": 375,
+            "y": "162",
+            "font-size": "10",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "→ glucose"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "left",
+              "dist": 20,
+              "begin": "2.5s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "summary",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": "272",
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "content": "Thylakoids = light reactions  |  Stroma = Calvin cycle"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "3.0s",
+              "dur": "0.6s"
+            }
+          ]
+        }
+      ]
+    },
+    "s07_summary": {
+      "title": "Summary — Photosynthesis",
+      "scene": {
+        "background": "#0d1117",
+        "viewBox": "0 0 520 300"
+      },
+      "elements": [
+        {
+          "id": "big_eq",
+          "type": "text",
+          "props": {
+            "x": 260,
+            "y": 72,
+            "font-size": "15",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "font-weight": "bold",
+            "content": "6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "up",
+              "dist": 30,
+              "begin": "0.3s",
+              "dur": "0.6s"
+            },
+            {
+              "type": "pulse",
+              "scale": 1.03,
+              "cx": "260",
+              "cy": "72",
+              "begin": "1.0s",
+              "dur": "2.0s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "r1",
+          "type": "text",
+          "props": {
+            "x": 44,
+            "y": 108,
+            "font-size": "11",
+            "fill": "#f7c948",
+            "font-family": "monospace",
+            "content": "►  Inputs:  CO₂ + H₂O + sunlight"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "left",
+              "dist": 50,
+              "begin": "1.0s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "r2",
+          "type": "text",
+          "props": {
+            "x": 44,
+            "y": 130,
+            "font-size": "11",
+            "fill": "#3fb950",
+            "font-family": "monospace",
+            "content": "►  Outputs: glucose + oxygen"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "left",
+              "dist": 50,
+              "begin": "1.3s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "type": "text",
+          "props": {
+            "x": 44,
+            "y": 152,
+            "font-size": "11",
+            "fill": "#58a6ff",
+            "font-family": "monospace",
+            "content": "►  Location: chloroplasts (green cells)"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "left",
+              "dist": 50,
+              "begin": "1.6s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "r4",
+          "type": "text",
+          "props": {
+            "x": 44,
+            "y": 174,
+            "font-size": "11",
+            "fill": "#ffa657",
+            "font-family": "monospace",
+            "content": "►  Stage 1: light reactions (thylakoid)"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "left",
+              "dist": 50,
+              "begin": "1.9s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "divider",
+          "type": "line",
+          "props": {
+            "x1": "30",
+            "y1": "192",
+            "x2": "490",
+            "y2": "192",
+            "stroke": "#21262d",
+            "stroke-width": "1.5"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "right",
+              "dist": 460,
+              "begin": "2.0s",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "k1",
+          "type": "text",
+          "props": {
+            "x": 44,
+            "y": 210,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "font-family": "monospace",
+            "content": "●  Stage 2: Calvin cycle (stroma) → glucose"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.2s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "k2",
+          "type": "text",
+          "props": {
+            "x": 44,
+            "y": 228,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "font-family": "monospace",
+            "content": "●  Limiting factors: light, CO₂, temperature, water"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.4s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "k3",
+          "type": "text",
+          "props": {
+            "x": 44,
+            "y": 246,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "font-family": "monospace",
+            "content": "●  O₂ is a by-product — the air we breathe!"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.6s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "k4",
+          "type": "text",
+          "props": {
+            "x": 44,
+            "y": 264,
+            "font-size": "10",
+            "fill": "#d2a8ff",
+            "font-family": "monospace",
+            "content": "●  Chlorophyll absorbs red + blue light, reflects green"
+          },
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "begin": "2.8s",
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "leaf_icon",
+          "type": "text",
+          "props": {
+            "x": 456,
+            "y": 200,
+            "font-size": "60",
+            "fill": "#3fb950",
+            "text-anchor": "middle",
+            "font-family": "monospace",
+            "fill-opacity": "0.7",
+            "content": "🌿"
+          },
+          "animations": [
+            {
+              "type": "slide-in",
+              "dir": "right",
+              "dist": 50,
+              "begin": "3.0s",
+              "dur": "0.5s"
+            },
+            {
+              "type": "bounce",
+              "dy": -8,
+              "begin": "3.6s",
+              "dur": "0.6s",
+              "repeat": "3"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

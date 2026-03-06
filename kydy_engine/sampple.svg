@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 400 360"
+     width="400" height="360"
+     font-family="'Courier New', monospace"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <!--
+    ┌─────────────────────────────────────────────────┐
+    │  SVG SEQUENTIAL SLIDESHOW  v2.0                 │
+    │  Topic   : SVG Animation                       │
+    │  Scenes  : 15   Runtime: 106s              │
+    │  Mode    : All scenes share one viewport        │
+    │            Scene N fades out → Scene N+1 in    │
+    └─────────────────────────────────────────────────┘
+  -->
+
+  <defs>
+    <pattern id="scene-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#ffffff" stroke-width="0.3"/>
+    </pattern>
+    <symbol id="s-circle-out" viewBox="0 0 60 60" >
+    <circle cx="30" cy="30" r="26" fill="none" stroke="#58a6ff" stroke-width="2.5" />
+  </symbol>
+<symbol id="s-rect-out" viewBox="0 0 60 60" >
+    <rect x="4" y="12" width="52" height="36" rx="2" fill="none" stroke="#58a6ff" stroke-width="2.5" />
+  </symbol>
+  </defs>
+
+  <!-- canvas bg -->
+  <rect width="400" height="360" fill="#0d1117"/>
+
+  <!-- header -->
+  <rect x="0" y="0" width="400" height="60" fill="#161b22"/>
+  <text x="200" y="26" font-size="14" fill="#f0f6fc" font-weight="bold"
+        text-anchor="middle" letter-spacing="2">SVG ANIMATION</text>
+  <text x="200" y="44" font-size="9" fill="#8b949e" text-anchor="middle">
+    15 SCENES · 2 ASSETS · 106s · SEQUENTIAL AUTO-PLAY
+  </text>
+
+  <!-- timeline progress bar -->
+  <rect x="0" y="55" width="400" height="4" fill="#161b22"/>
+<rect x="0" y="55" width="0" height="4" fill="#58a6ff">
+  <animate attributeName="width" from="0" to="400" begin="0s" dur="106.500s" fill="freeze"/>
+</rect>
+
+  <!-- asset badge strip removed -->
+
+  <!-- ╔══════════════════════════════╗
+       ║  SINGLE VIEWPORT STAGE       ║
+       ╚══════════════════════════════╝
+       All scenes render at (0,0) in this group.
+       Only ONE is visible at a time via SMIL opacity. -->
+  <g id="stage" transform="translate(0, 60)">
+
+    <!-- ═══ SCENE 1/15: scene1 | start=0.0s dur=6.5s ═══ -->
+    <g id="scene_1" opacity="0">
+
+      <!-- fade IN at 0.000s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="0.000s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 6.500s -->
+      <animate attributeName="opacity" from="1" to="0" begin="6.500s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene1</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">1/15</text>
+
+      <!-- scene content -->
+      <text id="s1-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Importance of Ohm's Law
+            <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s1-battery" x="80" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s1-battery-label" x="160" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery (V)
+            <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <circle id="s1-light-bulb" cx="400" cy="245" r="50" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </circle>
+        <text id="s1-light-bulb-label" x="400" y="305" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Light Bulb
+            <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s1-wire" x1="200" y1="285" x2="600" y2="285" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <text id="s1-wire-label" x="400" y="345" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Wire (Conductor)
+            <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s1-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s1-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Ohm's Law is crucial for understanding
+            <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s1-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            voltage, current, and resistance in circuits.
+            <animate attributeName="opacity" from="0" to="1" begin="0.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="5" fill="#58a6ff"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 2/15: scene2 | start=7.1s dur=6.5s ═══ -->
+    <g id="scene_2" opacity="0">
+
+      <!-- fade IN at 7.100s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="7.100s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 13.600s -->
+      <animate attributeName="opacity" from="1" to="0" begin="13.600s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene2</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">2/15</text>
+
+      <!-- scene content -->
+      <text id="s2-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Voltage (V)
+            <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s2-battery" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s2-battery-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery
+            <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <path id="s2-arrow-left" d="M 100 240 Q 150 200 200 240" stroke="#38bdf8" stroke-width="3" fill="none" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </path>
+        <path id="s2-arrow-right" d="M 200 240 Q 250 200 300 240" stroke="#38bdf8" stroke-width="3" fill="none" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </path>
+        <text id="s2-voltage-label" x="250" y="240" fill="#38bdf8" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            V
+            <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s2-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s2-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Voltage is the potential difference
+            <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s2-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            that drives electrons through a circuit.
+            <animate attributeName="opacity" from="0" to="1" begin="7.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="5" fill="#58a6ff"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 3/15: scene3 | start=14.2s dur=6.5s ═══ -->
+    <g id="scene_3" opacity="0">
+
+      <!-- fade IN at 14.200s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="14.200s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 20.700s -->
+      <animate attributeName="opacity" from="1" to="0" begin="20.700s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene3</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">3/15</text>
+
+      <!-- scene content -->
+      <text id="s3-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s3-wire" x1="100" y1="240" x2="600" y2="240" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <text id="s3-wire-label" x="400" y="280" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Wire (Conductor)
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <g id="s3-e1" opacity="0">
+          <animateMotion path="M 0 0 L 580 0" begin="38.200s" dur="3.5s" repeatCount="indefinite" fill="auto"/>
+          <circle cx="110" cy="245" r="10" fill="#38bdf8" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.3s" repeatCount="1" fill="freeze"/>
+          </circle>
+        </g>
+        <g id="s3-e2" opacity="0">
+          <animateMotion path="M 0 0 L 580 0" begin="38.800s" dur="3.5s" repeatCount="indefinite" fill="auto"/>
+          <circle cx="240" cy="245" r="10" fill="#38bdf8" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.3s" repeatCount="1" fill="freeze"/>
+          </circle>
+        </g>
+        <g id="s3-e3" opacity="0">
+          <animateMotion path="M 0 0 L 580 0" begin="39.400s" dur="3.5s" repeatCount="indefinite" fill="auto"/>
+          <circle cx="370" cy="245" r="10" fill="#38bdf8" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.3s" repeatCount="1" fill="freeze"/>
+          </circle>
+        </g>
+        <g id="s3-e4" opacity="0">
+          <animateMotion path="M 0 0 L 580 0" begin="40.000s" dur="3.5s" repeatCount="indefinite" fill="auto"/>
+          <circle cx="500" cy="245" r="10" fill="#38bdf8" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.3s" repeatCount="1" fill="freeze"/>
+          </circle>
+        </g>
+        <text id="s3-current-label" x="400" y="200" fill="#38bdf8" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            I
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s3-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s3-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Current is the flow of electric charge
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s3-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            through a conductor.
+            <animate attributeName="opacity" from="0" to="1" begin="14.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="5" fill="#58a6ff"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 4/15: scene4 | start=21.3s dur=6.5s ═══ -->
+    <g id="scene_4" opacity="0">
+
+      <!-- fade IN at 21.300s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="21.300s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 27.800s -->
+      <animate attributeName="opacity" from="1" to="0" begin="27.800s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene4</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">4/15</text>
+
+      <!-- scene content -->
+      <text id="s4-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Resistance (R)
+            <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s4-wire" x="100" y="230" width="400" height="20" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s4-wire-label" x="400" y="280" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Narrow Wire
+            <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <g id="s4-e1" opacity="0">
+          <animateMotion path="M 0 0 L 400 0" begin="56.300s" dur="3.5s" repeatCount="indefinite" fill="auto"/>
+          <circle cx="110" cy="245" r="10" fill="#38bdf8" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.3s" repeatCount="1" fill="freeze"/>
+          </circle>
+        </g>
+        <g id="s4-e2" opacity="0">
+          <animateMotion path="M 0 0 L 400 0" begin="56.900s" dur="3.5s" repeatCount="indefinite" fill="auto"/>
+          <circle cx="240" cy="245" r="10" fill="#38bdf8" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.3s" repeatCount="1" fill="freeze"/>
+          </circle>
+        </g>
+        <g id="s4-e3" opacity="0">
+          <animateMotion path="M 0 0 L 400 0" begin="57.500s" dur="3.5s" repeatCount="indefinite" fill="auto"/>
+          <circle cx="370" cy="245" r="10" fill="#38bdf8" opacity="0">
+            <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.3s" repeatCount="1" fill="freeze"/>
+          </circle>
+        </g>
+        <text id="s4-resistance-label" x="400" y="200" fill="#38bdf8" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            R
+            <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s4-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s4-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Resistance is the opposition to the
+            <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s4-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            flow of electric current.
+            <animate attributeName="opacity" from="0" to="1" begin="21.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="5" fill="#58a6ff"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 5/15: scene5 | start=28.4s dur=6.5s ═══ -->
+    <g id="scene_5" opacity="0">
+
+      <!-- fade IN at 28.400s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="28.400s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 34.900s -->
+      <animate attributeName="opacity" from="1" to="0" begin="34.900s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene5</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">5/15</text>
+
+      <!-- scene content -->
+      <text id="s5-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Ohm's Law Formula
+            <animate attributeName="opacity" from="0" to="1" begin="28.400s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s5-formula" x="400" y="200" fill="#f1f5f9" font-size="32" font-weight="700" text-anchor="middle" opacity="0">
+            V = I * R
+            <animate attributeName="opacity" from="0" to="1" begin="28.400s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s5-v-label" x="100" y="230" fill="#38bdf8" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            V
+            <animate attributeName="opacity" from="0" to="1" begin="28.400s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s5-i-label" x="300" y="230" fill="#38bdf8" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            I
+            <animate attributeName="opacity" from="0" to="1" begin="28.400s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s5-r-label" x="500" y="230" fill="#38bdf8" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            R
+            <animate attributeName="opacity" from="0" to="1" begin="28.400s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s5-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="28.400s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s5-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Ohm's Law relates voltage, current
+            <animate attributeName="opacity" from="0" to="1" begin="28.400s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s5-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            and resistance in a circuit.
+            <animate attributeName="opacity" from="0" to="1" begin="28.400s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="5" fill="#58a6ff"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 6/15: scene6 | start=35.5s dur=6.5s ═══ -->
+    <g id="scene_6" opacity="0">
+
+      <!-- fade IN at 35.500s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="35.500s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 42.000s -->
+      <animate attributeName="opacity" from="1" to="0" begin="42.000s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene6</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">6/15</text>
+
+      <!-- scene content -->
+      <text id="s6-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Calculating Voltage
+            <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s6-battery" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s6-battery-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery (V)
+            <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s6-wire" x1="200" y1="285" x2="600" y2="285" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <rect id="s6-resistance" x="600" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s6-resistance-label" x="700" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Resistance (R)
+            <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s6-current" x="400" y="200" fill="#38bdf8" font-size="18" font-weight="700" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s6-formula" x="400" y="240" fill="#f1f5f9" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            V = I * R
+            <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s6-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s6-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Given I = 2A and R = 10Ω, V = 2A * 10Ω = 20V
+            <animate attributeName="opacity" from="0" to="1" begin="35.500s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="5" fill="#58a6ff"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 7/15: scene7 | start=42.6s dur=6.5s ═══ -->
+    <g id="scene_7" opacity="0">
+
+      <!-- fade IN at 42.600s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="42.600s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 49.100s -->
+      <animate attributeName="opacity" from="1" to="0" begin="49.100s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene7</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">7/15</text>
+
+      <!-- scene content -->
+      <text id="s7-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Calculating Current
+            <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s7-battery" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s7-battery-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery (V)
+            <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s7-resistance" x="600" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s7-resistance-label" x="700" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Resistance (R)
+            <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s7-wire" x1="200" y1="285" x2="700" y2="285" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <text id="s7-formula" x="400" y="240" fill="#f1f5f9" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            I = V / R
+            <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s7-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s7-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Given V = 20V and R = 10Ω, I = 20V / 10Ω = 2A
+            <animate attributeName="opacity" from="0" to="1" begin="42.600s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="5" fill="#58a6ff"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 8/15: scene8 | start=49.7s dur=6.5s ═══ -->
+    <g id="scene_8" opacity="0">
+
+      <!-- fade IN at 49.700s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="49.700s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 56.200s -->
+      <animate attributeName="opacity" from="1" to="0" begin="56.200s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene8</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">8/15</text>
+
+      <!-- scene content -->
+      <text id="s8-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Calculating Resistance
+            <animate attributeName="opacity" from="0" to="1" begin="49.700s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s8-battery" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="49.700s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s8-battery-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery (V)
+            <animate attributeName="opacity" from="0" to="1" begin="49.700s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s8-current" x="400" y="200" fill="#38bdf8" font-size="18" font-weight="700" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="49.700s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s8-wire" x1="200" y1="285" x2="600" y2="285" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="49.700s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <text id="s8-formula" x="400" y="240" fill="#f1f5f9" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            R = V / I
+            <animate attributeName="opacity" from="0" to="1" begin="49.700s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s8-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="49.700s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s8-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Given V = 20V and I = 2A, R = 20V / 2A = 10Ω
+            <animate attributeName="opacity" from="0" to="1" begin="49.700s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="5" fill="#58a6ff"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 9/15: scene9 | start=56.8s dur=6.5s ═══ -->
+    <g id="scene_9" opacity="0">
+
+      <!-- fade IN at 56.800s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="56.800s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 63.300s -->
+      <animate attributeName="opacity" from="1" to="0" begin="63.300s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene9</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">9/15</text>
+
+      <!-- scene content -->
+      <text id="s9-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Ohm's Law in a Circuit
+            <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s9-battery" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s9-battery-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery (V)
+            <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s9-wire" x1="200" y1="285" x2="600" y2="285" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <rect id="s9-resistance" x="600" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s9-resistance-label" x="700" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Resistance (R)
+            <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s9-current" x="400" y="200" fill="#38bdf8" font-size="18" font-weight="700" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s9-formula" x="400" y="240" fill="#f1f5f9" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            V = I * R
+            <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s9-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s9-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            In a complete circuit, Ohm's Law
+            <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s9-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            relates voltage, current, and resistance.
+            <animate attributeName="opacity" from="0" to="1" begin="56.800s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="5" fill="#58a6ff"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 10/15: scene10 | start=63.9s dur=6.5s ═══ -->
+    <g id="scene_10" opacity="0">
+
+      <!-- fade IN at 63.900s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="63.900s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 70.400s -->
+      <animate attributeName="opacity" from="1" to="0" begin="70.400s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene10</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">10/15</text>
+
+      <!-- scene content -->
+      <text id="s10-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Real-World Example
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s10-battery" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s10-battery-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery (V)
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s10-wire" x1="200" y1="285" x2="600" y2="285" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <circle id="s10-light-bulb" cx="400" cy="245" r="50" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </circle>
+        <text id="s10-light-bulb-label" x="400" y="305" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Light Bulb
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s10-resistance" x="600" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s10-resistance-label" x="700" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Resistance (R)
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s10-current" x="400" y="200" fill="#38bdf8" font-size="18" font-weight="700" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s10-formula" x="400" y="240" fill="#f1f5f9" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            V = I * R
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s10-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s10-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            In a household circuit, Ohm's Law
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s10-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            ensures the light bulb receives the
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s10-def-text-3" x="400" y="462" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            correct voltage and current.
+            <animate attributeName="opacity" from="0" to="1" begin="63.900s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="5" fill="#58a6ff"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 11/15: scene11 | start=71.0s dur=6.5s ═══ -->
+    <g id="scene_11" opacity="0">
+
+      <!-- fade IN at 71.000s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="71.000s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 77.500s -->
+      <animate attributeName="opacity" from="1" to="0" begin="77.500s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene11</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">11/15</text>
+
+      <!-- scene content -->
+      <text id="s11-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Graphing Ohm's Law
+            <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s11-x-axis" x1="80" y1="360" x2="680" y2="360" stroke="#475569" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+        </line>
+        <line id="s11-y-axis" x1="80" y1="140" x2="80" y2="360" stroke="#475569" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+        </line>
+        <line id="s11-graph-line" x1="80" y1="360" x2="680" y2="140" stroke="#38bdf8" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <text id="s11-x-axis-label" x="400" y="375" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s11-y-axis-label" x="60" y="200" fill="#94a3b8" font-size="14" text-anchor="middle" transform="rotate(-90, 60, 200)" opacity="0">
+            Voltage (V)
+            <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s11-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s11-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            The graph shows a straight line
+            <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s11-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            indicating a direct relationship
+            <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s11-def-text-3" x="400" y="462" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            between V and I.
+            <animate attributeName="opacity" from="0" to="1" begin="71.000s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="5" fill="#58a6ff"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 12/15: scene12 | start=78.1s dur=6.5s ═══ -->
+    <g id="scene_12" opacity="0">
+
+      <!-- fade IN at 78.100s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="78.100s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 84.600s -->
+      <animate attributeName="opacity" from="1" to="0" begin="84.600s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene12</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">12/15</text>
+
+      <!-- scene content -->
+      <text id="s12-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Complete Circuit Diagram
+            <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s12-battery" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s12-battery-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery (V)
+            <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s12-wire" x1="200" y1="280" x2="600" y2="280" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <circle id="s12-light-bulb" cx="400" cy="245" r="50" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </circle>
+        <text id="s12-light-bulb-label" x="400" y="305" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Light Bulb
+            <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s12-resistance" x="600" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s12-resistance-label" x="700" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Resistance (R)
+            <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s12-current" x="400" y="200" fill="#38bdf8" font-size="14" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s12-formula" x="400" y="240" fill="#f1f5f9" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            V = I * R
+            <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s12-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s12-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            This diagram shows a complete circuit
+            <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s12-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            with all components and values calculated.
+            <animate attributeName="opacity" from="0" to="1" begin="78.100s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="5" fill="#58a6ff"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 13/15: scene13 | start=85.2s dur=6.5s ═══ -->
+    <g id="scene_13" opacity="0">
+
+      <!-- fade IN at 85.200s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="85.200s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 91.700s -->
+      <animate attributeName="opacity" from="1" to="0" begin="91.700s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene13</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">13/15</text>
+
+      <!-- scene content -->
+      <text id="s13-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Application in Electronics
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s13-smartphone" x="200" y="180" width="400" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s13-smartphone-label" x="400" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Smartphone
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s13-battery" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s13-battery-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Battery (V)
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s13-wire" x1="200" y1="280" x2="600" y2="280" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <rect id="s13-resistance" x="600" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s13-resistance-label" x="700" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Resistance (R)
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s13-current" x="400" y="200" fill="#38bdf8" font-size="14" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s13-formula" x="400" y="240" fill="#f1f5f9" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            V = I * R
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s13-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s13-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Ohm's Law is used to ensure the
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s13-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            correct voltage and current flow
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s13-def-text-3" x="400" y="462" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            in the smartphone's circuits.
+            <animate attributeName="opacity" from="0" to="1" begin="85.200s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="5" fill="#58a6ff"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 14/15: scene14 | start=92.3s dur=6.5s ═══ -->
+    <g id="scene_14" opacity="0">
+
+      <!-- fade IN at 92.300s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="92.300s" dur="0.6s" fill="freeze"/>
+      <!-- fade OUT at 98.800s -->
+      <animate attributeName="opacity" from="1" to="0" begin="98.800s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene14</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">14/15</text>
+
+      <!-- scene content -->
+      <text id="s14-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Application in Power Systems
+            <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s14-power-grid" x="100" y="180" width="600" height="200" rx="12" fill="#1e293b" stroke="#475569" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s14-power-grid-label" x="400" y="390" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Power Grid
+            <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s14-voltage-source" x="100" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s14-voltage-source-label" x="200" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Voltage Source (V)
+            <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <line id="s14-wires" x1="200" y1="280" x2="700" y2="280" stroke="#38bdf8" stroke-width="5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </line>
+        <rect id="s14-resistance" x="700" y="180" width="100" height="100" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s14-resistance-label" x="800" y="290" fill="#94a3b8" font-size="14" text-anchor="middle" opacity="0">
+            Resistance (R)
+            <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s14-current" x="400" y="200" fill="#38bdf8" font-size="14" text-anchor="middle" opacity="0">
+            Current (I)
+            <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s14-formula" x="400" y="240" fill="#f1f5f9" font-size="24" font-weight="700" text-anchor="middle" opacity="0">
+            V = I * R
+            <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s14-def-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s14-def-text" x="400" y="422" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Ohm's Law ensures efficient power
+            <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s14-def-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            distribution in power systems.
+            <animate attributeName="opacity" from="0" to="1" begin="92.300s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="5" fill="#58a6ff"/> <circle cx="326" cy="288" r="3" fill="#30363d"/>
+    </g>
+
+    <!-- ═══ SCENE 15/15: scene15 | start=99.4s dur=6.5s ═══ -->
+    <g id="scene_15" opacity="0">
+
+      <!-- fade IN at 99.400s -->
+      <animate attributeName="opacity" from="0" to="1"
+               begin="99.400s" dur="0.6s" fill="freeze"/>
+
+      <!-- background -->
+      <rect width="400" height="300" fill="#1a1a2e" rx="10"/>
+      <rect width="400" height="300" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="400" height="300" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      <rect x="0" y="0" width="400" height="38" fill="#161b22" rx="10"/><rect x="0" y="28" width="400" height="10" fill="#161b22"/><text x="200" y="24" font-size="13" fill="#f0f6fc" text-anchor="middle" font-family="monospace" font-weight="bold" letter-spacing="1">scene15</text><rect x="354" y="8" width="38" height="18" rx="9" fill="#30363d"/><text x="373" y="21" font-size="9" fill="#8b949e" text-anchor="middle" font-family="monospace">15/15</text>
+
+      <!-- scene content -->
+      <text id="s15-title" x="400" y="108" fill="#f1f5f9" font-size="26" font-weight="700" text-anchor="middle" opacity="0">
+            Summary of Ohm's Law
+            <animate attributeName="opacity" from="0" to="1" begin="99.400s" dur="0.8s" repeatCount="1" fill="freeze"/>
+          </text>
+        <rect id="s15-summary-card" x="160" y="390" width="480" height="60" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" begin="99.400s" dur="0.6s" repeatCount="1" fill="freeze"/>
+        </rect>
+        <text id="s15-summary-text" x="400" y="422" fill="#f1f5f9" font-size="20" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Ohm's Law: V = I * R
+            <animate attributeName="opacity" from="0" to="1" begin="99.400s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s15-summary-text-2" x="400" y="442" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Key Points: Voltage, current, resistance
+            <animate attributeName="opacity" from="0" to="1" begin="99.400s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+        <text id="s15-summary-text-3" x="400" y="462" fill="#f1f5f9" font-size="16" text-anchor="middle" dominant-baseline="middle" opacity="0">
+            Applications: Electronics, power systems
+            <animate attributeName="opacity" from="0" to="1" begin="99.400s" dur="0.5s" repeatCount="1" fill="freeze"/>
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="74" cy="288" r="3" fill="#30363d"/> <circle cx="92" cy="288" r="3" fill="#30363d"/> <circle cx="110" cy="288" r="3" fill="#30363d"/> <circle cx="128" cy="288" r="3" fill="#30363d"/> <circle cx="146" cy="288" r="3" fill="#30363d"/> <circle cx="164" cy="288" r="3" fill="#30363d"/> <circle cx="182" cy="288" r="3" fill="#30363d"/> <circle cx="200" cy="288" r="3" fill="#30363d"/> <circle cx="218" cy="288" r="3" fill="#30363d"/> <circle cx="236" cy="288" r="3" fill="#30363d"/> <circle cx="254" cy="288" r="3" fill="#30363d"/> <circle cx="272" cy="288" r="3" fill="#30363d"/> <circle cx="290" cy="288" r="3" fill="#30363d"/> <circle cx="308" cy="288" r="3" fill="#30363d"/> <circle cx="326" cy="288" r="5" fill="#58a6ff"/>
+    </g>
+  </g>
+
+</svg>

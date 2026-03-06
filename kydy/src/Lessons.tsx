@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import ClickSpark from './components/ClickSpark'
-import UnifiedSidebar from './components/UnifiedSidebar'
+import UnifiedSidebar from '@/components/UnifiedSidebar'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Message { id: number; role: 'user' | 'ai'; text: string; time: string }
@@ -25,7 +25,6 @@ async function sendChatMessage(message: string, sessionId?: string) {
     return await response.json()
   } catch (error) {
     console.error('Error sending chat message:', error)
-    // Fallback response
     return {
       response: "I'm sorry, I'm having trouble connecting to the server right now. Please try again later.",
       session_id: sessionId || `session_${Date.now()}`
@@ -44,21 +43,21 @@ function renderText(text: string) {
   const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|•[^\n]+)/g)
   return parts.map((part, i) => {
     if (part.startsWith('`') && part.endsWith('`'))
-      return <code key={i} style={{ background: '#e0f2fe', color: '#0891b2', borderRadius: '0.3rem', padding: '0.1em 0.35em', fontFamily: "'JetBrains Mono',monospace", fontSize: '0.82em' }}>{part.slice(1, -1)}</code>
+      return <code key={i} style={{ background: '#f0ebff', color: '#6d28d9', borderRadius: '0.3rem', padding: '0.1em 0.35em', fontFamily: "'JetBrains Mono',monospace", fontSize: '0.82em' }}>{part.slice(1, -1)}</code>
     if (part.startsWith('**') && part.endsWith('**'))
-      return <strong key={i} style={{ color: '#1e40af', fontWeight: 700 }}>{part.slice(2, -2)}</strong>  // Focus blue for bold text
+      return <strong key={i} style={{ color: '#4c1d95', fontWeight: 700 }}>{part.slice(2, -2)}</strong>
     if (part.startsWith('*') && part.endsWith('*'))
-      return <em key={i} style={{ color: '#0891b2' }}>{part.slice(1, -1)}</em>  // Teal for italic text
+      return <em key={i} style={{ color: '#6d28d9' }}>{part.slice(1, -1)}</em>
     if (part.startsWith('•'))
       return <div key={i} style={{ display: 'flex', gap: '0.5rem', margin: '0.25rem 0' }}>
-        <span style={{ color: '#059669', flexShrink: 0 }}>◆</span>  // Forest green for bullet points
+        <span style={{ color: '#a78bfa', flexShrink: 0 }}>◆</span>
         <span>{part.slice(1).trim()}</span>
       </div>
     return part.split('\n').map((line, j) => <span key={j}>{line}{j < part.split('\n').length - 1 && <br />}</span>)
   })
 }
 
-function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
+function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: (id: string) => void }) {
   const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES)
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
@@ -82,7 +81,6 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
     try {
       const response = await sendChatMessage(input, sessionId)
       
-      // Update session ID if this is the first message
       if (!sessionId) {
         setSessionId(response.session_id)
       }
@@ -98,14 +96,13 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
         setMessages(prev => [...prev, aiMessage])
         setTyping(false)
         onSpeak(false)
-      }, 1500) // Simulate some processing time
+      }, 1500)
       
     } catch (error) {
       console.error('Error in chat:', error)
       setTyping(false)
       onSpeak(false)
       
-      // Add error message
       const errorMessage = {
         id: Date.now() + 1,
         role: 'ai' as const,
@@ -119,29 +116,55 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#fff', overflow: 'hidden', position: 'relative' }}>
       {/* Header */}
-      <div style={{ padding: '0.9rem 1.2rem', borderBottom: '1px solid #e0f2fe', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>  // Teal border
+      <div style={{ padding: '0.9rem 1.2rem', borderBottom: '1px solid #f0ebff', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
           <div style={{
             width: '2.2rem', height: '2.2rem', borderRadius: '50%',
-            background: 'linear-gradient(135deg,#1e40af,#0891b2)',  // Focus blue to teal
+            background: 'linear-gradient(135deg,#8b5cf6,#a855f7)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '1rem', boxShadow: '0 0 0.8rem rgba(30,64,175,0.35)',  // Focus blue glow
+            fontSize: '1rem', boxShadow: '0 0 0.8rem rgba(124,58,237,0.35)',
           }}>🤖</div>
           <div>
             <div style={{ fontSize: '0.82rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: '#1e1b4b' }}>KYDY AI Tutor</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
               <span style={{ width: '0.45rem', height: '0.45rem', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
-              <span style={{ fontSize: '0.62rem', fontFamily: "'DM Sans',sans-serif", color: '#6b7280' }}>Online · Specialized in React</span>
+              <span style={{ fontSize: '0.62rem', fontFamily: "'DM Sans',sans-serif", color: '#6b7280' }}>Online</span>
             </div>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '0.4rem' }}>
-          {['📎', '⚙'].map(icon => (
-            <button key={icon} style={{ width: '1.9rem', height: '1.9rem', borderRadius: '0.45rem', border: '1px solid #e5e7eb', background: '#fff', cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.15s' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#f5f3ff'}
-              onMouseLeave={e => e.currentTarget.style.background = '#fff'}
-            >{icon}</button>
-          ))}
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <button 
+            onClick={() => onNav && onNav('visualizer')}
+            style={{ 
+              padding: '0.5rem 1rem', 
+              borderRadius: '0.5rem', 
+              border: '1px solid #7c3aed', 
+              background: 'linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.05))', 
+              color: '#7c3aed', 
+              cursor: 'pointer', 
+              fontSize: '0.75rem', 
+              fontWeight: 600,
+              fontFamily: "'DM Sans',sans-serif",
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              transition: 'all 0.2s',
+              letterSpacing: '0.02em'
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'linear-gradient(135deg,rgba(124,58,237,0.15),rgba(168,85,247,0.1))'
+              e.currentTarget.style.transform = 'translateY(-1px)'
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(124,58,237,0.2)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.05))'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}
+          >
+            <span style={{ fontSize: '0.9rem' }}>📊</span>
+            Visualizer
+          </button>
         </div>
       </div>
 
@@ -149,7 +172,6 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
       <div style={{ flex: 1, overflowY: 'auto', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {messages.map(msg => (
           <div key={msg.id} style={{ display: 'flex', flexDirection: msg.role === 'user' ? 'row-reverse' : 'row', gap: '0.6rem', alignItems: 'flex-start' }}>
-            {/* Avatar */}
             {msg.role === 'ai' ? (
               <div style={{ width: '1.9rem', height: '1.9rem', borderRadius: '50%', background: 'linear-gradient(135deg,#8b5cf6,#a855f7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', flexShrink: 0, boxShadow: '0 0 0.5rem rgba(124,58,237,0.25)' }}>🤖</div>
             ) : (
@@ -188,7 +210,7 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
 
       {/* Suggested questions */}
       <div style={{ padding: '0.5rem 1.2rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap', borderTop: '1px solid #f5f3ff' }}>
-        {['What is useCallback?', 'Explain cleanup functions', 'Show me an example'].map(q => (
+        {['What is photosynthesis?', 'Advantages of photosynthesis', 'Show me an example'].map(q => (
           <button key={q} onClick={() => setInput(q)} style={{
             padding: '0.3rem 0.7rem', borderRadius: '2rem', border: '1px solid #ddd6fe',
             background: '#faf9ff', color: '#7c3aed', fontSize: '0.62rem',
@@ -216,11 +238,12 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
             onFocus={() => setInputFocused(true)}
             onBlur={() => setInputFocused(false)}
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() }}}
-            placeholder="Ask anything about React Hooks..."
+            placeholder="Ask anything..."
             rows={1}
             style={{
               flex: 1, background: 'none', border: 'none', outline: 'none', resize: 'none',
-              fontSize: '0.78rem', fontFamily: "'DM Sans',sans-serif", color: '#1e1b4b',
+              fontSize: '0.95rem', /* ← increased from 0.78rem */
+              fontFamily: "'DM Sans',sans-serif", color: '#1e1b4b',
               lineHeight: 1.5, maxHeight: '6rem', overflowY: 'auto',
             }}
           />
@@ -273,19 +296,17 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
       `}</style>
 
       <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1e1b4b', overflow: 'hidden' }}>
-        {/* Unified sidebar with chat history */}
         <UnifiedSidebar 
           active="lessons" 
-          onNav={id => onNav && onNav(id)} 
+          onNav={(id: string) => onNav && onNav(id)} 
           variant="light"
           showChatHistory={true}
           onChatHistorySelect={setActiveSession}
           activeChatSession={activeSession}
         />
 
-        {/* Main chat area */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <ChatPanel onSpeak={() => {}} />
+          <ChatPanel onSpeak={() => {}} onNav={onNav} />
         </div>  
       </div>
     </ClickSpark>
