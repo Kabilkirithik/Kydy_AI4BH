@@ -58,7 +58,7 @@ function renderText(text: string) {
   })
 }
 
-function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
+function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: (id: string) => void }) {
   const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES)
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
@@ -135,13 +135,39 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
             </div>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '0.4rem' }}>
-          {['📎', '⚙'].map(icon => (
-            <button key={icon} style={{ width: '1.9rem', height: '1.9rem', borderRadius: '0.45rem', border: '1px solid #e5e7eb', background: '#fff', cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.15s' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#f5f3ff'}
-              onMouseLeave={e => e.currentTarget.style.background = '#fff'}
-            >{icon}</button>
-          ))}
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <button 
+            onClick={() => onNav && onNav('visualizer')}
+            style={{ 
+              padding: '0.5rem 1rem', 
+              borderRadius: '0.5rem', 
+              border: '1px solid #7c3aed', 
+              background: 'linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.05))', 
+              color: '#7c3aed', 
+              cursor: 'pointer', 
+              fontSize: '0.75rem', 
+              fontWeight: 600,
+              fontFamily: "'DM Sans',sans-serif",
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              transition: 'all 0.2s',
+              letterSpacing: '0.02em'
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'linear-gradient(135deg,rgba(124,58,237,0.15),rgba(168,85,247,0.1))'
+              e.currentTarget.style.transform = 'translateY(-1px)'
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(124,58,237,0.2)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.05))'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}
+          >
+            <span style={{ fontSize: '0.9rem' }}>📊</span>
+            Visualizer
+          </button>
         </div>
       </div>
 
@@ -285,7 +311,7 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
 
         {/* Main chat area */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <ChatPanel onSpeak={() => {}} />
+          <ChatPanel onSpeak={() => {}} onNav={onNav} />
         </div>  
       </div>
     </ClickSpark>
