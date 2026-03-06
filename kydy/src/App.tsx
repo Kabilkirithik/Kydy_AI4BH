@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, CSSProperties } from 'react'
 import Dashboard from './Dashboard'
 import LessonsPage from './Lessons'
 import NotesPage from './Notes'
-import VisualizerPage from '@/Visualizer'
+import VisualizerPage from './Visualizer'
 import ClickSpark from './components/ClickSpark'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
