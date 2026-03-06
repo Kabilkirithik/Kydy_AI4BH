@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Circuit SVG Asset Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #0d0f14;
+    --surface:   #13161f;
+    --card:      #1a1e2a;
+    --border:    #252a38;
+    --accent:    #00d4ff;
+    --accent2:   #7c6cff;
+    --accent3:   #00ff9d;
+    --warn:      #ff6b35;
+    --text:      #e2e8f0;
+    --muted:     #64748b;
+    --stroke:    #00d4ff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: linear-gradient(135deg, #0d0f14 0%, #13161f 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(20px);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .logo-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .logo-text { line-height: 1; }
+  .logo-title {
+    font-size: 18px; font-weight: 700; letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .logo-sub { font-size: 9px; color: var(--muted); letter-spacing: 3px; margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+  .header-stats { display: flex; gap: 32px; }
+  .stat { text-align: center; }
+  .stat-val { font-size: 22px; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+  .stat-label { font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+
+  /* ── Layout ── */
+  .layout { display: flex; min-height: calc(100vh - 101px); }
+
+  /* ── Sidebar ── */
+  aside {
+    width: 220px; flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    position: sticky; top: 101px; height: calc(100vh - 101px);
+    overflow-y: auto;
+  }
+  .sidebar-section { padding: 0 16px; margin-bottom: 24px; }
+  .sidebar-label { font-size: 9px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; padding: 0 8px; font-family: 'JetBrains Mono', monospace; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: 8px; cursor: pointer;
+    font-size: 12px; font-weight: 500; color: var(--muted);
+    transition: all 0.2s; border: none; background: none; width: 100%; text-align: left;
+  }
+  .nav-btn:hover { background: rgba(0,212,255,0.06); color: var(--text); }
+  .nav-btn.active { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); }
+  .nav-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── Main ── */
+  main { flex: 1; padding: 40px 48px; overflow-y: auto; }
+
+  .section-header {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
+  }
+  .section-title {
+    font-size: 22px; font-weight: 700; color: var(--text);
+  }
+  .section-count {
+    background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2);
+    color: var(--accent); border-radius: 20px; padding: 3px 12px;
+    font-size: 11px; font-family: 'JetBrains Mono', monospace; font-weight: 600;
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  /* ── Grid ── */
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 60px;
+  }
+
+  /* ── Card ── */
+  .comp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 20px 18px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .comp-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0,212,255,0.05) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .comp-card:hover { border-color: rgba(0,212,255,0.35); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,212,255,0.08); }
+  .comp-card:hover::before { opacity: 1; }
+
+  .comp-card.cat-passive  { --glow: #00d4ff; }
+  .comp-card.cat-active   { --glow: #7c6cff; }
+  .comp-card.cat-source   { --glow: #00ff9d; }
+  .comp-card.cat-logic    { --glow: #ff6b35; }
+  .comp-card.cat-wire     { --glow: #ffd166; }
+  .comp-card.cat-measure  { --glow: #ff9de2; }
+
+  .comp-card:hover { border-color: rgba(var(--glow-r,0),var(--glow-g,212),var(--glow-b,255),0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 24px color-mix(in srgb, var(--glow) 15%, transparent); }
+
+  .svg-wrap {
+    width: 120px; height: 70px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .svg-wrap svg { overflow: visible; }
+
+  .comp-name {
+    font-size: 12px; font-weight: 600; color: var(--text); text-align: center; letter-spacing: 0.3px;
+  }
+  .comp-tag {
+    font-size: 9px; color: var(--muted); font-family: 'JetBrains Mono', monospace;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2px 7px;
+  }
+
+  .copy-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(0,212,255,0.15); color: var(--accent);
+    border: 1px solid rgba(0,212,255,0.3); border-radius: 5px;
+    font-size: 9px; padding: 3px 7px; font-family: 'JetBrains Mono', monospace;
+    opacity: 0; transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .comp-card:hover .copy-badge { opacity: 1; }
+
+  /* ── Toast ── */
+  #toast {
+    position: fixed; bottom: 32px; right: 32px;
+    background: var(--card); border: 1px solid rgba(0,255,157,0.3);
+    color: var(--accent3); border-radius: 10px;
+    padding: 12px 20px; font-size: 13px; font-weight: 500;
+    transform: translateY(80px); opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999; display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── Search ── */
+  .search-bar {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 16px; margin-bottom: 36px;
+  }
+  .search-bar input {
+    background: none; border: none; outline: none;
+    color: var(--text); font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; flex: 1;
+  }
+  .search-bar input::placeholder { color: var(--muted); }
+  .search-icon { color: var(--muted); font-size: 16px; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .hidden { display: none !important; }
+  .section-block { }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-text">
+      <div class="logo-title">CIRCUIT.SVG</div>
+      <div class="logo-sub">ASSET LIBRARY v1.0</div>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="stat"><div class="stat-val">42</div><div class="stat-label">Components</div></div>
+    <div class="stat"><div class="stat-val">8</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-val">SVG</div><div class="stat-label">Format</div></div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Categories</div>
+      <button class="nav-btn active" onclick="filterCat('all')" id="nav-all">
+        <span class="nav-dot" style="background:#64748b"></span> All Components
+      </button>
+      <button class="nav-btn" onclick="filterCat('wire')" id="nav-wire">
+        <span class="nav-dot" style="background:#ffd166"></span> Wires & Connectors
+      </button>
+      <button class="nav-btn" onclick="filterCat('passive')" id="nav-passive">
+        <span class="nav-dot" style="background:#00d4ff"></span> Passive
+      </button>
+      <button class="nav-btn" onclick="filterCat('source')" id="nav-source">
+        <span class="nav-dot" style="background:#00ff9d"></span> Power Sources
+      </button>
+      <button class="nav-btn" onclick="filterCat('active')" id="nav-active">
+        <span class="nav-dot" style="background:#7c6cff"></span> Active / Semiconductor
+      </button>
+      <button class="nav-btn" onclick="filterCat('logic')" id="nav-logic">
+        <span class="nav-dot" style="background:#ff6b35"></span> Logic Gates
+      </button>
+      <button class="nav-btn" onclick="filterCat('switch')" id="nav-switch">
+        <span class="nav-dot" style="background:#ff9de2"></span> Switches
+      </button>
+      <button class="nav-btn" onclick="filterCat('output')" id="nav-output">
+        <span class="nav-dot" style="background:#a8ff78"></span> Output Devices
+      </button>
+      <button class="nav-btn" onclick="filterCat('measure')" id="nav-measure">
+        <span class="nav-dot" style="background:#ff9de2"></span> Measurement
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Actions</div>
+      <button class="nav-btn" onclick="downloadAll()">
+        <span style="font-size:14px">↓</span> Download All SVGs
+      </button>
+      <button class="nav-btn" onclick="copyAllJSON()">
+        <span style="font-size:14px">{}</span> Export as JSON
+      </button>
+    </div>
+  </aside>
+
+  <main>
+    <div class="search-bar">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="searchInput" placeholder="Search components… resistor, LED, NAND…" oninput="searchComponents()" />
+    </div>
+
+    <!-- WIRES & CONNECTORS -->
+    <div class="section-block" id="sec-wire">
+      <div class="section-header">
+        <h2 class="section-title">Wires & Connectors</h2>
+        <span class="section-count">6</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="component-grid">
+
+        <!-- Wire Straight -->
+        <div class="comp-card cat-wire" onclick="copyComponent(this)" data-cat="wire" data-name="Wire Straight">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="120" height="30" viewBox="0 0 120 30">
+              <line x1="0" y1="15" x2="120" y2="15" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="0" cy="15" r="4" fill="#ffd166"/>
+              <circle cx="120" cy="15" r="4" fill="#ffd166"/>
+            </svg>
+          </div>
+          <div class="comp-name">Wire — Straight</div>
+          <div class="comp-tag">wire</div>
+        </div>
+
+        <!-- Wire Corner -->
+        <div class="comp-card cat-wire" onclick="copyComponent(this)" data-cat="wire" data-name="Wire Corner">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="80" height="70" viewBox="0 0 80 70">
+              <polyline points="5,5 5,65 75,65" fill="none" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="5" cy="5" r="4" fill="#ffd166"/>
+              <circle cx="75" cy="65" r="4" fill="#ffd166"/>
+            </svg>
+          </div>
+          <div class="comp-name">Wire — Corner</div>
+          <div class="comp-tag">wire</div>
+        </div>
+
+        <!-- Wire T-Junction -->
+        <div class="comp-card cat-wire" onclick="copyComponent(this)" data-cat="wire" data-name="Wire T-Junction">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="60" viewBox="0 0 100 60">
+              <line x1="0" y1="30" x2="100" y2="30" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="50" y1="30" x2="50" y2="60" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="50" cy="30" r="5" fill="#ffd166"/>
+              <circle cx="0" cy="30" r="4" fill="#ffd166"/>
+              <circle cx="100" cy="30" r="4" fill="#ffd166"/>
+              <circle cx="50" cy="60" r="4" fill="#ffd166"/>
+            </svg>
+          </div>
+          <div class="comp-name">Wire — T Junction</div>
+          <div class="comp-tag">junction</div>
+        </div>
+
+        <!-- Wire Crossover -->
+        <div class="comp-card cat-wire" onclick="copyComponent(this)" data-cat="wire" data-name="Wire Crossover">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="60" viewBox="0 0 100 60">
+              <line x1="0" y1="30" x2="42" y2="30" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M42,30 Q50,12 58,30" fill="none" stroke="#ffd166" stroke-width="2.5"/>
+              <line x1="58" y1="30" x2="100" y2="30" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="50" y1="0" x2="50" y2="60" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="0" cy="30" r="4" fill="#ffd166"/>
+              <circle cx="100" cy="30" r="4" fill="#ffd166"/>
+              <circle cx="50" cy="0" r="4" fill="#ffd166"/>
+              <circle cx="50" cy="60" r="4" fill="#ffd166"/>
+            </svg>
+          </div>
+          <div class="comp-name">Wire — Crossover</div>
+          <div class="comp-tag">crossover</div>
+        </div>
+
+        <!-- Ground -->
+        <div class="comp-card cat-wire" onclick="copyComponent(this)" data-cat="wire" data-name="Ground">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="60" height="70" viewBox="0 0 60 70">
+              <line x1="30" y1="0" x2="30" y2="28" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="6" y1="28" x2="54" y2="28" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="14" y1="38" x2="46" y2="38" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="22" y1="48" x2="38" y2="48" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="30" cy="0" r="4" fill="#ffd166"/>
+            </svg>
+          </div>
+          <div class="comp-name">Ground</div>
+          <div class="comp-tag">GND</div>
+        </div>
+
+        <!-- Node / Dot -->
+        <div class="comp-card cat-wire" onclick="copyComponent(this)" data-cat="wire" data-name="Node Dot">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="7" fill="#ffd166"/>
+              <circle cx="30" cy="30" r="12" fill="none" stroke="#ffd166" stroke-width="1" opacity="0.4"/>
+              <circle cx="30" cy="30" r="18" fill="none" stroke="#ffd166" stroke-width="0.5" opacity="0.2"/>
+            </svg>
+          </div>
+          <div class="comp-name">Node / Dot</div>
+          <div class="comp-tag">node</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PASSIVE -->
+    <div class="section-block" id="sec-passive">
+      <div class="section-header">
+        <h2 class="section-title">Passive Components</h2>
+        <span class="section-count">8</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="component-grid">
+
+        <!-- Resistor (US/IEEE) -->
+        <div class="comp-card cat-passive" onclick="copyComponent(this)" data-cat="passive" data-name="Resistor US">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="120" height="40" viewBox="0 0 120 40">
+              <line x1="0" y1="20" x2="25" y2="20" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <rect x="25" y="10" width="70" height="20" rx="3" fill="none" stroke="#00d4ff" stroke-width="2"/>
+              <line x1="95" y1="20" x2="120" y2="20" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="20" r="3.5" fill="#00d4ff"/>
+              <circle cx="120" cy="20" r="3.5" fill="#00d4ff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Resistor (US/IEEE)</div>
+          <div class="comp-tag">R — Ω</div>
+        </div>
+
+        <!-- Resistor (IEC) -->
+        <div class="comp-card cat-passive" onclick="copyComponent(this)" data-cat="passive" data-name="Resistor IEC">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="120" height="40" viewBox="0 0 120 40">
+              <line x1="0" y1="20" x2="22" y2="20" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <polyline points="22,20 28,8 36,32 44,8 52,32 60,8 68,32 76,8 84,32 90,20 98,20" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="98" y1="20" x2="120" y2="20" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="20" r="3.5" fill="#00d4ff"/>
+              <circle cx="120" cy="20" r="3.5" fill="#00d4ff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Resistor (IEC/Euro)</div>
+          <div class="comp-tag">R — Ω</div>
+        </div>
+
+        <!-- Capacitor -->
+        <div class="comp-card cat-passive" onclick="copyComponent(this)" data-cat="passive" data-name="Capacitor">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="50" viewBox="0 0 100 50">
+              <line x1="0" y1="25" x2="42" y2="25" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="42" y1="8" x2="42" y2="42" stroke="#00d4ff" stroke-width="3" stroke-linecap="round"/>
+              <line x1="58" y1="8" x2="58" y2="42" stroke="#00d4ff" stroke-width="3" stroke-linecap="round"/>
+              <line x1="58" y1="25" x2="100" y2="25" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="25" r="3.5" fill="#00d4ff"/>
+              <circle cx="100" cy="25" r="3.5" fill="#00d4ff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Capacitor</div>
+          <div class="comp-tag">C — F</div>
+        </div>
+
+        <!-- Electrolytic Capacitor -->
+        <div class="comp-card cat-passive" onclick="copyComponent(this)" data-cat="passive" data-name="Capacitor Electrolytic">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="56" viewBox="0 0 100 56">
+              <line x1="0" y1="28" x2="42" y2="28" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="42" y1="10" x2="42" y2="46" stroke="#00d4ff" stroke-width="3" stroke-linecap="round"/>
+              <path d="M58,10 Q70,28 58,46" fill="none" stroke="#00d4ff" stroke-width="3" stroke-linecap="round"/>
+              <line x1="58" y1="28" x2="100" y2="28" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <text x="36" y="8" fill="#00d4ff" font-size="11" font-family="JetBrains Mono" font-weight="600">+</text>
+              <circle cx="0" cy="28" r="3.5" fill="#00d4ff"/>
+              <circle cx="100" cy="28" r="3.5" fill="#00d4ff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Capacitor — Electrolytic</div>
+          <div class="comp-tag">C+ — polarized</div>
+        </div>
+
+        <!-- Inductor -->
+        <div class="comp-card cat-passive" onclick="copyComponent(this)" data-cat="passive" data-name="Inductor">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="120" height="40" viewBox="0 0 120 40">
+              <line x1="0" y1="25" x2="18" y2="25" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18,25 Q22,8 30,25 Q34,8 42,25 Q46,8 54,25 Q58,8 66,25 Q70,8 78,25 Q82,8 90,25 Q94,8 102,25" fill="none" stroke="#00d4ff" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="102" y1="25" x2="120" y2="25" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="25" r="3.5" fill="#00d4ff"/>
+              <circle cx="120" cy="25" r="3.5" fill="#00d4ff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Inductor</div>
+          <div class="comp-tag">L — H</div>
+        </div>
+
+        <!-- Transformer -->
+        <div class="comp-card cat-passive" onclick="copyComponent(this)" data-cat="passive" data-name="Transformer">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="120" height="70" viewBox="0 0 120 70">
+              <line x1="0" y1="20" x2="20" y2="20" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="50" x2="20" y2="50" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M20,20 Q24,10 28,20 Q32,10 36,20 Q40,10 44,20 Q48,10 52,20" fill="none" stroke="#00d4ff" stroke-width="2.2"/>
+              <path d="M68,20 Q72,10 76,20 Q80,10 84,20 Q88,10 92,20 Q96,10 100,20" fill="none" stroke="#00d4ff" stroke-width="2.2"/>
+              <path d="M20,50 Q24,60 28,50 Q32,60 36,50 Q40,60 44,50 Q48,60 52,50" fill="none" stroke="#00d4ff" stroke-width="2.2"/>
+              <path d="M68,50 Q72,60 76,50 Q80,60 84,50 Q88,60 92,50 Q96,60 100,50" fill="none" stroke="#00d4ff" stroke-width="2.2"/>
+              <line x1="58" y1="12" x2="58" y2="58" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
+              <line x1="62" y1="12" x2="62" y2="58" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
+              <line x1="100" y1="20" x2="120" y2="20" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="100" y1="50" x2="120" y2="50" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="comp-name">Transformer</div>
+          <div class="comp-tag">T — coupled</div>
+        </div>
+
+        <!-- Variable Resistor / Potentiometer -->
+        <div class="comp-card cat-passive" onclick="copyComponent(this)" data-cat="passive" data-name="Potentiometer">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="120" height="60" viewBox="0 0 120 60">
+              <line x1="0" y1="25" x2="25" y2="25" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <rect x="25" y="15" width="70" height="20" rx="3" fill="none" stroke="#00d4ff" stroke-width="2"/>
+              <line x1="95" y1="25" x2="120" y2="25" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="60" y1="35" x2="60" y2="50" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/>
+              <polygon points="56,28 64,28 60,38" fill="#00d4ff" opacity="0.8"/>
+              <circle cx="0" cy="25" r="3.5" fill="#00d4ff"/>
+              <circle cx="120" cy="25" r="3.5" fill="#00d4ff"/>
+              <circle cx="60" cy="52" r="3.5" fill="#00d4ff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Potentiometer</div>
+          <div class="comp-tag">VR — variable R</div>
+        </div>
+
+        <!-- Crystal -->
+        <div class="comp-card cat-passive" onclick="copyComponent(this)" data-cat="passive" data-name="Crystal Oscillator">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="50" viewBox="0 0 100 50">
+              <line x1="0" y1="25" x2="30" y2="25" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="30" y1="10" x2="30" y2="40" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="34" y="12" width="32" height="26" rx="3" fill="none" stroke="#00d4ff" stroke-width="2"/>
+              <line x1="66" y1="10" x2="66" y2="40" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="66" y1="25" x2="100" y2="25" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="25" r="3.5" fill="#00d4ff"/>
+              <circle cx="100" cy="25" r="3.5" fill="#00d4ff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Crystal Oscillator</div>
+          <div class="comp-tag">XTAL — Hz</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- POWER SOURCES -->
+    <div class="section-block" id="sec-source">
+      <div class="section-header">
+        <h2 class="section-title">Power Sources</h2>
+        <span class="section-count">5</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="component-grid">
+
+        <!-- Battery Cell -->
+        <div class="comp-card cat-source" onclick="copyComponent(this)" data-cat="source" data-name="Battery Cell">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="50" viewBox="0 0 100 50">
+              <line x1="0" y1="25" x2="38" y2="25" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <line x1="38" y1="10" x2="38" y2="40" stroke="#00ff9d" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="50" y1="16" x2="50" y2="34" stroke="#00ff9d" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="62" y1="10" x2="62" y2="40" stroke="#00ff9d" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="62" y1="25" x2="100" y2="25" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <text x="32" y="9" fill="#00ff9d" font-size="10" font-family="JetBrains Mono" font-weight="700">+</text>
+              <text x="56" y="9" fill="#00ff9d" font-size="10" font-family="JetBrains Mono" font-weight="700">−</text>
+              <circle cx="0" cy="25" r="3.5" fill="#00ff9d"/>
+              <circle cx="100" cy="25" r="3.5" fill="#00ff9d"/>
+            </svg>
+          </div>
+          <div class="comp-name">Battery — Cell</div>
+          <div class="comp-tag">V — DC</div>
+        </div>
+
+        <!-- Battery Pack -->
+        <div class="comp-card cat-source" onclick="copyComponent(this)" data-cat="source" data-name="Battery Pack">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="120" height="50" viewBox="0 0 120 50">
+              <line x1="0" y1="25" x2="18" y2="25" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <line x1="18" y1="10" x2="18" y2="40" stroke="#00ff9d" stroke-width="3" stroke-linecap="round"/>
+              <line x1="27" y1="15" x2="27" y2="35" stroke="#00ff9d" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="36" y1="10" x2="36" y2="40" stroke="#00ff9d" stroke-width="3" stroke-linecap="round"/>
+              <line x1="45" y1="15" x2="45" y2="35" stroke="#00ff9d" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="54" y1="10" x2="54" y2="40" stroke="#00ff9d" stroke-width="3" stroke-linecap="round"/>
+              <line x1="63" y1="15" x2="63" y2="35" stroke="#00ff9d" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="72" y1="10" x2="72" y2="40" stroke="#00ff9d" stroke-width="3" stroke-linecap="round"/>
+              <line x1="72" y1="25" x2="120" y2="25" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <text x="11" y="9" fill="#00ff9d" font-size="9" font-family="JetBrains Mono" font-weight="700">+</text>
+              <text x="65" y="9" fill="#00ff9d" font-size="9" font-family="JetBrains Mono" font-weight="700">−</text>
+              <circle cx="0" cy="25" r="3.5" fill="#00ff9d"/>
+              <circle cx="120" cy="25" r="3.5" fill="#00ff9d"/>
+            </svg>
+          </div>
+          <div class="comp-name">Battery — Pack</div>
+          <div class="comp-tag">VBAT — multi-cell</div>
+        </div>
+
+        <!-- DC Voltage Source -->
+        <div class="comp-card cat-source" onclick="copyComponent(this)" data-cat="source" data-name="DC Voltage Source">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="50" y1="0" x2="50" y2="18" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="35" r="17" fill="none" stroke="#00ff9d" stroke-width="2"/>
+              <text x="50" y="30" fill="#00ff9d" font-size="12" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">+</text>
+              <line x1="42" y1="38" x2="58" y2="38" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <line x1="50" y1="52" x2="50" y2="70" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="0" r="3.5" fill="#00ff9d"/>
+              <circle cx="50" cy="70" r="3.5" fill="#00ff9d"/>
+            </svg>
+          </div>
+          <div class="comp-name">DC Voltage Source</div>
+          <div class="comp-tag">VDC — V</div>
+        </div>
+
+        <!-- AC Voltage Source -->
+        <div class="comp-card cat-source" onclick="copyComponent(this)" data-cat="source" data-name="AC Voltage Source">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="50" y1="0" x2="50" y2="18" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="35" r="17" fill="none" stroke="#00ff9d" stroke-width="2"/>
+              <path d="M37,35 Q41,25 45,35 Q49,45 53,35 Q57,25 63,35" fill="none" stroke="#00ff9d" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="50" y1="52" x2="50" y2="70" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="0" r="3.5" fill="#00ff9d"/>
+              <circle cx="50" cy="70" r="3.5" fill="#00ff9d"/>
+            </svg>
+          </div>
+          <div class="comp-name">AC Voltage Source</div>
+          <div class="comp-tag">VAC — ~V</div>
+        </div>
+
+        <!-- Current Source -->
+        <div class="comp-card cat-source" onclick="copyComponent(this)" data-cat="source" data-name="Current Source">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="50" y1="0" x2="50" y2="18" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="35" r="17" fill="none" stroke="#00ff9d" stroke-width="2"/>
+              <line x1="50" y1="25" x2="50" y2="45" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="44,40 56,40 50,47" fill="#00ff9d"/>
+              <line x1="50" y1="52" x2="50" y2="70" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="0" r="3.5" fill="#00ff9d"/>
+              <circle cx="50" cy="70" r="3.5" fill="#00ff9d"/>
+            </svg>
+          </div>
+          <div class="comp-name">Current Source</div>
+          <div class="comp-tag">I — A</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ACTIVE / SEMICONDUCTOR -->
+    <div class="section-block" id="sec-active">
+      <div class="section-header">
+        <h2 class="section-title">Active / Semiconductor</h2>
+        <span class="section-count">8</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="component-grid">
+
+        <!-- Diode -->
+        <div class="comp-card cat-active" onclick="copyComponent(this)" data-cat="active" data-name="Diode">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="40" viewBox="0 0 110 40">
+              <line x1="0" y1="20" x2="35" y2="20" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="35,8 35,32 65,20" fill="#7c6cff" opacity="0.6"/>
+              <polygon points="35,8 35,32 65,20" fill="none" stroke="#7c6cff" stroke-width="2"/>
+              <line x1="65" y1="8" x2="65" y2="32" stroke="#7c6cff" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="65" y1="20" x2="110" y2="20" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="20" r="3.5" fill="#7c6cff"/>
+              <circle cx="110" cy="20" r="3.5" fill="#7c6cff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Diode</div>
+          <div class="comp-tag">D — rectifier</div>
+        </div>
+
+        <!-- Zener Diode -->
+        <div class="comp-card cat-active" onclick="copyComponent(this)" data-cat="active" data-name="Zener Diode">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="44" viewBox="0 0 110 44">
+              <line x1="0" y1="22" x2="35" y2="22" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="35,10 35,34 65,22" fill="#7c6cff" opacity="0.6"/>
+              <polygon points="35,10 35,34 65,22" fill="none" stroke="#7c6cff" stroke-width="2"/>
+              <path d="M58,10 L65,10 L65,34 L72,34" fill="none" stroke="#7c6cff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="65" y1="22" x2="110" y2="22" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="22" r="3.5" fill="#7c6cff"/>
+              <circle cx="110" cy="22" r="3.5" fill="#7c6cff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Zener Diode</div>
+          <div class="comp-tag">Z — voltage reg</div>
+        </div>
+
+        <!-- LED -->
+        <div class="comp-card cat-active" onclick="copyComponent(this)" data-cat="active" data-name="LED">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="50" viewBox="0 0 110 50">
+              <line x1="0" y1="25" x2="35" y2="25" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="35,13 35,37 62,25" fill="#7c6cff" opacity="0.6"/>
+              <polygon points="35,13 35,37 62,25" fill="none" stroke="#7c6cff" stroke-width="2"/>
+              <line x1="62" y1="13" x2="62" y2="37" stroke="#7c6cff" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="62" y1="25" x2="110" y2="25" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="68" y1="14" x2="78" y2="4" stroke="#7c6cff" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+              <line x1="75" y1="18" x2="85" y2="8" stroke="#7c6cff" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+              <polygon points="78,4 73,4 78,9" fill="#7c6cff" opacity="0.8"/>
+              <polygon points="85,8 80,8 85,13" fill="#7c6cff" opacity="0.8"/>
+              <circle cx="0" cy="25" r="3.5" fill="#7c6cff"/>
+              <circle cx="110" cy="25" r="3.5" fill="#7c6cff"/>
+            </svg>
+          </div>
+          <div class="comp-name">LED</div>
+          <div class="comp-tag">LED — emitter</div>
+        </div>
+
+        <!-- NPN Transistor -->
+        <div class="comp-card cat-active" onclick="copyComponent(this)" data-cat="active" data-name="NPN Transistor">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="0" y1="35" x2="32" y2="35" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="16" x2="32" y2="54" stroke="#7c6cff" stroke-width="3" stroke-linecap="round"/>
+              <line x1="32" y1="25" x2="62" y2="10" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="45" x2="62" y2="60" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="54,56 62,60 56,50" fill="#7c6cff"/>
+              <line x1="62" y1="10" x2="62" y2="0" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="62" y1="60" x2="62" y2="70" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="35" r="3.5" fill="#7c6cff"/>
+              <circle cx="62" cy="0" r="3.5" fill="#7c6cff"/>
+              <circle cx="62" cy="70" r="3.5" fill="#7c6cff"/>
+              <text x="70" y="14" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">C</text>
+              <text x="70" y="64" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">E</text>
+              <text x="0" y="30" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">B</text>
+            </svg>
+          </div>
+          <div class="comp-name">NPN Transistor</div>
+          <div class="comp-tag">BJT — NPN</div>
+        </div>
+
+        <!-- PNP Transistor -->
+        <div class="comp-card cat-active" onclick="copyComponent(this)" data-cat="active" data-name="PNP Transistor">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="0" y1="35" x2="32" y2="35" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="16" x2="32" y2="54" stroke="#7c6cff" stroke-width="3" stroke-linecap="round"/>
+              <line x1="32" y1="25" x2="62" y2="10" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="45" x2="62" y2="60" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="32,25 40,21 38,31" fill="#7c6cff"/>
+              <line x1="62" y1="10" x2="62" y2="0" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="62" y1="60" x2="62" y2="70" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="35" r="3.5" fill="#7c6cff"/>
+              <circle cx="62" cy="0" r="3.5" fill="#7c6cff"/>
+              <circle cx="62" cy="70" r="3.5" fill="#7c6cff"/>
+              <text x="70" y="14" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">C</text>
+              <text x="70" y="64" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">E</text>
+              <text x="0" y="30" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">B</text>
+            </svg>
+          </div>
+          <div class="comp-name">PNP Transistor</div>
+          <div class="comp-tag">BJT — PNP</div>
+        </div>
+
+        <!-- N-Channel MOSFET -->
+        <div class="comp-card cat-active" onclick="copyComponent(this)" data-cat="active" data-name="N-Channel MOSFET">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="0" y1="35" x2="28" y2="35" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="28" y1="20" x2="28" y2="50" stroke="#7c6cff" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="32" y1="18" x2="32" y2="52" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="22" x2="55" y2="22" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="35" x2="55" y2="35" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="48" x2="55" y2="48" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="55" y1="22" x2="55" y2="10" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="55" y1="48" x2="55" y2="60" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="49,30 55,35 49,40" fill="#7c6cff"/>
+              <circle cx="0" cy="35" r="3.5" fill="#7c6cff"/>
+              <circle cx="55" cy="10" r="3.5" fill="#7c6cff"/>
+              <circle cx="55" cy="60" r="3.5" fill="#7c6cff"/>
+              <text x="60" y="14" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">D</text>
+              <text x="60" y="64" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">S</text>
+              <text x="0" y="30" fill="#7c6cff" font-size="9" font-family="JetBrains Mono">G</text>
+            </svg>
+          </div>
+          <div class="comp-name">N-Channel MOSFET</div>
+          <div class="comp-tag">NMOS — FET</div>
+        </div>
+
+        <!-- Op-Amp -->
+        <div class="comp-card cat-active" onclick="copyComponent(this)" data-cat="active" data-name="Op-Amp">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="70" viewBox="0 0 110 70">
+              <polygon points="20,5 20,65 90,35" fill="none" stroke="#7c6cff" stroke-width="2" stroke-linejoin="round"/>
+              <line x1="0" y1="22" x2="20" y2="22" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="48" x2="20" y2="48" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="90" y1="35" x2="110" y2="35" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <text x="24" y="26" fill="#7c6cff" font-size="13" font-family="JetBrains Mono" font-weight="600">+</text>
+              <text x="24" y="52" fill="#7c6cff" font-size="13" font-family="JetBrains Mono" font-weight="600">−</text>
+              <circle cx="0" cy="22" r="3.5" fill="#7c6cff"/>
+              <circle cx="0" cy="48" r="3.5" fill="#7c6cff"/>
+              <circle cx="110" cy="35" r="3.5" fill="#7c6cff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Op-Amp</div>
+          <div class="comp-tag">OA — amp</div>
+        </div>
+
+        <!-- Voltage Regulator -->
+        <div class="comp-card cat-active" onclick="copyComponent(this)" data-cat="active" data-name="Voltage Regulator">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <line x1="0" y1="30" x2="22" y2="30" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <rect x="22" y="12" width="66" height="36" rx="5" fill="rgba(124,108,255,0.12)" stroke="#7c6cff" stroke-width="2"/>
+              <text x="55" y="34" fill="#7c6cff" font-size="11" font-family="JetBrains Mono" font-weight="600" text-anchor="middle">VReg</text>
+              <line x1="88" y1="30" x2="110" y2="30" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="55" y1="12" x2="55" y2="0" stroke="#7c6cff" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="30" r="3.5" fill="#7c6cff"/>
+              <circle cx="110" cy="30" r="3.5" fill="#7c6cff"/>
+              <circle cx="55" cy="0" r="3.5" fill="#7c6cff"/>
+            </svg>
+          </div>
+          <div class="comp-name">Voltage Regulator</div>
+          <div class="comp-tag">VReg — 78xx</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LOGIC GATES -->
+    <div class="section-block" id="sec-logic">
+      <div class="section-header">
+        <h2 class="section-title">Logic Gates</h2>
+        <span class="section-count">6</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="component-grid">
+
+        <!-- AND Gate -->
+        <div class="comp-card cat-logic" onclick="copyComponent(this)" data-cat="logic" data-name="AND Gate">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <path d="M20,8 L50,8 Q80,8 80,30 Q80,52 50,52 L20,52 Z" fill="rgba(255,107,53,0.1)" stroke="#ff6b35" stroke-width="2"/>
+              <line x1="0" y1="20" x2="20" y2="20" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="40" x2="20" y2="40" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="80" y1="30" x2="110" y2="30" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <text x="42" y="34" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" font-weight="600">&amp;</text>
+              <circle cx="0" cy="20" r="3.5" fill="#ff6b35"/>
+              <circle cx="0" cy="40" r="3.5" fill="#ff6b35"/>
+              <circle cx="110" cy="30" r="3.5" fill="#ff6b35"/>
+            </svg>
+          </div>
+          <div class="comp-name">AND Gate</div>
+          <div class="comp-tag">logic — &amp;</div>
+        </div>
+
+        <!-- OR Gate -->
+        <div class="comp-card cat-logic" onclick="copyComponent(this)" data-cat="logic" data-name="OR Gate">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <path d="M15,8 Q30,8 50,8 Q80,8 82,30 Q80,52 50,52 Q30,52 15,52 Q28,30 15,8 Z" fill="rgba(255,107,53,0.1)" stroke="#ff6b35" stroke-width="2"/>
+              <line x1="0" y1="20" x2="22" y2="20" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="40" x2="22" y2="40" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="82" y1="30" x2="110" y2="30" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <text x="42" y="34" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" font-weight="600">≥1</text>
+              <circle cx="0" cy="20" r="3.5" fill="#ff6b35"/>
+              <circle cx="0" cy="40" r="3.5" fill="#ff6b35"/>
+              <circle cx="110" cy="30" r="3.5" fill="#ff6b35"/>
+            </svg>
+          </div>
+          <div class="comp-name">OR Gate</div>
+          <div class="comp-tag">logic — ≥1</div>
+        </div>
+
+        <!-- NOT Gate -->
+        <div class="comp-card cat-logic" onclick="copyComponent(this)" data-cat="logic" data-name="NOT Gate">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <polygon points="20,10 20,50 70,30" fill="rgba(255,107,53,0.1)" stroke="#ff6b35" stroke-width="2"/>
+              <circle cx="75" cy="30" r="6" fill="none" stroke="#ff6b35" stroke-width="2"/>
+              <line x1="0" y1="30" x2="20" y2="30" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="81" y1="30" x2="110" y2="30" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <text x="33" y="34" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" font-weight="600">1</text>
+              <circle cx="0" cy="30" r="3.5" fill="#ff6b35"/>
+              <circle cx="110" cy="30" r="3.5" fill="#ff6b35"/>
+            </svg>
+          </div>
+          <div class="comp-name">NOT Gate (Inverter)</div>
+          <div class="comp-tag">logic — ¬</div>
+        </div>
+
+        <!-- NAND Gate -->
+        <div class="comp-card cat-logic" onclick="copyComponent(this)" data-cat="logic" data-name="NAND Gate">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <path d="M20,8 L50,8 Q76,8 76,30 Q76,52 50,52 L20,52 Z" fill="rgba(255,107,53,0.1)" stroke="#ff6b35" stroke-width="2"/>
+              <circle cx="81" cy="30" r="5.5" fill="none" stroke="#ff6b35" stroke-width="2"/>
+              <line x1="0" y1="20" x2="20" y2="20" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="40" x2="20" y2="40" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="87" y1="30" x2="110" y2="30" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <text x="37" y="34" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" font-weight="600">&amp;̄</text>
+              <circle cx="0" cy="20" r="3.5" fill="#ff6b35"/>
+              <circle cx="0" cy="40" r="3.5" fill="#ff6b35"/>
+              <circle cx="110" cy="30" r="3.5" fill="#ff6b35"/>
+            </svg>
+          </div>
+          <div class="comp-name">NAND Gate</div>
+          <div class="comp-tag">logic — ¬&amp;</div>
+        </div>
+
+        <!-- XOR Gate -->
+        <div class="comp-card cat-logic" onclick="copyComponent(this)" data-cat="logic" data-name="XOR Gate">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <path d="M20,8 Q35,8 55,8 Q82,8 84,30 Q82,52 55,52 Q35,52 20,52 Q32,30 20,8 Z" fill="rgba(255,107,53,0.1)" stroke="#ff6b35" stroke-width="2"/>
+              <path d="M12,8 Q24,30 12,52" fill="none" stroke="#ff6b35" stroke-width="2"/>
+              <line x1="0" y1="20" x2="24" y2="20" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="40" x2="24" y2="40" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="84" y1="30" x2="110" y2="30" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <text x="42" y="34" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" font-weight="600">=1</text>
+              <circle cx="0" cy="20" r="3.5" fill="#ff6b35"/>
+              <circle cx="0" cy="40" r="3.5" fill="#ff6b35"/>
+              <circle cx="110" cy="30" r="3.5" fill="#ff6b35"/>
+            </svg>
+          </div>
+          <div class="comp-name">XOR Gate</div>
+          <div class="comp-tag">logic — ⊕</div>
+        </div>
+
+        <!-- NOR Gate -->
+        <div class="comp-card cat-logic" onclick="copyComponent(this)" data-cat="logic" data-name="NOR Gate">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <path d="M15,8 Q30,8 50,8 Q78,8 80,30 Q78,52 50,52 Q30,52 15,52 Q28,30 15,8 Z" fill="rgba(255,107,53,0.1)" stroke="#ff6b35" stroke-width="2"/>
+              <circle cx="85" cy="30" r="5.5" fill="none" stroke="#ff6b35" stroke-width="2"/>
+              <line x1="0" y1="20" x2="22" y2="20" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="40" x2="22" y2="40" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <line x1="91" y1="30" x2="110" y2="30" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+              <text x="37" y="34" fill="#ff6b35" font-size="10" font-family="JetBrains Mono" font-weight="600">≥1̄</text>
+              <circle cx="0" cy="20" r="3.5" fill="#ff6b35"/>
+              <circle cx="0" cy="40" r="3.5" fill="#ff6b35"/>
+              <circle cx="110" cy="30" r="3.5" fill="#ff6b35"/>
+            </svg>
+          </div>
+          <div class="comp-name">NOR Gate</div>
+          <div class="comp-tag">logic — ¬∨</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SWITCHES -->
+    <div class="section-block" id="sec-switch">
+      <div class="section-header">
+        <h2 class="section-title">Switches</h2>
+        <span class="section-count">5</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="component-grid">
+
+        <!-- SPST Switch Open -->
+        <div class="comp-card cat-switch" onclick="copyComponent(this)" data-cat="switch" data-name="SPST Switch Open">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="50" viewBox="0 0 110 50">
+              <line x1="0" y1="25" x2="35" y2="25" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="35" cy="25" r="4" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <line x1="39" y1="22" x2="73" y2="10" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="75" cy="25" r="4" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <line x1="75" y1="25" x2="110" y2="25" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="25" r="3.5" fill="#ff9de2"/>
+              <circle cx="110" cy="25" r="3.5" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">SPST — Open</div>
+          <div class="comp-tag">SW — NO</div>
+        </div>
+
+        <!-- SPST Switch Closed -->
+        <div class="comp-card cat-switch" onclick="copyComponent(this)" data-cat="switch" data-name="SPST Switch Closed">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="50" viewBox="0 0 110 50">
+              <line x1="0" y1="25" x2="35" y2="25" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="35" cy="25" r="4" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <line x1="39" y1="25" x2="71" y2="25" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="75" cy="25" r="4" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <line x1="75" y1="25" x2="110" y2="25" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="25" r="3.5" fill="#ff9de2"/>
+              <circle cx="110" cy="25" r="3.5" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">SPST — Closed</div>
+          <div class="comp-tag">SW — NC</div>
+        </div>
+
+        <!-- Push Button NO -->
+        <div class="comp-card cat-switch" onclick="copyComponent(this)" data-cat="switch" data-name="Push Button NO">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <line x1="0" y1="40" x2="38" y2="40" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <line x1="38" y1="28" x2="38" y2="40" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <line x1="72" y1="28" x2="72" y2="40" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <line x1="72" y1="40" x2="110" y2="40" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <line x1="28" y1="28" x2="82" y2="28" stroke="#ff9de2" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="55" y1="28" x2="55" y2="10" stroke="#ff9de2" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3,3"/>
+              <rect x="42" y="4" width="26" height="10" rx="3" fill="rgba(255,157,226,0.15)" stroke="#ff9de2" stroke-width="1.5"/>
+              <circle cx="0" cy="40" r="3.5" fill="#ff9de2"/>
+              <circle cx="110" cy="40" r="3.5" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">Push Button — NO</div>
+          <div class="comp-tag">BTN — momentary</div>
+        </div>
+
+        <!-- SPDT Switch -->
+        <div class="comp-card cat-switch" onclick="copyComponent(this)" data-cat="switch" data-name="SPDT Switch">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="65" viewBox="0 0 110 65">
+              <line x1="0" y1="32" x2="35" y2="32" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="35" cy="32" r="4" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <line x1="39" y1="29" x2="70" y2="14" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="74" cy="14" r="4" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <circle cx="74" cy="52" r="4" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <line x1="74" y1="14" x2="110" y2="14" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <line x1="74" y1="52" x2="110" y2="52" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="32" r="3.5" fill="#ff9de2"/>
+              <circle cx="110" cy="14" r="3.5" fill="#ff9de2"/>
+              <circle cx="110" cy="52" r="3.5" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">SPDT Switch</div>
+          <div class="comp-tag">SW — 3-terminal</div>
+        </div>
+
+        <!-- Relay -->
+        <div class="comp-card cat-switch" onclick="copyComponent(this)" data-cat="switch" data-name="Relay">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="70" viewBox="0 0 110 70">
+              <rect x="30" y="5" width="50" height="60" rx="4" fill="rgba(255,157,226,0.06)" stroke="#ff9de2" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="0" y1="20" x2="30" y2="20" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <line x1="30" y1="14" x2="30" y2="26" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <path d="M30,14 Q40,14 40,20 Q40,26 30,26" fill="none" stroke="#ff9de2" stroke-width="1.8"/>
+              <path d="M30,18 Q38,18 38,20 Q38,22 30,22" fill="none" stroke="#ff9de2" stroke-width="1.8"/>
+              <line x1="40" y1="20" x2="80" y2="20" stroke="#ff9de2" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="0" y1="55" x2="46" y2="55" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="46" cy="55" r="3.5" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <line x1="50" y1="52" x2="74" y2="40" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="76" cy="55" r="3.5" fill="none" stroke="#ff9de2" stroke-width="2"/>
+              <line x1="76" y1="55" x2="110" y2="55" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="20" r="3" fill="#ff9de2"/>
+              <circle cx="0" cy="55" r="3" fill="#ff9de2"/>
+              <circle cx="110" cy="55" r="3" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">Relay</div>
+          <div class="comp-tag">RLY — EM switch</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OUTPUT DEVICES -->
+    <div class="section-block" id="sec-output">
+      <div class="section-header">
+        <h2 class="section-title">Output Devices</h2>
+        <span class="section-count">4</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="component-grid">
+
+        <!-- Buzzer -->
+        <div class="comp-card cat-output" onclick="copyComponent(this)" data-cat="output" data-name="Buzzer">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="90" height="70" viewBox="0 0 90 70">
+              <line x1="45" y1="0" x2="45" y2="16" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <line x1="45" y1="54" x2="45" y2="70" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="45" cy="35" rx="22" ry="19" fill="rgba(168,255,120,0.1)" stroke="#a8ff78" stroke-width="2"/>
+              <path d="M70,20 Q82,35 70,50" fill="none" stroke="#a8ff78" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M76,14 Q93,35 76,56" fill="none" stroke="#a8ff78" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              <text x="45" y="39" fill="#a8ff78" font-size="14" text-anchor="middle">♪</text>
+              <circle cx="45" cy="0" r="3.5" fill="#a8ff78"/>
+              <circle cx="45" cy="70" r="3.5" fill="#a8ff78"/>
+            </svg>
+          </div>
+          <div class="comp-name">Buzzer / Speaker</div>
+          <div class="comp-tag">BZ — audio</div>
+        </div>
+
+        <!-- Motor -->
+        <div class="comp-card cat-output" onclick="copyComponent(this)" data-cat="output" data-name="Motor">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="0" y1="25" x2="22" y2="25" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <line x1="0" y1="45" x2="22" y2="45" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="35" r="25" fill="rgba(168,255,120,0.08)" stroke="#a8ff78" stroke-width="2"/>
+              <text x="50" y="39" fill="#a8ff78" font-size="14" font-weight="700" font-family="JetBrains Mono" text-anchor="middle">M</text>
+              <line x1="75" y1="35" x2="100" y2="35" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="100" cy="35" r="3.5" fill="#a8ff78"/>
+              <circle cx="0" cy="25" r="3.5" fill="#a8ff78"/>
+              <circle cx="0" cy="45" r="3.5" fill="#a8ff78"/>
+            </svg>
+          </div>
+          <div class="comp-name">Motor (DC)</div>
+          <div class="comp-tag">M — mechanical</div>
+        </div>
+
+        <!-- Lamp / Bulb -->
+        <div class="comp-card cat-output" onclick="copyComponent(this)" data-cat="output" data-name="Lamp Bulb">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="0" y1="35" x2="22" y2="35" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="35" r="24" fill="rgba(168,255,120,0.08)" stroke="#a8ff78" stroke-width="2"/>
+              <line x1="42" y1="26" x2="58" y2="44" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <line x1="58" y1="26" x2="42" y2="44" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <line x1="78" y1="35" x2="100" y2="35" stroke="#a8ff78" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="35" r="3.5" fill="#a8ff78"/>
+              <circle cx="100" cy="35" r="3.5" fill="#a8ff78"/>
+            </svg>
+          </div>
+          <div class="comp-name">Lamp / Bulb</div>
+          <div class="comp-tag">L — light</div>
+        </div>
+
+        <!-- 7-Segment Display -->
+        <div class="comp-card cat-output" onclick="copyComponent(this)" data-cat="output" data-name="7-Segment Display">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="60" height="70" viewBox="0 0 60 70">
+              <!-- top -->
+              <line x1="14" y1="5" x2="46" y2="5" stroke="#a8ff78" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- top-left -->
+              <line x1="10" y1="8" x2="10" y2="32" stroke="#a8ff78" stroke-width="3.5" stroke-linecap="round" opacity="0.35"/>
+              <!-- top-right -->
+              <line x1="50" y1="8" x2="50" y2="32" stroke="#a8ff78" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- middle -->
+              <line x1="14" y1="35" x2="46" y2="35" stroke="#a8ff78" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- bottom-left -->
+              <line x1="10" y1="38" x2="10" y2="62" stroke="#a8ff78" stroke-width="3.5" stroke-linecap="round" opacity="0.35"/>
+              <!-- bottom-right -->
+              <line x1="50" y1="38" x2="50" y2="62" stroke="#a8ff78" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- bottom -->
+              <line x1="14" y1="65" x2="46" y2="65" stroke="#a8ff78" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="comp-name">7-Segment Display</div>
+          <div class="comp-tag">DSP — digit</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MEASUREMENT -->
+    <div class="section-block" id="sec-measure">
+      <div class="section-header">
+        <h2 class="section-title">Measurement Instruments</h2>
+        <span class="section-count">4</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="component-grid">
+
+        <!-- Voltmeter -->
+        <div class="comp-card cat-measure" onclick="copyComponent(this)" data-cat="measure" data-name="Voltmeter">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="0" y1="35" x2="22" y2="35" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="35" r="25" fill="rgba(255,157,226,0.08)" stroke="#ff9de2" stroke-width="2"/>
+              <text x="50" y="40" fill="#ff9de2" font-size="15" font-weight="700" font-family="JetBrains Mono" text-anchor="middle">V</text>
+              <line x1="75" y1="35" x2="100" y2="35" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="35" r="3.5" fill="#ff9de2"/>
+              <circle cx="100" cy="35" r="3.5" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">Voltmeter</div>
+          <div class="comp-tag">V — parallel</div>
+        </div>
+
+        <!-- Ammeter -->
+        <div class="comp-card cat-measure" onclick="copyComponent(this)" data-cat="measure" data-name="Ammeter">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="0" y1="35" x2="22" y2="35" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="35" r="25" fill="rgba(255,157,226,0.08)" stroke="#ff9de2" stroke-width="2"/>
+              <text x="50" y="40" fill="#ff9de2" font-size="15" font-weight="700" font-family="JetBrains Mono" text-anchor="middle">A</text>
+              <line x1="75" y1="35" x2="100" y2="35" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="35" r="3.5" fill="#ff9de2"/>
+              <circle cx="100" cy="35" r="3.5" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">Ammeter</div>
+          <div class="comp-tag">A — series</div>
+        </div>
+
+        <!-- Ohmmeter -->
+        <div class="comp-card cat-measure" onclick="copyComponent(this)" data-cat="measure" data-name="Ohmmeter">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="100" height="70" viewBox="0 0 100 70">
+              <line x1="0" y1="35" x2="22" y2="35" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="50" cy="35" r="25" fill="rgba(255,157,226,0.08)" stroke="#ff9de2" stroke-width="2"/>
+              <text x="50" y="40" fill="#ff9de2" font-size="14" font-weight="700" font-family="JetBrains Mono" text-anchor="middle">Ω</text>
+              <line x1="75" y1="35" x2="100" y2="35" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="35" r="3.5" fill="#ff9de2"/>
+              <circle cx="100" cy="35" r="3.5" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">Ohmmeter</div>
+          <div class="comp-tag">Ω — resistance</div>
+        </div>
+
+        <!-- Oscilloscope Probe -->
+        <div class="comp-card cat-measure" onclick="copyComponent(this)" data-cat="measure" data-name="Oscilloscope Probe">
+          <span class="copy-badge">COPY SVG</span>
+          <div class="svg-wrap">
+            <svg width="110" height="60" viewBox="0 0 110 60">
+              <line x1="0" y1="30" x2="22" y2="30" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <rect x="22" y="12" width="66" height="36" rx="5" fill="rgba(255,157,226,0.08)" stroke="#ff9de2" stroke-width="2"/>
+              <path d="M34,36 Q38,20 42,36 Q46,20 54,36 Q62,20 66,36 Q70,20 76,36" fill="none" stroke="#ff9de2" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="88" y1="30" x2="110" y2="30" stroke="#ff9de2" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="30" r="3.5" fill="#ff9de2"/>
+              <circle cx="110" cy="30" r="3.5" fill="#ff9de2"/>
+            </svg>
+          </div>
+          <div class="comp-name">Oscilloscope</div>
+          <div class="comp-tag">OSC — waveform</div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div id="toast">✓ <span id="toast-msg">SVG copied to clipboard!</span></div>
+
+<script>
+  // ── Category filter ──────────────────────────────────────────────────────────
+  function filterCat(cat) {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'))
+    document.getElementById('nav-' + cat).classList.add('active')
+
+    document.querySelectorAll('.comp-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = ''
+      } else {
+        card.style.display = 'none'
+      }
+    })
+
+    document.querySelectorAll('.section-block').forEach(sec => {
+      const visible = sec.querySelectorAll('.comp-card:not([style*="none"])')
+      sec.style.display = (cat === 'all' || visible.length > 0) ? '' : 'none'
+    })
+  }
+
+  // ── Search ────────────────────────────────────────────────────────────────────
+  function searchComponents() {
+    const q = document.getElementById('searchInput').value.toLowerCase()
+    document.querySelectorAll('.comp-card').forEach(card => {
+      const name = (card.dataset.name || '').toLowerCase()
+      const tag  = card.querySelector('.comp-tag')?.textContent.toLowerCase() || ''
+      card.style.display = (!q || name.includes(q) || tag.includes(q)) ? '' : 'none'
+    })
+    document.querySelectorAll('.section-block').forEach(sec => {
+      const visible = [...sec.querySelectorAll('.comp-card')].filter(c => c.style.display !== 'none')
+      sec.style.display = visible.length > 0 ? '' : 'none'
+    })
+    // reset nav
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'))
+    document.getElementById('nav-all').classList.add('active')
+  }
+
+  // ── Copy SVG ──────────────────────────────────────────────────────────────────
+  function copyComponent(card) {
+    const svgEl = card.querySelector('svg')
+    if (!svgEl) return
+    const name = card.dataset.name || 'component'
+
+    // Serialize and wrap with metadata comment
+    const raw = svgEl.outerHTML
+    const wrapped = `<!-- Circuit SVG: ${name} -->\n` + raw
+
+    navigator.clipboard.writeText(wrapped).then(() => {
+      showToast(`"${name}" SVG copied!`)
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea')
+      ta.value = wrapped
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+      showToast(`"${name}" SVG copied!`)
+    })
+  }
+
+  // ── Toast ─────────────────────────────────────────────────────────────────────
+  let toastTimer
+  function showToast(msg) {
+    const toast = document.getElementById('toast')
+    document.getElementById('toast-msg').textContent = msg
+    toast.classList.add('show')
+    clearTimeout(toastTimer)
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200)
+  }
+
+  // ── Download All ──────────────────────────────────────────────────────────────
+  function downloadAll() {
+    const cards = document.querySelectorAll('.comp-card')
+    let combined = `<?xml version="1.0" encoding="UTF-8"?>
+<!-- Circuit SVG Asset Library — All Components -->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">\n`
+    cards.forEach(card => {
+      const name = (card.dataset.name || 'component').replace(/\s+/g, '-').toLowerCase()
+      const svg = card.querySelector('svg')
+      if (svg) {
+        combined += `  <!-- ${card.dataset.name} -->\n`
+        combined += `  <symbol id="${name}" viewBox="${svg.getAttribute('viewBox') || '0 0 100 60'}">\n`
+        combined += '    ' + svg.innerHTML.trim() + '\n'
+        combined += '  </symbol>\n\n'
+      }
+    })
+    combined += '</svg>'
+
+    const blob = new Blob([combined], { type: 'image/svg+xml' })
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = 'circuit-asset-library.svg'
+    a.click()
+    showToast('Downloaded circuit-asset-library.svg!')
+  }
+
+  // ── Export JSON ───────────────────────────────────────────────────────────────
+  function copyAllJSON() {
+    const cards = document.querySelectorAll('.comp-card')
+    const data = []
+    cards.forEach(card => {
+      const svg = card.querySelector('svg')
+      if (svg) {
+        data.push({
+          id: (card.dataset.name || '').replace(/\s+/g, '-').toLowerCase(),
+          name: card.dataset.name,
+          category: card.dataset.cat,
+          tag: card.querySelector('.comp-tag')?.textContent,
+          viewBox: svg.getAttribute('viewBox'),
+          svg: svg.outerHTML,
+        })
+      }
+    })
+    const json = JSON.stringify(data, null, 2)
+    navigator.clipboard.writeText(json).then(() => {
+      showToast('JSON manifest copied to clipboard!')
+    })
+  }
+</script>
+</body>
+</html>
