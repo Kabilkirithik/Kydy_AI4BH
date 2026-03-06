@@ -136,13 +136,22 @@ class UserRepository:
 
     
     def get_user_by_email(self, email: str):
-        response = self.table.query(
-            IndexName="EmailIndex",
-            KeyConditionExpression=Key("email").eq(email)
-        )
-
-        items = response.get("Items", [])
-        return items[0] if items else None
+        """Get user by email using scan operation (since we don't have EmailIndex)"""
+        try:
+            response = self.table.scan(
+                FilterExpression="email = :email AND SK = :sk",
+                ExpressionAttributeValues={
+                    ":email": email,
+                    ":sk": "PROFILE"
+                }
+            )
+            
+            items = response.get("Items", [])
+            return items[0] if items else None
+            
+        except Exception as e:
+            print(f"Error getting user by email: {e}")
+            return None
     
 
     def authenticate_user(self, email: str, password: str):

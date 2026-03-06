@@ -44,14 +44,14 @@ function renderText(text: string) {
   const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|•[^\n]+)/g)
   return parts.map((part, i) => {
     if (part.startsWith('`') && part.endsWith('`'))
-      return <code key={i} style={{ background: '#f0ebff', color: '#6d28d9', borderRadius: '0.3rem', padding: '0.1em 0.35em', fontFamily: "'JetBrains Mono',monospace", fontSize: '0.82em' }}>{part.slice(1, -1)}</code>
+      return <code key={i} style={{ background: '#e0f2fe', color: '#0891b2', borderRadius: '0.3rem', padding: '0.1em 0.35em', fontFamily: "'JetBrains Mono',monospace", fontSize: '0.82em' }}>{part.slice(1, -1)}</code>
     if (part.startsWith('**') && part.endsWith('**'))
-      return <strong key={i} style={{ color: '#4c1d95', fontWeight: 700 }}>{part.slice(2, -2)}</strong>
+      return <strong key={i} style={{ color: '#1e40af', fontWeight: 700 }}>{part.slice(2, -2)}</strong>  // Focus blue for bold text
     if (part.startsWith('*') && part.endsWith('*'))
-      return <em key={i} style={{ color: '#6d28d9' }}>{part.slice(1, -1)}</em>
+      return <em key={i} style={{ color: '#0891b2' }}>{part.slice(1, -1)}</em>  // Teal for italic text
     if (part.startsWith('•'))
       return <div key={i} style={{ display: 'flex', gap: '0.5rem', margin: '0.25rem 0' }}>
-        <span style={{ color: '#a78bfa', flexShrink: 0 }}>◆</span>
+        <span style={{ color: '#059669', flexShrink: 0 }}>◆</span>  // Forest green for bullet points
         <span>{part.slice(1).trim()}</span>
       </div>
     return part.split('\n').map((line, j) => <span key={j}>{line}{j < part.split('\n').length - 1 && <br />}</span>)
@@ -119,13 +119,13 @@ function ChatPanel({ onSpeak }: { onSpeak: (v: boolean) => void }) {
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#fff', overflow: 'hidden', position: 'relative' }}>
       {/* Header */}
-      <div style={{ padding: '0.9rem 1.2rem', borderBottom: '1px solid #f0ebff', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
+      <div style={{ padding: '0.9rem 1.2rem', borderBottom: '1px solid #e0f2fe', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>  // Teal border
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
           <div style={{
             width: '2.2rem', height: '2.2rem', borderRadius: '50%',
-            background: 'linear-gradient(135deg,#8b5cf6,#a855f7)',
+            background: 'linear-gradient(135deg,#1e40af,#0891b2)',  // Focus blue to teal
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '1rem', boxShadow: '0 0 0.8rem rgba(124,58,237,0.35)',
+            fontSize: '1rem', boxShadow: '0 0 0.8rem rgba(30,64,175,0.35)',  // Focus blue glow
           }}>🤖</div>
           <div>
             <div style={{ fontSize: '0.82rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: '#1e1b4b' }}>KYDY AI Tutor</div>

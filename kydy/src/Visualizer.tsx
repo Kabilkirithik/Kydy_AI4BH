@@ -1,16 +1,12 @@
 import { useState } from 'react'
 import ClickSpark from './components/ClickSpark'
 import UnifiedSidebar from './components/UnifiedSidebar'
-
-// ─── Types ────────────────────────────────────────────────────────────────────
 interface VisualizerNote {
   id: number
   title: string
   content: string
   timestamp: string
 }
-
-// ─── API Functions ────────────────────────────────────────────────────────────
 const API_BASE = 'http://localhost:8000'
 
 async function saveSVGVisualization(svgContent: string, title: string, description?: string) {
@@ -34,8 +30,6 @@ async function saveSVGVisualization(svgContent: string, title: string, descripti
     return { message: 'Failed to save visualization', id: null }
   }
 }
-
-// ─── Notes Panel ──────────────────────────────────────────────────────────────
 function NotesPanel({ notes, onSaveNote, onSaveSVG }: { 
   notes: VisualizerNote[]; 
   onSaveNote: (note: Omit<VisualizerNote, 'id' | 'timestamp'>) => void;
@@ -66,7 +60,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
       width: isExpanded ? '20rem' : '3rem',
       height: isExpanded ? '25rem' : '3rem',
       background: 'rgba(255,255,255,0.95)',
-      border: '1px solid #ddd6fe',
+      border: '1px solid #3B82F6',
       borderRadius: '1rem',
       transition: 'all 0.3s ease',
       zIndex: 100,
@@ -84,7 +78,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
           height: '2rem',
           borderRadius: '0.5rem',
           border: 'none',
-          background: '#7c3aed',
+          background: '#3B82F6',
           color: '#fff',
           cursor: 'pointer',
           display: 'flex',
@@ -94,7 +88,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
           transition: 'all 0.2s',
         }}
         onMouseEnter={e => e.currentTarget.style.background = '#6d28d9'}
-        onMouseLeave={e => e.currentTarget.style.background = '#7c3aed'}
+        onMouseLeave={e => e.currentTarget.style.background = '#3B82F6'}
       >
         {isExpanded ? '✕' : '📝'}
       </button>
@@ -106,7 +100,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
             <h3 style={{ 
               fontSize: '0.9rem', 
               fontWeight: 700, 
-              color: '#7c3aed', 
+              color: '#3B82F6', 
               margin: 0,
               fontFamily: "'DM Sans',sans-serif"
             }}>
@@ -114,7 +108,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
             </h3>
             <p style={{ 
               fontSize: '0.7rem', 
-              color: '#6b7280', 
+              color: '#64748B', 
               margin: '0.2rem 0 0 0',
               fontFamily: "'DM Sans',sans-serif"
             }}>
@@ -131,15 +125,15 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
               onChange={e => setTitle(e.target.value)}
               style={{
                 padding: '0.5rem',
-                border: '1px solid #e5e7eb',
+                border: '1px solid #E2E8F0',
                 borderRadius: '0.5rem',
                 fontSize: '0.8rem',
                 fontFamily: "'DM Sans',sans-serif",
                 outline: 'none',
                 transition: 'border-color 0.2s',
               }}
-              onFocus={e => e.currentTarget.style.borderColor = '#7c3aed'}
-              onBlur={e => e.currentTarget.style.borderColor = '#e5e7eb'}
+              onFocus={e => e.currentTarget.style.borderColor = '#3B82F6'}
+              onBlur={e => e.currentTarget.style.borderColor = '#E2E8F0'}
             />
             
             <textarea
@@ -149,7 +143,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
               style={{
                 flex: 1,
                 padding: '0.5rem',
-                border: '1px solid #e5e7eb',
+                border: '1px solid #E2E8F0',
                 borderRadius: '0.5rem',
                 fontSize: '0.8rem',
                 fontFamily: "'DM Sans',sans-serif",
@@ -157,8 +151,8 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
                 resize: 'none',
                 transition: 'border-color 0.2s',
               }}
-              onFocus={e => e.currentTarget.style.borderColor = '#7c3aed'}
-              onBlur={e => e.currentTarget.style.borderColor = '#e5e7eb'}
+              onFocus={e => e.currentTarget.style.borderColor = '#3B82F6'}
+              onBlur={e => e.currentTarget.style.borderColor = '#E2E8F0'}
             />
 
             <button
@@ -166,7 +160,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
               disabled={!title.trim() || !content.trim()}
               style={{
                 padding: '0.5rem 1rem',
-                background: (!title.trim() || !content.trim()) ? '#e5e7eb' : '#7c3aed',
+                background: (!title.trim() || !content.trim()) ? '#E2E8F0' : '#3B82F6',
                 color: (!title.trim() || !content.trim()) ? '#9ca3af' : '#fff',
                 border: 'none',
                 borderRadius: '0.5rem',
@@ -184,7 +178,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
               }}
               onMouseLeave={e => {
                 if (title.trim() && content.trim()) {
-                  e.currentTarget.style.background = '#7c3aed'
+                  e.currentTarget.style.background = '#3B82F6'
                 }
               }}
             >
@@ -195,7 +189,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
               onClick={onSaveSVG}
               style={{
                 padding: '0.5rem 1rem',
-                background: '#6366f1',
+                background: '#3B82F6',
                 color: '#fff',
                 border: 'none',
                 borderRadius: '0.5rem',
@@ -206,7 +200,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
                 transition: 'all 0.2s',
               }}
               onMouseEnter={e => e.currentTarget.style.background = '#4f46e5'}
-              onMouseLeave={e => e.currentTarget.style.background = '#6366f1'}
+              onMouseLeave={e => e.currentTarget.style.background = '#3B82F6'}
             >
               💾 Save Visualization
             </button>
@@ -214,7 +208,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
 
           {/* Recent Notes */}
           {notes.length > 0 && (
-            <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #e5e7eb' }}>
+            <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #E2E8F0' }}>
               <h4 style={{ 
                 fontSize: '0.8rem', 
                 fontWeight: 600, 
@@ -234,7 +228,7 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
                     fontSize: '0.7rem',
                   }}>
                     <div style={{ fontWeight: 600, color: '#374151' }}>{note.title}</div>
-                    <div style={{ color: '#6b7280', fontSize: '0.6rem' }}>{note.timestamp}</div>
+                    <div style={{ color: '#64748B', fontSize: '0.6rem' }}>{note.timestamp}</div>
                   </div>
                 ))}
               </div>
@@ -245,8 +239,6 @@ function NotesPanel({ notes, onSaveNote, onSaveSVG }: {
     </div>
   )
 }
-
-// ─── SVG Animation — AI Brain Visualizer ─────────────────────────────────────
 function AIVisualizer({ speaking }: { speaking: boolean }) {
   return (
     <div style={{
@@ -256,9 +248,9 @@ function AIVisualizer({ speaking }: { speaking: boolean }) {
     }}>
       {/* Label */}
       <div style={{ marginBottom: '0.5rem', textAlign: 'center', position: 'absolute', top: '0.5rem', left: '50%', transform: 'translateX(-50%)', zIndex: 10 }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: speaking ? '#f0fdf4' : '#f5f3ff', border: `1px solid ${speaking ? '#86efac' : '#ddd6fe'}`, borderRadius: '2rem', padding: '0.3rem 0.9rem' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: speaking ? '#f0fdf4' : '#f5f3ff', border: `1px solid ${speaking ? '#86efac' : '#3B82F6'}`, borderRadius: '2rem', padding: '0.3rem 0.9rem' }}>
           <span style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', background: speaking ? '#22c55e' : '#a78bfa', display: 'inline-block', animation: speaking ? 'pulse-dot 1s infinite' : 'none' }} />
-          <span style={{ fontSize: '0.65rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 600, color: speaking ? '#16a34a' : '#7c3aed', letterSpacing: '0.06em' }}>
+          <span style={{ fontSize: '0.65rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 600, color: speaking ? '#16a34a' : '#3B82F6', letterSpacing: '0.06em' }}>
             {speaking ? 'GENERATING RESPONSE' : 'KYDY AI READY'}
           </span>
         </div>
@@ -266,7 +258,7 @@ function AIVisualizer({ speaking }: { speaking: boolean }) {
 
       {/* SVG neural net - 75% of screen area aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/}
       <div style={{ width: '100%', height: '75%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+<svg xmlns="http:
   <rect x="0" y="0" width="800" height="600" fill="#F8F8F8"/>
 
   <defs>
@@ -545,7 +537,7 @@ function AIVisualizer({ speaking }: { speaking: boolean }) {
   <animate attributeName="opacity" href="#scene10_conclusion > text" from="0" to="1" dur="1s" begin="56.5s" fill="freeze"/>
 
 </svg>
-{/* svg generation ends //////////////////////////////////////////////////////*/}
+{/* svg generation ends
       </div>
 
       {/* Waveform bars when speaking - positioned at bottom */}
@@ -553,7 +545,7 @@ function AIVisualizer({ speaking }: { speaking: boolean }) {
         {Array.from({ length: 16 }).map((_, i) => (
           <div key={i} style={{
             width: '0.2rem', borderRadius: '0.2rem',
-            background: speaking ? `hsl(${265 + i * 3},70%,${50 + (i % 3) * 10}%)` : '#e5e7eb',
+            background: speaking ? `hsl(${265 + i * 3},70%,${50 + (i % 3) * 10}%)` : '#E2E8F0',
             height: speaking ? `${30 + Math.sin(i * 0.8) * 20}%` : '20%',
             transition: 'height 0.3s ease, background 0.3s',
             animation: speaking ? `wave-bar-${i % 4} ${0.6 + (i % 3) * 0.2}s ease-in-out infinite alternate` : 'none',
@@ -565,9 +557,9 @@ function AIVisualizer({ speaking }: { speaking: boolean }) {
       <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', justifyContent: 'center', position: 'absolute', bottom: '1rem', left: '50%', transform: 'translateX(-50%)', maxWidth: '18rem' }}>
         {['useEffect', 'Hooks', 'React', 'Lifecycle', 'Cleanup'].map((t, i) => (
           <span key={t} style={{
-            background: '#f5f3ff', border: '1px solid #ddd6fe', borderRadius: '2rem',
+            background: '#f5f3ff', border: '1px solid #3B82F6', borderRadius: '2rem',
             padding: '0.22rem 0.6rem', fontSize: '0.6rem',
-            fontFamily: "'DM Sans',sans-serif", fontWeight: 600, color: '#7c3aed',
+            fontFamily: "'DM Sans',sans-serif", fontWeight: 600, color: '#3B82F6',
             animation: `fadeIn 0.4s ease forwards`,
             animationDelay: `${i * 0.1}s`, opacity: 0,
           }}>{t}</span>
@@ -576,8 +568,6 @@ function AIVisualizer({ speaking }: { speaking: boolean }) {
     </div>
   )
 }
-
-// ─── Visualizer Page ──────────────────────────────────────────────────────────
 export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void }) {
   const [speaking, setSpeaking] = useState(false)
   const [notes, setNotes] = useState<VisualizerNote[]>([])
@@ -592,7 +582,6 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
     setNotes(prev => [...prev, newNote])
     
     try {
-      // Save to backend API
       const response = await fetch('http://localhost:8000/api/notes', {
         method: 'POST',
         headers: {
@@ -602,24 +591,22 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
           title: newNote.title,
           content: newNote.content,
           course: 'Visualizer',
-          color: '#a855f7',
+          color: '#8B5CF6',
           tags: ['Visualizer', 'AI']
         }),
       })
       
       if (response.ok) {
-        // Trigger a custom event to notify Notes page to refresh
         window.dispatchEvent(new CustomEvent('visualizerNoteSaved'))
       } else {
         console.error('Failed to save note to API')
-        // Fallback to localStorage for backward compatibility
         const existingNotes = JSON.parse(localStorage.getItem('visualizerNotes') || '[]')
         const updatedNotes = [...existingNotes, {
           id: newNote.id,
           title: newNote.title,
           content: newNote.content,
           course: 'Visualizer',
-          color: '#a855f7',
+          color: '#8B5CF6',
           date: 'Today',
           tags: ['Visualizer', 'AI'],
           pinned: false,
@@ -630,14 +617,13 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
       }
     } catch (error) {
       console.error('Error saving note to API:', error)
-      // Fallback to localStorage
       const existingNotes = JSON.parse(localStorage.getItem('visualizerNotes') || '[]')
       const updatedNotes = [...existingNotes, {
         id: newNote.id,
         title: newNote.title,
         content: newNote.content,
         course: 'Visualizer',
-        color: '#a855f7',
+        color: '#8B5CF6',
         date: 'Today',
         tags: ['Visualizer', 'AI'],
         pinned: false,
@@ -650,19 +636,14 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
 
   const handleSaveSVG = async () => {
     try {
-      // Get the SVG element
       const svgElement = document.querySelector('#ai-visualizer-svg')
       if (!svgElement) {
         alert('No visualization found to save!')
         return
       }
-
-      // Get SVG content
       const svgContent = svgElement.outerHTML
       const title = `OS Management Visualization - ${new Date().toLocaleDateString()}`
       const description = 'Interactive AI visualization explaining Operating System management concepts'
-
-      // Save to backend
       const result = await saveSVGVisualization(svgContent, title, description)
       
       if (result.id) {
@@ -679,13 +660,13 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https:
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { background: #fff; overflow-x: hidden; }
         ::-webkit-scrollbar { width: 0.25rem; }
         ::-webkit-scrollbar-track { background: #f8f7ff; }
-        ::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 0.2rem; }
+        ::-webkit-scrollbar-thumb { background: #8B5CF6; border-radius: 0.2rem; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(0.4rem) } to { opacity: 1; transform: translateY(0) } }
         @keyframes pulse-dot { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,0.4)} 50%{opacity:0.5;box-shadow:0 0 0 0.3rem rgba(34,197,94,0)} }
@@ -696,14 +677,14 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
       `}</style>
 
       <ClickSpark
-        sparkColor="#7c3aed"
+        sparkColor="#3B82F6"
         sparkSize={15}
         sparkRadius={25}
         sparkCount={12}
         duration={600}
         extraScale={1.5}
       >
-        <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1e1b4b', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', height: '100vh', background: '#F8FAFC', color: '#1e1b4b', overflow: 'hidden' }}>
           {/* Unified sidebar */}
           <UnifiedSidebar active="visualizer" onNav={id => onNav && onNav(id)} variant="light" />
 
@@ -712,8 +693,8 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
             {/* Header */}
             <div style={{ padding: '0.5rem 1rem', borderBottom: '1px solid #ede9fe', display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0, background: '#fff', height: '3rem' }}>
               <span style={{ fontSize: '0.6rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 700, color: '#a78bfa', letterSpacing: '0.1em', textTransform: 'uppercase' }}>🎨 AI VISUALIZER</span>
-              <span style={{ color: '#ddd6fe', fontSize: '0.7rem' }}>·</span>
-              <span style={{ fontSize: '0.65rem', fontFamily: "'DM Sans',sans-serif", color: '#6b7280' }}>Neural Network Visualization</span>
+              <span style={{ color: '#3B82F6', fontSize: '0.7rem' }}>·</span>
+              <span style={{ fontSize: '0.65rem', fontFamily: "'DM Sans',sans-serif", color: '#64748B' }}>Neural Network Visualization</span>
             </div>
 
             {/* Visualizer content */}
@@ -729,8 +710,8 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
                   <button 
                     onClick={() => setSpeaking(!speaking)}
                     style={{ 
-                      padding: '0.4rem 0.8rem', borderRadius: '0.5rem', border: '1px solid #ddd6fe',
-                      background: speaking ? '#7c3aed' : '#fff', color: speaking ? '#fff' : '#7c3aed',
+                      padding: '0.4rem 0.8rem', borderRadius: '0.5rem', border: '1px solid #3B82F6',
+                      background: speaking ? '#3B82F6' : '#fff', color: speaking ? '#fff' : '#3B82F6',
                       fontSize: '0.65rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 600,
                       cursor: 'pointer', transition: 'all 0.2s'
                     }}

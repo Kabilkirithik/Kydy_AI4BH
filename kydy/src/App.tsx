@@ -67,7 +67,7 @@ function ParticleCanvas() {
         if (p.y > canvas.height) p.y = 0
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(196,181,253,${p.o})`
+        ctx.fillStyle = `rgba(30,64,175,${p.o})`  // Deep focus blue particles
         ctx.fill()
       })
       for (let i = 0; i < pts.length; i++) {
