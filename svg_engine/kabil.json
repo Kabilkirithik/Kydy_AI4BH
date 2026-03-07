@@ -1,0 +1,3357 @@
+{
+  "theme": "dark",
+  "meta": {
+    "title": "Ohm's Law — Complete Visual Course",
+    "subtitle": "10 scenes · from electrons to real circuits",
+    "description": "A full educational SVG animation teaching Ohm's Law from first principles through worked examples."
+  },
+  "canvas": {
+    "width": 800,
+    "height": 500
+  },
+  "scenes": {
+    "scene1": {
+      "scene_start": 0,
+      "scene_end": 10,
+      "description": "Hook — What is electricity? Electrons moving through a conductor.",
+      "elements": [
+        {
+          "id": "s1-bg-label",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "What Is Electricity?",
+            "fill": "#f1f5f9",
+            "font-size": "26",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 0.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.8s"
+            }
+          ]
+        },
+        {
+          "id": "s1-wire",
+          "type": "rect",
+          "props": {
+            "x": 80,
+            "y": 234,
+            "width": 640,
+            "height": 22,
+            "rx": "11",
+            "fill": "#334155",
+            "stroke": "#475569",
+            "stroke-width": "1.5"
+          },
+          "start_time": 0.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s1-wire-label",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 275,
+            "content": "CONDUCTOR (copper wire)",
+            "fill": "#64748b",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s1-e1",
+          "type": "circle",
+          "props": {
+            "cx": 110,
+            "cy": 245,
+            "r": 10,
+            "fill": "#38bdf8"
+          },
+          "start_time": 1.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 620 0",
+              "begin": 1.2,
+              "dur": "3.5s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s1-e2",
+          "type": "circle",
+          "props": {
+            "cx": 240,
+            "cy": 245,
+            "r": 10,
+            "fill": "#38bdf8"
+          },
+          "start_time": 1.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 620 0",
+              "begin": 1.8,
+              "dur": "3.5s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s1-e3",
+          "type": "circle",
+          "props": {
+            "cx": 370,
+            "cy": 245,
+            "r": 10,
+            "fill": "#38bdf8"
+          },
+          "start_time": 2.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 620 0",
+              "begin": 2.4,
+              "dur": "3.5s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s1-e4",
+          "type": "circle",
+          "props": {
+            "cx": 500,
+            "cy": 245,
+            "r": 10,
+            "fill": "#38bdf8"
+          },
+          "start_time": 3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 620 0",
+              "begin": 3,
+              "dur": "3.5s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s1-elabel",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 195,
+            "content": "e⁻   e⁻   e⁻   e⁻   →   →   →",
+            "fill": "#38bdf8",
+            "font-size": "18",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s1-def-card",
+          "type": "rect",
+          "props": {
+            "x": 160,
+            "y": 310,
+            "width": 480,
+            "height": 60,
+            "rx": "12",
+            "fill": "#1e293b",
+            "stroke": "#38bdf8",
+            "stroke-width": "1.5"
+          },
+          "start_time": 3.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s1-def-text",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 342,
+            "content": "Electricity = directed flow of free electrons",
+            "fill": "#38bdf8",
+            "font-size": "15",
+            "font-weight": "600",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 4.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene2": {
+      "scene_start": 10,
+      "scene_end": 21,
+      "description": "Voltage — the pressure that pushes electrons. Water-pressure analogy.",
+      "elements": [
+        {
+          "id": "s2-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Voltage — The Driving Pressure",
+            "fill": "#f1f5f9",
+            "font-size": "24",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 10.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s2-tank",
+          "type": "rect",
+          "props": {
+            "x": 80,
+            "y": 155,
+            "width": 160,
+            "height": 180,
+            "rx": "8",
+            "fill": "#0ea5e9",
+            "fill-opacity": "0.2",
+            "stroke": "#0ea5e9",
+            "stroke-width": "2"
+          },
+          "start_time": 10.7,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "1 0",
+              "to": "1 1",
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s2-water",
+          "type": "rect",
+          "props": {
+            "x": 83,
+            "y": 230,
+            "width": 154,
+            "height": 102,
+            "rx": "4",
+            "fill": "#0ea5e9",
+            "fill-opacity": "0.55"
+          },
+          "start_time": 11,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "1 0",
+              "to": "1 1",
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s2-tank-label",
+          "type": "text",
+          "props": {
+            "x": 160,
+            "y": 200,
+            "content": "Water Tank",
+            "fill": "#7dd3fc",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 11.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-pipe",
+          "type": "rect",
+          "props": {
+            "x": 240,
+            "y": 306,
+            "width": 220,
+            "height": 22,
+            "rx": "11",
+            "fill": "#64748b"
+          },
+          "start_time": 11.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s2-flow1",
+          "type": "circle",
+          "props": {
+            "cx": 255,
+            "cy": 317,
+            "r": 8,
+            "fill": "#38bdf8",
+            "fill-opacity": "0.8"
+          },
+          "start_time": 12,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 195 0",
+              "begin": 12,
+              "dur": "1.6s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s2-flow2",
+          "type": "circle",
+          "props": {
+            "cx": 320,
+            "cy": 317,
+            "r": 8,
+            "fill": "#38bdf8",
+            "fill-opacity": "0.8"
+          },
+          "start_time": 12.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 130 0",
+              "begin": 12.5,
+              "dur": "1.6s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s2-equals-card",
+          "type": "rect",
+          "props": {
+            "x": 475,
+            "y": 185,
+            "width": 245,
+            "height": 175,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#f472b6",
+            "stroke-width": "2"
+          },
+          "start_time": 13.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s2-eq-t1",
+          "type": "text",
+          "props": {
+            "x": 597,
+            "y": 215,
+            "content": "Water pressure",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 13.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-eq-arrow",
+          "type": "text",
+          "props": {
+            "x": 597,
+            "y": 248,
+            "content": "≈",
+            "fill": "#f472b6",
+            "font-size": "28",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 13.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-eq-t2",
+          "type": "text",
+          "props": {
+            "x": 597,
+            "y": 284,
+            "content": "VOLTAGE",
+            "fill": "#f472b6",
+            "font-size": "22",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 14,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            },
+            {
+              "type": "pulse",
+              "begin": 14.8,
+              "dur": "2s",
+              "intensity": 1.07,
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s2-unit",
+          "type": "text",
+          "props": {
+            "x": 597,
+            "y": 318,
+            "content": "Symbol: V   Unit: Volts",
+            "fill": "#94a3b8",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 14.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-unit2",
+          "type": "text",
+          "props": {
+            "x": 597,
+            "y": 340,
+            "content": "More volts = more push",
+            "fill": "#64748b",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 15,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene3": {
+      "scene_start": 21,
+      "scene_end": 32,
+      "description": "Current — the rate of electron flow, measured in Amperes.",
+      "elements": [
+        {
+          "id": "s3-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Current — The Flow Rate",
+            "fill": "#f1f5f9",
+            "font-size": "24",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 21.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s3-pipe-bg",
+          "type": "rect",
+          "props": {
+            "x": 70,
+            "y": 215,
+            "width": 560,
+            "height": 60,
+            "rx": "30",
+            "fill": "#1e3a5f",
+            "stroke": "#0ea5e9",
+            "stroke-width": "2"
+          },
+          "start_time": 21.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s3-e1",
+          "type": "circle",
+          "props": {
+            "cx": 90,
+            "cy": 245,
+            "r": 11,
+            "fill": "#38bdf8"
+          },
+          "start_time": 22.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.95,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 590 0",
+              "begin": 22.2,
+              "dur": "2.2s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s3-e2",
+          "type": "circle",
+          "props": {
+            "cx": 180,
+            "cy": 245,
+            "r": 11,
+            "fill": "#818cf8"
+          },
+          "start_time": 22.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.95,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 590 0",
+              "begin": 22.6,
+              "dur": "2.2s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s3-e3",
+          "type": "circle",
+          "props": {
+            "cx": 270,
+            "cy": 245,
+            "r": 11,
+            "fill": "#38bdf8"
+          },
+          "start_time": 23,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.95,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 590 0",
+              "begin": 23,
+              "dur": "2.2s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s3-e4",
+          "type": "circle",
+          "props": {
+            "cx": 360,
+            "cy": 245,
+            "r": 11,
+            "fill": "#818cf8"
+          },
+          "start_time": 23.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 0.95,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 590 0",
+              "begin": 23.4,
+              "dur": "2.2s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s3-counter-card",
+          "type": "rect",
+          "props": {
+            "x": 240,
+            "y": 310,
+            "width": 320,
+            "height": 80,
+            "rx": "12",
+            "fill": "#1e293b",
+            "stroke": "#818cf8",
+            "stroke-width": "2"
+          },
+          "start_time": 24,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s3-current-name",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 338,
+            "content": "CURRENT  (I)",
+            "fill": "#818cf8",
+            "font-size": "22",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 24.4,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            },
+            {
+              "type": "pulse",
+              "begin": 25,
+              "dur": "2.2s",
+              "intensity": 1.06,
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s3-current-unit",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 368,
+            "content": "Unit: Amperes (A)  |  1A = 6.24 × 10¹⁸ e⁻/sec",
+            "fill": "#64748b",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 25,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene4": {
+      "scene_start": 32,
+      "scene_end": 43,
+      "description": "Resistance — friction that opposes current. Pipe-friction analogy.",
+      "elements": [
+        {
+          "id": "s4-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Resistance — The Opposition",
+            "fill": "#f1f5f9",
+            "font-size": "24",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 32.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s4-pipe-outer",
+          "type": "rect",
+          "props": {
+            "x": 100,
+            "y": 190,
+            "width": 380,
+            "height": 100,
+            "rx": "50",
+            "fill": "#334155",
+            "stroke": "#475569",
+            "stroke-width": "2"
+          },
+          "start_time": 32.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s4-pipe-inner",
+          "type": "rect",
+          "props": {
+            "x": 130,
+            "y": 218,
+            "width": 320,
+            "height": 44,
+            "rx": "22",
+            "fill": "#0f172a"
+          },
+          "start_time": 33,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s4-resist-arrow1",
+          "type": "text",
+          "props": {
+            "x": 175,
+            "y": 244,
+            "content": "↑↓",
+            "fill": "#ef4444",
+            "font-size": "16",
+            "text-anchor": "middle"
+          },
+          "start_time": 33.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            },
+            {
+              "type": "blink",
+              "begin": 34,
+              "dur": "1.2s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s4-resist-arrow2",
+          "type": "text",
+          "props": {
+            "x": 265,
+            "y": 244,
+            "content": "↑↓",
+            "fill": "#ef4444",
+            "font-size": "16",
+            "text-anchor": "middle"
+          },
+          "start_time": 33.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            },
+            {
+              "type": "blink",
+              "begin": 34.2,
+              "dur": "1.1s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s4-resist-arrow3",
+          "type": "text",
+          "props": {
+            "x": 355,
+            "y": 244,
+            "content": "↑↓",
+            "fill": "#ef4444",
+            "font-size": "16",
+            "text-anchor": "middle"
+          },
+          "start_time": 33.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            },
+            {
+              "type": "blink",
+              "begin": 34.4,
+              "dur": "1.3s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s4-slow-e1",
+          "type": "circle",
+          "props": {
+            "cx": 140,
+            "cy": 240,
+            "r": 9,
+            "fill": "#38bdf8"
+          },
+          "start_time": 34.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 320 0",
+              "begin": 34.2,
+              "dur": "4.5s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s4-slow-e2",
+          "type": "circle",
+          "props": {
+            "cx": 230,
+            "cy": 240,
+            "r": 9,
+            "fill": "#818cf8"
+          },
+          "start_time": 35.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 230 0",
+              "begin": 35.5,
+              "dur": "4.5s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s4-info-card",
+          "type": "rect",
+          "props": {
+            "x": 500,
+            "y": 180,
+            "width": 230,
+            "height": 140,
+            "rx": "12",
+            "fill": "#1e293b",
+            "stroke": "#ef4444",
+            "stroke-width": "2"
+          },
+          "start_time": 35,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s4-res-name",
+          "type": "text",
+          "props": {
+            "x": 615,
+            "y": 222,
+            "content": "RESISTANCE",
+            "fill": "#ef4444",
+            "font-size": "18",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 35.4,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s4-res-symbol",
+          "type": "text",
+          "props": {
+            "x": 615,
+            "y": 254,
+            "content": "Symbol: R",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 35.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s4-res-unit",
+          "type": "text",
+          "props": {
+            "x": 615,
+            "y": 278,
+            "content": "Unit: Ohms (Ω)",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 36.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s4-res-tip",
+          "type": "text",
+          "props": {
+            "x": 615,
+            "y": 302,
+            "content": "Higher R = slower flow",
+            "fill": "#64748b",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 36.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene5": {
+      "scene_start": 43,
+      "scene_end": 55,
+      "description": "Ohm's Law formula revealed: V = I × R with the memory triangle.",
+      "elements": [
+        {
+          "id": "s5-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Ohm's Law  —  V = I × R",
+            "fill": "#f1f5f9",
+            "font-size": "25",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 43.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s5-triangle-bg",
+          "type": "polygon",
+          "props": {
+            "points": "290,155 170,335 410,335",
+            "fill": "#1e293b",
+            "stroke": "#475569",
+            "stroke-width": "2.5"
+          },
+          "start_time": 43.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s5-divider-h",
+          "type": "line",
+          "props": {
+            "x1": 170,
+            "y1": 248,
+            "x2": 410,
+            "y2": 248,
+            "stroke": "#475569",
+            "stroke-width": "2"
+          },
+          "start_time": 44.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s5-v-label",
+          "type": "text",
+          "props": {
+            "x": 290,
+            "y": 215,
+            "content": "V",
+            "fill": "#f472b6",
+            "font-size": "46",
+            "font-weight": "900",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 44.6,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.55s"
+            },
+            {
+              "type": "pulse",
+              "begin": 45.4,
+              "dur": "2.8s",
+              "intensity": 1.1,
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s5-i-label",
+          "type": "text",
+          "props": {
+            "x": 232,
+            "y": 295,
+            "content": "I",
+            "fill": "#38bdf8",
+            "font-size": "42",
+            "font-weight": "900",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 45.2,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            },
+            {
+              "type": "pulse",
+              "begin": 45.8,
+              "dur": "2.5s",
+              "intensity": 1.1,
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s5-r-label",
+          "type": "text",
+          "props": {
+            "x": 350,
+            "y": 295,
+            "content": "R",
+            "fill": "#34d399",
+            "font-size": "42",
+            "font-weight": "900",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 45.8,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            },
+            {
+              "type": "pulse",
+              "begin": 46.2,
+              "dur": "2.2s",
+              "intensity": 1.1,
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s5-derived-card",
+          "type": "rect",
+          "props": {
+            "x": 440,
+            "y": 160,
+            "width": 300,
+            "height": 185,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#334155",
+            "stroke-width": "1.5"
+          },
+          "start_time": 46.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s5-derived-title",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 185,
+            "content": "3 forms of the law:",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 46.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-f1",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 220,
+            "content": "V = I × R",
+            "fill": "#f472b6",
+            "font-size": "19",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 47.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-f2",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 256,
+            "content": "I = V ÷ R",
+            "fill": "#38bdf8",
+            "font-size": "19",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 47.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-f3",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 292,
+            "content": "R = V ÷ I",
+            "fill": "#34d399",
+            "font-size": "19",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 48.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-tip",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 326,
+            "content": "Cover the unknown → read formula",
+            "fill": "#64748b",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 48.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene6": {
+      "scene_start": 55,
+      "scene_end": 67,
+      "description": "Worked example 1: V=12V, R=4Ω → solve for I=3A. Step-by-step.",
+      "elements": [
+        {
+          "id": "s6-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Worked Example — Find the Current",
+            "fill": "#f1f5f9",
+            "font-size": "22",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 55.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s6-given-card",
+          "type": "rect",
+          "props": {
+            "x": 50,
+            "y": 145,
+            "width": 310,
+            "height": 220,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#334155",
+            "stroke-width": "1.5"
+          },
+          "start_time": 55.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s6-given-head",
+          "type": "text",
+          "props": {
+            "x": 205,
+            "y": 178,
+            "content": "Given:",
+            "fill": "#facc15",
+            "font-size": "16",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 56,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s6-v-given",
+          "type": "text",
+          "props": {
+            "x": 205,
+            "y": 218,
+            "content": "Voltage (V) = 12 V",
+            "fill": "#f472b6",
+            "font-size": "18",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 56.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s6-r-given",
+          "type": "text",
+          "props": {
+            "x": 205,
+            "y": 258,
+            "content": "Resistance (R) = 4 Ω",
+            "fill": "#34d399",
+            "font-size": "18",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 56.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s6-find",
+          "type": "text",
+          "props": {
+            "x": 205,
+            "y": 298,
+            "content": "Find: Current (I) = ?",
+            "fill": "#38bdf8",
+            "font-size": "18",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 57.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s6-solve-card",
+          "type": "rect",
+          "props": {
+            "x": 390,
+            "y": 145,
+            "width": 360,
+            "height": 220,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#38bdf8",
+            "stroke-width": "2"
+          },
+          "start_time": 58.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s6-step1",
+          "type": "text",
+          "props": {
+            "x": 570,
+            "y": 183,
+            "content": "Step 1: Formula",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 58.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s6-formula",
+          "type": "text",
+          "props": {
+            "x": 570,
+            "y": 215,
+            "content": "I = V ÷ R",
+            "fill": "#e2e8f0",
+            "font-size": "22",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 59,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s6-step2",
+          "type": "text",
+          "props": {
+            "x": 570,
+            "y": 248,
+            "content": "Step 2: Substitute",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 59.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s6-substitute",
+          "type": "text",
+          "props": {
+            "x": 570,
+            "y": 278,
+            "content": "I = 12 ÷ 4",
+            "fill": "#e2e8f0",
+            "font-size": "22",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 59.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s6-answer-bg",
+          "type": "rect",
+          "props": {
+            "x": 460,
+            "y": 305,
+            "width": 220,
+            "height": 44,
+            "rx": "22",
+            "fill": "#38bdf8"
+          },
+          "start_time": 60.5,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.55s"
+            }
+          ]
+        },
+        {
+          "id": "s6-answer",
+          "type": "text",
+          "props": {
+            "x": 570,
+            "y": 328,
+            "content": "I = 3 Amperes  ✓",
+            "fill": "#0f172a",
+            "font-size": "19",
+            "font-weight": "800",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 60.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene7": {
+      "scene_start": 67,
+      "scene_end": 79,
+      "description": "Voltage-Current proportionality: double V → double I (R constant).",
+      "elements": [
+        {
+          "id": "s7-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Proportionality — More V, More I",
+            "fill": "#f1f5f9",
+            "font-size": "22",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 67.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s7-col1-label",
+          "type": "text",
+          "props": {
+            "x": 200,
+            "y": 158,
+            "content": "Low Voltage (6V)",
+            "fill": "#818cf8",
+            "font-size": "14",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 67.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s7-col2-label",
+          "type": "text",
+          "props": {
+            "x": 600,
+            "y": 158,
+            "content": "High Voltage (12V)",
+            "fill": "#f472b6",
+            "font-size": "14",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 67.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s7-pipe-low",
+          "type": "rect",
+          "props": {
+            "x": 60,
+            "y": 195,
+            "width": 280,
+            "height": 40,
+            "rx": "20",
+            "fill": "#1e3a5f",
+            "stroke": "#818cf8",
+            "stroke-width": "2"
+          },
+          "start_time": 68.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s7-e-slow1",
+          "type": "circle",
+          "props": {
+            "cx": 85,
+            "cy": 215,
+            "r": 9,
+            "fill": "#818cf8"
+          },
+          "start_time": 68.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 240 0",
+              "begin": 68.6,
+              "dur": "3.0s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s7-e-slow2",
+          "type": "circle",
+          "props": {
+            "cx": 185,
+            "cy": 215,
+            "r": 9,
+            "fill": "#818cf8"
+          },
+          "start_time": 70.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 140 0",
+              "begin": 70.1,
+              "dur": "3.0s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s7-val-low",
+          "type": "text",
+          "props": {
+            "x": 200,
+            "y": 258,
+            "content": "I = 6÷4 = 1.5 A  (slow)",
+            "fill": "#818cf8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 69.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s7-pipe-high",
+          "type": "rect",
+          "props": {
+            "x": 460,
+            "y": 195,
+            "width": 280,
+            "height": 40,
+            "rx": "20",
+            "fill": "#3b1f3a",
+            "stroke": "#f472b6",
+            "stroke-width": "2"
+          },
+          "start_time": 68.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s7-e-fast1",
+          "type": "circle",
+          "props": {
+            "cx": 480,
+            "cy": 215,
+            "r": 9,
+            "fill": "#f472b6"
+          },
+          "start_time": 68.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 240 0",
+              "begin": 68.6,
+              "dur": "1.4s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s7-e-fast2",
+          "type": "circle",
+          "props": {
+            "cx": 555,
+            "cy": 215,
+            "r": 9,
+            "fill": "#f472b6"
+          },
+          "start_time": 69.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 165 0",
+              "begin": 69.3,
+              "dur": "1.4s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s7-e-fast3",
+          "type": "circle",
+          "props": {
+            "cx": 630,
+            "cy": 215,
+            "r": 9,
+            "fill": "#f472b6"
+          },
+          "start_time": 70,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 90 0",
+              "begin": 70,
+              "dur": "1.4s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s7-val-high",
+          "type": "text",
+          "props": {
+            "x": 600,
+            "y": 258,
+            "content": "I = 12÷4 = 3 A  (fast!)",
+            "fill": "#f472b6",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 69.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s7-rule-card",
+          "type": "rect",
+          "props": {
+            "x": 160,
+            "y": 310,
+            "width": 480,
+            "height": 55,
+            "rx": "12",
+            "fill": "#1e293b",
+            "stroke": "#facc15",
+            "stroke-width": "1.5"
+          },
+          "start_time": 71,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s7-rule-text",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 339,
+            "content": "I ∝ V   (when R is constant — double V, double I)",
+            "fill": "#facc15",
+            "font-size": "14",
+            "font-weight": "600",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 71.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene8": {
+      "scene_start": 79,
+      "scene_end": 91,
+      "description": "Complete circuit diagram: battery, resistor, ammeter — electrons flowing.",
+      "elements": [
+        {
+          "id": "s8-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Complete Circuit — Putting It Together",
+            "fill": "#f1f5f9",
+            "font-size": "22",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 79.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s8-wire-top",
+          "type": "line",
+          "props": {
+            "x1": 140,
+            "y1": 185,
+            "x2": 660,
+            "y2": 185,
+            "stroke": "#475569",
+            "stroke-width": "4",
+            "stroke-linecap": "round"
+          },
+          "start_time": 79.7,
+          "animations": [
+            {
+              "type": "draw",
+              "begin": 79.7,
+              "dur": "0.5s",
+              "length": 520
+            }
+          ]
+        },
+        {
+          "id": "s8-wire-right",
+          "type": "line",
+          "props": {
+            "x1": 660,
+            "y1": 185,
+            "x2": 660,
+            "y2": 345,
+            "stroke": "#475569",
+            "stroke-width": "4",
+            "stroke-linecap": "round"
+          },
+          "start_time": 80.1,
+          "animations": [
+            {
+              "type": "draw",
+              "begin": 80.1,
+              "dur": "0.3s",
+              "length": 160
+            }
+          ]
+        },
+        {
+          "id": "s8-wire-bottom",
+          "type": "line",
+          "props": {
+            "x1": 140,
+            "y1": 345,
+            "x2": 660,
+            "y2": 345,
+            "stroke": "#475569",
+            "stroke-width": "4",
+            "stroke-linecap": "round"
+          },
+          "start_time": 80.3,
+          "animations": [
+            {
+              "type": "draw",
+              "begin": 80.3,
+              "dur": "0.5s",
+              "length": 520
+            }
+          ]
+        },
+        {
+          "id": "s8-wire-left",
+          "type": "line",
+          "props": {
+            "x1": 140,
+            "y1": 185,
+            "x2": 140,
+            "y2": 345,
+            "stroke": "#475569",
+            "stroke-width": "4",
+            "stroke-linecap": "round"
+          },
+          "start_time": 80.7,
+          "animations": [
+            {
+              "type": "draw",
+              "begin": 80.7,
+              "dur": "0.3s",
+              "length": 160
+            }
+          ]
+        },
+        {
+          "id": "s8-bat-body",
+          "type": "rect",
+          "props": {
+            "x": 114,
+            "y": 235,
+            "width": 26,
+            "height": 75,
+            "rx": "3",
+            "fill": "#1e293b",
+            "stroke": "#64748b",
+            "stroke-width": "1.5"
+          },
+          "start_time": 81,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s8-bat-pos",
+          "type": "rect",
+          "props": {
+            "x": 116,
+            "y": 238,
+            "width": 22,
+            "height": 30,
+            "rx": "2",
+            "fill": "#f472b6"
+          },
+          "start_time": 81.2,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "1 0",
+              "to": "1 1",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s8-bat-neg",
+          "type": "rect",
+          "props": {
+            "x": 116,
+            "y": 275,
+            "width": 22,
+            "height": 22,
+            "rx": "2",
+            "fill": "#818cf8"
+          },
+          "start_time": 81.4,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "1 0",
+              "to": "1 1",
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s8-bat-label",
+          "type": "text",
+          "props": {
+            "x": 88,
+            "y": 270,
+            "content": "12V",
+            "fill": "#f472b6",
+            "font-size": "14",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 81.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s8-resistor",
+          "type": "rect",
+          "props": {
+            "x": 340,
+            "y": 176,
+            "width": 120,
+            "height": 18,
+            "rx": "5",
+            "fill": "#fbbf24",
+            "stroke": "#f59e0b",
+            "stroke-width": "1.5"
+          },
+          "start_time": 81.8,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0 1",
+              "to": "1 1",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s8-res-label",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 162,
+            "content": "R = 4 Ω",
+            "fill": "#fbbf24",
+            "font-size": "13",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 82.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s8-ammeter",
+          "type": "circle",
+          "props": {
+            "cx": 660,
+            "cy": 265,
+            "r": 22,
+            "fill": "#0f172a",
+            "stroke": "#38bdf8",
+            "stroke-width": "2.5"
+          },
+          "start_time": 82.3,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s8-ammeter-a",
+          "type": "text",
+          "props": {
+            "x": 660,
+            "y": 267,
+            "content": "A",
+            "fill": "#38bdf8",
+            "font-size": "17",
+            "font-weight": "700",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 82.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            }
+          ]
+        },
+        {
+          "id": "s8-ammeter-val",
+          "type": "text",
+          "props": {
+            "x": 700,
+            "y": 265,
+            "content": "3 A",
+            "fill": "#38bdf8",
+            "font-size": "15",
+            "font-weight": "700",
+            "text-anchor": "start",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 83,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s8-e1",
+          "type": "circle",
+          "props": {
+            "cx": 200,
+            "cy": 185,
+            "r": 7,
+            "fill": "#38bdf8"
+          },
+          "start_time": 83.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 460 0 L 460 160 L 0 160 Z",
+              "begin": 83.5,
+              "dur": "4.8s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s8-e2",
+          "type": "circle",
+          "props": {
+            "cx": 360,
+            "cy": 185,
+            "r": 7,
+            "fill": "#818cf8"
+          },
+          "start_time": 85.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L 300 0 L 300 160 L -160 160 L -160 0 Z",
+              "begin": 85.1,
+              "dur": "4.8s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s8-e3",
+          "type": "circle",
+          "props": {
+            "cx": 560,
+            "cy": 345,
+            "r": 7,
+            "fill": "#38bdf8"
+          },
+          "start_time": 86.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.3s"
+            },
+            {
+              "type": "move",
+              "path": "M 0 0 L -420 0 L -420 -160 L 100 -160 L 100 0 Z",
+              "begin": 86.2,
+              "dur": "4.8s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ]
+        },
+        {
+          "id": "s8-formula-card",
+          "type": "rect",
+          "props": {
+            "x": 230,
+            "y": 370,
+            "width": 340,
+            "height": 46,
+            "rx": "10",
+            "fill": "#1e293b",
+            "stroke": "#facc15",
+            "stroke-width": "1.5"
+          },
+          "start_time": 87,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s8-formula-text",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 394,
+            "content": "V=I×R  →  12 = 3 × 4  ✓",
+            "fill": "#facc15",
+            "font-size": "18",
+            "font-weight": "700",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 87.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene9": {
+      "scene_start": 91,
+      "scene_end": 103,
+      "description": "Real-world applications: phone charger, light bulb, electric heater.",
+      "elements": [
+        {
+          "id": "s9-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Real-World Applications",
+            "fill": "#f1f5f9",
+            "font-size": "24",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 91.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s9-card1",
+          "type": "rect",
+          "props": {
+            "x": 40,
+            "y": 160,
+            "width": 210,
+            "height": 210,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#38bdf8",
+            "stroke-width": "2"
+          },
+          "start_time": 91.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s9-icon1",
+          "type": "text",
+          "props": {
+            "x": 145,
+            "y": 230,
+            "content": "🔌",
+            "font-size": "42",
+            "text-anchor": "middle"
+          },
+          "start_time": 92.2,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s9-label1",
+          "type": "text",
+          "props": {
+            "x": 145,
+            "y": 282,
+            "content": "Phone Charger",
+            "fill": "#38bdf8",
+            "font-size": "14",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 92.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s9-fact1",
+          "type": "text",
+          "props": {
+            "x": 145,
+            "y": 310,
+            "content": "5V ÷ 2.5Ω = 2A",
+            "fill": "#64748b",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 92.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s9-card2",
+          "type": "rect",
+          "props": {
+            "x": 295,
+            "y": 160,
+            "width": 210,
+            "height": 210,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#facc15",
+            "stroke-width": "2"
+          },
+          "start_time": 92.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s9-icon2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 230,
+            "content": "💡",
+            "font-size": "42",
+            "text-anchor": "middle"
+          },
+          "start_time": 93.2,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s9-label2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 282,
+            "content": "Light Bulb",
+            "fill": "#facc15",
+            "font-size": "14",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 93.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s9-fact2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 310,
+            "content": "240V ÷ 960Ω = 0.25A",
+            "fill": "#64748b",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 93.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s9-card3",
+          "type": "rect",
+          "props": {
+            "x": 550,
+            "y": 160,
+            "width": 210,
+            "height": 210,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#ef4444",
+            "stroke-width": "2"
+          },
+          "start_time": 93.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s9-icon3",
+          "type": "text",
+          "props": {
+            "x": 655,
+            "y": 230,
+            "content": "🔥",
+            "font-size": "42",
+            "text-anchor": "middle"
+          },
+          "start_time": 94.2,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0",
+              "to": "1",
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s9-label3",
+          "type": "text",
+          "props": {
+            "x": 655,
+            "y": 282,
+            "content": "Electric Heater",
+            "fill": "#ef4444",
+            "font-size": "14",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 94.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s9-fact3",
+          "type": "text",
+          "props": {
+            "x": 655,
+            "y": 310,
+            "content": "240V ÷ 24Ω = 10A",
+            "fill": "#64748b",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 94.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s9-key-card",
+          "type": "rect",
+          "props": {
+            "x": 160,
+            "y": 388,
+            "width": 480,
+            "height": 46,
+            "rx": "10",
+            "fill": "#1e293b",
+            "stroke": "#334155",
+            "stroke-width": "1"
+          },
+          "start_time": 95.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s9-key-text",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 412,
+            "content": "Ohm's Law is at work in every electrical device you use!",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 95.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene10": {
+      "scene_start": 103,
+      "scene_end": 116,
+      "description": "Summary and memory aid — full review of all three quantities and the law.",
+      "elements": [
+        {
+          "id": "s10-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Summary — Remember These Three",
+            "fill": "#f1f5f9",
+            "font-size": "22",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 103.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s10-card-v",
+          "type": "rect",
+          "props": {
+            "x": 40,
+            "y": 155,
+            "width": 220,
+            "height": 200,
+            "rx": "16",
+            "fill": "#2d1b3d",
+            "stroke": "#f472b6",
+            "stroke-width": "2.5"
+          },
+          "start_time": 103.8,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0.3",
+              "to": "1",
+              "dur": "0.6s"
+            },
+            {
+              "type": "pulse",
+              "begin": 104.6,
+              "dur": "3s",
+              "intensity": 1.04,
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s10-v-big",
+          "type": "text",
+          "props": {
+            "x": 150,
+            "y": 222,
+            "content": "V",
+            "fill": "#f472b6",
+            "font-size": "56",
+            "font-weight": "900",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 104.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-v-name",
+          "type": "text",
+          "props": {
+            "x": 150,
+            "y": 276,
+            "content": "Voltage",
+            "fill": "#f472b6",
+            "font-size": "17",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 104.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-v-unit",
+          "type": "text",
+          "props": {
+            "x": 150,
+            "y": 304,
+            "content": "Volts (V)",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 104.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-v-desc",
+          "type": "text",
+          "props": {
+            "x": 150,
+            "y": 328,
+            "content": "The push",
+            "fill": "#64748b",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 105,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-card-i",
+          "type": "rect",
+          "props": {
+            "x": 290,
+            "y": 155,
+            "width": 220,
+            "height": 200,
+            "rx": "16",
+            "fill": "#0c2a3d",
+            "stroke": "#38bdf8",
+            "stroke-width": "2.5"
+          },
+          "start_time": 104.5,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0.3",
+              "to": "1",
+              "dur": "0.6s"
+            },
+            {
+              "type": "pulse",
+              "begin": 105.2,
+              "dur": "2.8s",
+              "intensity": 1.04,
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s10-i-big",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 222,
+            "content": "I",
+            "fill": "#38bdf8",
+            "font-size": "56",
+            "font-weight": "900",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 104.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-i-name",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 276,
+            "content": "Current",
+            "fill": "#38bdf8",
+            "font-size": "17",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 105.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-i-unit",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 304,
+            "content": "Amperes (A)",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 105.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-i-desc",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 328,
+            "content": "The flow rate",
+            "fill": "#64748b",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 105.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-card-r",
+          "type": "rect",
+          "props": {
+            "x": 540,
+            "y": 155,
+            "width": 220,
+            "height": 200,
+            "rx": "16",
+            "fill": "#0f2e1f",
+            "stroke": "#34d399",
+            "stroke-width": "2.5"
+          },
+          "start_time": 105.2,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0.3",
+              "to": "1",
+              "dur": "0.6s"
+            },
+            {
+              "type": "pulse",
+              "begin": 105.8,
+              "dur": "3.2s",
+              "intensity": 1.04,
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s10-r-big",
+          "type": "text",
+          "props": {
+            "x": 650,
+            "y": 222,
+            "content": "R",
+            "fill": "#34d399",
+            "font-size": "56",
+            "font-weight": "900",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 105.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-r-name",
+          "type": "text",
+          "props": {
+            "x": 650,
+            "y": 276,
+            "content": "Resistance",
+            "fill": "#34d399",
+            "font-size": "17",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 105.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-r-unit",
+          "type": "text",
+          "props": {
+            "x": 650,
+            "y": 304,
+            "content": "Ohms (Ω)",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 106.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-r-desc",
+          "type": "text",
+          "props": {
+            "x": 650,
+            "y": 328,
+            "content": "The opposition",
+            "fill": "#64748b",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 106.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s10-law-bg",
+          "type": "rect",
+          "props": {
+            "x": 140,
+            "y": 375,
+            "width": 520,
+            "height": 58,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#facc15",
+            "stroke-width": "2"
+          },
+          "start_time": 107,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s10-law-text",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 405,
+            "content": "Ohm's Law:   V = I × R",
+            "fill": "#facc15",
+            "font-size": "26",
+            "font-weight": "900",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 107.4,
+          "animations": [
+            {
+              "type": "scale",
+              "from": "0.7",
+              "to": "1",
+              "dur": "0.5s"
+            },
+            {
+              "type": "pulse",
+              "begin": 108,
+              "dur": "2.5s",
+              "intensity": 1.06,
+              "repeat": "indefinite"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "narration": [
+    {
+      "text": "Electricity is the directed flow of electrons through a conductor.",
+      "start": 0.4,
+      "dur": 5
+    },
+    {
+      "text": "Electrons are tiny negative charges. When they move together, we get electric current.",
+      "start": 5.6,
+      "dur": 4.2
+    },
+    {
+      "text": "Voltage is the electrical pressure that drives electrons forward — like water pressure in a pipe.",
+      "start": 10.4,
+      "dur": 5.5
+    },
+    {
+      "text": "Higher voltage means more push. Voltage is measured in Volts (V).",
+      "start": 16.1,
+      "dur": 4.7
+    },
+    {
+      "text": "Current is how many electrons pass a point per second — the flow rate.",
+      "start": 21.4,
+      "dur": 5
+    },
+    {
+      "text": "Current is measured in Amperes. One Ampere = 6.24 billion billion electrons per second!",
+      "start": 26.6,
+      "dur": 5.2
+    },
+    {
+      "text": "Resistance is the friction that slows electrons down. It's like a narrow pipe opposing water flow.",
+      "start": 32.4,
+      "dur": 5.5
+    },
+    {
+      "text": "Resistance is measured in Ohms. More resistance means less current for the same voltage.",
+      "start": 38.1,
+      "dur": 4.7
+    },
+    {
+      "text": "Georg Ohm discovered the relationship: Voltage equals Current times Resistance.",
+      "start": 43.4,
+      "dur": 5
+    },
+    {
+      "text": "Use the triangle: cover the quantity you want to find and read off the formula.",
+      "start": 48.6,
+      "dur": 4.5
+    },
+    {
+      "text": "Example: 12 volts, 4 ohms resistance — what is the current?",
+      "start": 55.4,
+      "dur": 4
+    },
+    {
+      "text": "Use I = V divided by R. That's 12 divided by 4 — giving us 3 Amperes.",
+      "start": 59.6,
+      "dur": 5.2
+    },
+    {
+      "text": "When resistance stays fixed, current is proportional to voltage. Double V, double I.",
+      "start": 67.4,
+      "dur": 5.5
+    },
+    {
+      "text": "At 6 volts we get 1.5 amps. At 12 volts we get 3 amps. Exactly double — as predicted.",
+      "start": 73.1,
+      "dur": 5.7
+    },
+    {
+      "text": "Now let's build a complete circuit: battery, resistor, and ammeter, all connected.",
+      "start": 79.4,
+      "dur": 5
+    },
+    {
+      "text": "Electrons leave the negative terminal, flow through the resistor, and return to positive.",
+      "start": 84.6,
+      "dur": 5.2
+    },
+    {
+      "text": "Ohm's Law is everywhere — your phone charger, light bulbs, and heaters all obey it.",
+      "start": 91.4,
+      "dur": 5.5
+    },
+    {
+      "text": "A charger: 5V and 2.5 ohms gives 2 amps. A heater: 240V and 24 ohms gives 10 amps.",
+      "start": 97.1,
+      "dur": 5.7
+    },
+    {
+      "text": "To summarise: V is voltage in Volts, I is current in Amps, R is resistance in Ohms.",
+      "start": 103.4,
+      "dur": 5.5
+    },
+    {
+      "text": "And Ohm's Law ties them together: V = I × R. Master this, and circuits make sense!",
+      "start": 109.1,
+      "dur": 6.5
+    }
+  ]
+}

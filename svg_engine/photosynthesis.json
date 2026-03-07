@@ -1,0 +1,1878 @@
+{
+  "theme": "dark",
+  "meta": {
+    "title": "Photosynthesis",
+    "subtitle": "How Plants Convert Light into Food",
+    "description": "A 5-scene visual lesson on photosynthesis — light capture, water transport, carbon fixation, glucose production, and the oxygen output."
+  },
+  "canvas": {
+    "width": 800,
+    "height": 500
+  },
+  "scenes": {
+    "scene1": {
+      "scene_start": 0,
+      "scene_end": 16,
+      "elements": [
+        {
+          "id": "s1-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "What is Photosynthesis?",
+            "fill": "#f1f5f9",
+            "font-size": "29",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 0.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.8s"
+            }
+          ]
+        },
+        {
+          "id": "s1-sub",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 136,
+            "content": "Plants absorb sunlight and turn it into chemical energy stored as glucose.",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s1-sun",
+          "type": "asset",
+          "asset_id": "s-sun",
+          "cx": 160,
+          "cy": 270,
+          "size": 110,
+          "label": "Sunlight",
+          "start_time": 1.4,
+          "animations": [
+            {
+              "type": "rotate",
+              "from": "0",
+              "to": "360",
+              "begin": 2,
+              "dur": "10s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ],
+          "custom": {
+            "accent_index": 5,
+            "entrance_dur": 0.8
+          }
+        },
+        {
+          "id": "s1-leaf",
+          "type": "asset",
+          "asset_id": "s-leaf",
+          "cx": 400,
+          "cy": 275,
+          "size": 120,
+          "label": "Leaf (Chloroplast)",
+          "start_time": 2,
+          "animations": [
+            {
+              "type": "pulse",
+              "intensity": 1.05,
+              "begin": 3.5,
+              "dur": "3s",
+              "repeat": "indefinite"
+            }
+          ],
+          "custom": {
+            "accent_index": 2,
+            "entrance_dur": 0.9
+          }
+        },
+        {
+          "id": "s1-glucose",
+          "type": "asset",
+          "asset_id": "s-chemistry-beaker",
+          "cx": 640,
+          "cy": 270,
+          "size": 110,
+          "label": "Glucose (C₆H₁₂O₆)",
+          "start_time": 2.6,
+          "custom": {
+            "accent_index": 4,
+            "entrance_dur": 0.8
+          }
+        },
+        {
+          "id": "s1-arr1",
+          "type": "asset",
+          "asset_id": "s-arrow-right",
+          "cx": 283,
+          "cy": 268,
+          "size": 44,
+          "start_time": 3.2,
+          "animations": [
+            {
+              "type": "blink",
+              "begin": 4,
+              "dur": "1.4s",
+              "repeat": "indefinite"
+            }
+          ],
+          "custom": {
+            "accent_index": 5,
+            "entrance_dur": 0.5
+          }
+        },
+        {
+          "id": "s1-arr2",
+          "type": "asset",
+          "asset_id": "s-arrow-right",
+          "cx": 517,
+          "cy": 268,
+          "size": 44,
+          "start_time": 3.5,
+          "animations": [
+            {
+              "type": "blink",
+              "begin": 4.3,
+              "dur": "1.4s",
+              "repeat": "indefinite"
+            }
+          ],
+          "custom": {
+            "accent_index": 2,
+            "entrance_dur": 0.5
+          }
+        },
+        {
+          "id": "s1-eq-bg",
+          "type": "rect",
+          "props": {
+            "x": 80,
+            "y": 378,
+            "width": 640,
+            "height": 86,
+            "rx": "12",
+            "fill": "#1e293b",
+            "stroke": "#34d399",
+            "stroke-width": "1.8"
+          },
+          "start_time": 4.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s1-eq-label",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 402,
+            "content": "The Master Equation",
+            "fill": "#34d399",
+            "font-size": "12",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 4.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s1-eq",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 426,
+            "content": "6CO₂  +  6H₂O  +  Light  →  C₆H₁₂O₆  +  6O₂",
+            "fill": "#f1f5f9",
+            "font-size": "15",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 5.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s1-eq-words",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 451,
+            "content": "Carbon dioxide + Water + Sunlight → Sugar + Oxygen",
+            "fill": "#64748b",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 5.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene2": {
+      "scene_start": 16,
+      "scene_end": 33,
+      "elements": [
+        {
+          "id": "s2-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Step 1 — Capturing Sunlight",
+            "fill": "#f1f5f9",
+            "font-size": "27",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 16.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s2-sub",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 136,
+            "content": "Chlorophyll molecules inside chloroplasts absorb red and blue light.",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 17,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s2-sun",
+          "type": "asset",
+          "asset_id": "s-sun",
+          "cx": 150,
+          "cy": 255,
+          "size": 96,
+          "label": "Sunlight",
+          "start_time": 17.3,
+          "animations": [
+            {
+              "type": "rotate",
+              "from": "0",
+              "to": "360",
+              "begin": 17.5,
+              "dur": "8s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ],
+          "custom": {
+            "accent_index": 5,
+            "entrance_dur": 0.7
+          }
+        },
+        {
+          "id": "s2-ray1",
+          "type": "line",
+          "props": {
+            "x1": 200,
+            "y1": 230,
+            "x2": 310,
+            "y2": 240,
+            "stroke": "#facc15",
+            "stroke-width": "3",
+            "stroke-linecap": "round"
+          },
+          "start_time": 18,
+          "animations": [
+            {
+              "type": "draw",
+              "length": 120,
+              "begin": 18,
+              "dur": "0.5s"
+            },
+            {
+              "type": "blink",
+              "begin": 19,
+              "dur": "1.2s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s2-ray2",
+          "type": "line",
+          "props": {
+            "x1": 200,
+            "y1": 258,
+            "x2": 310,
+            "y2": 258,
+            "stroke": "#facc15",
+            "stroke-width": "3",
+            "stroke-linecap": "round"
+          },
+          "start_time": 18.2,
+          "animations": [
+            {
+              "type": "draw",
+              "length": 120,
+              "begin": 18.2,
+              "dur": "0.5s"
+            },
+            {
+              "type": "blink",
+              "begin": 19.2,
+              "dur": "1.2s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s2-ray3",
+          "type": "line",
+          "props": {
+            "x1": 200,
+            "y1": 286,
+            "x2": 310,
+            "y2": 276,
+            "stroke": "#facc15",
+            "stroke-width": "3",
+            "stroke-linecap": "round"
+          },
+          "start_time": 18.4,
+          "animations": [
+            {
+              "type": "draw",
+              "length": 120,
+              "begin": 18.4,
+              "dur": "0.5s"
+            },
+            {
+              "type": "blink",
+              "begin": 19.4,
+              "dur": "1.2s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s2-chloro",
+          "type": "asset",
+          "asset_id": "s-hexagon-fill",
+          "cx": 400,
+          "cy": 258,
+          "size": 130,
+          "label": "Chloroplast",
+          "start_time": 18.5,
+          "animations": [
+            {
+              "type": "pulse",
+              "intensity": 1.06,
+              "begin": 20,
+              "dur": "2.5s",
+              "repeat": "indefinite"
+            }
+          ],
+          "custom": {
+            "accent_index": 2,
+            "entrance_dur": 0.8
+          }
+        },
+        {
+          "id": "s2-chloro-label2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 260,
+            "content": "Chlorophyll",
+            "fill": "#f1f5f9",
+            "font-size": "13",
+            "font-weight": "700",
+            "text-anchor": "middle",
+            "dominant-baseline": "middle"
+          },
+          "start_time": 19.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s2-energy-arrow",
+          "type": "asset",
+          "asset_id": "s-lightning-bolt",
+          "cx": 530,
+          "cy": 248,
+          "size": 70,
+          "label": "Energy!",
+          "start_time": 20,
+          "animations": [
+            {
+              "type": "blink",
+              "begin": 21,
+              "dur": "0.8s",
+              "repeat": "indefinite"
+            }
+          ],
+          "custom": {
+            "accent_index": 5,
+            "entrance_dur": 0.6
+          }
+        },
+        {
+          "id": "s2-atp",
+          "type": "rect",
+          "props": {
+            "x": 590,
+            "y": 200,
+            "width": 150,
+            "height": 100,
+            "rx": "10",
+            "fill": "#1e293b",
+            "stroke": "#facc15",
+            "stroke-width": "1.8"
+          },
+          "start_time": 20.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s2-atp-t1",
+          "type": "text",
+          "props": {
+            "x": 665,
+            "y": 234,
+            "content": "ATP",
+            "fill": "#facc15",
+            "font-size": "20",
+            "font-weight": "900",
+            "text-anchor": "middle"
+          },
+          "start_time": 21.2,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-atp-t2",
+          "type": "text",
+          "props": {
+            "x": 665,
+            "y": 255,
+            "content": "Energy currency",
+            "fill": "#94a3b8",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 21.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-atp-t3",
+          "type": "text",
+          "props": {
+            "x": 665,
+            "y": 274,
+            "content": "of the cell",
+            "fill": "#94a3b8",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 21.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-fact-bg",
+          "type": "rect",
+          "props": {
+            "x": 60,
+            "y": 365,
+            "width": 680,
+            "height": 98,
+            "rx": "11",
+            "fill": "#1e293b",
+            "stroke": "#334155",
+            "stroke-width": "1.5"
+          },
+          "start_time": 22.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s2-fact-t1",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 390,
+            "content": "Light Reactions  (happen in Thylakoid membranes)",
+            "fill": "#38bdf8",
+            "font-size": "13",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 22.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-fact-t2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 413,
+            "content": "Water molecules are split  →  releasing O₂ as a by-product",
+            "fill": "#94a3b8",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 23.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-fact-t3",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 434,
+            "content": "Light energy is stored as ATP + NADPH for the next stage",
+            "fill": "#64748b",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 23.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s2-fact-t4",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 452,
+            "content": "This is why plants reflect GREEN light — they don't absorb it",
+            "fill": "#475569",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 23.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene3": {
+      "scene_start": 33,
+      "scene_end": 50,
+      "elements": [
+        {
+          "id": "s3-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Step 2 — Taking in CO₂ & Water",
+            "fill": "#f1f5f9",
+            "font-size": "26",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 33.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s3-sub",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 136,
+            "content": "Carbon dioxide enters through tiny pores. Water is absorbed through the roots.",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 33.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s3-cloud",
+          "type": "asset",
+          "asset_id": "s-cloud",
+          "cx": 160,
+          "cy": 230,
+          "size": 110,
+          "label": "CO₂ in Air",
+          "start_time": 34.4,
+          "custom": {
+            "accent_index": 0,
+            "entrance_dur": 0.8
+          }
+        },
+        {
+          "id": "s3-co2-arr",
+          "type": "line",
+          "props": {
+            "x1": 220,
+            "y1": 235,
+            "x2": 310,
+            "y2": 250,
+            "stroke": "#38bdf8",
+            "stroke-width": "2.5",
+            "stroke-linecap": "round"
+          },
+          "start_time": 35.2,
+          "animations": [
+            {
+              "type": "draw",
+              "length": 110,
+              "begin": 35.2,
+              "dur": "0.5s"
+            },
+            {
+              "type": "blink",
+              "begin": 36,
+              "dur": "1.5s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s3-leaf",
+          "type": "asset",
+          "asset_id": "s-leaf",
+          "cx": 400,
+          "cy": 258,
+          "size": 140,
+          "label": "Leaf",
+          "start_time": 34.8,
+          "custom": {
+            "accent_index": 2,
+            "entrance_dur": 0.9
+          }
+        },
+        {
+          "id": "s3-stoma-label",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 245,
+            "content": "Stomata",
+            "fill": "#f1f5f9",
+            "font-size": "12",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 36,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s3-stoma-sub",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 261,
+            "content": "(tiny pores)",
+            "fill": "#94a3b8",
+            "font-size": "10",
+            "text-anchor": "middle"
+          },
+          "start_time": 36.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s3-wave",
+          "type": "asset",
+          "asset_id": "s-wave-water",
+          "cx": 640,
+          "cy": 225,
+          "size": 90,
+          "label": "H₂O via Roots",
+          "start_time": 35.5,
+          "custom": {
+            "accent_index": 0,
+            "entrance_dur": 0.8
+          }
+        },
+        {
+          "id": "s3-water-arr",
+          "type": "line",
+          "props": {
+            "x1": 590,
+            "y1": 235,
+            "x2": 496,
+            "y2": 252,
+            "stroke": "#38bdf8",
+            "stroke-width": "2.5",
+            "stroke-linecap": "round"
+          },
+          "start_time": 36.2,
+          "animations": [
+            {
+              "type": "draw",
+              "length": 110,
+              "begin": 36.2,
+              "dur": "0.5s"
+            },
+            {
+              "type": "blink",
+              "begin": 37,
+              "dur": "1.5s",
+              "repeat": "indefinite"
+            }
+          ]
+        },
+        {
+          "id": "s3-card1",
+          "type": "rect",
+          "props": {
+            "x": 60,
+            "y": 356,
+            "width": 300,
+            "height": 108,
+            "rx": "11",
+            "fill": "#1e293b",
+            "stroke": "#38bdf8",
+            "stroke-width": "1.5"
+          },
+          "start_time": 37.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s3-c1-h",
+          "type": "text",
+          "props": {
+            "x": 210,
+            "y": 378,
+            "content": "Carbon Dioxide (CO₂)",
+            "fill": "#38bdf8",
+            "font-size": "13",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 37.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s3-c1-t",
+          "type": "text",
+          "props": {
+            "x": 210,
+            "y": 400,
+            "content": "Enters through stomata",
+            "fill": "#94a3b8",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 38.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s3-c1-t2",
+          "type": "text",
+          "props": {
+            "x": 210,
+            "y": 420,
+            "content": "6 molecules needed per",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 38.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s3-c1-t3",
+          "type": "text",
+          "props": {
+            "x": 210,
+            "y": 436,
+            "content": "glucose molecule produced",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 38.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s3-card2",
+          "type": "rect",
+          "props": {
+            "x": 440,
+            "y": 356,
+            "width": 300,
+            "height": 108,
+            "rx": "11",
+            "fill": "#1e293b",
+            "stroke": "#818cf8",
+            "stroke-width": "1.5"
+          },
+          "start_time": 38,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s3-c2-h",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 378,
+            "content": "Water (H₂O)",
+            "fill": "#818cf8",
+            "font-size": "13",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 38.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s3-c2-t",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 400,
+            "content": "Absorbed by roots",
+            "fill": "#94a3b8",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 38.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s3-c2-t2",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 420,
+            "content": "Transported via xylem",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 38.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s3-c2-t3",
+          "type": "text",
+          "props": {
+            "x": 590,
+            "y": 436,
+            "content": "Split in light reactions → O₂",
+            "fill": "#34d399",
+            "font-size": "10.5",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 39,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene4": {
+      "scene_start": 50,
+      "scene_end": 67,
+      "elements": [
+        {
+          "id": "s4-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Step 3 — The Calvin Cycle",
+            "fill": "#f1f5f9",
+            "font-size": "27",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 50.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s4-sub",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 136,
+            "content": "ATP energy is used to fix CO₂ into glucose inside the stroma.",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 50.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s4-cycle-ring",
+          "type": "asset",
+          "asset_id": "s-arrow-circular",
+          "cx": 400,
+          "cy": 272,
+          "size": 210,
+          "start_time": 51.4,
+          "animations": [
+            {
+              "type": "rotate",
+              "from": "0",
+              "to": "360",
+              "begin": 52,
+              "dur": "12s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ],
+          "custom": {
+            "accent_index": 2,
+            "entrance_dur": 1
+          }
+        },
+        {
+          "id": "s4-cycle-label",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 266,
+            "content": "Calvin",
+            "fill": "#34d399",
+            "font-size": "17",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 52.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s4-cycle-label2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 285,
+            "content": "Cycle",
+            "fill": "#34d399",
+            "font-size": "17",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 52.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s4-co2-in",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 178,
+            "content": "CO₂  IN",
+            "fill": "#38bdf8",
+            "font-size": "13",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 53,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s4-atp-in",
+          "type": "text",
+          "props": {
+            "x": 510,
+            "y": 340,
+            "content": "ATP IN",
+            "fill": "#facc15",
+            "font-size": "12",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 53.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s4-glc-out",
+          "type": "text",
+          "props": {
+            "x": 285,
+            "y": 340,
+            "content": "Glucose OUT",
+            "fill": "#fb923c",
+            "font-size": "12",
+            "font-weight": "600",
+            "text-anchor": "middle"
+          },
+          "start_time": 53.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s4-beaker",
+          "type": "asset",
+          "asset_id": "s-chemistry-flask",
+          "cx": 650,
+          "cy": 258,
+          "size": 90,
+          "label": "Glucose (C₆H₁₂O₆)",
+          "start_time": 54,
+          "animations": [
+            {
+              "type": "pulse",
+              "intensity": 1.07,
+              "begin": 55.5,
+              "dur": "2.2s",
+              "repeat": "indefinite"
+            }
+          ],
+          "custom": {
+            "accent_index": 4,
+            "entrance_dur": 0.7
+          }
+        },
+        {
+          "id": "s4-fact-bg",
+          "type": "rect",
+          "props": {
+            "x": 60,
+            "y": 390,
+            "width": 680,
+            "height": 72,
+            "rx": "11",
+            "fill": "#1e293b",
+            "stroke": "#334155",
+            "stroke-width": "1.5"
+          },
+          "start_time": 55,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s4-fact-t1",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 414,
+            "content": "The Calvin Cycle runs in the stroma (fluid inside chloroplast)",
+            "fill": "#94a3b8",
+            "font-size": "12",
+            "text-anchor": "middle"
+          },
+          "start_time": 55.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s4-fact-t2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 434,
+            "content": "3 CO₂  +  9 ATP  +  6 NADPH  →  1 G3P  (building block of glucose)",
+            "fill": "#64748b",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 55.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s4-fact-t3",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 452,
+            "content": "Two G3P molecules combine to form one glucose — the plant's food.",
+            "fill": "#475569",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 56,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    },
+    "scene5": {
+      "scene_start": 67,
+      "scene_end": 85,
+      "elements": [
+        {
+          "id": "s5-title",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 108,
+            "content": "Outputs & Why It Matters",
+            "fill": "#f1f5f9",
+            "font-size": "27",
+            "font-weight": "800",
+            "text-anchor": "middle"
+          },
+          "start_time": 67.4,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.7s"
+            }
+          ]
+        },
+        {
+          "id": "s5-sub",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 136,
+            "content": "Photosynthesis feeds every living thing and produces the oxygen we breathe.",
+            "fill": "#94a3b8",
+            "font-size": "13",
+            "text-anchor": "middle"
+          },
+          "start_time": 67.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s5-glucose-card",
+          "type": "rect",
+          "props": {
+            "x": 60,
+            "y": 162,
+            "width": 200,
+            "height": 195,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#fb923c",
+            "stroke-width": "1.8"
+          },
+          "start_time": 68.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s5-gluc-icon",
+          "type": "asset",
+          "asset_id": "s-chemistry-beaker",
+          "cx": 160,
+          "cy": 240,
+          "size": 80,
+          "label": "Glucose",
+          "start_time": 68.8,
+          "custom": {
+            "accent_index": 4,
+            "entrance_dur": 0.7
+          }
+        },
+        {
+          "id": "s5-gluc-t1",
+          "type": "text",
+          "props": {
+            "x": 160,
+            "y": 306,
+            "content": "C₆H₁₂O₆",
+            "fill": "#fb923c",
+            "font-size": "13",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 69.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-gluc-t2",
+          "type": "text",
+          "props": {
+            "x": 160,
+            "y": 326,
+            "content": "Stored as starch",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 69.6,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-gluc-t3",
+          "type": "text",
+          "props": {
+            "x": 160,
+            "y": 344,
+            "content": "Powers cell growth",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 69.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-oxygen-card",
+          "type": "rect",
+          "props": {
+            "x": 300,
+            "y": 162,
+            "width": 200,
+            "height": 195,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#38bdf8",
+            "stroke-width": "1.8"
+          },
+          "start_time": 69,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s5-o2-icon",
+          "type": "asset",
+          "asset_id": "s-atom",
+          "cx": 400,
+          "cy": 240,
+          "size": 80,
+          "label": "Oxygen",
+          "start_time": 69.5,
+          "animations": [
+            {
+              "type": "rotate",
+              "from": "0",
+              "to": "360",
+              "begin": 70.5,
+              "dur": "7s",
+              "repeat": "indefinite",
+              "fill": "auto"
+            }
+          ],
+          "custom": {
+            "accent_index": 0,
+            "entrance_dur": 0.7
+          }
+        },
+        {
+          "id": "s5-o2-t1",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 306,
+            "content": "O₂  Released",
+            "fill": "#38bdf8",
+            "font-size": "13",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 70,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-o2-t2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 326,
+            "content": "By-product of H₂O split",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 70.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-o2-t3",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 344,
+            "content": "All breathable O₂",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 70.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-energy-card",
+          "type": "rect",
+          "props": {
+            "x": 540,
+            "y": 162,
+            "width": 200,
+            "height": 195,
+            "rx": "14",
+            "fill": "#1e293b",
+            "stroke": "#34d399",
+            "stroke-width": "1.8"
+          },
+          "start_time": 69.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s5-nrg-icon",
+          "type": "asset",
+          "asset_id": "s-chart-line",
+          "cx": 640,
+          "cy": 240,
+          "size": 80,
+          "label": "Food Chain",
+          "start_time": 70.3,
+          "custom": {
+            "accent_index": 2,
+            "entrance_dur": 0.7
+          }
+        },
+        {
+          "id": "s5-nrg-t1",
+          "type": "text",
+          "props": {
+            "x": 640,
+            "y": 306,
+            "content": "Energy Transfer",
+            "fill": "#34d399",
+            "font-size": "13",
+            "font-weight": "700",
+            "text-anchor": "middle"
+          },
+          "start_time": 70.8,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-nrg-t2",
+          "type": "text",
+          "props": {
+            "x": 640,
+            "y": 326,
+            "content": "Plants → Herbivores",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 71.1,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-nrg-t3",
+          "type": "text",
+          "props": {
+            "x": 640,
+            "y": 344,
+            "content": "→ Carnivores → Us",
+            "fill": "#64748b",
+            "font-size": "10.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 71.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        },
+        {
+          "id": "s5-summary-bg",
+          "type": "rect",
+          "props": {
+            "x": 60,
+            "y": 380,
+            "width": 680,
+            "height": 82,
+            "rx": "12",
+            "fill": "#0a2a1a",
+            "stroke": "#34d399",
+            "stroke-width": "2"
+          },
+          "start_time": 72.5,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.6s"
+            }
+          ]
+        },
+        {
+          "id": "s5-sum-t1",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 404,
+            "content": "6CO₂  +  6H₂O  + Light  →  C₆H₁₂O₆  +  6O₂",
+            "fill": "#34d399",
+            "font-size": "16",
+            "font-weight": "900",
+            "text-anchor": "middle"
+          },
+          "start_time": 72.9,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s5-sum-t2",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 427,
+            "content": "Without photosynthesis there would be no oxygen, no food, and no life on Earth.",
+            "fill": "#64748b",
+            "font-size": "11.5",
+            "text-anchor": "middle"
+          },
+          "start_time": 73.3,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.5s"
+            }
+          ]
+        },
+        {
+          "id": "s5-sum-t3",
+          "type": "text",
+          "props": {
+            "x": 400,
+            "y": 448,
+            "content": "Plants are the ultimate energy converters — turning starlight into life.",
+            "fill": "#475569",
+            "font-size": "11",
+            "text-anchor": "middle"
+          },
+          "start_time": 73.7,
+          "animations": [
+            {
+              "type": "fade",
+              "from": 0,
+              "to": 1,
+              "dur": "0.4s"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "narration": [
+    {
+      "text": "Photosynthesis is the process plants use to convert sunlight into chemical energy — glucose.",
+      "start": 0.5,
+      "dur": 7
+    },
+    {
+      "text": "The master equation: six CO₂ plus six water molecules plus light yields glucose and oxygen.",
+      "start": 7.5,
+      "dur": 7
+    },
+    {
+      "text": "Inside the chloroplast, chlorophyll molecules absorb red and blue light — reflecting green.",
+      "start": 16.5,
+      "dur": 7.5
+    },
+    {
+      "text": "The absorbed light energy splits water molecules, releasing oxygen and producing ATP — the cell's energy currency.",
+      "start": 24.5,
+      "dur": 7
+    },
+    {
+      "text": "Carbon dioxide enters through tiny pores called stomata. Water travels up from the roots through the xylem.",
+      "start": 33.5,
+      "dur": 8
+    },
+    {
+      "text": "Six CO₂ molecules are needed for each glucose made. The split water provides the hydrogen atoms.",
+      "start": 42,
+      "dur": 7
+    },
+    {
+      "text": "In the Calvin Cycle, ATP energy fixes CO₂ into G3P — the three-carbon building block of glucose.",
+      "start": 50.5,
+      "dur": 8.5
+    },
+    {
+      "text": "Two G3P molecules combine to form one glucose. The cycle spins continuously in the stroma.",
+      "start": 59,
+      "dur": 6.5
+    },
+    {
+      "text": "Photosynthesis produces two vital outputs: glucose for energy storage, and oxygen for us to breathe.",
+      "start": 67.5,
+      "dur": 8
+    },
+    {
+      "text": "Every bite of food traces back to a plant. Without photosynthesis, no oxygen, no food — no life.",
+      "start": 76,
+      "dur": 7.5
+    }
+  ]
+}
+
