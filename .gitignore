@@ -11,3 +11,5 @@ Thumbs.db
 .kiro
 .venv
 .vscode
+pyproject.toml
+uv.lock
