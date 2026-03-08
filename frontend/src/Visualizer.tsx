@@ -1,9 +1,8 @@
+//visualizer.tsx
 import { useState, useEffect, useRef } from 'react'
 import ClickSpark from './components/ClickSpark'
 import UnifiedSidebar from './components/UnifiedSidebar'
-
-// ─── Import animation.svg from the same src/ folder ──────────────────────────
-import visualizerSvgUrl from './animation.svg?url'
+import { useVisualizer } from './context/VisualizerContext'        // ← NEW (replaces the SVG file fetch)
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface VisualizerNote {
@@ -48,7 +47,55 @@ async function sendChatMessage(message: string, history: ChatMessage[]) {
     })
   })
   if (!response.ok) throw new Error('Chat request failed')
-  return await response.json() // expects { reply: string }
+  return await response.json()
+}
+
+// ─── Loading Skeleton ─────────────────────────────────────────────────────────
+// ← NEW component — shows while Bedrock agent is running
+function VisualizerSkeleton({ topic, error }: { topic: string; error: string }) {
+  if (error) {
+    return (
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '2rem' }}>
+        <div style={{ fontSize: '3rem' }}>⚠️</div>
+        <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#ef4444', fontFamily: "'DM Sans',sans-serif" }}>Agent Error</div>
+        <div style={{ fontSize: '0.72rem', color: '#6b7280', fontFamily: "'DM Sans',sans-serif", textAlign: 'center', maxWidth: '18rem' }}>{error}</div>
+        <div style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: "'DM Sans',sans-serif" }}>Check your VITE_AWS_* env vars and try again</div>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', padding: '2rem' }}>
+      {/* Pulsing brain with ripple rings */}
+      <div style={{ position: 'relative', width: '6rem', height: '6rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {[1, 2, 3].map(i => (
+          <div key={i} style={{ position: 'absolute', inset: `-${i * 12}px`, borderRadius: '50%', border: '2px solid rgba(124,58,237,0.25)', animation: `ripple 2s ease-out ${i * 0.4}s infinite` }} />
+        ))}
+        <div style={{ width: '6rem', height: '6rem', borderRadius: '50%', background: 'radial-gradient(circle at 40% 40%, #a78bfa, #7c3aed)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.4rem', animation: 'agentPulse 2s ease-in-out infinite', boxShadow: '0 0 2rem rgba(124,58,237,0.4)' }}>
+          🧠
+        </div>
+      </div>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#7c3aed', fontFamily: "'DM Sans',sans-serif", marginBottom: '0.3rem' }}>Generating Visualization…</div>
+        {topic && (
+          <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: "'DM Sans',sans-serif" }}>
+            Topic: <span style={{ color: '#7c3aed', fontWeight: 600 }}>{topic}</span>
+          </div>
+        )}
+        <div style={{ fontSize: '0.65rem', color: '#9ca3af', fontFamily: "'DM Sans',sans-serif", marginTop: '0.4rem' }}>Your Bedrock agent is crafting an SVG animation…</div>
+      </div>
+      {/* Shimmer progress bar */}
+      <div style={{ width: '14rem', height: '0.35rem', background: '#ede9fe', borderRadius: '1rem', overflow: 'hidden' }}>
+        <div style={{ height: '100%', background: 'linear-gradient(90deg,#7c3aed,#a855f7,#7c3aed)', backgroundSize: '200% 100%', borderRadius: '1rem', animation: 'shimmer 1.5s linear infinite' }} />
+      </div>
+      {/* Skeleton bars */}
+      <div style={{ width: '100%', maxWidth: '20rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+        {[100, 80, 90, 60, 75].map((w, i) => (
+          <div key={i} style={{ height: '0.55rem', borderRadius: '0.5rem', background: '#ede9fe', width: `${w}%`, animation: `skeletonPulse 1.5s ease-in-out ${i * 0.12}s infinite` }} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 // ─── Notes Panel ──────────────────────────────────────────────────────────────
@@ -362,20 +409,10 @@ function ChatbotPanel({ speaking }: { speaking: boolean }) {
   )
 }
 
-// ─── AI Visualizer — reads ./animation.svg at runtime ─────────────────────────
+// ─── AI Visualizer — reads from context instead of animation.svg ──────────────
 function AIVisualizer({ speaking, expanded, onToggle }: { speaking: boolean; expanded: boolean; onToggle: () => void }) {
-  const [svgMarkup, setSvgMarkup] = useState<string | null>(null)
-  const [loadError, setLoadError] = useState(false)
-
-  useEffect(() => {
-    fetch(visualizerSvgUrl)
-      .then(res => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        return res.text()
-      })
-      .then(text => setSvgMarkup(text))
-      .catch(() => setLoadError(true))
-  }, [])
+  // ← CHANGED: read from context instead of fetching animation.svg
+  const { svgContent, svgLoading, svgTopic, svgError } = useVisualizer()
 
   return (
     <div style={{
@@ -390,10 +427,24 @@ function AIVisualizer({ speaking, expanded, onToggle }: { speaking: boolean; exp
     }}>
       {/* Status label + expand/collapse toggle */}
       <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, marginBottom: '0.25rem', gap: '0.5rem' }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: speaking ? '#f0fdf4' : '#f5f3ff', border: `1px solid ${speaking ? '#86efac' : '#ddd6fe'}`, borderRadius: '2rem', padding: '0.3rem 0.9rem' }}>
-          <span style={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', background: speaking ? '#22c55e' : '#a78bfa', display: 'inline-block', animation: speaking ? 'pulse-dot 1s infinite' : 'none' }} />
-          <span style={{ fontSize: '0.65rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 600, color: speaking ? '#16a34a' : '#7c3aed', letterSpacing: '0.06em' }}>
-            {speaking ? 'GENERATING RESPONSE' : 'KYDY AI READY'}
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+          background: svgLoading ? '#fef9c3' : svgContent ? '#f0fdf4' : '#f5f3ff',
+          border: `1px solid ${svgLoading ? '#fde047' : svgContent ? '#86efac' : '#ddd6fe'}`,
+          borderRadius: '2rem', padding: '0.3rem 0.9rem'
+        }}>
+          <span style={{
+            width: '0.5rem', height: '0.5rem', borderRadius: '50%',
+            background: svgLoading ? '#f59e0b' : svgContent ? '#22c55e' : '#a78bfa',
+            display: 'inline-block',
+            animation: (speaking || svgLoading) ? 'pulse-dot 1s infinite' : 'none'
+          }} />
+          <span style={{
+            fontSize: '0.65rem', fontFamily: "'DM Sans',sans-serif", fontWeight: 600,
+            color: svgLoading ? '#92400e' : svgContent ? '#166534' : '#7c3aed',
+            letterSpacing: '0.06em'
+          }}>
+            {svgLoading ? 'AGENT RUNNING…' : svgContent ? `READY · ${svgTopic || 'Visualization'}`.toUpperCase() : 'KYDY AI READY'}
           </span>
         </div>
 
@@ -420,20 +471,19 @@ function AIVisualizer({ speaking, expanded, onToggle }: { speaking: boolean; exp
           id="ai-visualizer-svg"
           style={{ width: '100%', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 0 }}
         >
-          {loadError ? (
-            <div style={{ color: '#ef4444', fontSize: '0.8rem', fontFamily: "'DM Sans',sans-serif", textAlign: 'center', padding: '2rem' }}>
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⚠️</div>
-              <strong>Could not load animation.svg</strong>
+          {/* ← CHANGED: show skeleton while loading, SVG when ready, empty state otherwise */}
+          {(svgLoading || svgError) ? (
+            <VisualizerSkeleton topic={svgTopic} error={svgError} />
+          ) : svgContent ? (
+            <div style={{ width: '100%', height: '100%' }} dangerouslySetInnerHTML={{ __html: svgContent }} />
+          ) : (
+            <div style={{ color: '#a78bfa', fontSize: '0.75rem', fontFamily: "'DM Sans',sans-serif", textAlign: 'center', padding: '2rem' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🎨</div>
+              <strong>No visualization yet</strong>
               <p style={{ color: '#6b7280', marginTop: '0.4rem', fontSize: '0.75rem' }}>
-                Place <code style={{ background: '#f3f4f6', padding: '0.1rem 0.3rem', borderRadius: '0.3rem' }}>animation.svg</code> in <code style={{ background: '#f3f4f6', padding: '0.1rem 0.3rem', borderRadius: '0.3rem' }}>src/</code>
+                Ask a question in <strong>Lessons</strong> to generate one
               </p>
             </div>
-          ) : svgMarkup === null ? (
-            <div style={{ color: '#a78bfa', fontSize: '0.75rem', fontFamily: "'DM Sans',sans-serif" }}>
-              Loading visualization…
-            </div>
-          ) : (
-            <div style={{ width: '100%', height: '100%' }} dangerouslySetInnerHTML={{ __html: svgMarkup }} />
           )}
         </div>
       )}
@@ -506,13 +556,18 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
 
         #ai-visualizer-svg svg { width: 100% !important; height: 100% !important; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(0.4rem) } to { opacity: 1; transform: translateY(0) } }
-        @keyframes pulse-dot { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,0.4)} 50%{opacity:0.5;box-shadow:0 0 0 0.3rem rgba(34,197,94,0)} }
-        @keyframes wave-bar-0 { from { height: 20% } to { height: 80% } }
-        @keyframes wave-bar-1 { from { height: 40% } to { height: 60% } }
-        @keyframes wave-bar-2 { from { height: 15% } to { height: 90% } }
-        @keyframes wave-bar-3 { from { height: 35% } to { height: 70% } }
-        @keyframes typing-dot { 0%,100% { opacity: 0.3; transform: translateY(0) } 50% { opacity: 1; transform: translateY(-0.2rem) } }
+        @keyframes fadeIn      { from { opacity: 0; transform: translateY(0.4rem) } to { opacity: 1; transform: translateY(0) } }
+        @keyframes pulse-dot   { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,0.4)} 50%{opacity:0.5;box-shadow:0 0 0 0.3rem rgba(34,197,94,0)} }
+        @keyframes wave-bar-0  { from { height: 20% } to { height: 80% } }
+        @keyframes wave-bar-1  { from { height: 40% } to { height: 60% } }
+        @keyframes wave-bar-2  { from { height: 15% } to { height: 90% } }
+        @keyframes wave-bar-3  { from { height: 35% } to { height: 70% } }
+        @keyframes typing-dot  { 0%,100% { opacity: 0.3; transform: translateY(0) } 50% { opacity: 1; transform: translateY(-0.2rem) } }
+
+        @keyframes agentPulse    { 0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(124,58,237,0.4)} 50%{transform:scale(1.06);box-shadow:0 0 0 1.2rem rgba(124,58,237,0)} }
+        @keyframes ripple        { 0%{transform:scale(0.85);opacity:0.8} 100%{transform:scale(1.6);opacity:0} }
+        @keyframes shimmer       { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+        @keyframes skeletonPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
       `}</style>
 
       <ClickSpark sparkColor="#7c3aed" sparkSize={15} sparkRadius={25} sparkCount={12} duration={600} extraScale={1.5}>
@@ -528,7 +583,7 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
               <span style={{ fontSize: '0.65rem', fontFamily: "'DM Sans',sans-serif", color: '#6b7280' }}>Neural Network Visualization</span>
             </div>
 
-            {/* SVG visualizer area — height collapses when not expanded */}
+            {/* SVG visualizer area */}
             <div style={{
               height: svgExpanded ? '75%' : '4rem',
               minHeight: svgExpanded ? '10rem' : '4rem',
@@ -540,7 +595,7 @@ export default function VisualizerPage({ onNav }: { onNav?: (id: string) => void
               <NotesPanel notes={notes} onSaveNote={handleSaveNote} onSaveSVG={handleSaveSVG} />
             </div>
 
-            {/* Chatbot area — grows to fill space when SVG is collapsed */}
+            {/* Chatbot area */}
             <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
               <ChatbotPanel speaking={speaking} />
             </div>

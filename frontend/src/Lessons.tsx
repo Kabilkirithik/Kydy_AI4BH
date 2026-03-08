@@ -1,36 +1,12 @@
+//lessons.tsx
 import { useState, useRef, useEffect } from 'react'
 import ClickSpark from './components/ClickSpark'
 import UnifiedSidebar from '@/components/UnifiedSidebar'
+import { useVisualizer } from './context/VisualizerContext'       // ← NEW
+import { callBedrockAgent } from './lib/bedrockAgent'             // ← NEW
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Message { id: number; role: 'user' | 'ai'; text: string; time: string }
-
-// ─── API Functions ────────────────────────────────────────────────────────────
-const API_BASE = 'http://localhost:8000'
-
-async function sendChatMessage(message: string, sessionId?: string) {
-  try {
-    const response = await fetch(`${API_BASE}/api/chat`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message,
-        session_id: sessionId
-      })
-    })
-    
-    if (!response.ok) throw new Error('Failed to send message')
-    return await response.json()
-  } catch (error) {
-    console.error('Error sending chat message:', error)
-    return {
-      response: "I'm sorry, I'm having trouble connecting to the server right now. Please try again later.",
-      session_id: sessionId || `session_${Date.now()}`
-    }
-  }
-}
 
 // ─── Chat Panel ───────────────────────────────────────────────────────────────
 const INITIAL_MESSAGES: Message[] = [
@@ -62,54 +38,47 @@ function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: 
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
   const [inputFocused, setInputFocused] = useState(false)
-  const [sessionId, setSessionId] = useState<string>('')
   const bottomRef = useRef<HTMLDivElement>(null)
+
+  // ── NEW: pull shared visualizer state ──────────────────────────────────────
+  const { setSvgContent, setSvgLoading, setSvgTopic, setSvgError } = useVisualizer()
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages, typing])
 
+  // ── CHANGED: send now calls Bedrock and navigates to visualizer ─────────────
   const send = async () => {
     if (!input.trim()) return
-    
+
     const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     const userMessage = { id: Date.now(), role: 'user' as const, text: input, time: now }
-    
+
     setMessages(prev => [...prev, userMessage])
+    const sentInput = input
     setInput('')
     setTyping(true)
     onSpeak(true)
 
+    // Tell visualizer we're loading, then navigate to it immediately
+    setSvgLoading(true)
+    setSvgContent(null)
+    setSvgTopic('')
+    setSvgError('')
+    onNav && onNav('visualizer')
+
+    // Call Bedrock agent in the background — visualizer skeleton shows until done
     try {
-      const response = await sendChatMessage(input, sessionId)
-      
-      if (!sessionId) {
-        setSessionId(response.session_id)
-      }
-      
-      setTimeout(() => {
-        const aiMessage = {
-          id: Date.now() + 1,
-          role: 'ai' as const,
-          text: response.response,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        }
-        
-        setMessages(prev => [...prev, aiMessage])
-        setTyping(false)
-        onSpeak(false)
-      }, 1500)
-      
-    } catch (error) {
-      console.error('Error in chat:', error)
+      const { svg, topic } = await callBedrockAgent(sentInput)
+      if (!svg) throw new Error('Agent returned empty SVG')
+      setSvgContent(svg)
+      setSvgTopic(topic)
+    } catch (err: any) {
+      console.error('Bedrock agent error:', err)
+      setSvgError(err?.message ?? 'Unknown error')
+      setSvgContent(null)
+    } finally {
+      setSvgLoading(false)
       setTyping(false)
       onSpeak(false)
-      
-      const errorMessage = {
-        id: Date.now() + 1,
-        role: 'ai' as const,
-        text: "I'm sorry, I encountered an error. Please try again.",
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }
-      setMessages(prev => [...prev, errorMessage])
     }
   }
 
@@ -133,16 +102,16 @@ function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: 
           </div>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <button 
+          <button
             onClick={() => onNav && onNav('visualizer')}
-            style={{ 
-              padding: '0.5rem 1rem', 
-              borderRadius: '0.5rem', 
-              border: '1px solid #7c3aed', 
-              background: 'linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.05))', 
-              color: '#7c3aed', 
-              cursor: 'pointer', 
-              fontSize: '0.75rem', 
+            style={{
+              padding: '0.5rem 1rem',
+              borderRadius: '0.5rem',
+              border: '1px solid #7c3aed',
+              background: 'linear-gradient(135deg,rgba(124,58,237,0.1),rgba(168,85,247,0.05))',
+              color: '#7c3aed',
+              cursor: 'pointer',
+              fontSize: '0.75rem',
               fontWeight: 600,
               fontFamily: "'DM Sans',sans-serif",
               display: 'flex',
@@ -242,7 +211,7 @@ function ChatPanel({ onSpeak, onNav }: { onSpeak: (v: boolean) => void; onNav?: 
             rows={1}
             style={{
               flex: 1, background: 'none', border: 'none', outline: 'none', resize: 'none',
-              fontSize: '0.95rem', /* ← increased from 0.78rem */
+              fontSize: '0.95rem',
               fontFamily: "'DM Sans',sans-serif", color: '#1e1b4b',
               lineHeight: 1.5, maxHeight: '6rem', overflowY: 'auto',
             }}
@@ -296,9 +265,9 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
       `}</style>
 
       <div style={{ display: 'flex', height: '100vh', background: '#f3f4f6', color: '#1e1b4b', overflow: 'hidden' }}>
-        <UnifiedSidebar 
-          active="lessons" 
-          onNav={(id: string) => onNav && onNav(id)} 
+        <UnifiedSidebar
+          active="lessons"
+          onNav={(id: string) => onNav && onNav(id)}
           variant="light"
           showChatHistory={true}
           onChatHistorySelect={setActiveSession}
@@ -307,7 +276,7 @@ export default function LessonsPage({ onNav }: { onNav?: (id: string) => void })
 
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <ChatPanel onSpeak={() => {}} onNav={onNav} />
-        </div>  
+        </div>
       </div>
     </ClickSpark>
   )

@@ -4,6 +4,7 @@ import LessonsPage from './Lessons'
 import NotesPage from './Notes'
 import VisualizerPage from '@/Visualizer'
 import ClickSpark from './components/ClickSpark'
+import { VisualizerProvider } from './context/VisualizerContext'   // ← NEW
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface OrbProps { style?: CSSProperties; color?: string; size?: number }
@@ -508,7 +509,7 @@ function Navbar({ activeTab, setActiveTab, setIsLoggedIn }: NavbarProps & { setI
           ))}
         </div>
 
-        {/* CTAs — primary purple to match hero EXPLORE KYDY button */}
+        {/* CTAs */}
         <div style={{ display: 'flex', gap: 10 }}>
           <LGBtn variant="primary" onClick={() => setIsLoggedIn(true)} style={{
             padding: '9px 20px', borderRadius: 8,
@@ -566,7 +567,6 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
               WITH KYDY
             </h1>
 
-            {/* ── Hero buttons ── */}
             <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               <LGBtn
                 variant="primary"
@@ -601,7 +601,7 @@ function Home({ setIsLoggedIn }: { setIsLoggedIn: (val: boolean) => void }) {
             </div>
           </div>
 
-          {/* Right — orbiting visual */}
+          {/* Right */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
             <div style={{
               width: 420, height: 420, borderRadius: '50%',
@@ -768,11 +768,21 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   const [dashboardView, setDashboardView] = useState<string>('lessons')
 
+  // ── CHANGED: wrap logged-in views in VisualizerProvider so Lessons and
+  // Visualizer share the same SVG state across page navigation. ──────────────
   if (isLoggedIn) {
-    if (dashboardView === 'lessons')    return <LessonsPage   onNav={(id: string) => setDashboardView(id)} />
-    if (dashboardView === 'notes')      return <NotesPage      onNav={(id: string) => setDashboardView(id)} />
-    if (dashboardView === 'visualizer') return <VisualizerPage onNav={(id: string) => setDashboardView(id)} />
-    return <Dashboard onNavigate={(view: string) => setDashboardView(view)} />
+    return (
+      <VisualizerProvider>
+        {dashboardView === 'lessons'    && <LessonsPage    onNav={(id: string) => setDashboardView(id)} />}
+        {dashboardView === 'notes'      && <NotesPage       onNav={(id: string) => setDashboardView(id)} />}
+        {dashboardView === 'visualizer' && <VisualizerPage  onNav={(id: string) => setDashboardView(id)} />}
+        {dashboardView === 'dashboard'  && <Dashboard       onNavigate={(view: string) => setDashboardView(view)} />}
+        {/* Default fallback — shows Dashboard when dashboardView doesn't match any above */}
+        {!['lessons','notes','visualizer','dashboard'].includes(dashboardView) && (
+          <Dashboard onNavigate={(view: string) => setDashboardView(view)} />
+        )}
+      </VisualizerProvider>
+    )
   }
 
   return (
