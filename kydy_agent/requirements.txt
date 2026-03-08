@@ -1,0 +1,5 @@
+crewai>=0.80.0
+json-repair>=0.25.0
+bedrock-agentcore
+boto3>=1.35.0
+botocore>=1.35.0
