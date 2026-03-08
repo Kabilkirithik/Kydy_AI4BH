@@ -1,0 +1,2444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 600 460"
+     width="600" height="460"
+     font-family="'Courier New', monospace"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <!--
+    ┌─────────────────────────────────────────────────┐
+    │  SVG SEQUENTIAL SLIDESHOW  v2.0                 │
+    │  Topic   : Machine Learning — Visual Course    │
+    │  Scenes  : 7    Runtime: 50s              │
+    │  Mode    : All scenes share one viewport        │
+    │            Scene N fades out → Scene N+1 in    │
+    └─────────────────────────────────────────────────┘
+  -->
+
+  <defs>
+    <pattern id="scene-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#ffffff" stroke-width="0.3"/>
+    </pattern>
+    <radialGradient id="gSph" cx="35%" cy="35%">
+      <stop offset="0%" stop-color="#79c0ff"/>
+      <stop offset="100%" stop-color="#0d2236"/>
+    </radialGradient>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <!-- §31 Extra Electronic -->
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- §32 More 3D -->
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- §33 Extra UI & Charts -->
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- §34 Extra Shapes & Symbols -->
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- §35 Semiconductor packages -->
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- §36-56 NEW SYMBOLS START -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- §36-56 NEW SYMBOLS END -->
+  </defs>
+
+  <!-- canvas bg -->
+  <rect width="600" height="460" fill="#0d1117"/>
+
+  <!-- header -->
+  <rect x="0" y="0" width="600" height="60" fill="#161b22"/>
+  <text x="300" y="26" font-size="14" fill="#f0f6fc" font-weight="bold"
+        text-anchor="middle" letter-spacing="2">MACHINE LEARNING — VISUAL COURSE</text>
+  <text x="300" y="44" font-size="9" fill="#8b949e" text-anchor="middle">
+    7 SCENES · 14 ASSETS · 50s · SEQUENTIAL AUTO-PLAY
+  </text>
+
+  <!-- timeline progress bar -->
+  <style>
+  @keyframes progress_bar_anim {
+    from { width:0px; } to { width:600px; }
+  }
+  #progress_bar { animation: progress_bar_anim 49.700s linear forwards; }
+</style>
+<rect x="0" y="55" width="600" height="4" fill="#161b22"/>
+<rect id="progress_bar" x="0" y="55" width="0" height="4" fill="#58a6ff"/>
+
+  <!-- asset badge strip removed -->
+
+  <!-- ╔══════════════════════════════╗
+       ║  SINGLE VIEWPORT STAGE       ║
+       ╚══════════════════════════════╝
+       All scenes render at (0,0) in this group.
+       Only ONE is visible at a time via SMIL opacity. -->
+  <g id="stage" transform="translate(0, 60)">
+
+    <style>
+  @keyframes scene_1_anim {
+  0%          { opacity:0; }
+  0.101% { opacity:0; }
+  1.308%   { opacity:1; }
+  13.078% { opacity:1; }
+  14.286%   { opacity:0; }
+  100%        { opacity:0; }
+}
+  #scene_1 { opacity:0; animation:scene_1_anim 49.700s linear forwards; }
+</style>
+    <!-- ═══ SCENE 1/7: What is Machine Learning? | start=0.0s dur=6.5s ═══ -->
+    <g id="scene_1" opacity="0">
+
+      <!-- background -->
+      <rect width="600" height="400" fill="#0d1117" rx="10"/>
+      <rect width="600" height="400" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="600" height="400" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      
+
+      <!-- scene content -->
+      
+        <g id="intro_bg_glow" opacity="1">
+          <animateTransform attributeName="transform" type="translate" values="0.0 0.0;-45.0 -30.0;0.0 0.0" additive="sum" begin="0.000s" dur="3s" repeatCount="indefinite" fill="freeze"/>
+          <animateTransform attributeName="transform" type="scale" values="1;1.15;1" additive="sum" begin="0.000s" dur="3s" repeatCount="indefinite" fill="freeze"/>
+          <ellipse cx="300" cy="200" rx="200" ry="120" fill="#58a6ff" opacity="1"/>
+        </g>
+        <style>
+  @keyframes kf_intro_brain_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_brain { animation: kf_intro_brain_1 1.000s linear forwards 0.300s 1; }
+  </style>
+        <g id="intro_brain" opacity="0">
+          
+          <g transform="translate(240,80) scale(2.0000,1.6667)">
+            <use href="#s-med-brain" width="60.0" height="60.0"/>
+          </g>
+          
+        </g>
+        <style>
+  @keyframes kf_intro_title_1 {
+    from { opacity:0; transform:translate(0px,30px); }
+    to   { opacity:1; transform:translate(0,0); }
+  }
+  #intro_title { animation: kf_intro_title_1 0.700s ease-out forwards 0.800s 1; }
+  </style>
+        <text id="intro_title" x="300" y="225" font-size="28" fill="#f0f6fc" text-anchor="middle" font-weight="bold" letter-spacing="3" opacity="0">
+            MACHINE LEARNING
+          </text>
+        <style>
+  @keyframes kf_intro_sub_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_sub { animation: kf_intro_sub_1 0.800s linear forwards 1.500s 1; }
+  </style>
+        <text id="intro_sub" x="300" y="252" font-size="13" fill="#8b949e" text-anchor="middle" opacity="0">
+            Teaching computers to learn from data
+          </text>
+        
+        <g id="intro_line" opacity="1">
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="280 0" additive="sum" begin="2.000s" dur="0.6s" repeatCount="1" fill="freeze"/>
+          <rect x="160" y="262" width="0" height="2" fill="#58a6ff" rx="1" opacity="1"/>
+        </g>
+        <style>
+  @keyframes kf_intro_pill1_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_pill1 { animation: kf_intro_pill1_1 0.500s linear forwards 2.000s 1; }
+  </style>
+        <rect id="intro_pill1" x="60" y="295" width="130" height="32" fill="#161b22" stroke="#58a6ff" stroke-width="1" rx="16" opacity="0"/>
+        <style>
+  @keyframes kf_intro_pill1_txt_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_pill1_txt { animation: kf_intro_pill1_txt_1 0.500s linear forwards 2.000s 1; }
+  </style>
+        <text id="intro_pill1_txt" x="125" y="316" font-size="11" fill="#58a6ff" text-anchor="middle" opacity="0">
+            📊 Data In
+          </text>
+        <style>
+  @keyframes kf_intro_arr1_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_arr1 { animation: kf_intro_arr1_1 0.500s linear forwards 2.300s 1; }
+  </style>
+        <text id="intro_arr1" x="210" y="316" font-size="18" fill="#30363d" text-anchor="middle" opacity="0">
+            →
+          </text>
+        <style>
+  @keyframes kf_intro_pill2_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_pill2 { animation: kf_intro_pill2_1 0.500s linear forwards 2.500s 1; }
+  </style>
+        <rect id="intro_pill2" x="225" y="295" width="150" height="32" fill="#161b22" stroke="#3fb950" stroke-width="1" rx="16" opacity="0"/>
+        <style>
+  @keyframes kf_intro_pill2_txt_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_pill2_txt { animation: kf_intro_pill2_txt_1 0.500s linear forwards 2.500s 1; }
+  </style>
+        <text id="intro_pill2_txt" x="300" y="316" font-size="11" fill="#3fb950" text-anchor="middle" opacity="0">
+            🧠 ML Model
+          </text>
+        <style>
+  @keyframes kf_intro_arr2_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_arr2 { animation: kf_intro_arr2_1 0.500s linear forwards 2.800s 1; }
+  </style>
+        <text id="intro_arr2" x="393" y="316" font-size="18" fill="#30363d" text-anchor="middle" opacity="0">
+            →
+          </text>
+        <style>
+  @keyframes kf_intro_pill3_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_pill3 { animation: kf_intro_pill3_1 0.500s linear forwards 3.000s 1; }
+  </style>
+        <rect id="intro_pill3" x="412" y="295" width="130" height="32" fill="#161b22" stroke="#ffa657" stroke-width="1" rx="16" opacity="0"/>
+        <style>
+  @keyframes kf_intro_pill3_txt_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_pill3_txt { animation: kf_intro_pill3_txt_1 0.500s linear forwards 3.000s 1; }
+  </style>
+        <text id="intro_pill3_txt" x="477" y="316" font-size="11" fill="#ffa657" text-anchor="middle" opacity="0">
+            🎯 Prediction
+          </text>
+        <style>
+  @keyframes kf_intro_quote_1 { from { opacity:0; } to { opacity:1; } }
+  #intro_quote { animation: kf_intro_quote_1 1.000s linear forwards 3.500s 1; }
+  </style>
+        <text id="intro_quote" x="300" y="370" font-size="9" fill="#484f58" text-anchor="middle" font-style="italic" opacity="0">
+            "A program that improves with experience" — Tom Mitchell, 1997
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="246" cy="388" r="5" fill="#58a6ff"/> <circle cx="264" cy="388" r="3" fill="#30363d"/> <circle cx="282" cy="388" r="3" fill="#30363d"/> <circle cx="300" cy="388" r="3" fill="#30363d"/> <circle cx="318" cy="388" r="3" fill="#30363d"/> <circle cx="336" cy="388" r="3" fill="#30363d"/> <circle cx="354" cy="388" r="3" fill="#30363d"/>
+    </g>
+
+    <style>
+  @keyframes scene_2_anim {
+  0%          { opacity:0; }
+  14.286% { opacity:0; }
+  15.493%   { opacity:1; }
+  27.364% { opacity:1; }
+  28.571%   { opacity:0; }
+  100%        { opacity:0; }
+}
+  #scene_2 { opacity:0; animation:scene_2_anim 49.700s linear forwards; }
+</style>
+    <!-- ═══ SCENE 2/7: 3 Types of Machine Learning | start=7.1s dur=6.5s ═══ -->
+    <g id="scene_2" opacity="0">
+
+      <!-- background -->
+      <rect width="600" height="400" fill="#0d1117" rx="10"/>
+      <rect width="600" height="400" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="600" height="400" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      
+
+      <!-- scene content -->
+      <style>
+  @keyframes kf_types_card1_1 {
+    from { opacity:0; transform:translate(-80px,0px); }
+    to   { opacity:1; transform:translate(0,0); }
+  }
+  #types_card1 { animation: kf_types_card1_1 0.600s ease-out forwards 7.300s 1; }
+  </style>
+        <rect id="types_card1" x="30" y="55" width="160" height="290" fill="#161b22" stroke="#58a6ff" stroke-width="1.5" rx="10" opacity="0"/>
+        <style>
+  @keyframes kf_types_card2_1 {
+    from { opacity:0; transform:translate(0px,60px); }
+    to   { opacity:1; transform:translate(0,0); }
+  }
+  #types_card2 { animation: kf_types_card2_1 0.600s ease-out forwards 7.600s 1; }
+  </style>
+        <rect id="types_card2" x="220" y="55" width="160" height="290" fill="#161b22" stroke="#3fb950" stroke-width="1.5" rx="10" opacity="0"/>
+        <style>
+  @keyframes kf_types_card3_1 {
+    from { opacity:0; transform:translate(80px,0px); }
+    to   { opacity:1; transform:translate(0,0); }
+  }
+  #types_card3 { animation: kf_types_card3_1 0.600s ease-out forwards 7.300s 1; }
+  </style>
+        <rect id="types_card3" x="410" y="55" width="160" height="290" fill="#161b22" stroke="#ffa657" stroke-width="1.5" rx="10" opacity="0"/>
+        <style>
+  @keyframes kf_t1_head_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_head { animation: kf_t1_head_1 0.500s linear forwards 8.000s 1; }
+  </style>
+        <text id="t1_head" x="110" y="82" font-size="10" fill="#58a6ff" text-anchor="middle" font-weight="bold" letter-spacing="1" opacity="0">
+            SUPERVISED
+          </text>
+        <style>
+  @keyframes kf_t1_icon_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_icon { animation: kf_t1_icon_1 0.500s linear forwards 8.100s 1; }
+  </style>
+        <g id="t1_icon" opacity="0">
+          
+          <g transform="translate(65,90) scale(0.9000,0.9375)">
+            <use href="#s-chart-bar" width="100.0" height="80.0"/>
+          </g>
+          
+        </g>
+        <style>
+  @keyframes kf_t1_l1_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_l1 { animation: kf_t1_l1_1 0.500s linear forwards 8.200s 1; }
+  </style>
+        <text id="t1_l1" x="110" y="186" font-size="10" fill="#8b949e" text-anchor="middle" opacity="0">
+            Learns from
+          </text>
+        <style>
+  @keyframes kf_t1_l2_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_l2 { animation: kf_t1_l2_1 0.500s linear forwards 8.200s 1; }
+  </style>
+        <text id="t1_l2" x="110" y="200" font-size="10" fill="#f0f6fc" text-anchor="middle" font-weight="bold" opacity="0">
+            LABELED data
+          </text>
+        <style>
+  @keyframes kf_t1_l3_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_l3 { animation: kf_t1_l3_1 0.500s linear forwards 8.300s 1; }
+  </style>
+        <text id="t1_l3" x="110" y="225" font-size="9" fill="#484f58" text-anchor="middle" opacity="0">
+            Examples:
+          </text>
+        <style>
+  @keyframes kf_t1_e1_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_e1 { animation: kf_t1_e1_1 0.400s linear forwards 8.400s 1; }
+  </style>
+        <text id="t1_e1" x="110" y="242" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Spam Detection
+          </text>
+        <style>
+  @keyframes kf_t1_e2_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_e2 { animation: kf_t1_e2_1 0.400s linear forwards 8.500s 1; }
+  </style>
+        <text id="t1_e2" x="110" y="257" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Price Prediction
+          </text>
+        <style>
+  @keyframes kf_t1_e3_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_e3 { animation: kf_t1_e3_1 0.400s linear forwards 8.600s 1; }
+  </style>
+        <text id="t1_e3" x="110" y="272" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Image Classifier
+          </text>
+        <style>
+  @keyframes kf_t1_tag_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_tag { animation: kf_t1_tag_1 0.400s linear forwards 8.700s 1; }
+  </style>
+        <rect id="t1_tag" x="62" y="298" width="96" height="20" fill="#0d419d" rx="10" opacity="0"/>
+        <style>
+  @keyframes kf_t1_tag_t_1 { from { opacity:0; } to { opacity:1; } }
+  #t1_tag_t { animation: kf_t1_tag_t_1 0.400s linear forwards 8.700s 1; }
+  </style>
+        <text id="t1_tag_t" x="110" y="312" font-size="8" fill="#58a6ff" text-anchor="middle" opacity="0">
+            Regression / Class.
+          </text>
+        <style>
+  @keyframes kf_t2_head_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_head { animation: kf_t2_head_1 0.500s linear forwards 8.000s 1; }
+  </style>
+        <text id="t2_head" x="300" y="82" font-size="10" fill="#3fb950" text-anchor="middle" font-weight="bold" letter-spacing="1" opacity="0">
+            UNSUPERVISED
+          </text>
+        <style>
+  @keyframes kf_t2_icon_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_icon { animation: kf_t2_icon_1 0.500s linear forwards 8.100s 1; }
+  </style>
+        <g id="t2_icon" opacity="0">
+          
+          <g transform="translate(255,90) scale(0.9000,0.9375)">
+            <use href="#s-chart-scatter" width="100.0" height="80.0"/>
+          </g>
+          
+        </g>
+        <style>
+  @keyframes kf_t2_l1_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_l1 { animation: kf_t2_l1_1 0.500s linear forwards 8.200s 1; }
+  </style>
+        <text id="t2_l1" x="300" y="186" font-size="10" fill="#8b949e" text-anchor="middle" opacity="0">
+            Finds hidden
+          </text>
+        <style>
+  @keyframes kf_t2_l2_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_l2 { animation: kf_t2_l2_1 0.500s linear forwards 8.200s 1; }
+  </style>
+        <text id="t2_l2" x="300" y="200" font-size="10" fill="#f0f6fc" text-anchor="middle" font-weight="bold" opacity="0">
+            PATTERNS
+          </text>
+        <style>
+  @keyframes kf_t2_l3_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_l3 { animation: kf_t2_l3_1 0.500s linear forwards 8.300s 1; }
+  </style>
+        <text id="t2_l3" x="300" y="225" font-size="9" fill="#484f58" text-anchor="middle" opacity="0">
+            Examples:
+          </text>
+        <style>
+  @keyframes kf_t2_e1_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_e1 { animation: kf_t2_e1_1 0.400s linear forwards 8.400s 1; }
+  </style>
+        <text id="t2_e1" x="300" y="242" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Customer Segments
+          </text>
+        <style>
+  @keyframes kf_t2_e2_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_e2 { animation: kf_t2_e2_1 0.400s linear forwards 8.500s 1; }
+  </style>
+        <text id="t2_e2" x="300" y="257" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Anomaly Detection
+          </text>
+        <style>
+  @keyframes kf_t2_e3_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_e3 { animation: kf_t2_e3_1 0.400s linear forwards 8.600s 1; }
+  </style>
+        <text id="t2_e3" x="300" y="272" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Topic Modeling
+          </text>
+        <style>
+  @keyframes kf_t2_tag_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_tag { animation: kf_t2_tag_1 0.400s linear forwards 8.700s 1; }
+  </style>
+        <rect id="t2_tag" x="250" y="298" width="100" height="20" fill="#12261e" rx="10" opacity="0"/>
+        <style>
+  @keyframes kf_t2_tag_t_1 { from { opacity:0; } to { opacity:1; } }
+  #t2_tag_t { animation: kf_t2_tag_t_1 0.400s linear forwards 8.700s 1; }
+  </style>
+        <text id="t2_tag_t" x="300" y="312" font-size="8" fill="#3fb950" text-anchor="middle" opacity="0">
+            Clustering / PCA
+          </text>
+        <style>
+  @keyframes kf_t3_head_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_head { animation: kf_t3_head_1 0.500s linear forwards 8.000s 1; }
+  </style>
+        <text id="t3_head" x="490" y="82" font-size="10" fill="#ffa657" text-anchor="middle" font-weight="bold" letter-spacing="1" opacity="0">
+            REINFORCEMENT
+          </text>
+        
+        <g id="t3_icon" opacity="1">
+          <animateTransform attributeName="transform" type="translate" values="0 0;0 -8;0 0" additive="sum" begin="8.100s" dur="1.5s" repeatCount="indefinite" fill="freeze"/>
+          <g transform="translate(445,90) scale(1.1250,1.2500)">
+            <use href="#s-game-controller" width="80.0" height="60.0"/>
+          </g>
+          
+        </g>
+        <style>
+  @keyframes kf_t3_l1_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_l1 { animation: kf_t3_l1_1 0.500s linear forwards 8.200s 1; }
+  </style>
+        <text id="t3_l1" x="490" y="186" font-size="10" fill="#8b949e" text-anchor="middle" opacity="0">
+            Learns through
+          </text>
+        <style>
+  @keyframes kf_t3_l2_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_l2 { animation: kf_t3_l2_1 0.500s linear forwards 8.200s 1; }
+  </style>
+        <text id="t3_l2" x="490" y="200" font-size="10" fill="#f0f6fc" text-anchor="middle" font-weight="bold" opacity="0">
+            REWARD/PENALTY
+          </text>
+        <style>
+  @keyframes kf_t3_l3_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_l3 { animation: kf_t3_l3_1 0.500s linear forwards 8.300s 1; }
+  </style>
+        <text id="t3_l3" x="490" y="225" font-size="9" fill="#484f58" text-anchor="middle" opacity="0">
+            Examples:
+          </text>
+        <style>
+  @keyframes kf_t3_e1_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_e1 { animation: kf_t3_e1_1 0.400s linear forwards 8.400s 1; }
+  </style>
+        <text id="t3_e1" x="490" y="242" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Game Playing AI
+          </text>
+        <style>
+  @keyframes kf_t3_e2_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_e2 { animation: kf_t3_e2_1 0.400s linear forwards 8.500s 1; }
+  </style>
+        <text id="t3_e2" x="490" y="257" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Robot Navigation
+          </text>
+        <style>
+  @keyframes kf_t3_e3_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_e3 { animation: kf_t3_e3_1 0.400s linear forwards 8.600s 1; }
+  </style>
+        <text id="t3_e3" x="490" y="272" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            • Self-Driving Cars
+          </text>
+        <style>
+  @keyframes kf_t3_tag_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_tag { animation: kf_t3_tag_1 0.400s linear forwards 8.700s 1; }
+  </style>
+        <rect id="t3_tag" x="440" y="298" width="100" height="20" fill="#271a06" rx="10" opacity="0"/>
+        <style>
+  @keyframes kf_t3_tag_t_1 { from { opacity:0; } to { opacity:1; } }
+  #t3_tag_t { animation: kf_t3_tag_t_1 0.400s linear forwards 8.700s 1; }
+  </style>
+        <text id="t3_tag_t" x="490" y="312" font-size="8" fill="#ffa657" text-anchor="middle" opacity="0">
+            Q-Learning / PPO
+          </text>
+        <style>
+  @keyframes kf_types_footer_1 { from { opacity:0; } to { opacity:1; } }
+  #types_footer { animation: kf_types_footer_1 0.800s linear forwards 9.300s 1; }
+  </style>
+        <text id="types_footer" x="300" y="385" font-size="9" fill="#484f58" text-anchor="middle" font-style="italic" opacity="0">
+            Most real-world ML uses Supervised Learning
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="246" cy="388" r="3" fill="#30363d"/> <circle cx="264" cy="388" r="5" fill="#58a6ff"/> <circle cx="282" cy="388" r="3" fill="#30363d"/> <circle cx="300" cy="388" r="3" fill="#30363d"/> <circle cx="318" cy="388" r="3" fill="#30363d"/> <circle cx="336" cy="388" r="3" fill="#30363d"/> <circle cx="354" cy="388" r="3" fill="#30363d"/>
+    </g>
+
+    <style>
+  @keyframes scene_3_anim {
+  0%          { opacity:0; }
+  28.571% { opacity:0; }
+  29.779%   { opacity:1; }
+  41.650% { opacity:1; }
+  42.857%   { opacity:0; }
+  100%        { opacity:0; }
+}
+  #scene_3 { opacity:0; animation:scene_3_anim 49.700s linear forwards; }
+</style>
+    <!-- ═══ SCENE 3/7: Linear Regression — Predict Numbers | start=14.2s dur=6.5s ═══ -->
+    <g id="scene_3" opacity="0">
+
+      <!-- background -->
+      <rect width="600" height="400" fill="#0d1117" rx="10"/>
+      <rect width="600" height="400" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="600" height="400" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      
+
+      <!-- scene content -->
+      <style>
+  @keyframes kf_lr_axes_x_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_axes_x { animation: kf_lr_axes_x_1 0.500s linear forwards 14.400s 1; }
+  </style>
+        <line id="lr_axes_x" x1="60" y1="310" x2="420" y2="310" stroke="#30363d" stroke-width="1.5" opacity="0"/>
+        <style>
+  @keyframes kf_lr_axes_y_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_axes_y { animation: kf_lr_axes_y_1 0.500s linear forwards 14.400s 1; }
+  </style>
+        <line id="lr_axes_y" x1="60" y1="60" x2="60" y2="310" stroke="#30363d" stroke-width="1.5" opacity="0"/>
+        <style>
+  @keyframes kf_lr_xlabel_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_xlabel { animation: kf_lr_xlabel_1 0.500s linear forwards 14.500s 1; }
+  </style>
+        <text id="lr_xlabel" x="240" y="330" font-size="10" fill="#484f58" text-anchor="middle" opacity="0">
+            House Size (sq ft)
+          </text>
+        <style>
+  @keyframes kf_lr_ylabel_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_ylabel { animation: kf_lr_ylabel_1 0.500s linear forwards 14.500s 1; }
+  </style>
+        <text id="lr_ylabel" x="30" y="185" font-size="10" fill="#484f58" text-anchor="middle" transform="rotate(-90,30,185)" opacity="0">
+            Price ($)
+          </text>
+        <style>
+  @keyframes kf_lr_d1_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d1 { animation: kf_lr_d1_1 0.300s linear forwards 14.800s 1; }
+  </style>
+        <circle id="lr_d1" cx="90" cy="270" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d2_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d2 { animation: kf_lr_d2_1 0.300s linear forwards 14.900s 1; }
+  </style>
+        <circle id="lr_d2" cx="120" cy="255" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d3_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d3 { animation: kf_lr_d3_1 0.300s linear forwards 15.000s 1; }
+  </style>
+        <circle id="lr_d3" cx="155" cy="235" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d4_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d4 { animation: kf_lr_d4_1 0.300s linear forwards 15.100s 1; }
+  </style>
+        <circle id="lr_d4" cx="185" cy="220" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d5_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d5 { animation: kf_lr_d5_1 0.300s linear forwards 15.200s 1; }
+  </style>
+        <circle id="lr_d5" cx="215" cy="200" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d6_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d6 { animation: kf_lr_d6_1 0.300s linear forwards 15.300s 1; }
+  </style>
+        <circle id="lr_d6" cx="250" cy="185" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d7_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d7 { animation: kf_lr_d7_1 0.300s linear forwards 15.400s 1; }
+  </style>
+        <circle id="lr_d7" cx="285" cy="170" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d8_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d8 { animation: kf_lr_d8_1 0.300s linear forwards 15.500s 1; }
+  </style>
+        <circle id="lr_d8" cx="320" cy="148" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d9_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d9 { animation: kf_lr_d9_1 0.300s linear forwards 15.600s 1; }
+  </style>
+        <circle id="lr_d9" cx="355" cy="128" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_d10_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_d10 { animation: kf_lr_d10_1 0.300s linear forwards 15.700s 1; }
+  </style>
+        <circle id="lr_d10" cx="390" cy="105" r="5" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_lr_line_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_line { animation: kf_lr_line_1 0.800s linear forwards 16.200s 1; }
+  </style>
+        <line id="lr_line" x1="65" y1="292" x2="415" y2="88" stroke="#f78166" stroke-width="2.5" stroke-dasharray="0" opacity="0"/>
+        <style>
+  @keyframes kf_lr_line_lbl_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_line_lbl { animation: kf_lr_line_lbl_1 0.500s linear forwards 16.700s 1; }
+  </style>
+        <text id="lr_line_lbl" x="430" y="95" font-size="11" fill="#f78166" text-anchor="start" font-style="italic" opacity="0">
+            ŷ = mx + b
+          </text>
+        <style>
+  @keyframes kf_lr_formula_box_1 {
+    from { opacity:0; transform:translate(60px,0px); }
+    to   { opacity:1; transform:translate(0,0); }
+  }
+  #lr_formula_box { animation: kf_lr_formula_box_1 0.600s ease-out forwards 14.700s 1; }
+  </style>
+        <rect id="lr_formula_box" x="440" y="55" width="148" height="200" fill="#161b22" stroke="#21262d" stroke-width="1" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_lr_fb_t_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_fb_t { animation: kf_lr_fb_t_1 0.500s linear forwards 15.200s 1; }
+  </style>
+        <text id="lr_fb_t" x="514" y="76" font-size="8" fill="#58a6ff" text-anchor="middle" letter-spacing="1" opacity="0">
+            THE FORMULA
+          </text>
+        <style>
+  @keyframes kf_lr_f1_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_f1 { animation: kf_lr_f1_1 0.500s linear forwards 15.400s 1; }
+  </style>
+        <text id="lr_f1" x="514" y="102" font-size="16" fill="#f0f6fc" text-anchor="middle" font-weight="bold" opacity="0">
+            ŷ = mx + b
+          </text>
+        <style>
+  @keyframes kf_lr_f2_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_f2 { animation: kf_lr_f2_1 0.400s linear forwards 15.600s 1; }
+  </style>
+        <text id="lr_f2" x="514" y="126" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            ŷ = prediction
+          </text>
+        <style>
+  @keyframes kf_lr_f3_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_f3 { animation: kf_lr_f3_1 0.400s linear forwards 15.700s 1; }
+  </style>
+        <text id="lr_f3" x="514" y="142" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            m = slope (weight)
+          </text>
+        <style>
+  @keyframes kf_lr_f4_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_f4 { animation: kf_lr_f4_1 0.400s linear forwards 15.800s 1; }
+  </style>
+        <text id="lr_f4" x="514" y="158" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            x = input feature
+          </text>
+        <style>
+  @keyframes kf_lr_f5_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_f5 { animation: kf_lr_f5_1 0.400s linear forwards 15.900s 1; }
+  </style>
+        <text id="lr_f5" x="514" y="174" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            b = bias (intercept)
+          </text>
+        <style>
+  @keyframes kf_lr_loss_lbl_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_loss_lbl { animation: kf_lr_loss_lbl_1 0.400s linear forwards 16.200s 1; }
+  </style>
+        <text id="lr_loss_lbl" x="514" y="200" font-size="8" fill="#58a6ff" text-anchor="middle" letter-spacing="1" opacity="0">
+            LOSS FUNCTION:
+          </text>
+        <style>
+  @keyframes kf_lr_loss_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_loss { animation: kf_lr_loss_1 0.500s linear forwards 16.400s 1; }
+  </style>
+        <text id="lr_loss" x="514" y="222" font-size="12" fill="#ffa657" text-anchor="middle" font-weight="bold" opacity="0">
+            MSE = Σ(y-ŷ)²/n
+          </text>
+        <style>
+  @keyframes kf_lr_goal_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_goal { animation: kf_lr_goal_1 0.500s linear forwards 16.600s 1; }
+  </style>
+        <text id="lr_goal" x="514" y="245" font-size="9" fill="#3fb950" text-anchor="middle" opacity="0">
+            Goal: minimize loss
+          </text>
+        <style>
+  @keyframes kf_lr_footer_1 { from { opacity:0; } to { opacity:1; } }
+  #lr_footer { animation: kf_lr_footer_1 0.800s linear forwards 17.200s 1; }
+  </style>
+        <text id="lr_footer" x="240" y="360" font-size="9" fill="#484f58" text-anchor="middle" opacity="0">
+            The line of best fit minimises error between predictions and real values
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="246" cy="388" r="3" fill="#30363d"/> <circle cx="264" cy="388" r="3" fill="#30363d"/> <circle cx="282" cy="388" r="5" fill="#58a6ff"/> <circle cx="300" cy="388" r="3" fill="#30363d"/> <circle cx="318" cy="388" r="3" fill="#30363d"/> <circle cx="336" cy="388" r="3" fill="#30363d"/> <circle cx="354" cy="388" r="3" fill="#30363d"/>
+    </g>
+
+    <style>
+  @keyframes scene_4_anim {
+  0%          { opacity:0; }
+  42.857% { opacity:0; }
+  44.064%   { opacity:1; }
+  55.936% { opacity:1; }
+  57.143%   { opacity:0; }
+  100%        { opacity:0; }
+}
+  #scene_4 { opacity:0; animation:scene_4_anim 49.700s linear forwards; }
+</style>
+    <!-- ═══ SCENE 4/7: Neural Networks — How They Work | start=21.3s dur=6.5s ═══ -->
+    <g id="scene_4" opacity="0">
+
+      <!-- background -->
+      <rect width="600" height="400" fill="#0d1117" rx="10"/>
+      <rect width="600" height="400" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="600" height="400" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      
+
+      <!-- scene content -->
+      <style>
+  @keyframes kf_nn_in_lbl_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_in_lbl { animation: kf_nn_in_lbl_1 0.500s linear forwards 21.500s 1; }
+  </style>
+        <text id="nn_in_lbl" x="80" y="58" font-size="9" fill="#58a6ff" text-anchor="middle" letter-spacing="2" opacity="0">
+            INPUT
+          </text>
+        <style>
+  @keyframes kf_nn_h1_lbl_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h1_lbl { animation: kf_nn_h1_lbl_1 0.500s linear forwards 21.500s 1; }
+  </style>
+        <text id="nn_h1_lbl" x="215" y="58" font-size="9" fill="#8b949e" text-anchor="middle" letter-spacing="2" opacity="0">
+            HIDDEN 1
+          </text>
+        <style>
+  @keyframes kf_nn_h2_lbl_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h2_lbl { animation: kf_nn_h2_lbl_1 0.500s linear forwards 21.500s 1; }
+  </style>
+        <text id="nn_h2_lbl" x="365" y="58" font-size="9" fill="#8b949e" text-anchor="middle" letter-spacing="2" opacity="0">
+            HIDDEN 2
+          </text>
+        <style>
+  @keyframes kf_nn_out_lbl_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_out_lbl { animation: kf_nn_out_lbl_1 0.500s linear forwards 21.500s 1; }
+  </style>
+        <text id="nn_out_lbl" x="510" y="58" font-size="9" fill="#3fb950" text-anchor="middle" letter-spacing="2" opacity="0">
+            OUTPUT
+          </text>
+        <style>
+  @keyframes kf_nn_w1_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w1 { animation: kf_nn_w1_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w1" x1="97" y1="100" x2="198" y2="120" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w2_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w2 { animation: kf_nn_w2_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w2" x1="97" y1="100" x2="198" y2="180" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w3_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w3 { animation: kf_nn_w3_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w3" x1="97" y1="100" x2="198" y2="240" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w4_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w4 { animation: kf_nn_w4_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w4" x1="97" y1="160" x2="198" y2="120" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w5_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w5 { animation: kf_nn_w5_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w5" x1="97" y1="160" x2="198" y2="180" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w6_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w6 { animation: kf_nn_w6_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w6" x1="97" y1="160" x2="198" y2="240" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w7_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w7 { animation: kf_nn_w7_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w7" x1="97" y1="220" x2="198" y2="120" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w8_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w8 { animation: kf_nn_w8_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w8" x1="97" y1="220" x2="198" y2="180" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w9_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w9 { animation: kf_nn_w9_1 0.300s linear forwards 21.800s 1; }
+  </style>
+        <line id="nn_w9" x1="97" y1="220" x2="198" y2="240" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w10_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w10 { animation: kf_nn_w10_1 0.300s linear forwards 22.000s 1; }
+  </style>
+        <line id="nn_w10" x1="232" y1="120" x2="348" y2="140" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w11_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w11 { animation: kf_nn_w11_1 0.300s linear forwards 22.000s 1; }
+  </style>
+        <line id="nn_w11" x1="232" y1="120" x2="348" y2="210" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w12_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w12 { animation: kf_nn_w12_1 0.300s linear forwards 22.000s 1; }
+  </style>
+        <line id="nn_w12" x1="232" y1="180" x2="348" y2="140" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w13_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w13 { animation: kf_nn_w13_1 0.300s linear forwards 22.000s 1; }
+  </style>
+        <line id="nn_w13" x1="232" y1="180" x2="348" y2="210" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w14_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w14 { animation: kf_nn_w14_1 0.300s linear forwards 22.000s 1; }
+  </style>
+        <line id="nn_w14" x1="232" y1="240" x2="348" y2="140" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w15_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w15 { animation: kf_nn_w15_1 0.300s linear forwards 22.000s 1; }
+  </style>
+        <line id="nn_w15" x1="232" y1="240" x2="348" y2="210" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w16_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w16 { animation: kf_nn_w16_1 0.300s linear forwards 22.200s 1; }
+  </style>
+        <line id="nn_w16" x1="382" y1="140" x2="492" y2="155" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w17_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w17 { animation: kf_nn_w17_1 0.300s linear forwards 22.200s 1; }
+  </style>
+        <line id="nn_w17" x1="382" y1="140" x2="492" y2="210" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w18_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w18 { animation: kf_nn_w18_1 0.300s linear forwards 22.200s 1; }
+  </style>
+        <line id="nn_w18" x1="382" y1="210" x2="492" y2="155" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_w19_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_w19 { animation: kf_nn_w19_1 0.300s linear forwards 22.200s 1; }
+  </style>
+        <line id="nn_w19" x1="382" y1="210" x2="492" y2="210" stroke="#21262d" stroke-width="1" opacity="0"/>
+        <style>
+  @keyframes kf_nn_i1_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_i1 { animation: kf_nn_i1_1 0.400s linear forwards 22.300s 1; }
+  </style>
+        <circle id="nn_i1" cx="80" cy="100" r="17" fill="#0d2236" stroke="#58a6ff" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_nn_i2_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_i2 { animation: kf_nn_i2_1 0.400s linear forwards 22.400s 1; }
+  </style>
+        <circle id="nn_i2" cx="80" cy="160" r="17" fill="#0d2236" stroke="#58a6ff" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_nn_i3_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_i3 { animation: kf_nn_i3_1 0.400s linear forwards 22.500s 1; }
+  </style>
+        <circle id="nn_i3" cx="80" cy="220" r="17" fill="#0d2236" stroke="#58a6ff" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_nn_it1_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_it1 { animation: kf_nn_it1_1 0.400s linear forwards 22.300s 1; }
+  </style>
+        <text id="nn_it1" x="80" cy="100" y="104" font-size="10" fill="#58a6ff" text-anchor="middle" opacity="0">
+            x1
+          </text>
+        <style>
+  @keyframes kf_nn_it2_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_it2 { animation: kf_nn_it2_1 0.400s linear forwards 22.400s 1; }
+  </style>
+        <text id="nn_it2" x="80" y="164" font-size="10" fill="#58a6ff" text-anchor="middle" opacity="0">
+            x2
+          </text>
+        <style>
+  @keyframes kf_nn_it3_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_it3 { animation: kf_nn_it3_1 0.400s linear forwards 22.500s 1; }
+  </style>
+        <text id="nn_it3" x="80" y="224" font-size="10" fill="#58a6ff" text-anchor="middle" opacity="0">
+            x3
+          </text>
+        <style>
+  @keyframes kf_nn_h1a_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h1a { animation: kf_nn_h1a_1 0.400s linear forwards 22.600s 1; }
+  </style>
+        <circle id="nn_h1a" cx="215" cy="120" r="17" fill="#12261e" stroke="#3fb950" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_nn_h1b_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h1b { animation: kf_nn_h1b_1 0.400s linear forwards 22.700s 1; }
+  </style>
+        <circle id="nn_h1b" cx="215" cy="180" r="17" fill="#12261e" stroke="#3fb950" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_nn_h1c_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h1c { animation: kf_nn_h1c_1 0.400s linear forwards 22.800s 1; }
+  </style>
+        <circle id="nn_h1c" cx="215" cy="240" r="17" fill="#12261e" stroke="#3fb950" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_nn_h1at_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h1at { animation: kf_nn_h1at_1 0.400s linear forwards 22.600s 1; }
+  </style>
+        <text id="nn_h1at" x="215" y="124" font-size="13" fill="#3fb950" text-anchor="middle" opacity="0">
+            σ
+          </text>
+        <style>
+  @keyframes kf_nn_h1bt_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h1bt { animation: kf_nn_h1bt_1 0.400s linear forwards 22.700s 1; }
+  </style>
+        <text id="nn_h1bt" x="215" y="184" font-size="13" fill="#3fb950" text-anchor="middle" opacity="0">
+            σ
+          </text>
+        <style>
+  @keyframes kf_nn_h1ct_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h1ct { animation: kf_nn_h1ct_1 0.400s linear forwards 22.800s 1; }
+  </style>
+        <text id="nn_h1ct" x="215" y="244" font-size="13" fill="#3fb950" text-anchor="middle" opacity="0">
+            σ
+          </text>
+        <style>
+  @keyframes kf_nn_h2a_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h2a { animation: kf_nn_h2a_1 0.400s linear forwards 22.900s 1; }
+  </style>
+        <circle id="nn_h2a" cx="365" cy="140" r="17" fill="#271a06" stroke="#ffa657" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_nn_h2b_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h2b { animation: kf_nn_h2b_1 0.400s linear forwards 23.000s 1; }
+  </style>
+        <circle id="nn_h2b" cx="365" cy="210" r="17" fill="#271a06" stroke="#ffa657" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_nn_h2at_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h2at { animation: kf_nn_h2at_1 0.400s linear forwards 22.900s 1; }
+  </style>
+        <text id="nn_h2at" x="365" y="144" font-size="13" fill="#ffa657" text-anchor="middle" opacity="0">
+            σ
+          </text>
+        <style>
+  @keyframes kf_nn_h2bt_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_h2bt { animation: kf_nn_h2bt_1 0.400s linear forwards 23.000s 1; }
+  </style>
+        <text id="nn_h2bt" x="365" y="214" font-size="13" fill="#ffa657" text-anchor="middle" opacity="0">
+            σ
+          </text>
+        
+        <g id="nn_o1" opacity="1">
+          <animateTransform attributeName="transform" type="translate" values="0.0 0.0;-102.0 -31.0;0.0 0.0" additive="sum" begin="23.500s" dur="1.5s" repeatCount="indefinite" fill="freeze"/>
+          <animateTransform attributeName="transform" type="scale" values="1;1.2;1" additive="sum" begin="23.500s" dur="1.5s" repeatCount="indefinite" fill="freeze"/>
+          <circle cx="510" cy="155" r="20" fill="#1a2822" stroke="#3fb950" stroke-width="2.5" opacity="1"/>
+        </g>
+        <style>
+  @keyframes kf_nn_o2_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_o2 { animation: kf_nn_o2_1 0.400s linear forwards 23.300s 1; }
+  </style>
+        <circle id="nn_o2" cx="510" cy="210" r="20" fill="#1a2822" stroke="#3fb950" stroke-width="2.5" opacity="0"/>
+        <style>
+  @keyframes kf_nn_o1t_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_o1t { animation: kf_nn_o1t_1 0.400s linear forwards 23.300s 1; }
+  </style>
+        <text id="nn_o1t" x="510" y="159" font-size="10" fill="#3fb950" text-anchor="middle" font-weight="bold" opacity="0">
+            Cat
+          </text>
+        <style>
+  @keyframes kf_nn_o2t_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_o2t { animation: kf_nn_o2t_1 0.400s linear forwards 23.300s 1; }
+  </style>
+        <text id="nn_o2t" x="510" y="214" font-size="10" fill="#3fb950" text-anchor="middle" font-weight="bold" opacity="0">
+            Dog
+          </text>
+        <style>
+  @keyframes kf_nn_fwd_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_fwd { animation: kf_nn_fwd_1 0.500s linear forwards 23.800s 1; }
+  </style>
+        <text id="nn_fwd" x="300" y="300" font-size="10" fill="#58a6ff" text-anchor="middle" opacity="0">
+            → FORWARD PASS: Data flows left to right
+          </text>
+        <style>
+  @keyframes kf_nn_back_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_back { animation: kf_nn_back_1 0.500s linear forwards 24.300s 1; }
+  </style>
+        <text id="nn_back" x="300" y="320" font-size="10" fill="#ffa657" text-anchor="middle" opacity="0">
+            ← BACKPROP: Error gradient flows right to left
+          </text>
+        <style>
+  @keyframes kf_nn_act_1 { from { opacity:0; } to { opacity:1; } }
+  #nn_act { animation: kf_nn_act_1 0.500s linear forwards 24.800s 1; }
+  </style>
+        <text id="nn_act" x="300" y="345" font-size="9" fill="#484f58" text-anchor="middle" opacity="0">
+            σ = activation function (e.g. ReLU, Sigmoid, Tanh)
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="246" cy="388" r="3" fill="#30363d"/> <circle cx="264" cy="388" r="3" fill="#30363d"/> <circle cx="282" cy="388" r="3" fill="#30363d"/> <circle cx="300" cy="388" r="5" fill="#58a6ff"/> <circle cx="318" cy="388" r="3" fill="#30363d"/> <circle cx="336" cy="388" r="3" fill="#30363d"/> <circle cx="354" cy="388" r="3" fill="#30363d"/>
+    </g>
+
+    <style>
+  @keyframes scene_5_anim {
+  0%          { opacity:0; }
+  57.143% { opacity:0; }
+  58.350%   { opacity:1; }
+  70.221% { opacity:1; }
+  71.429%   { opacity:0; }
+  100%        { opacity:0; }
+}
+  #scene_5 { opacity:0; animation:scene_5_anim 49.700s linear forwards; }
+</style>
+    <!-- ═══ SCENE 5/7: Gradient Descent — How Models Learn | start=28.4s dur=6.5s ═══ -->
+    <g id="scene_5" opacity="0">
+
+      <!-- background -->
+      <rect width="600" height="400" fill="#0d1117" rx="10"/>
+      <rect width="600" height="400" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="600" height="400" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      
+
+      <!-- scene content -->
+      <style>
+  @keyframes kf_gd_axes_x_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_axes_x { animation: kf_gd_axes_x_1 0.500s linear forwards 28.600s 1; }
+  </style>
+        <line id="gd_axes_x" x1="50" y1="310" x2="450" y2="310" stroke="#30363d" stroke-width="1.5" opacity="0"/>
+        <style>
+  @keyframes kf_gd_axes_y_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_axes_y { animation: kf_gd_axes_y_1 0.500s linear forwards 28.600s 1; }
+  </style>
+        <line id="gd_axes_y" x1="50" y1="50" x2="50" y2="310" stroke="#30363d" stroke-width="1.5" opacity="0"/>
+        <style>
+  @keyframes kf_gd_xl_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_xl { animation: kf_gd_xl_1 0.500s linear forwards 28.700s 1; }
+  </style>
+        <text id="gd_xl" x="250" y="335" font-size="10" fill="#484f58" text-anchor="middle" opacity="0">
+            Model Weight (w)
+          </text>
+        <style>
+  @keyframes kf_gd_yl_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_yl { animation: kf_gd_yl_1 0.500s linear forwards 28.700s 1; }
+  </style>
+        <text id="gd_yl" x="22" y="185" font-size="10" fill="#484f58" text-anchor="middle" transform="rotate(-90,22,185)" opacity="0">
+            Loss
+          </text>
+        <style>
+  @keyframes kf_gd_curve_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_curve { animation: kf_gd_curve_1 0.800s linear forwards 29.000s 1; }
+  </style>
+        <path id="gd_curve" d="M 55 80 Q 160 280 250 190 Q 310 130 380 160 Q 420 175 445 300" fill="none" stroke="#58a6ff" stroke-width="2.5" opacity="0"/>
+        
+        <g id="gd_min_dot" opacity="1">
+          <animateTransform attributeName="transform" type="translate" values="0.0 0.0;-101.2 -75.6;0.0 0.0" additive="sum" begin="30.400s" dur="1.2s" repeatCount="indefinite" fill="freeze"/>
+          <animateTransform attributeName="transform" type="scale" values="1;1.4;1" additive="sum" begin="30.400s" dur="1.2s" repeatCount="indefinite" fill="freeze"/>
+          <circle cx="253" cy="189" r="8" fill="#3fb950" stroke="#f0f6fc" stroke-width="2" opacity="1"/>
+        </g>
+        <style>
+  @keyframes kf_gd_min_lbl_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_min_lbl { animation: kf_gd_min_lbl_1 0.500s linear forwards 30.400s 1; }
+  </style>
+        <text id="gd_min_lbl" x="253" y="178" font-size="9" fill="#3fb950" text-anchor="middle" opacity="0">
+            Global Minimum
+          </text>
+        <style>
+  @keyframes kf_gd_ball1_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_ball1 { animation: kf_gd_ball1_1 0.300s linear forwards 29.600s 1; }
+  </style>
+        <circle id="gd_ball1" cx="90" cy="118" r="8" fill="#ffa657" opacity="0"/>
+        <style>
+  @keyframes kf_gd_arr1_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_arr1 { animation: kf_gd_arr1_1 0.300s linear forwards 29.600s 1; }
+  </style>
+        <text id="gd_arr1" x="115" y="135" font-size="9" fill="#ffa657" text-anchor="start" opacity="0">
+            Start (random init)
+          </text>
+        <style>
+  @keyframes kf_gd_ball2_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_ball2 { animation: kf_gd_ball2_1 0.300s linear forwards 29.900s 1; }
+  </style>
+        <circle id="gd_ball2" cx="140" cy="220" r="8" fill="#ffa657" opacity="0"/>
+        <style>
+  @keyframes kf_gd_ball3_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_ball3 { animation: kf_gd_ball3_1 0.300s linear forwards 30.100s 1; }
+  </style>
+        <circle id="gd_ball3" cx="190" cy="204" r="8" fill="#ffa657" opacity="0"/>
+        <style>
+  @keyframes kf_gd_ball4_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_ball4 { animation: kf_gd_ball4_1 0.300s linear forwards 30.300s 1; }
+  </style>
+        <circle id="gd_ball4" cx="230" cy="193" r="8" fill="#ffa657" opacity="0"/>
+        <style>
+  @keyframes kf_gd_lr_label_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_lr_label { animation: kf_gd_lr_label_1 0.500s linear forwards 30.400s 1; }
+  </style>
+        <text id="gd_lr_label" x="160" y="175" font-size="8.5" fill="#8b949e" text-anchor="middle" font-style="italic" opacity="0">
+            ← learning rate controls step size
+          </text>
+        <style>
+  @keyframes kf_gd_box_1 {
+    from { opacity:0; transform:translate(60px,0px); }
+    to   { opacity:1; transform:translate(0,0); }
+  }
+  #gd_box { animation: kf_gd_box_1 0.600s ease-out forwards 28.800s 1; }
+  </style>
+        <rect id="gd_box" x="460" y="55" width="130" height="230" fill="#161b22" stroke="#21262d" stroke-width="1" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_gd_boxt_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_boxt { animation: kf_gd_boxt_1 0.500s linear forwards 29.400s 1; }
+  </style>
+        <text id="gd_boxt" x="525" y="76" font-size="8" fill="#58a6ff" text-anchor="middle" letter-spacing="2" opacity="0">
+            THE MATH
+          </text>
+        <style>
+  @keyframes kf_gd_f1_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_f1 { animation: kf_gd_f1_1 0.500s linear forwards 29.600s 1; }
+  </style>
+        <text id="gd_f1" x="525" y="100" font-size="13" fill="#f0f6fc" text-anchor="middle" font-weight="bold" opacity="0">
+            w := w - α·∇L
+          </text>
+        <style>
+  @keyframes kf_gd_f2_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_f2 { animation: kf_gd_f2_1 0.400s linear forwards 29.800s 1; }
+  </style>
+        <text id="gd_f2" x="525" y="125" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            w = weight
+          </text>
+        <style>
+  @keyframes kf_gd_f3_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_f3 { animation: kf_gd_f3_1 0.400s linear forwards 29.900s 1; }
+  </style>
+        <text id="gd_f3" x="525" y="141" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            α = learning rate
+          </text>
+        <style>
+  @keyframes kf_gd_f4_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_f4 { animation: kf_gd_f4_1 0.400s linear forwards 30.000s 1; }
+  </style>
+        <text id="gd_f4" x="525" y="157" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            ∇L = gradient of loss
+          </text>
+        <style>
+  @keyframes kf_gd_variants_t_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_variants_t { animation: kf_gd_variants_t_1 0.500s linear forwards 30.900s 1; }
+  </style>
+        <text id="gd_variants_t" x="525" y="185" font-size="8" fill="#ffa657" text-anchor="middle" letter-spacing="2" opacity="0">
+            VARIANTS:
+          </text>
+        <style>
+  @keyframes kf_gd_v1_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_v1 { animation: kf_gd_v1_1 0.400s linear forwards 31.000s 1; }
+  </style>
+        <text id="gd_v1" x="525" y="202" font-size="8.5" fill="#8b949e" text-anchor="middle" opacity="0">
+            SGD — 1 sample/step
+          </text>
+        <style>
+  @keyframes kf_gd_v2_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_v2 { animation: kf_gd_v2_1 0.400s linear forwards 31.100s 1; }
+  </style>
+        <text id="gd_v2" x="525" y="218" font-size="8.5" fill="#8b949e" text-anchor="middle" opacity="0">
+            Mini-batch — n samples
+          </text>
+        <style>
+  @keyframes kf_gd_v3_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_v3 { animation: kf_gd_v3_1 0.400s linear forwards 31.200s 1; }
+  </style>
+        <text id="gd_v3" x="525" y="234" font-size="8.5" fill="#3fb950" text-anchor="middle" font-weight="bold" opacity="0">
+            Adam — adaptive lr
+          </text>
+        <style>
+  @keyframes kf_gd_v3_best_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_v3_best { animation: kf_gd_v3_best_1 0.400s linear forwards 31.300s 1; }
+  </style>
+        <text id="gd_v3_best" x="525" y="248" font-size="8" fill="#484f58" text-anchor="middle" font-style="italic" opacity="0">
+            ↑ most popular
+          </text>
+        <style>
+  @keyframes kf_gd_tip_1 { from { opacity:0; } to { opacity:1; } }
+  #gd_tip { animation: kf_gd_tip_1 0.800s linear forwards 31.400s 1; }
+  </style>
+        <text id="gd_tip" x="250" y="368" font-size="9" fill="#484f58" text-anchor="middle" opacity="0">
+            Too large α → overshoot  |  Too small α → slow convergence
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="246" cy="388" r="3" fill="#30363d"/> <circle cx="264" cy="388" r="3" fill="#30363d"/> <circle cx="282" cy="388" r="3" fill="#30363d"/> <circle cx="300" cy="388" r="3" fill="#30363d"/> <circle cx="318" cy="388" r="5" fill="#58a6ff"/> <circle cx="336" cy="388" r="3" fill="#30363d"/> <circle cx="354" cy="388" r="3" fill="#30363d"/>
+    </g>
+
+    <style>
+  @keyframes scene_6_anim {
+  0%          { opacity:0; }
+  71.429% { opacity:0; }
+  72.636%   { opacity:1; }
+  84.507% { opacity:1; }
+  85.714%   { opacity:0; }
+  100%        { opacity:0; }
+}
+  #scene_6 { opacity:0; animation:scene_6_anim 49.700s linear forwards; }
+</style>
+    <!-- ═══ SCENE 6/7: Overfitting vs Underfitting | start=35.5s dur=6.5s ═══ -->
+    <g id="scene_6" opacity="0">
+
+      <!-- background -->
+      <rect width="600" height="400" fill="#0d1117" rx="10"/>
+      <rect width="600" height="400" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="600" height="400" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      
+
+      <!-- scene content -->
+      <style>
+  @keyframes kf_of_c1_1 { from { opacity:0; } to { opacity:1; } }
+  #of_c1 { animation: kf_of_c1_1 0.500s linear forwards 35.700s 1; }
+  </style>
+        <rect id="of_c1" x="20" y="55" width="172" height="255" fill="#161b22" stroke="#f78166" stroke-width="1.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_of_c2_1 { from { opacity:0; } to { opacity:1; } }
+  #of_c2 { animation: kf_of_c2_1 0.500s linear forwards 35.800s 1; }
+  </style>
+        <rect id="of_c2" x="214" y="55" width="172" height="255" fill="#161b22" stroke="#3fb950" stroke-width="2.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_of_c3_1 { from { opacity:0; } to { opacity:1; } }
+  #of_c3 { animation: kf_of_c3_1 0.500s linear forwards 35.900s 1; }
+  </style>
+        <rect id="of_c3" x="408" y="55" width="172" height="255" fill="#161b22" stroke="#ffa657" stroke-width="1.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_of_h1_1 { from { opacity:0; } to { opacity:1; } }
+  #of_h1 { animation: kf_of_h1_1 0.400s linear forwards 36.100s 1; }
+  </style>
+        <text id="of_h1" x="106" y="76" font-size="9" fill="#f78166" text-anchor="middle" font-weight="bold" letter-spacing="1" opacity="0">
+            UNDERFITTING
+          </text>
+        <style>
+  @keyframes kf_of_h2_1 { from { opacity:0; } to { opacity:1; } }
+  #of_h2 { animation: kf_of_h2_1 0.400s linear forwards 36.200s 1; }
+  </style>
+        <text id="of_h2" x="300" y="76" font-size="9" fill="#3fb950" text-anchor="middle" font-weight="bold" letter-spacing="1" opacity="0">
+            JUST RIGHT ✓
+          </text>
+        <style>
+  @keyframes kf_of_h3_1 { from { opacity:0; } to { opacity:1; } }
+  #of_h3 { animation: kf_of_h3_1 0.400s linear forwards 36.300s 1; }
+  </style>
+        <text id="of_h3" x="494" y="76" font-size="9" fill="#ffa657" text-anchor="middle" font-weight="bold" letter-spacing="1" opacity="0">
+            OVERFITTING
+          </text>
+        <style>
+  @keyframes kf_of_p1a_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p1a { animation: kf_of_p1a_1 0.300s linear forwards 36.400s 1; }
+  </style>
+        <circle id="of_p1a" cx="50" cy="180" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p1b_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p1b { animation: kf_of_p1b_1 0.300s linear forwards 36.400s 1; }
+  </style>
+        <circle id="of_p1b" cx="75" cy="155" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p1c_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p1c { animation: kf_of_p1c_1 0.300s linear forwards 36.400s 1; }
+  </style>
+        <circle id="of_p1c" cx="100" cy="130" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p1d_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p1d { animation: kf_of_p1d_1 0.300s linear forwards 36.400s 1; }
+  </style>
+        <circle id="of_p1d" cx="130" cy="140" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p1e_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p1e { animation: kf_of_p1e_1 0.300s linear forwards 36.400s 1; }
+  </style>
+        <circle id="of_p1e" cx="155" cy="110" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_l1_1 { from { opacity:0; } to { opacity:1; } }
+  #of_l1 { animation: kf_of_l1_1 0.500s linear forwards 36.600s 1; }
+  </style>
+        <line id="of_l1" x1="35" y1="200" x2="180" y2="95" stroke="#f78166" stroke-width="2" opacity="0"/>
+        <style>
+  @keyframes kf_of_d1_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d1 { animation: kf_of_d1_1 0.400s linear forwards 36.800s 1; }
+  </style>
+        <text id="of_d1" x="106" y="228" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Too simple model
+          </text>
+        <style>
+  @keyframes kf_of_d1b_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d1b { animation: kf_of_d1b_1 0.400s linear forwards 36.800s 1; }
+  </style>
+        <text id="of_d1b" x="106" y="243" font-size="9" fill="#f78166" text-anchor="middle" opacity="0">
+            High bias, low var.
+          </text>
+        <style>
+  @keyframes kf_of_d1c_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d1c { animation: kf_of_d1c_1 0.400s linear forwards 36.900s 1; }
+  </style>
+        <text id="of_d1c" x="106" y="270" font-size="8" fill="#484f58" text-anchor="middle" opacity="0">
+            Fix: more features,
+          </text>
+        <style>
+  @keyframes kf_of_d1d_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d1d { animation: kf_of_d1d_1 0.400s linear forwards 36.900s 1; }
+  </style>
+        <text id="of_d1d" x="106" y="284" font-size="8" fill="#484f58" text-anchor="middle" opacity="0">
+            complex model
+          </text>
+        <style>
+  @keyframes kf_of_p2a_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p2a { animation: kf_of_p2a_1 0.300s linear forwards 36.500s 1; }
+  </style>
+        <circle id="of_p2a" cx="244" cy="180" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p2b_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p2b { animation: kf_of_p2b_1 0.300s linear forwards 36.500s 1; }
+  </style>
+        <circle id="of_p2b" cx="269" cy="155" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p2c_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p2c { animation: kf_of_p2c_1 0.300s linear forwards 36.500s 1; }
+  </style>
+        <circle id="of_p2c" cx="294" cy="130" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p2d_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p2d { animation: kf_of_p2d_1 0.300s linear forwards 36.500s 1; }
+  </style>
+        <circle id="of_p2d" cx="324" cy="140" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p2e_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p2e { animation: kf_of_p2e_1 0.300s linear forwards 36.500s 1; }
+  </style>
+        <circle id="of_p2e" cx="349" cy="110" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_l2_1 { from { opacity:0; } to { opacity:1; } }
+  #of_l2 { animation: kf_of_l2_1 0.500s linear forwards 36.700s 1; }
+  </style>
+        <path id="of_l2" d="M 229 198 Q 270 145 300 130 Q 340 115 374 95" fill="none" stroke="#3fb950" stroke-width="2.5" opacity="0"/>
+        <style>
+  @keyframes kf_of_d2_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d2 { animation: kf_of_d2_1 0.400s linear forwards 36.900s 1; }
+  </style>
+        <text id="of_d2" x="300" y="228" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Good generalisation
+          </text>
+        <style>
+  @keyframes kf_of_d2b_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d2b { animation: kf_of_d2b_1 0.400s linear forwards 36.900s 1; }
+  </style>
+        <text id="of_d2b" x="300" y="243" font-size="9" fill="#3fb950" text-anchor="middle" opacity="0">
+            Balanced bias-variance
+          </text>
+        <style>
+  @keyframes kf_of_d2c_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d2c { animation: kf_of_d2c_1 0.400s linear forwards 37.000s 1; }
+  </style>
+        <text id="of_d2c" x="300" y="270" font-size="8" fill="#484f58" text-anchor="middle" opacity="0">
+            Train ≈ Val accuracy
+          </text>
+        <style>
+  @keyframes kf_of_d2d_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d2d { animation: kf_of_d2d_1 0.400s linear forwards 37.000s 1; }
+  </style>
+        <text id="of_d2d" x="300" y="284" font-size="8" fill="#3fb950" text-anchor="middle" font-weight="bold" opacity="0">
+            ← GOAL →
+          </text>
+        <style>
+  @keyframes kf_of_p3a_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p3a { animation: kf_of_p3a_1 0.300s linear forwards 36.600s 1; }
+  </style>
+        <circle id="of_p3a" cx="438" cy="180" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p3b_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p3b { animation: kf_of_p3b_1 0.300s linear forwards 36.600s 1; }
+  </style>
+        <circle id="of_p3b" cx="463" cy="155" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p3c_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p3c { animation: kf_of_p3c_1 0.300s linear forwards 36.600s 1; }
+  </style>
+        <circle id="of_p3c" cx="488" cy="130" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p3d_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p3d { animation: kf_of_p3d_1 0.300s linear forwards 36.600s 1; }
+  </style>
+        <circle id="of_p3d" cx="518" cy="140" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_p3e_1 { from { opacity:0; } to { opacity:1; } }
+  #of_p3e { animation: kf_of_p3e_1 0.300s linear forwards 36.600s 1; }
+  </style>
+        <circle id="of_p3e" cx="543" cy="110" r="4" fill="#58a6ff" opacity="0"/>
+        <style>
+  @keyframes kf_of_l3_1 { from { opacity:0; } to { opacity:1; } }
+  #of_l3 { animation: kf_of_l3_1 0.500s linear forwards 36.800s 1; }
+  </style>
+        <path id="of_l3" d="M 423 185 C 450 175 455 138 488 130 C 510 126 510 148 543 110" fill="none" stroke="#ffa657" stroke-width="2.5" opacity="0"/>
+        <style>
+  @keyframes kf_of_d3_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d3 { animation: kf_of_d3_1 0.400s linear forwards 37.000s 1; }
+  </style>
+        <text id="of_d3" x="494" y="228" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Memorised training
+          </text>
+        <style>
+  @keyframes kf_of_d3b_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d3b { animation: kf_of_d3b_1 0.400s linear forwards 37.000s 1; }
+  </style>
+        <text id="of_d3b" x="494" y="243" font-size="9" fill="#ffa657" text-anchor="middle" opacity="0">
+            Low bias, high var.
+          </text>
+        <style>
+  @keyframes kf_of_d3c_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d3c { animation: kf_of_d3c_1 0.400s linear forwards 37.100s 1; }
+  </style>
+        <text id="of_d3c" x="494" y="270" font-size="8" fill="#484f58" text-anchor="middle" opacity="0">
+            Fix: Dropout, L2 reg,
+          </text>
+        <style>
+  @keyframes kf_of_d3d_1 { from { opacity:0; } to { opacity:1; } }
+  #of_d3d { animation: kf_of_d3d_1 0.400s linear forwards 37.100s 1; }
+  </style>
+        <text id="of_d3d" x="494" y="284" font-size="8" fill="#484f58" text-anchor="middle" opacity="0">
+            more data
+          </text>
+        <style>
+  @keyframes kf_of_footer_1 { from { opacity:0; } to { opacity:1; } }
+  #of_footer { animation: kf_of_footer_1 0.800s linear forwards 37.700s 1; }
+  </style>
+        <text id="of_footer" x="300" y="358" font-size="9" fill="#484f58" text-anchor="middle" font-style="italic" opacity="0">
+            Always evaluate on a held-out TEST SET to detect overfitting
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="246" cy="388" r="3" fill="#30363d"/> <circle cx="264" cy="388" r="3" fill="#30363d"/> <circle cx="282" cy="388" r="3" fill="#30363d"/> <circle cx="300" cy="388" r="3" fill="#30363d"/> <circle cx="318" cy="388" r="3" fill="#30363d"/> <circle cx="336" cy="388" r="5" fill="#58a6ff"/> <circle cx="354" cy="388" r="3" fill="#30363d"/>
+    </g>
+
+    <style>
+  @keyframes scene_7_anim {
+  0%          { opacity:0; }
+  85.714% { opacity:0; }
+  86.922%   { opacity:1; }
+  100%        { opacity:1; }
+}
+  #scene_7 { opacity:0; animation:scene_7_anim 49.700s linear forwards; }
+</style>
+    <!-- ═══ SCENE 7/7: The ML Pipeline — End to End | start=42.6s dur=6.5s ═══ -->
+    <g id="scene_7" opacity="0">
+
+      <!-- background -->
+      <rect width="600" height="400" fill="#0d1117" rx="10"/>
+      <rect width="600" height="400" fill="url(#scene-grid)" opacity="0.07" rx="10"/>
+      <rect width="600" height="400" fill="none" stroke="#21262d" stroke-width="1.5" rx="10"/>
+
+      <!-- title & counter -->
+      
+
+      <!-- scene content -->
+      <style>
+  @keyframes kf_pipe_step1_box_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_step1_box { animation: kf_pipe_step1_box_1 0.400s linear forwards 42.900s 1; }
+  </style>
+        <rect id="pipe_step1_box" x="20" y="80" width="80" height="60" fill="#0d2236" stroke="#58a6ff" stroke-width="1.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_pipe_step2_box_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_step2_box { animation: kf_pipe_step2_box_1 0.400s linear forwards 43.100s 1; }
+  </style>
+        <rect id="pipe_step2_box" x="120" y="80" width="80" height="60" fill="#0d2236" stroke="#58a6ff" stroke-width="1.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_pipe_step3_box_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_step3_box { animation: kf_pipe_step3_box_1 0.400s linear forwards 43.300s 1; }
+  </style>
+        <rect id="pipe_step3_box" x="220" y="80" width="80" height="60" fill="#0d2236" stroke="#3fb950" stroke-width="1.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_pipe_step4_box_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_step4_box { animation: kf_pipe_step4_box_1 0.400s linear forwards 43.500s 1; }
+  </style>
+        <rect id="pipe_step4_box" x="320" y="80" width="80" height="60" fill="#0d2236" stroke="#3fb950" stroke-width="1.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_pipe_step5_box_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_step5_box { animation: kf_pipe_step5_box_1 0.400s linear forwards 43.700s 1; }
+  </style>
+        <rect id="pipe_step5_box" x="420" y="80" width="80" height="60" fill="#0d2236" stroke="#ffa657" stroke-width="1.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_pipe_step6_box_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_step6_box { animation: kf_pipe_step6_box_1 0.400s linear forwards 43.900s 1; }
+  </style>
+        <rect id="pipe_step6_box" x="520" y="80" width="65" height="60" fill="#0d2236" stroke="#ffa657" stroke-width="1.5" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_pipe_arr1_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_arr1 { animation: kf_pipe_arr1_1 0.300s linear forwards 43.100s 1; }
+  </style>
+        <text id="pipe_arr1" x="108" y="116" font-size="16" fill="#30363d" text-anchor="middle" opacity="0">
+            →
+          </text>
+        <style>
+  @keyframes kf_pipe_arr2_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_arr2 { animation: kf_pipe_arr2_1 0.300s linear forwards 43.300s 1; }
+  </style>
+        <text id="pipe_arr2" x="208" y="116" font-size="16" fill="#30363d" text-anchor="middle" opacity="0">
+            →
+          </text>
+        <style>
+  @keyframes kf_pipe_arr3_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_arr3 { animation: kf_pipe_arr3_1 0.300s linear forwards 43.500s 1; }
+  </style>
+        <text id="pipe_arr3" x="308" y="116" font-size="16" fill="#30363d" text-anchor="middle" opacity="0">
+            →
+          </text>
+        <style>
+  @keyframes kf_pipe_arr4_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_arr4 { animation: kf_pipe_arr4_1 0.300s linear forwards 43.700s 1; }
+  </style>
+        <text id="pipe_arr4" x="408" y="116" font-size="16" fill="#30363d" text-anchor="middle" opacity="0">
+            →
+          </text>
+        <style>
+  @keyframes kf_pipe_arr5_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_arr5 { animation: kf_pipe_arr5_1 0.300s linear forwards 43.900s 1; }
+  </style>
+        <text id="pipe_arr5" x="508" y="116" font-size="16" fill="#30363d" text-anchor="middle" opacity="0">
+            →
+          </text>
+        <style>
+  @keyframes kf_ps1t1_1 { from { opacity:0; } to { opacity:1; } }
+  #ps1t1 { animation: kf_ps1t1_1 0.300s linear forwards 43.000s 1; }
+  </style>
+        <text id="ps1t1" x="60" y="105" font-size="10" fill="#58a6ff" text-anchor="middle" font-weight="bold" opacity="0">
+            1.
+          </text>
+        <style>
+  @keyframes kf_ps1t2_1 { from { opacity:0; } to { opacity:1; } }
+  #ps1t2 { animation: kf_ps1t2_1 0.300s linear forwards 43.000s 1; }
+  </style>
+        <text id="ps1t2" x="60" y="120" font-size="9" fill="#f0f6fc" text-anchor="middle" opacity="0">
+            Data
+          </text>
+        <style>
+  @keyframes kf_ps1t3_1 { from { opacity:0; } to { opacity:1; } }
+  #ps1t3 { animation: kf_ps1t3_1 0.300s linear forwards 43.000s 1; }
+  </style>
+        <text id="ps1t3" x="60" y="132" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Collect
+          </text>
+        <style>
+  @keyframes kf_ps2t1_1 { from { opacity:0; } to { opacity:1; } }
+  #ps2t1 { animation: kf_ps2t1_1 0.300s linear forwards 43.200s 1; }
+  </style>
+        <text id="ps2t1" x="160" y="105" font-size="10" fill="#58a6ff" text-anchor="middle" font-weight="bold" opacity="0">
+            2.
+          </text>
+        <style>
+  @keyframes kf_ps2t2_1 { from { opacity:0; } to { opacity:1; } }
+  #ps2t2 { animation: kf_ps2t2_1 0.300s linear forwards 43.200s 1; }
+  </style>
+        <text id="ps2t2" x="160" y="120" font-size="9" fill="#f0f6fc" text-anchor="middle" opacity="0">
+            Preproc.
+          </text>
+        <style>
+  @keyframes kf_ps2t3_1 { from { opacity:0; } to { opacity:1; } }
+  #ps2t3 { animation: kf_ps2t3_1 0.300s linear forwards 43.200s 1; }
+  </style>
+        <text id="ps2t3" x="160" y="132" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Clean/Scale
+          </text>
+        <style>
+  @keyframes kf_ps3t1_1 { from { opacity:0; } to { opacity:1; } }
+  #ps3t1 { animation: kf_ps3t1_1 0.300s linear forwards 43.400s 1; }
+  </style>
+        <text id="ps3t1" x="260" y="105" font-size="10" fill="#3fb950" text-anchor="middle" font-weight="bold" opacity="0">
+            3.
+          </text>
+        <style>
+  @keyframes kf_ps3t2_1 { from { opacity:0; } to { opacity:1; } }
+  #ps3t2 { animation: kf_ps3t2_1 0.300s linear forwards 43.400s 1; }
+  </style>
+        <text id="ps3t2" x="260" y="120" font-size="9" fill="#f0f6fc" text-anchor="middle" opacity="0">
+            Train
+          </text>
+        <style>
+  @keyframes kf_ps3t3_1 { from { opacity:0; } to { opacity:1; } }
+  #ps3t3 { animation: kf_ps3t3_1 0.300s linear forwards 43.400s 1; }
+  </style>
+        <text id="ps3t3" x="260" y="132" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Fit Model
+          </text>
+        <style>
+  @keyframes kf_ps4t1_1 { from { opacity:0; } to { opacity:1; } }
+  #ps4t1 { animation: kf_ps4t1_1 0.300s linear forwards 43.600s 1; }
+  </style>
+        <text id="ps4t1" x="360" y="105" font-size="10" fill="#3fb950" text-anchor="middle" font-weight="bold" opacity="0">
+            4.
+          </text>
+        <style>
+  @keyframes kf_ps4t2_1 { from { opacity:0; } to { opacity:1; } }
+  #ps4t2 { animation: kf_ps4t2_1 0.300s linear forwards 43.600s 1; }
+  </style>
+        <text id="ps4t2" x="360" y="120" font-size="9" fill="#f0f6fc" text-anchor="middle" opacity="0">
+            Evaluate
+          </text>
+        <style>
+  @keyframes kf_ps4t3_1 { from { opacity:0; } to { opacity:1; } }
+  #ps4t3 { animation: kf_ps4t3_1 0.300s linear forwards 43.600s 1; }
+  </style>
+        <text id="ps4t3" x="360" y="132" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Accuracy/F1
+          </text>
+        <style>
+  @keyframes kf_ps5t1_1 { from { opacity:0; } to { opacity:1; } }
+  #ps5t1 { animation: kf_ps5t1_1 0.300s linear forwards 43.800s 1; }
+  </style>
+        <text id="ps5t1" x="460" y="105" font-size="10" fill="#ffa657" text-anchor="middle" font-weight="bold" opacity="0">
+            5.
+          </text>
+        <style>
+  @keyframes kf_ps5t2_1 { from { opacity:0; } to { opacity:1; } }
+  #ps5t2 { animation: kf_ps5t2_1 0.300s linear forwards 43.800s 1; }
+  </style>
+        <text id="ps5t2" x="460" y="120" font-size="9" fill="#f0f6fc" text-anchor="middle" opacity="0">
+            Tune
+          </text>
+        <style>
+  @keyframes kf_ps5t3_1 { from { opacity:0; } to { opacity:1; } }
+  #ps5t3 { animation: kf_ps5t3_1 0.300s linear forwards 43.800s 1; }
+  </style>
+        <text id="ps5t3" x="460" y="132" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Hyperparams
+          </text>
+        <style>
+  @keyframes kf_ps6t1_1 { from { opacity:0; } to { opacity:1; } }
+  #ps6t1 { animation: kf_ps6t1_1 0.300s linear forwards 44.000s 1; }
+  </style>
+        <text id="ps6t1" x="553" y="105" font-size="10" fill="#ffa657" text-anchor="middle" font-weight="bold" opacity="0">
+            6.
+          </text>
+        <style>
+  @keyframes kf_ps6t2_1 { from { opacity:0; } to { opacity:1; } }
+  #ps6t2 { animation: kf_ps6t2_1 0.300s linear forwards 44.000s 1; }
+  </style>
+        <text id="ps6t2" x="553" y="120" font-size="9" fill="#f0f6fc" text-anchor="middle" opacity="0">
+            Deploy
+          </text>
+        <style>
+  @keyframes kf_ps6t3_1 { from { opacity:0; } to { opacity:1; } }
+  #ps6t3 { animation: kf_ps6t3_1 0.300s linear forwards 44.000s 1; }
+  </style>
+        <text id="ps6t3" x="553" y="132" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Serve API
+          </text>
+        <style>
+  @keyframes kf_pipe_feedback_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_feedback { animation: kf_pipe_feedback_1 0.600s linear forwards 44.600s 1; }
+  </style>
+        <path id="pipe_feedback" d="M 553 145 Q 553 175 300 175 Q 130 175 60 145" fill="none" stroke="#484f58" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arrow)" opacity="0"/>
+        <style>
+  @keyframes kf_pipe_feedback_lbl_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_feedback_lbl { animation: kf_pipe_feedback_lbl_1 0.500s linear forwards 44.800s 1; }
+  </style>
+        <text id="pipe_feedback_lbl" x="300" y="192" font-size="8.5" fill="#484f58" text-anchor="middle" font-style="italic" opacity="0">
+            ← iterate and improve →
+          </text>
+        <style>
+  @keyframes kf_pipe_detail_box_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_detail_box { animation: kf_pipe_detail_box_1 0.500s linear forwards 44.400s 1; }
+  </style>
+        <rect id="pipe_detail_box" x="20" y="210" width="565" height="145" fill="#161b22" stroke="#21262d" rx="8" opacity="0"/>
+        <style>
+  @keyframes kf_pipe_det_t_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_det_t { animation: kf_pipe_det_t_1 0.500s linear forwards 44.600s 1; }
+  </style>
+        <text id="pipe_det_t" x="303" y="230" font-size="9" fill="#58a6ff" text-anchor="middle" letter-spacing="2" opacity="0">
+            KEY TOOLS &amp; METRICS
+          </text>
+        <style>
+  @keyframes kf_pipe_d1_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_d1 { animation: kf_pipe_d1_1 0.400s linear forwards 44.700s 1; }
+  </style>
+        <text id="pipe_d1" x="65" y="252" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            📦 Pandas/SQL
+          </text>
+        <style>
+  @keyframes kf_pipe_d2_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_d2 { animation: kf_pipe_d2_1 0.400s linear forwards 44.800s 1; }
+  </style>
+        <text id="pipe_d2" x="175" y="252" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            🔧 sklearn/NumPy
+          </text>
+        <style>
+  @keyframes kf_pipe_d3_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_d3 { animation: kf_pipe_d3_1 0.400s linear forwards 44.900s 1; }
+  </style>
+        <text id="pipe_d3" x="285" y="252" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            🧠 PyTorch/Keras
+          </text>
+        <style>
+  @keyframes kf_pipe_d4_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_d4 { animation: kf_pipe_d4_1 0.400s linear forwards 45.000s 1; }
+  </style>
+        <text id="pipe_d4" x="395" y="252" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            📊 Accuracy/F1/AUC
+          </text>
+        <style>
+  @keyframes kf_pipe_d5_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_d5 { animation: kf_pipe_d5_1 0.400s linear forwards 45.100s 1; }
+  </style>
+        <text id="pipe_d5" x="490" y="252" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            ⚙️ GridSearchCV
+          </text>
+        <style>
+  @keyframes kf_pipe_d6_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_d6 { animation: kf_pipe_d6_1 0.400s linear forwards 45.200s 1; }
+  </style>
+        <text id="pipe_d6" x="565" y="252" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            🚀 FastAPI
+          </text>
+        <style>
+  @keyframes kf_pipe_tip1_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_tip1 { animation: kf_pipe_tip1_1 0.600s linear forwards 45.400s 1; }
+  </style>
+        <text id="pipe_tip1" x="300" y="285" font-size="9.5" fill="#ffa657" text-anchor="middle" font-weight="bold" opacity="0">
+            80% of ML time is spent on data collection and preprocessing!
+          </text>
+        <style>
+  @keyframes kf_pipe_tip2_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_tip2 { animation: kf_pipe_tip2_1 0.500s linear forwards 45.600s 1; }
+  </style>
+        <text id="pipe_tip2" x="300" y="305" font-size="9" fill="#8b949e" text-anchor="middle" opacity="0">
+            Always split data: 70% Train  |  15% Validation  |  15% Test
+          </text>
+        <style>
+  @keyframes kf_pipe_tip3_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_tip3 { animation: kf_pipe_tip3_1 0.500s linear forwards 45.800s 1; }
+  </style>
+        <text id="pipe_tip3" x="300" y="325" font-size="9" fill="#f78166" text-anchor="middle" opacity="0">
+            Never let test data touch training — that's data leakage!
+          </text>
+        <style>
+  @keyframes kf_pipe_tip4_1 { from { opacity:0; } to { opacity:1; } }
+  #pipe_tip4 { animation: kf_pipe_tip4_1 0.500s linear forwards 46.000s 1; }
+  </style>
+        <text id="pipe_tip4" x="300" y="345" font-size="9" fill="#484f58" text-anchor="middle" font-style="italic" opacity="0">
+            Start simple. A logistic regression baseline beats no baseline.
+          </text>
+
+      <!-- progress dots -->
+      <circle cx="246" cy="388" r="3" fill="#30363d"/> <circle cx="264" cy="388" r="3" fill="#30363d"/> <circle cx="282" cy="388" r="3" fill="#30363d"/> <circle cx="300" cy="388" r="3" fill="#30363d"/> <circle cx="318" cy="388" r="3" fill="#30363d"/> <circle cx="336" cy="388" r="3" fill="#30363d"/> <circle cx="354" cy="388" r="5" fill="#58a6ff"/>
+    </g>
+  </g>
+
+</svg>
