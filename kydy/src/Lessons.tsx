@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import ClickSpark from './components/ClickSpark'
-import UnifiedSidebar from '@/components/UnifiedSidebar'
+import ClickSpark from '@/components/ClickSpark'
+import UnifiedSidebar from './components/UnifiedSidebar'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Message { id: number; role: 'user' | 'ai'; text: string; time: string }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import ClickSpark from './components/ClickSpark'
-import UnifiedSidebar from './components/UnifiedSidebar'
+import ClickSpark from '@/components/ClickSpark'
+import UnifiedSidebar from '@/components/UnifiedSidebar'
 
 // ─── Import animation.svg from the same src/ folder ──────────────────────────
 import visualizerSvgUrl from './animation.svg?url'
